@@ -1,0 +1,60 @@
+<section class="jobs-openings-section">
+
+    <div class="jobs-openings-container">
+
+        <div class="jobs-openings-header">
+
+            <span class="jobs-openings-small-title">
+                Lediga tjänster
+            </span>
+
+            <h2 class="jobs-openings-title">
+                Bli en del av Oqto.
+            </h2>
+
+        </div>
+
+
+        <div class="jobs-openings-list">
+
+            {{ jobs }}
+
+                <a
+                    href="/jobs/{{ job_slug }}"
+                    class="job-opening-card"
+                >
+
+                    <div class="jobs-opening-left">
+
+                        <span class="jobs-opening-type">
+                            {{ job_type }}
+                        </span>
+
+                        <h3 class="jobs-opening-title">
+                            {{ job_title }}
+                        </h3>
+
+                    </div>
+
+
+                    <div class="jobs-opening-right">
+
+                        <span class="jobs-opening-location">
+                            {{ job_location }}
+                        </span>
+
+                        <span class="jobs-opening-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            {{ /jobs }}
+
+        </div>
+
+    </div>
+
+</section>

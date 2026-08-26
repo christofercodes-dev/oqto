@@ -276,6 +276,34 @@ tabs:
             field:
               type: textarea
               display: 'routing text'
+      -
+        display: cta
+        fields:
+          -
+            handle: cta_title
+            field:
+              type: text
+              display: 'cta title'
+          -
+            handle: cta_button_1_text
+            field:
+              type: text
+              display: 'cta button 1 text'
+          -
+            handle: cta_button_1_url
+            field:
+              type: link
+              display: 'cta button 1 url'
+          -
+            handle: cta_button_2_text
+            field:
+              type: text
+              display: 'cta button 2 text'
+          -
+            handle: cta_button_2_url
+            field:
+              type: link
+              display: 'cta button 2 url'
   sidebar:
     display: Sidebar
     sections:

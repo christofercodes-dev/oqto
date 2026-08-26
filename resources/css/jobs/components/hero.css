@@ -1,0 +1,265 @@
+.jobs-intro-section {
+    width: 100%;
+
+    height: 70vh;
+
+    background: linear-gradient(
+        180deg,
+        #8bc1ff 0%,
+        #f5f9fd 100%
+    );
+
+    padding: 180px 40px 0;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+    color: #1a1715;
+}
+
+.jobs-intro-container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ==================================================
+   HEADER
+   ================================================== */
+
+.jobs-intro-header {
+    display: grid;
+
+    grid-template-columns: 1.2fr 0.8fr;
+
+    gap: 80px;
+
+    align-items: start;
+}
+
+
+/* ==================================================
+   VÄNSTER
+   ================================================== */
+
+.jobs-intro-left {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    max-width: 800px;
+}
+
+.jobs-intro-small-title {
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: #ff5500;
+}
+
+.jobs-intro-title {
+    font-size: clamp(6rem, 5vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    color: #2E251F;
+    margin: 0;
+}
+
+
+/* ==================================================
+   HÖGER
+   ================================================== */
+
+.jobs-intro-right {
+    max-width: 520px;
+
+    padding-top: 38px;
+}
+
+.jobs-intro-text {
+    margin: 0;
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+
+    color: #4a4744;
+}
+
+
+/* ==================================================
+   SVG / VISUAL
+   ================================================== */
+
+.jobs-intro-visual {
+    width: 100%;
+
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 360px;
+
+    overflow: hidden;
+}
+
+.jobs-intro-visual svg {
+    display: block;
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    height: auto;
+
+    max-height: 520px;
+}
+
+
+/* ==================================================
+   ANIMATION
+   ================================================== */
+
+.jobs-intro-title,
+.jobs-intro-text,
+.jobs-intro-visual {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    animation:
+        jobsIntroReveal 0.9s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+.jobs-intro-title {
+    animation-delay: 0.1s;
+}
+
+.jobs-intro-text {
+    animation-delay: 0.25s;
+}
+
+.jobs-intro-visual {
+    animation-delay: 0.4s;
+}
+
+@keyframes jobsIntroReveal {
+
+    0% {
+        opacity: 0;
+
+        transform: translateY(35px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .jobs-intro-title,
+    .jobs-intro-text,
+    .jobs-intro-visual {
+        opacity: 1;
+
+        transform: none;
+
+        animation: none;
+    }
+
+}
+
+
+/* ==================================================
+   TABLET
+   ================================================== */
+
+@media (max-width: 960px) {
+
+    .jobs-intro-section {
+        padding: 70px 24px 90px;
+    }
+
+    .jobs-intro-header {
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+    }
+
+    .jobs-intro-right {
+        padding-top: 0;
+
+        max-width: 680px;
+    }
+
+    .jobs-intro-visual {
+        margin-top: 60px;
+
+        min-height: 280px;
+    }
+
+}
+
+
+/* ==================================================
+   MOBIL
+   ================================================== */
+
+@media (max-width: 600px) {
+
+    .jobs-intro-section {
+        padding: 60px 20px 70px;
+    }
+
+    .jobs-intro-title {
+        font-size: clamp(3rem, 13vw, 5rem);
+    }
+
+    .jobs-intro-visual {
+        margin-top: 48px;
+
+        min-height: 220px;
+    }
+
+    .jobs-intro-visual svg {
+        max-height: 320px;
+    }
+
+}

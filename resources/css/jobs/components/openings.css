@@ -1,0 +1,301 @@
+/* ==================================================
+   JOB OPENINGS
+   ================================================== */
+
+   .jobs-openings-section {
+    width: 100%;
+    background: #ffffff;
+
+    padding: 110px 40px 140px;
+
+    box-sizing: border-box;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+    color: #1a1715;
+}
+
+.jobs-openings-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+
+/* ==================================================
+   HEADER
+   ================================================== */
+
+.jobs-openings-header {
+    margin-bottom: 70px;
+    max-width: 800px;
+}
+
+.jobs-openings-small-title {
+    display: block;
+
+    margin-bottom: 24px;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #ff5500;
+}
+
+.jobs-openings-title {
+    margin: 0;
+
+    font-size: clamp(3rem, 5vw, 4.8rem);
+
+    font-weight: 400;
+    line-height: 1.05;
+
+    letter-spacing: -0.04em;
+
+    color: #1a1715;
+}
+
+
+/* ==================================================
+   LIST
+   ================================================== */
+
+.jobs-openings-list {
+    width: 100%;
+
+    border-top: 1px solid #dedbd8;
+}
+
+
+/* ==================================================
+   JOB CARD
+   ================================================== */
+
+.job-opening-card {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    padding: 38px 0;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #dedbd8;
+
+    text-decoration: none;
+
+    color: #1a1715;
+
+    transition:
+        padding 0.3s ease,
+        background-color 0.3s ease;
+}
+
+
+/* ==================================================
+   LEFT
+   ================================================== */
+
+.jobs-opening-left {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.jobs-opening-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #ff5500;
+}
+
+.jobs-opening-title {
+    margin: 0;
+
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+
+    font-weight: 400;
+
+    line-height: 1.1;
+
+    letter-spacing: -0.025em;
+
+    color: #1a1715;
+
+    transition: color 0.25s ease;
+}
+
+
+/* ==================================================
+   RIGHT
+   ================================================== */
+
+.jobs-opening-right {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+}
+
+.jobs-opening-location {
+    font-size: 0.75rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: #77716d;
+}
+
+
+/* ==================================================
+   ARROW
+   ================================================== */
+
+.jobs-opening-arrow {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f1f0ef;
+
+    color: #1a1715;
+
+    font-size: 1.2rem;
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* ==================================================
+   HOVER
+   ================================================== */
+
+.job-opening-card:hover {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.job-opening-card:hover .jobs-opening-title {
+    color: #ff5500;
+}
+
+.job-opening-card:hover .jobs-opening-arrow {
+    transform: translateX(4px);
+
+    background: #ff5500;
+    color: #ffffff;
+}
+
+
+/* ==================================================
+   TABLET
+   ================================================== */
+
+@media (max-width: 960px) {
+
+    .jobs-openings-section {
+        padding: 90px 24px 110px;
+    }
+
+    .jobs-openings-header {
+        margin-bottom: 55px;
+    }
+
+    .job-opening-card {
+        padding: 32px 0;
+    }
+
+    .jobs-opening-right {
+        gap: 18px;
+    }
+
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 600px) {
+
+    .jobs-openings-section {
+        padding: 75px 20px 90px;
+    }
+
+    .jobs-openings-header {
+        margin-bottom: 45px;
+    }
+
+    .jobs-openings-title {
+        font-size: clamp(3rem, 12vw, 4rem);
+    }
+
+    .job-opening-card {
+        align-items: flex-start;
+
+        padding: 28px 0;
+
+        gap: 24px;
+    }
+
+    .jobs-opening-title {
+        font-size: 1.8rem;
+    }
+
+    .jobs-opening-right {
+        flex-direction: column;
+        align-items: flex-end;
+
+        gap: 14px;
+    }
+
+    .jobs-opening-location {
+        max-width: 100px;
+
+        text-align: right;
+
+        line-height: 1.4;
+    }
+
+    .jobs-opening-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .job-opening-card:hover {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+}

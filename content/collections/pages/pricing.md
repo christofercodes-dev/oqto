@@ -6,7 +6,7 @@ template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1787660374
+updated_at: 1787739631
 pricing_button_text: 'Boka demo'
 intro_small_title: Bolagslägen
 intro_title: "Ingen byrålicens, \Lbara olika bolagslägen."
@@ -138,5 +138,8 @@ routing_items:
     enabled: true
     routing_title: 'E-fakturor och dokumenttolkning utöver de 10 som ingår.'
 routing_title: Routing-inställningar
+cta_title: "Trött på att betala premium \Lför något som känns utdaterat? \LBoka demo eller logga in."
+cta_button_1_text: 'Boka demo'
+cta_button_2_text: 'Logga in'
 ---
 …för Oqto säljs inte till slutkund. Du som byrå är vår kund. Dina kunder är dina kunder. Du väljer läge per bolag, bestämmer användarnivåer och styr fakturering. Priset följer läget — storleken regleras naturligt via antal användare.

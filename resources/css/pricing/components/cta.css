@@ -1,0 +1,228 @@
+.pricing-cta-section {
+    width: 100%;
+
+    background-color: #ffffff;
+
+    padding: 100px 40px;
+
+    box-sizing: border-box;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+    color: #1a1715;
+}
+
+.pricing-cta-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.pricing-cta-content {
+    max-width: 1000px;
+}
+
+.pricing-cta-title {
+    margin: 0;
+
+    max-width: 900px;
+
+    font-size: clamp(3.5rem, 6vw, 6rem);
+
+    font-weight: 400;
+
+    line-height: 1.02;
+
+    letter-spacing: -0.045em;
+
+    color: #1a1715;
+}
+
+
+/* =========================
+   KNAPPAR
+   ========================= */
+
+.pricing-cta-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 48px;
+}
+
+.pricing-cta-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 15px 24px;
+
+    border-radius: 999px;
+
+    text-decoration: none;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.02em;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.pricing-cta-arrow {
+    font-size: 1.1rem;
+
+    line-height: 1;
+
+    transition: transform 0.25s ease;
+}
+
+
+/* =========================
+   PRIMÄR KNAPP
+   ========================= */
+
+.pricing-cta-button-primary {
+    background-color: #f35d08;
+
+    color: #ffffff;
+}
+
+.pricing-cta-button-primary:hover {
+    background-color: #383331;
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+.pricing-cta-button-primary:hover .pricing-cta-arrow {
+    transform: translateX(3px);
+}
+
+
+/* =========================
+   SEKUNDÄR KNAPP
+   ========================= */
+
+.pricing-cta-button-secondary {
+    background-color: #f1f1f1;
+
+    color: #1a1715;
+}
+
+.pricing-cta-button-secondary:hover {
+    background-color: #1a1715;
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+.pricing-cta-button-secondary:hover .pricing-cta-arrow {
+    transform: translateX(3px);
+}
+
+
+/* =========================
+   ANIMATION
+   ========================= */
+
+.pricing-cta-title {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    animation:
+        pricingCtaReveal 0.9s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+.pricing-cta-buttons {
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    animation:
+        pricingCtaReveal 0.8s
+        0.15s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+@keyframes pricingCtaReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pricing-cta-title,
+    .pricing-cta-buttons {
+        opacity: 1;
+
+        transform: none;
+
+        animation: none;
+    }
+
+}
+
+
+/* =========================
+   MOBIL
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .pricing-cta-section {
+        padding: 90px 24px;
+    }
+
+    .pricing-cta-title {
+        font-size: clamp(3rem, 13vw, 5rem);
+    }
+
+    .pricing-cta-buttons {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        margin-top: 36px;
+    }
+
+    .pricing-cta-button {
+        width: auto;
+    }
+
+}

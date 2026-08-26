@@ -1,0 +1,133 @@
+<section class="job-show-section">
+
+    <div class="job-show-container">
+
+        <!-- ==================================================
+             HEADER
+             ================================================== -->
+
+        <div class="job-show-header">
+
+            <div class="job-show-meta">
+
+                {{ if job:job_type }}
+                    <span class="job-show-meta-item">
+                        {{ job:job_type }}
+                    </span>
+                {{ /if }}
+
+                {{ if job:job_location }}
+                    <span class="job-show-meta-item">
+                        {{ job:job_location }}
+                    </span>
+                {{ /if }}
+
+            </div>
+
+            <h1 class="job-show-title">
+                {{ job:job_title }}
+            </h1>
+
+        </div>
+
+
+        <!-- ==================================================
+             INTRO
+             ================================================== -->
+
+        {{ if job:job_intro }}
+
+            <div class="job-show-intro">
+
+                <p>
+                    {{ job:job_intro | nl2br }}
+                </p>
+
+            </div>
+
+        {{ /if }}
+
+
+        <!-- ==================================================
+             CONTENT
+             ================================================== -->
+
+        {{ if job:job_content }}
+
+            <div class="job-show-content">
+
+                <div class="job-show-content-label">
+                    Om rollen
+                </div>
+
+                <div class="job-show-content-body">
+                    {{ job:job_content }}
+                </div>
+
+            </div>
+
+        {{ /if }}
+
+
+        <!-- ==================================================
+             APPLY
+             ================================================== -->
+
+        {{ if job:job_apply_url }}
+
+            <div class="job-show-apply">
+
+                <div class="job-show-apply-content">
+
+                    <span class="job-show-apply-label">
+                        Nästa steg
+                    </span>
+
+                    <h2 class="job-show-apply-title">
+                        Låter det som du?
+                    </h2>
+
+                    <p class="job-show-apply-text">
+                        Skicka in din ansökan så hör vi av oss.
+                    </p>
+
+                </div>
+
+                <a
+                    href="{{ job:job_apply_url }}"
+                    class="job-show-apply-button"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <span>
+                        {{ job:job_apply_text ?? "Ansök nu" }}
+                    </span>
+
+                    <span class="job-show-apply-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        {{ /if }}
+
+
+        <!-- ==================================================
+             BACK
+             ================================================== -->
+
+        <div class="job-show-back">
+
+            <a href="/jobs" class="job-show-back-link">
+                <span>←</span>
+                <span>Till alla lediga jobb</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

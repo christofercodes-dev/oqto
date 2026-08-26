@@ -1,0 +1,123 @@
+title: jobs
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: author
+            field:
+              type: users
+              display: author
+          -
+            handle: template
+            field:
+              type: template
+              display: template
+      -
+        display: 'första sidan'
+        fields:
+          -
+            handle: jobs_title
+            field:
+              type: text
+              display: 'jobs title'
+          -
+            handle: jobs_text
+            field:
+              type: textarea
+              display: 'jobs text'
+      -
+        display: 'lediga jobb'
+        fields:
+          -
+            handle: jobs_openings_small_title
+            field:
+              type: text
+              display: jobs_openings_small_title
+          -
+            handle: jobs_openings_title
+            field:
+              type: text
+              display: jobs_openings_title
+          -
+            handle: jobs_openings_intro
+            field:
+              type: textarea
+              display: jobs_openings_intro
+          -
+            handle: jobs
+            field:
+              type: replicator
+              display: jobs
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    job:
+                      display: job
+                      fields:
+                        -
+                          handle: job_title
+                          field:
+                            type: text
+                            display: 'job title'
+                        -
+                          handle: job_type
+                          field:
+                            type: text
+                            display: 'job type'
+                        -
+                          handle: job_location
+                          field:
+                            type: text
+                            display: 'job location'
+                        -
+                          handle: job_url
+                          field:
+                            type: link
+                            display: 'job url'
+                        -
+                          handle: job_slug
+                          field:
+                            type: text
+                            display: 'job slug'
+                        -
+                          handle: job_intro
+                          field:
+                            type: textarea
+                            display: 'job intro'
+                        -
+                          handle: job_content
+                          field:
+                            type: textarea
+                            display: 'job content'
+                        -
+                          handle: job_apply_url
+                          field:
+                            type: link
+                            display: 'job apply url'
+                        -
+                          handle: job_apply_text
+                          field:
+                            type: textarea
+                            display: 'job apply text'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

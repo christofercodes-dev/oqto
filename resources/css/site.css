@@ -27,23 +27,11 @@
 @import "./pricing/components/text.css";
 @import "./pricing/components/notice.css";
 @import "./pricing/components/routing.css";
+@import "./pricing/components/cta.css";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@import "./jobs/components/hero.css";
+@import "./jobs/components/openings.css";
+@import "./jobs/components/show.css";
 
 
 
