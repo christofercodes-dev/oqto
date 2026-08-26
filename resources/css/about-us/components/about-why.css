@@ -1,0 +1,131 @@
+.about-why-section {
+    width: 100%;
+
+    background-color: #ffffff;
+
+    padding: 100px 40px;
+
+    box-sizing: border-box;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+    color: #1a1715;
+}
+
+.about-why-container {
+    max-width: 1280px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+/* Övre etiketter */
+
+.about-why-eyebrow {
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+}
+
+.about-why-title-small,
+.about-why-subtitle {
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: #ff5500;
+}
+
+/* Titel + text */
+
+.about-why-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 48px;
+}
+
+.about-why-left {
+    flex: 1.3;
+}
+
+.about-why-title {
+    font-size: clamp(3rem, 5vw, 4.8rem);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    letter-spacing: -0.03em;
+
+    color: #1a1715;
+
+    margin: 0;
+
+    max-width: 800px;
+}
+
+.about-why-right {
+    flex: 1;
+
+    max-width: 520px;
+
+    padding-top: 10px;
+}
+
+.about-why-text {
+    font-size: 0.95rem;
+
+    line-height: 1.6;
+
+    color: #2c2a29;
+
+    margin: 0;
+}
+
+/* Mobil */
+
+@media (max-width: 960px) {
+
+    .about-why-section {
+        padding: 60px 24px;
+    }
+
+    .about-why-eyebrow {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+    }
+
+    .about-why-header {
+        flex-direction: column;
+
+        gap: 32px;
+    }
+
+    .about-why-right {
+        max-width: 100%;
+
+        padding-top: 0;
+    }
+}

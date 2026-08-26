@@ -1,0 +1,72 @@
+<section class="reviews-section">
+
+    <div class="reviews-container">
+
+        <!-- Underrubrik -->
+
+        <div class="reviews-header-top">
+
+            <span class="reviews-subtitle">
+                {{ reviews_title }}
+            </span>
+
+        </div>
+
+
+        <!-- Omdömen -->
+
+        <div class="reviews-card">
+
+            <div class="reviews-slides">
+        
+                {{ reviews_items }}
+        
+                    <div class="review-slide">
+        
+                        <div class="reviews-card-content">
+        
+                            <blockquote class="reviews-quote">
+                                "{{ quote }}"
+                            </blockquote>
+        
+                            <div class="reviews-author">
+                                <span class="author-name">
+                                    {{ author_name }}
+                                </span>
+        
+                                <span class="author-title">
+                                    {{ author_title }}
+                                </span>
+                            </div>
+        
+                        </div>
+        
+                    </div>
+        
+                {{ /reviews_items }}
+        
+            </div>
+        
+            <div class="reviews-btn-wrapper">
+        
+                <button
+                    type="button"
+                    class="nav-btn prev-btn"
+                    aria-label="Föregående omdöme"
+                >
+                    <span>←</span>
+                </button>
+        
+                <button
+                    type="button"
+                    class="nav-btn next-btn"
+                    aria-label="Nästa omdöme"
+                >
+                    <span>→</span>
+                </button>
+        
+            </div>
+        
+        </div>
+
+</section>

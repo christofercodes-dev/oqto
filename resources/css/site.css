@@ -1,3 +1,52 @@
+@import "./components/navbar.css";
+@import "./components/hero.css";
+@import "./components/cards-section.css";
+@import "./components/video-section.css";
+@import "./components/faq-section.css";
+@import "./components/why-oqto.css";
+@import "./components/reviews.css";
+@import "./components/footer.css";
+
+
+@import "./about-us/components/hero.css";
+@import "./about-us/components/illustration.css";
+@import "./about-us/components/about-why.css";
+@import "./about-us/components/team.css";
+@import "./about-us/components/cta.css";
+
+@import "./faq/components/hero.css";
+@import "./faq/components/faq.css";
+@import "./faq/components/cta.css";
+
+@import "./pricing/components/hero.css";
+@import "./pricing/components/intro.css";
+@import "./pricing/components/pricing-plans.css";
+@import "./pricing/components/faq.css";
+@import "./pricing/components/users.css";
+@import "./pricing/components/included.css";
+@import "./pricing/components/text.css";
+@import "./pricing/components/notice.css";
+@import "./pricing/components/routing.css";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @import "tailwindcss";
 @source "../views";
 @source "../../content";

@@ -1,0 +1,218 @@
+/* Grundläggande inställningar */
+.hero-section {
+    min-height: 80vh;
+    background: linear-gradient(180deg, #8bc1ff 0%, #f5f9fd 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 100px 40px 0 40px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    position: relative;
+  }
+  
+  .hero-container {
+    padding-top: 100px;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex: 1;
+  }
+  
+  /* Typografi och layout */
+  .hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+  }
+  
+  .hero-left {
+    flex: 1.3;
+  }
+  
+  .hero-title {
+    font-size: clamp(6rem, 5vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    color: #2E251F;
+    margin: 0;
+  }
+  
+  .hero-right {
+    flex: 1;
+    max-width: 520px;
+    padding-top: 10px;
+    color: #1a1715;
+    font-weight: 500;
+  }
+  
+  .hero-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Fliken med knappen och de sömlösa radie-kurvorna */
+  .hero-action-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 40px;
+  }
+  
+  .hero-action-card {
+    background-color: #ffffff;
+    padding: 30px 40px 0 40px;
+    border-radius: 36px 36px 0 0;
+    display: inline-flex;
+  }
+  
+  /* Skapar de inåtböjda rundade hörnen mot nästa sektion */
+  .corner-curve {
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    -webkit-mask-image: radial-gradient(circle at 0 0, transparent 36px, black 36.5px);
+    mask-image: radial-gradient(circle at 0 0, transparent 36px, black 36.5px);
+  }
+  
+  .corner-curve.curve-left {
+    -webkit-mask-image: radial-gradient(circle at 0 0, transparent 36px, black 36.5px);
+    mask-image: radial-gradient(circle at 0 0, transparent 36px, black 36.5px);
+  }
+  
+  .corner-curve.curve-right {
+    -webkit-mask-image: radial-gradient(circle at 100% 0, transparent 36px, black 36.5px);
+    mask-image: radial-gradient(circle at 100% 0, transparent 36px, black 36.5px);
+  }
+  
+  /* Knappstil */
+  .btn-demo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border: 1px solid #1a1715;
+    border-radius: 999px;
+    min-width: 300px;
+    padding: 6px 6px 6px 28px;
+    text-decoration: none;
+    color: #1a1715;
+    transition: all 0.25s ease;
+    background-color: #ffffff;
+  }
+  
+  .btn-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    align-items: center;
+  }
+  
+  .btn-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: #ff5500;
+    color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+  }
+  
+  .btn-demo:hover {
+    border-color: #ff5500;
+  }
+  
+  .btn-demo:hover .btn-arrow {
+    transform: translateX(3px);
+    background-color: #e04b00;
+  }
+
+
+/* ==================================================
+   HERO TEXT ANIMATION
+   ================================================== */
+
+   .hero-title,
+   .hero-text {
+       opacity: 0;
+       transform: translateY(40px);
+       animation: heroTextReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+   }
+   
+   
+   /* Rubriken kommer först */
+   
+   .hero-title {
+       animation-delay: 0.15s;
+   }
+   
+   
+   /* Brödtexten kommer strax efter */
+   
+   .hero-text {
+       animation-delay: 0.35s;
+   }
+   
+   
+   @keyframes heroTextReveal {
+   
+       0% {
+           opacity: 0;
+           transform: translateY(40px);
+       }
+   
+       100% {
+           opacity: 1;
+           transform: translateY(0);
+       }
+   
+   }
+   
+   
+   /* Respektera användare som vill minska rörelse */
+   
+   @media (prefers-reduced-motion: reduce) {
+   
+       .hero-title,
+       .hero-text {
+           opacity: 1;
+           transform: none;
+           animation: none;
+       }
+   
+   }
+
+
+  
+  
+  /* Responsiv anpassning */
+  @media (max-width: 960px) {
+    .hero-section {
+      min-height: auto;
+      padding: 60px 24px 0 24px;
+    }
+  
+    .hero-content {
+      flex-direction: column;
+      gap: 32px;
+    }
+  
+    .hero-right {
+      max-width: 100%;
+    }
+  
+    .hero-action-wrapper {
+      justify-content: center;
+      margin-top: 60px;
+    }
+  }

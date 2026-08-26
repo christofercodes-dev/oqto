@@ -1,0 +1,56 @@
+<section class="video-section">
+
+    <div class="video-container">
+
+        <!-- Övre etiketter -->
+        <div class="video-eyebrow">
+            <span class="video-title-small">
+                {{ small_title }}
+            </span>
+
+            <span class="video-subtitle">
+                {{ video_subtitle }}
+            </span>
+        </div>
+
+        <!-- Titel + text -->
+        <div class="video-header">
+
+            <div class="video-left">
+                <h2 class="video-title">
+                    {{ video_heading | nl2br }}
+                </h2>
+            </div>
+
+            <div class="video-right">
+                <p class="video-text">
+                    {{ video_body }}
+                </p>
+            </div>
+
+        </div>
+
+        <div class="video-wrapper">
+
+            {{ if video_file }}
+
+                <video
+                    controls
+                    class="video-element"
+                >
+                    <source src="{{ video_file:url }}" type="video/mp4">
+                </video>
+
+            {{ elseif embed_code }}
+
+                <div class="video-placeholder">
+                    {{ embed_code }}
+                </div>
+
+            {{ /if }}
+
+        </div>
+
+    </div>
+
+</section>

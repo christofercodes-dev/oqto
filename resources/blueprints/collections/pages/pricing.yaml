@@ -1,0 +1,289 @@
+title: pricing
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+          -
+            handle: users
+            field:
+              type: users
+              display: Users
+          -
+            handle: content
+            field:
+              type: markdown
+              display: content
+          -
+            handle: pricing_button_text
+            field:
+              type: text
+              display: 'pricing button text'
+          -
+            handle: pricing_button_url
+            field:
+              type: link
+              display: 'pricing button url'
+      -
+        display: intro
+        fields:
+          -
+            handle: intro_small_title
+            field:
+              type: text
+              display: 'intro small title'
+          -
+            handle: intro_title
+            field:
+              type: text
+              display: 'intro title'
+          -
+            handle: intro_body
+            field:
+              type: textarea
+              display: 'intro body'
+      -
+        display: 'pricing plans'
+        fields:
+          -
+            handle: pricing_plans
+            field:
+              type: replicator
+              display: 'pricing plans'
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    pricing_plan:
+                      display: plan
+                      fields:
+                        -
+                          handle: plan_title
+                          field:
+                            type: text
+                            display: 'plan title'
+                        -
+                          handle: plan_number
+                          field:
+                            type: text
+                            display: 'plan number'
+                        -
+                          handle: description
+                          field:
+                            type: textarea
+                            display: description
+                        -
+                          handle: features
+                          field:
+                            type: list
+                            display: features
+                        -
+                          handle: monthly_price
+                          field:
+                            type: text
+                            display: 'monthly price'
+                        -
+                          handle: verification_limit
+                          field:
+                            type: text
+                            display: 'verification limit'
+      -
+        display: 'pricing faq'
+        fields:
+          -
+            handle: pricing_faq
+            field:
+              type: replicator
+              display: 'pricing faq'
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    faq:
+                      display: FAQ
+                      fields:
+                        -
+                          handle: question
+                          field:
+                            type: text
+                            display: question
+                        -
+                          handle: answer
+                          field:
+                            type: textarea
+                            display: answer
+      -
+        display: 'user levels'
+        fields:
+          -
+            handle: users_small_title
+            field:
+              type: text
+              display: 'users small title'
+          -
+            handle: users_title
+            field:
+              type: text
+              display: 'users title'
+          -
+            handle: users_text
+            field:
+              type: textarea
+              display: 'users text'
+          -
+            handle: user_levels
+            field:
+              type: replicator
+              display: 'user levels'
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    levels:
+                      display: levels
+                      fields:
+                        -
+                          handle: user_title
+                          field:
+                            type: text
+                            display: 'user title'
+                        -
+                          handle: user_description
+                          field:
+                            type: textarea
+                            display: 'user description'
+      -
+        display: Included
+        fields:
+          -
+            handle: included_small_title
+            field:
+              type: text
+              display: 'included small title'
+          -
+            handle: included_title
+            field:
+              type: text
+              display: 'included title'
+          -
+            handle: included_text
+            field:
+              type: textarea
+              display: 'included text'
+          -
+            handle: included_columns
+            field:
+              type: replicator
+              display: 'included columns'
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    columns:
+                      display: columns
+                      fields:
+                        -
+                          handle: title
+                          field:
+                            type: text
+                            display: title
+                        -
+                          handle: items
+                          field:
+                            type: list
+                            display: items
+      -
+        display: text
+        fields:
+          -
+            handle: text_small_title
+            field:
+              type: text
+              display: 'text small title'
+          -
+            handle: text_title
+            field:
+              type: text
+              display: 'text title'
+          -
+            handle: text_body
+            field:
+              type: textarea
+              display: 'text body'
+      -
+        display: notice
+        fields:
+          -
+            handle: notice_title
+            field:
+              type: text
+              display: 'notice title'
+          -
+            handle: notice_text
+            field:
+              type: textarea
+              display: 'notice text'
+      -
+        display: routing
+        fields:
+          -
+            handle: routing_title
+            field:
+              type: text
+              display: 'routing title'
+          -
+            handle: routing_items
+            field:
+              type: replicator
+              display: 'routing items'
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    new_set:
+                      display: 'New Set'
+                      fields:
+                        -
+                          handle: routing_label
+                          field:
+                            type: text
+                            display: 'routing label'
+                        -
+                          handle: routing_title
+                          field:
+                            type: text
+                            display: 'routing title'
+                        -
+                          handle: routing_note
+                          field:
+                            type: text
+                            display: 'routing note'
+          -
+            handle: routing_text
+            field:
+              type: textarea
+              display: 'routing text'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

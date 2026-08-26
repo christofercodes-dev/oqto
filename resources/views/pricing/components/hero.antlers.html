@@ -1,0 +1,56 @@
+<section class="pricing-hero-section">
+    <div class="pricing-hero-container">
+
+        <!-- Vänster kolumn -->
+        <div class="pricing-hero-text">
+
+            <span class="pricing-hero-subtitle">
+                {{ small_title }}
+            </span>
+
+            <h1 class="pricing-hero-title">
+                {{ title }}
+            </h1>
+
+            <p class="pricing-hero-body">
+                {{ content | nl2br }}
+            </p>
+
+        </div>
+
+        <!-- Höger bild -->
+        <div class="pricing-hero-visual">
+
+            <div class="pricing-hero-card">
+
+                {{ if pricing_hero_image }}
+                    <img
+                        src="{{ pricing_hero_image:url }}"
+                        alt="{{ pricing_hero_image:alt }}"
+                        class="pricing-hero-img"
+                    >
+                {{ /if }}
+
+                <div class="pricing-hero-btn-wrapper">
+
+                    <a
+                        href="{{ pricing_button_url }}"
+                        class="pricing-hero-btn"
+                    >
+                        <span class="pricing-hero-btn-text">
+                            {{ pricing_button_text }}
+                        </span>
+
+                        <span class="pricing-hero-btn-arrow">
+                            →
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

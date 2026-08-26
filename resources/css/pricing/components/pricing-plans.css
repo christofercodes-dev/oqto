@@ -1,0 +1,316 @@
+.pricing-plans-section {
+    width: 100%;
+    background-color: #ffffff;
+
+    padding: 100px 40px 100px;
+
+    box-sizing: border-box;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+    color: #1a1715;
+}
+
+.pricing-plans-container {
+    max-width: 1280px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================
+   PRISKORT
+   ========================= */
+
+.pricing-card {
+    min-height: 620px;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+
+    border-radius: 28px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+
+
+/* Färger */
+
+.pricing-card-1 {
+    background:
+        linear-gradient(
+            135deg,
+            #fcebe4 0%,
+            #fcab83 100%
+        );
+}
+
+.pricing-card-2 {
+    background:
+        linear-gradient(
+            135deg,
+            #e8f2fc 0%,
+            #b9d9f5 100%
+        );
+}
+
+
+/* =========================
+   TOPP
+   ========================= */
+
+.pricing-card-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 24px;
+}
+
+.pricing-card-title {
+    margin: 0;
+
+    font-size: clamp(2rem, 3vw, 3rem);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -0.03em;
+}
+
+.pricing-card-number {
+    font-size: clamp(3rem, 5vw, 5rem);
+
+    font-weight: 400;
+
+    line-height: 0.85;
+
+    letter-spacing: -0.05em;
+
+    opacity: 0.8;
+}
+
+
+/* =========================
+   INNEHÅLL
+   ========================= */
+
+.pricing-card-content {
+    margin-top: 60px;
+
+    flex: 1;
+}
+
+.pricing-card-description {
+    max-width: 480px;
+
+    margin: 0 0 32px;
+
+    font-size: 1rem;
+
+    line-height: 1.6;
+
+    color: #4a4744;
+}
+
+
+/* =========================
+   FEATURES
+   ========================= */
+
+.pricing-card-features {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.pricing-card-features li {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 0.95rem;
+
+    color: #1a1715;
+}
+
+.feature-dot {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background-color: #f35d08;
+}
+
+
+/* =========================
+   BOTTEN
+   ========================= */
+
+.pricing-card-bottom {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    padding-top: 40px;
+
+    border-top: 1px solid rgba(26, 23, 21, 0.15);
+}
+
+
+/* Månadskostnad */
+
+.pricing-card-price {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.pricing-price {
+    font-size: clamp(2rem, 3vw, 3rem);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -0.03em;
+}
+
+.pricing-price-label {
+    font-size: 0.8rem;
+
+    color: #4a4744;
+}
+
+
+/* Verifikationsgräns */
+
+.pricing-card-limit {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 4px;
+
+    text-align: right;
+}
+
+.pricing-limit-label {
+    font-size: 0.75rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+
+    font-weight: 700;
+
+    color: #4a4744;
+}
+
+.pricing-limit-value {
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    color: #1a1715;
+}
+
+
+/* =========================
+   HOVER
+   ========================= */
+
+.pricing-card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 24px 50px rgba(26, 23, 21, 0.08);
+}
+
+
+/* =========================
+   MOBIL
+   ========================= */
+
+@media (max-width: 960px) {
+
+    .pricing-plans-section {
+        padding: 20px 24px 70px;
+    }
+
+    .pricing-plans-container {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .pricing-card {
+        min-height: 560px;
+
+        padding: 32px 24px;
+
+        border-radius: 24px;
+    }
+
+    .pricing-card-content {
+        margin-top: 48px;
+    }
+
+    .pricing-card-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .pricing-card-limit {
+        align-items: flex-start;
+
+        text-align: left;
+    }
+}

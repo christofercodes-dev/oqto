@@ -1,0 +1,72 @@
+title: faq
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: faq
+            field:
+              type: template
+              display: template
+          -
+            handle: author
+            field:
+              type: users
+              display: Author
+      -
+        display: hero
+        fields:
+          -
+            handle: faq_text
+            field:
+              type: text
+              display: 'faq text'
+      - display: faq
+      -
+        display: 'cta faq'
+        fields:
+          -
+            handle: cta_faq_title
+            field:
+              type: text
+              display: 'cta faq title'
+          -
+            handle: cta_faq_button_text_1
+            field:
+              type: text
+              display: 'cta faq button text 1'
+          -
+            handle: cta_faq_button_1_url
+            field:
+              type: link
+              display: 'cta faq button 1 url'
+          -
+            handle: cta_faq_button_text_2
+            field:
+              type: text
+              display: 'cta faq button text 2'
+          -
+            handle: cta_faq_button_2_url
+            field:
+              type: link
+              display: 'cta faq button 2 url'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

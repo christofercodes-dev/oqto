@@ -1,0 +1,62 @@
+<section class="why-oqto-section">
+
+    <div class="why-oqto-container">
+
+        <!-- Vänster kolumn -->
+        <div class="why-oqto-text">
+
+            <span class="why-oqto-subtitle">
+                {{ why_oqto_small_title }}
+            </span>
+
+            <h2 class="why-oqto-title">
+                {{ why_oqto_title }}
+            </h2>
+
+            <p class="why-oqto-body">
+                {{ why_oqto_body }}
+            </p>
+
+        </div>
+
+
+        <!-- Höger kolumn -->
+        <div class="why-oqto-visual">
+
+            <div class="why-oqto-card">
+
+                {{ if why_oqto_image }}
+
+                    <img
+                        src="{{ image:url }}"
+                        alt="{{ image:alt }}"
+                        class="why-oqto-img"
+                    >
+
+                {{ /if }}
+
+
+                <div class="why-oqto-btn-wrapper">
+
+                    <a
+                        href="{{ button_url }}"
+                        class="why-oqto-btn"
+                    >
+                        <span class="why-oqto-btn-text">
+                            {{ why_oqto_button_text }}
+                        </span>
+
+                        <span class="why-oqto-btn-arrow">
+                            →
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

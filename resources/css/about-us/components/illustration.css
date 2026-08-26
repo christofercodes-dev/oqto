@@ -1,0 +1,48 @@
+.oqto-illustration-section {
+    width: 100%;
+    padding: 10px 40px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.oqto-illustration-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.oqto-illustration-card {
+    width: 100%;
+    height: 520px;
+
+    border-radius: 28px;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        #fcebe4 0%,
+        #fcab83 50%,
+        #fc8f59 100%
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 960px) {
+    .oqto-illustration-section {
+        padding: 60px 24px;
+    }
+
+    .oqto-illustration-card {
+        height: 380px;
+    }
+}

@@ -1,0 +1,117 @@
+<section class="pricing-users-section">
+
+    <div class="pricing-users-container">
+
+        <!-- VÄNSTER -->
+        <div class="pricing-users-content">
+
+            <span class="pricing-users-small-title">
+                {{ users_small_title }}
+            </span>
+
+            <h2 class="pricing-users-title">
+                {{ users_title | nl2br }}
+            </h2>
+
+            <p class="pricing-users-text">
+                {{ users_text }}
+            </p>
+
+        </div>
+
+
+        <!-- HÖGER -->
+        <div class="pricing-users-levels">
+
+            <!-- NIVÅ 1 -->
+            <div class="pricing-user-level">
+
+                <div class="pricing-user-number">
+                    01
+                </div>
+
+                <div class="pricing-user-info">
+
+                    <h3>
+                        {{ user_levels:0:title }}
+                    </h3>
+
+                    <p>
+                        {{ user_levels:0:user_description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- NIVÅ 2 -->
+            <div class="pricing-user-level">
+
+                <div class="pricing-user-number">
+                    02
+                </div>
+
+                <div class="pricing-user-info">
+
+                    <h3>
+                        {{ user_levels:1:title }}
+                    </h3>
+
+                    <p>
+                        {{ user_levels:1:user_description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- NIVÅ 3 -->
+            <div class="pricing-user-level">
+
+                <div class="pricing-user-number">
+                    03
+                </div>
+
+                <div class="pricing-user-info">
+
+                    <h3>
+                        {{ user_levels:2:title }}
+                    </h3>
+
+                    <p>
+                        {{ user_levels:2:user_description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- NIVÅ 4 -->
+            <div class="pricing-user-level">
+
+                <div class="pricing-user-number">
+                    04
+                </div>
+
+                <div class="pricing-user-info">
+
+                    <h3>
+                        {{ user_levels:3:title }}
+                    </h3>
+
+                    <p>
+                        {{ user_levels:3:user_description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

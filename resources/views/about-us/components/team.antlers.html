@@ -1,0 +1,57 @@
+<section class="team-section">
+
+    <div class="team-container">
+
+        <!-- Small title -->
+        <div class="team-header">
+            <span class="team-small-title">
+                {{ small_title_team }}
+            </span>
+        </div>
+
+        <!-- Team cards -->
+        <div class="team-grid">
+
+            {{ team_members }}
+
+                <article class="team-card">
+
+                    {{ if image }}
+                        <img
+                            src="{{ image:url }}"
+                            alt="{{ image:alt }}"
+                            class="team-image"
+                        >
+                    {{ /if }}
+
+                    <div class="team-overlay">
+
+                        <div class="team-content">
+
+                            <span class="team-role">
+                                {{ role }}
+                            </span>
+
+                            <h3 class="team-name">
+                                {{ name }}
+                            </h3>
+
+                            {{ if description }}
+                                <p class="team-description">
+                                    {{ description }}
+                                </p>
+                            {{ /if }}
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {{ /team_members }}
+
+        </div>
+
+    </div>
+
+</section>

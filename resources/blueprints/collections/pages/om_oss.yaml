@@ -1,0 +1,152 @@
+title: 'Om oss'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+          -
+            handle: content
+            field:
+              type: markdown
+              display: Content
+          -
+            handle: author
+            field:
+              type: users
+              display: Author
+          -
+            handle: about_button_text
+            field:
+              type: text
+              display: 'about button text'
+          -
+            handle: about_button_url
+            field:
+              type: link
+              display: 'about button url'
+      -
+        display: illustration
+        fields:
+          -
+            handle: illustration_image
+            field:
+              container: assets
+              type: assets
+              display: 'illustration image'
+      -
+        display: 'why oqto'
+        fields:
+          -
+            handle: small_title
+            field:
+              type: text
+              display: 'small title'
+          -
+            handle: about_oqto_heading
+            field:
+              type: textarea
+              display: 'about oqto heading'
+          -
+            handle: about_oqto_body
+            field:
+              type: textarea
+              display: 'about oqto body'
+      -
+        display: Team
+        fields:
+          -
+            handle: team
+            field:
+              type: replicator
+              display: team
+              sets:
+                member:
+                  display: member
+                  sets:
+                    new_set:
+                      display: 'New Set'
+                      fields:
+                        -
+                          handle: image
+                          field:
+                            container: assets
+                            type: assets
+                            display: image
+                        -
+                          handle: name
+                          field:
+                            type: text
+                            display: name
+                        -
+                          handle: role
+                          field:
+                            type: text
+                            display: role
+                        -
+                          handle: description
+                          field:
+                            type: textarea
+                            display: description
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    new_set:
+                      display: 'New Set'
+                      fields: {}
+          -
+            handle: small_title_team
+            field:
+              type: text
+              display: 'small title team'
+      -
+        display: CTA
+        fields:
+          -
+            handle: cta_title
+            field:
+              type: textarea
+              display: 'cta title'
+          -
+            handle: cta_button_1_text
+            field:
+              type: text
+              display: 'button 1 text'
+          -
+            handle: cta_button_1_url
+            field:
+              type: link
+              display: 'button 1 url'
+          -
+            handle: cta_button_2_text
+            field:
+              type: text
+              display: 'button 2 text'
+          -
+            handle: cta_button_2_url
+            field:
+              type: link
+              display: 'button 2 url'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

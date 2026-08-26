@@ -1,0 +1,229 @@
+title: Page
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: title_row_1
+            field:
+              type: text
+              validate:
+                - required
+              display: 'Title row 1'
+          -
+            handle: title_row_2
+            field:
+              type: text
+              display: 'Title row 2'
+          -
+            handle: content
+            field:
+              type: markdown
+              display: Content
+              localizable: true
+              escape_markup: true
+          -
+            handle: author
+            field:
+              type: users
+              display: Author
+              default: current
+              localizable: true
+              max_items: 1
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+              localizable: true
+      -
+        display: Startsidan
+        fields:
+          -
+            handle: knapptext
+            field:
+              type: text
+              display: knapptext
+          -
+            handle: knapp_laenk
+            field:
+              type: link
+              display: 'knapp länk'
+      -
+        display: '3 kort sektion'
+        fields:
+          -
+            handle: title_card_1
+            field:
+              type: text
+              display: 'Title card 1'
+          -
+            handle: text_card_1
+            field:
+              type: textarea
+              display: 'Text card 1'
+          -
+            handle: title_card_2
+            field:
+              type: text
+              display: 'Title card 2'
+          -
+            handle: text_card_2
+            field:
+              type: textarea
+              display: 'Text card 2'
+          -
+            handle: title_card_3
+            field:
+              type: text
+              display: 'Title card 3'
+          -
+            handle: text_card_3
+            field:
+              type: textarea
+              display: 'Text card 3'
+      -
+        display: 'Video sektion'
+        fields:
+          -
+            handle: small_title
+            field:
+              type: text
+              display: 'Small title'
+              instructions: Undertitel
+          -
+            handle: video_heading
+            field:
+              type: text
+              display: 'Video heading'
+              instructions: 'Stor text'
+          -
+            handle: video_body
+            field:
+              type: textarea
+              display: 'Video body'
+          -
+            handle: video_file
+            field:
+              container: assets
+              max_files: 1
+              type: assets
+              display: 'Video file'
+          -
+            handle: embed_code
+            field:
+              type: textarea
+              display: 'Embed code'
+      -
+        display: 'FAQ sektion'
+        fields:
+          -
+            handle: faq_small_title
+            field:
+              type: text
+              display: 'faq small title'
+          -
+            handle: faq_title
+            field:
+              type: text
+              display: 'faq title'
+          -
+            handle: faq_items
+            field:
+              type: grid
+              display: 'faq items'
+              fields:
+                -
+                  handle: faq_question
+                  field:
+                    type: text
+                    display: 'faq question'
+                -
+                  handle: faq_answer
+                  field:
+                    type: textarea
+                    display: 'faq answer'
+      -
+        display: 'Varför Oqto sektion'
+        fields:
+          -
+            handle: why_oqto_small_title
+            field:
+              type: text
+              display: 'why oqto small title'
+          -
+            handle: why_oqto_title
+            field:
+              type: textarea
+              display: 'why oqto title'
+          -
+            handle: why_oqto_body
+            field:
+              type: textarea
+              display: 'why oqto body'
+          -
+            handle: why_oqto_image
+            field:
+              container: assets
+              max_files: 32
+              type: assets
+              display: 'why oqto image'
+          -
+            handle: why_oqto_button_text
+            field:
+              type: text
+              display: 'why oqto button text'
+          -
+            handle: why_oqto_button_link
+            field:
+              type: link
+              display: 'why oqto button link'
+      -
+        display: Reviews
+        fields:
+          -
+            handle: reviews_title
+            field:
+              type: text
+              display: 'reviews title'
+          -
+            handle: reviews_items
+            field:
+              type: grid
+              display: 'reviews items'
+              fields:
+                -
+                  handle: quote
+                  field:
+                    type: textarea
+                    display: quote
+                -
+                  handle: author_name
+                  field:
+                    type: text
+                    display: 'author name'
+                -
+                  handle: author_title
+                  field:
+                    type: text
+                    display: 'author title'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

@@ -1,0 +1,118 @@
+.site-footer {
+    width: 100%;
+    background-color: #181411;
+    color: #ffffff;
+    padding: 80px 40px 40px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    border-top: 1px solid #2c2a29;
+  }
+  
+  .footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+  }
+  
+  /* Vänster: Logotyp */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 300px;
+  }
+  
+  .footer-logo {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  
+  .footer-copyright {
+    font-size: 0.85rem;
+    color: #8a8784;
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  /* Rubriker för spalter */
+  .footer-heading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 16px;
+    display: block;
+  }
+  
+  /* Mitten: Länkar */
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .footer-links a {
+    color: #d1cfcd;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-links a:hover {
+    color: #ffffff;
+  }
+  
+  /* Höger: Kontakt */
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: #d1cfcd;
+  }
+  
+  .contact-details p {
+    margin: 0;
+  }
+  
+  .contact-details a {
+    color: #d1cfcd;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .contact-details a:hover {
+    color: #ffffff;
+  }
+  
+  /* Responsiv layout för mobila skärmar */
+  @media (max-width: 768px) {
+    .site-footer {
+      padding: 60px 24px 32px;
+    }
+  
+    .footer-container {
+      flex-direction: column;
+      gap: 40px;
+    }
+  }

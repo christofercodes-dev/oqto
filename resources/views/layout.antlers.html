@@ -7,7 +7,7 @@
         <title>{{ (title ?? site:name) | sanitize }}</title>
         {{ vite src="resources/js/site.js|resources/css/site.css" }}
     </head>
-    <body class="antialiased bg-zinc-100 font-sans leading-normal text-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+    <body class="antialiased font-sans leading-normal text-zinc-800 bg-white dark:text-zinc-400">
         {{ template_content }}
     </body>
 </html>

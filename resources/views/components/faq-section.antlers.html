@@ -1,0 +1,59 @@
+<section class="faq-section">
+
+    <div class="faq-container">
+
+        <div class="faq-header">
+
+            <span class="faq-subtitle">
+                {{ faq_small_title }}
+            </span>
+
+            <h2 class="faq-title">
+                {{ faq_title }}
+            </h2>
+
+        </div>
+
+        <div class="faq-accordion">
+
+            {{ faq_items }}
+
+                <details class="faq-item">
+
+                    <summary class="faq-question">
+
+                        <span>{{ faq_question }}</span>
+
+                        <span class="faq-icon-wrapper">
+                            <svg
+                                class="faq-icon"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M8 1V15M1 8H15"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </span>
+
+                    </summary>
+
+                    <div class="faq-answer">
+                        <p>{{ faq_answer }}</p>
+                    </div>
+
+                </details>
+
+            {{ /faq_items }}
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,17 @@
+<section class="oqto-illustration-section">
+    <div class="oqto-illustration-container">
+
+        <div class="oqto-illustration-card">
+
+            {{ if illustration_image }}
+                <img
+                    src="{{ illustration_image:url }}"
+                    alt="{{ illustration_image:alt }}"
+                    class="illustration-image"
+                >
+            {{ /if }}
+
+        </div>
+
+    </div>
+</section>

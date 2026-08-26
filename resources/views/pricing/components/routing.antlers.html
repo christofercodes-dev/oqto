@@ -1,0 +1,58 @@
+<section class="pricing-benefits-section">
+
+    <div class="pricing-benefits-container">
+
+        <!-- Intro -->
+
+        <div class="pricing-benefits-header">
+
+            <h2 class="pricing-benefits-title">
+                {{ routing_title | nl2br }}
+            </h2>
+
+            <p class="pricing-benefits-intro">
+                {{ routing_text }}
+            </p>
+
+        </div>
+
+
+        <!-- Kort -->
+
+        <div class="pricing-benefits-cards">
+
+            {{ routing_items }}
+
+            <article class="pricing-benefits-card">
+
+                <div class="pricing-benefits-card-top">
+
+                    <span class="pricing-benefits-label">
+                        {{ routing_label }}
+                    </span>
+
+                    <span class="pricing-benefits-number"></span>
+
+                </div>
+
+                <div class="pricing-benefits-card-content">
+
+                    <h3 class="pricing-benefits-card-title">
+                        {{ routing_title }}
+                    </h3>
+
+                    <span class="pricing-benefits-card-note">
+                        {{ routing_note }}
+                    </span>
+
+                </div>
+
+            </article>
+
+            {{ /routing_items }}
+
+        </div>
+
+    </div>
+
+</section>

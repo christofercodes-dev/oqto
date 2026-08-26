@@ -1,0 +1,37 @@
+<section class="hero-section">
+    <div class="hero-container">
+      
+      <!-- Huvudinnehåll -->
+      <div class="hero-content">
+        <div class="hero-left">
+          <h1 class="hero-title">
+            {{ title_row_1 }}
+            {{ title_row_2 }}
+          </h1>
+        </div>
+        
+        <div class="hero-right">
+          <p class="hero-text">
+            {{ content | nl2br }}
+          </p>
+        </div>
+      </div>
+  
+      <!-- Knappsatsen som sömlöst möter nästa sektion -->
+      <div class="hero-action-wrapper">
+        <div class="corner-curve curve-left"></div>
+        <div class="hero-action-card">
+          <a href="{{ cta_link ?? '#demo' }}" class="btn-demo">
+            <span class="btn-text">{{ cta_text ?? "BOKA DEMO" }}</span>
+            <span class="btn-arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.33334 8H12.6667M12.6667 8L8 3.33334M12.6667 8L8 12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+        <div class="corner-curve curve-right"></div>
+      </div>
+  
+    </div>
+  </section>

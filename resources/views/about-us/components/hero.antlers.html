@@ -1,0 +1,60 @@
+<section class="about-hero-section">
+
+    <div class="about-hero-container">
+
+        <!-- Vänster kolumn -->
+        <div class="about-hero-text">
+
+        
+
+            <h2 class="about-hero-title">
+                {{ title }}
+            </h2>
+
+            <p class="about-hero-body">
+                {{ content | nl2br }}
+            </p>
+
+        </div>
+
+
+        <!-- Höger kolumn -->
+        <div class="about-hero-visual">
+
+            <div class="about-hero-card">
+
+                {{ if why_oqto_image }}
+
+                    <img
+                        src="{{ image:url }}"
+                        alt="{{ image:alt }}"
+                        class="about-hero-img"
+                    >
+
+                {{ /if }}
+
+
+                <div class="about-hero-btn-wrapper">
+
+                    <a
+                        href="{{ about_button_url }}"
+                        class="about-hero-btn"
+                    >
+                        <span class="about-hero-btn-text">
+                            {{ about_button_text }}
+                        </span>
+
+                        <span class="about-hero-btn-arrow">
+                            →
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

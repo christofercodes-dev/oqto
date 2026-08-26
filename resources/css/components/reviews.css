@@ -1,0 +1,198 @@
+.reviews-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 100px 40px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1a1715;
+}
+
+.reviews-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* Underrubrik */
+
+.reviews-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.reviews-subtitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ff5500;
+}
+
+
+/* Reviews slider */
+
+.reviews-slides {
+    position: relative;
+    width: 100%;
+}
+
+
+/* Varje review */
+
+.review-slide {
+    display: none;
+    width: 100%;
+}
+
+.review-slide.active {
+    display: block;
+}
+
+
+.reviews-card {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    padding: 80px 60px;
+    border-radius: 28px;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        #fcebe4 0%,
+        #fcab83 50%,
+        #fc8f59 100%
+    );
+
+    transition: background 0.4s ease;
+}
+
+.reviews-slides {
+    position: relative;
+    width: 100%;
+}
+
+.review-slide {
+    display: none;
+}
+
+.review-slide.active {
+    display: block;
+}
+
+
+/* Innehåll */
+
+.reviews-card-content {
+    max-width: 780px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.reviews-quote {
+    font-size: clamp(1.8rem, 3.5vw, 2rem);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #1a1715;
+    margin: 0;
+}
+
+.reviews-author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.author-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1715;
+}
+
+.author-title {
+    font-size: 0.95rem;
+    color: #4a4744;
+}
+
+
+/* Överlappande knappar */
+
+.reviews-btn-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff;
+    padding: 16px 0 10px 16px;
+    border-top-left-radius: 32px;
+    display: flex;
+    gap: 8px;
+}
+
+.reviews-btn-wrapper::before,
+.reviews-btn-wrapper::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.reviews-btn-wrapper::before {
+    top: -20px;
+    right: 0;
+    border-bottom-right-radius: 20px;
+    box-shadow: 6px 6px 0 6px #ffffff;
+}
+
+.reviews-btn-wrapper::after {
+    bottom: 0;
+    left: -20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 6px 6px 0 6px #ffffff;
+}
+
+
+/* Navigeringsknappar */
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background-color: #1a1715;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-btn:hover {
+    background-color: #ff5500;
+    transform: translateY(-2px);
+}
+
+
+/* Mobil */
+
+@media (max-width: 960px) {
+
+    .reviews-section {
+        padding: 60px 24px;
+    }
+
+    .reviews-card {
+        padding: 40px 24px 100px 24px;
+    }
+
+}

@@ -1,0 +1,82 @@
+<section class="faq-hero-section">
+
+    <div class="faq-hero-container">
+
+        <div class="faq-hero-content">
+
+            <span class="faq-hero-eyebrow">
+                {{ faq_small_title }}
+            </span>
+
+            <h1 class="faq-hero-title">
+                {{ faq_text | nl2br }}
+            </h1>
+
+            {{ if faq_body }}
+                <p class="faq-hero-body">
+                    {{ faq_body }}
+                </p>
+            {{ /if }}
+
+            <div class="faq-eyes" aria-hidden="true">
+
+                <div class="faq-eye">
+                    <div class="faq-pupil"></div>
+                </div>
+            
+                <div class="faq-eye">
+                    <div class="faq-pupil"></div>
+                </div>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+        const eyes = document.querySelectorAll(".faq-eye");
+    
+        if (!eyes.length) return;
+    
+        document.addEventListener("mousemove", (event) => {
+    
+            eyes.forEach((eye) => {
+    
+                const pupil = eye.querySelector(".faq-pupil");
+    
+                const rect = eye.getBoundingClientRect();
+    
+                const eyeCenterX = rect.left + rect.width / 2;
+                const eyeCenterY = rect.top + rect.height / 2;
+    
+                const angle = Math.atan2(
+                    event.clientY - eyeCenterY,
+                    event.clientX - eyeCenterX
+                );
+    
+                const distance = Math.min(
+                    35,
+                    Math.hypot(
+                        event.clientX - eyeCenterX,
+                        event.clientY - eyeCenterY
+                    ) / 5
+                );
+    
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+    
+                pupil.style.transform =
+                    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+    
+            });
+    
+        });
+    
+    });
+    </script>

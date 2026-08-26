@@ -2,3 +2,7 @@ name: Christofer
 super: true
 id: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 password_hash: $2y$12$wMukXt/WUAZSuDia117kjOiwRRy5iC5vwcNwU7ubKZaxMlhrk7LOO
+preferences:
+  collections:
+    pages:
+      view: tree

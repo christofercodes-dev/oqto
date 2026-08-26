@@ -1,0 +1,136 @@
+<section class="pricing-plans-section">
+
+    <div class="pricing-plans-container">
+
+        <!-- KORT 1 -->
+        <article class="pricing-card pricing-card-1">
+
+            <div class="pricing-card-top">
+
+                <h3 class="pricing-card-title">
+                    {{ pricing_plans:0:plan_title }}
+                </h3>
+
+                <span class="pricing-card-number">
+                    {{ pricing_plans:0:plan_number }}
+                </span>
+
+            </div>
+
+            <div class="pricing-card-content">
+
+                <p class="pricing-card-description">
+                    {{ pricing_plans:0:description }}
+                </p>
+
+                <ul class="pricing-card-features">
+
+                    {{ pricing_plans:0:features }}
+                        <li>
+                            <span class="feature-dot"></span>
+                            <span>{{ value }}</span>
+                        </li>
+                    {{ /pricing_plans:0:features }}
+
+                </ul>
+
+            </div>
+
+            <div class="pricing-card-bottom">
+
+                <div class="pricing-card-price">
+
+                    <span class="pricing-price">
+                        {{ pricing_plans:0:monthly_price }}
+                    </span>
+
+                    <span class="pricing-price-label">
+                        kr / månad
+                    </span>
+
+                </div>
+
+                <div class="pricing-card-limit">
+
+                    <span class="pricing-limit-label">
+                        Verifikationsgräns
+                    </span>
+
+                    <span class="pricing-limit-value">
+                        {{ pricing_plans:0:verification_limit }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- KORT 2 -->
+        <article class="pricing-card pricing-card-2">
+
+            <div class="pricing-card-top">
+
+                <h3 class="pricing-card-title">
+                    {{ pricing_plans:1:plan_title }}
+                </h3>
+
+                <span class="pricing-card-number">
+                    {{ pricing_plans:1:plan_number }}
+                </span>
+
+            </div>
+
+            <div class="pricing-card-content">
+
+                <p class="pricing-card-description">
+                    {{ pricing_plans:1:description }}
+                </p>
+
+                <ul class="pricing-card-features">
+
+                    {{ pricing_plans:1:features }}
+                        <li>
+                            <span class="feature-dot"></span>
+                            <span>{{ value }}</span>
+                        </li>
+                    {{ /pricing_plans:1:features }}
+
+                </ul>
+
+            </div>
+
+            <div class="pricing-card-bottom">
+
+                <div class="pricing-card-price">
+
+                    <span class="pricing-price">
+                        {{ pricing_plans:1:monthly_price }}
+                    </span>
+
+                    <span class="pricing-price-label">
+                        kr / månad
+                    </span>
+
+                </div>
+
+                <div class="pricing-card-limit">
+
+                    <span class="pricing-limit-label">
+                        Verifikationsgräns
+                    </span>
+
+                    <span class="pricing-limit-value">
+                        {{ pricing_plans:1:verification_limit }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>  

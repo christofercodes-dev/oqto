@@ -1,0 +1,83 @@
+/* Navbar placering */
+.navbar-wrapper {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    z-index: 100;
+  }
+  
+  /* Det vita rundade kortet */
+  .navbar-container {
+    background-color: #f4f4f4;
+    border-radius: 999px;
+    padding: 8px 12px 8px 32px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+  }
+  
+  /* Logotyp */
+  .navbar-logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ff5500;
+    text-decoration: none;
+    letter-spacing: -0.04em;
+  }
+  
+  /* Länkar */
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .nav-link {
+    color: #1a1715;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    opacity: 0.6;
+  }
+  
+  /* Logga in-knapp */
+  .btn-login {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #1c1917;
+    color: #ffffff;
+    padding: 10px 16px 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn-login:hover {
+    background-color: #332f2c;
+  }
+  
+  .login-arrow {
+    font-size: 0.9rem;
+  }
+  
+  /* Responsiv döljning för mindre skärmar */
+  @media (max-width: 900px) {
+    .navbar-menu {
+      display: none;
+    }
+  }
