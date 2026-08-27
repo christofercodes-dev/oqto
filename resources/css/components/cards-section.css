@@ -1,191 +1,89 @@
-.features-section {
+/* ==================================================
+   FEATURES SECTION
+   ================================================== */
+
+   .features-section {
+    width: 100%;
     background-color: #ffffff;
     padding: 100px 40px;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+    color: #1a1715;
 }
+
+
+/* ==================================================
+   CONTAINER
+   ================================================== */
 
 .features-container {
     max-width: 1280px;
     margin: 0 auto;
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
     gap: 24px;
 }
 
-/* ==========================================
-   KORT
-   ========================================== */
 
-.feature-card {
-    border-radius: 24px;
-    padding: 32px 28px;
-    position: relative;
-    min-height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
+/* ==================================================
+   SCROLL REVEAL WRAPPER
+   ================================================== */
 
-    border: 1px solid rgba(0, 0, 0, 0.08);
-
-    /* Mjuk Apple-liknande skugga */
-    box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.03),
-        0 4px 12px rgba(0, 0, 0, 0.04),
-        0 12px 32px rgba(0, 0, 0, 0.06);
-
-    /* Scroll-animation */
+.feature-card-reveal {
     opacity: 0;
     transform: translateY(60px);
-
-    /* Hover + generell transition */
-    transition:
-        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.45s ease,
-        border-color 0.45s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-6px);
-
-    box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.03),
-        0 8px 20px rgba(0, 0, 0, 0.06),
-        0 20px 45px rgba(0, 0, 0, 0.09);
-
-    border-color: rgba(0, 0, 0, 0.12);
-}
-
-/* ==========================================
-   FÄRGER
-   ========================================== */
-
-.card-peach {
-    background: linear-gradient(180deg,
-            #fcebe4 0%,
-            #ffbfa5 100%);
-}
-
-.card-yellow {
-    background: linear-gradient(180deg,
-            #fbf0d9 0%,
-            #ffe4a9 100%);
-}
-
-.card-green {
-    background: linear-gradient(180deg,
-            #dcefe7 0%,
-            #a9f9d4 100%);
-}
-
-/* ==========================================
-   SIFFRA
-   ========================================== */
-
-.card-number {
-    position: absolute;
-    top: 24px;
-    right: 28px;
-
-    font-size: 1.3rem;
-    font-weight: 300;
-    color: #1a1715;
-    letter-spacing: -0.02em;
-    font-family: monospace;
-}
-
-/* ==========================================
-   IKON
-   ========================================== */
-
-.card-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex: 1;
-    padding: 20px 0;
-
-    color: #1a1715;
-}
-
-/* ==========================================
-   TEXT
-   ========================================== */
-
-.card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.card-title {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #1a1715;
-    margin: 0;
-    letter-spacing: 0.05em;
-    font-family: sans-serif;
-}
-
-.card-text {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #4a4744;
-    margin: 0;
-    font-family: sans-serif;
-}
-
-/* ==========================================
-   SCROLL REVEAL + HOVER
-   ========================================== */
-
-.feature-card {
-    --card-y: 60px;
-
-    opacity: 0;
-    transform: translateY(var(--card-y));
-
-    transition:
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.35s ease;
 }
 
 
-/* ==========================================
-   NÄR SEKTIONEN KOMMER IN I VIEWPORT
-   ========================================== */
+/* ==================================================
+   SCROLL ANIMATION
+   ================================================== */
 
-.features-section.is-visible .feature-card {
-    animation: featureCardReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.features-section.is-visible .feature-card-reveal {
+    animation:
+        featureCardReveal
+        0.9s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
 }
 
 
-/* Kort 1 */
+/* KORT 1 */
 
-.features-section.is-visible .feature-card:nth-child(1) {
+.features-section.is-visible
+.feature-card-reveal:nth-child(1) {
     animation-delay: 0s;
 }
 
 
-/* Kort 2 */
+/* KORT 2 */
 
-.features-section.is-visible .feature-card:nth-child(2) {
+.features-section.is-visible
+.feature-card-reveal:nth-child(2) {
     animation-delay: 0.15s;
 }
 
 
-/* Kort 3 */
+/* KORT 3 */
 
-.features-section.is-visible .feature-card:nth-child(3) {
+.features-section.is-visible
+.feature-card-reveal:nth-child(3) {
     animation-delay: 0.30s;
 }
 
 
-/* ==========================================
-   SCROLL ANIMATION
-   ========================================== */
+/* ==================================================
+   KEYFRAMES
+   ================================================== */
 
 @keyframes featureCardReveal {
 
@@ -198,91 +96,307 @@
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
 
-/* ==========================================
-   HOVER
-   ========================================== */
+/* ==================================================
+   KORT
+   ================================================== */
 
-.feature-card:hover {
-    transform: translateY(-8px);
+.feature-card {
+    min-height: 500px;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+
+    border-radius: 28px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
 
     box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.10);
+        0 1px 2px rgba(26, 23, 21, 0.03),
+        0 4px 12px rgba(26, 23, 21, 0.04),
+        0 12px 32px rgba(26, 23, 21, 0.06);
+
+    /*
+     * VIKTIGT:
+     * Ingen opacity här.
+     * Ingen translateY här.
+     *
+     * Scroll-animationen ligger på
+     * .feature-card-reveal
+     */
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 
-/* ==========================================
+/* ==================================================
+   HOVER
+   ================================================== */
+
+.feature-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 24px 50px rgba(26, 23, 21, 0.08);
+}
+
+
+/* ==================================================
+   FÄRGER
+   ================================================== */
+
+.feature-card-1 {
+    background:
+        linear-gradient(
+            135deg,
+            #fcebe4 0%,
+            #fcab83 100%
+        );
+}
+
+.feature-card-2 {
+    background:
+        linear-gradient(
+            135deg,
+            #e8f2fc 0%,
+            #b9d9f5 100%
+        );
+}
+
+.feature-card-3 {
+    background:
+        linear-gradient(
+            135deg,
+            #dcefe7 0%,
+            #a9f9d4 100%
+        );
+}
+
+
+/* ==================================================
+   TOPP
+   ================================================== */
+
+.feature-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 24px;
+}
+
+
+/* ==================================================
+   TITEL
+   ================================================== */
+
+.feature-card-title {
+    margin: 0;
+
+    font-size:
+        clamp(2rem, 3vw, 3rem);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -0.03em;
+
+    color: #1a1715;
+}
+
+
+/* ==================================================
+   NUMMER
+   ================================================== */
+
+.feature-card-number {
+    font-size:
+        clamp(3rem, 5vw, 5rem);
+
+    font-weight: 400;
+
+    line-height: 0.85;
+
+    letter-spacing: -0.05em;
+
+    opacity: 0.8;
+
+    color: #1a1715;
+}
+
+
+/* ==================================================
+   INNEHÅLL
+   ================================================== */
+
+.feature-card-content {
+    margin-top: 60px;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-end;
+}
+
+
+/* ==================================================
+   IKON
+   ================================================== */
+
+.feature-card-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    margin-bottom: 32px;
+
+    color: #1a1715;
+}
+
+.feature-card-icon svg {
+    display: block;
+
+    width: 48px;
+    height: 48px;
+}
+
+
+/* ==================================================
+   TEXT
+   ================================================== */
+
+.feature-card-text {
+    max-width: 480px;
+
+    margin: 0;
+
+    font-size: 1rem;
+
+    line-height: 1.6;
+
+    color: #4a4744;
+}
+
+
+/* ==================================================
    REDUCED MOTION
-   ========================================== */
+   ================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
-    .feature-card {
+    .feature-card-reveal {
         opacity: 1;
         transform: none;
         animation: none;
+    }
+
+    .feature-card {
         transition: none;
     }
 
     .feature-card:hover {
         transform: none;
-        box-shadow: none;
-    }
 
+        box-shadow:
+            0 1px 2px rgba(26, 23, 21, 0.03),
+            0 4px 12px rgba(26, 23, 21, 0.04),
+            0 12px 32px rgba(26, 23, 21, 0.06);
+    }
 }
 
 
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
+/* ==================================================
+   TABLET
+   ================================================== */
 
 @media (max-width: 960px) {
 
     .features-section {
-        padding: 20px 24px 60px 24px;
+        padding:
+            20px
+            24px
+            70px;
     }
 
     .features-container {
         grid-template-columns: 1fr;
-        gap: 16px;
+
+        gap: 20px;
     }
-
-}
-
-/* ==========================================
-   REDUCED MOTION
-   ========================================== */
-
-@media (prefers-reduced-motion: reduce) {
 
     .feature-card {
-        opacity: 1;
-        transform: none;
-        animation: none;
-        transition: none;
+        min-height: 560px;
+
+        padding:
+            32px
+            24px;
+
+        border-radius: 24px;
     }
 
-    .feature-card:hover {
-        transform: none;
-        box-shadow: none;
+    .feature-card-content {
+        margin-top: 48px;
     }
 }
 
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
 
-@media (max-width: 960px) {
+/* ==================================================
+   MOBIL
+   ================================================== */
+
+@media (max-width: 600px) {
 
     .features-section {
-        padding: 20px 24px 60px 24px;
+        padding:
+            20px
+            20px
+            70px;
     }
 
-    .features-container {
-        grid-template-columns: 1fr;
-        gap: 16px;
+    .feature-card {
+        min-height: 500px;
+
+        padding:
+            28px
+            24px;
+
+        border-radius: 24px;
+    }
+
+    .feature-card-title {
+        font-size:
+            clamp(2rem, 10vw, 3rem);
+    }
+
+    .feature-card-number {
+        font-size:
+            clamp(2.8rem, 14vw, 4rem);
+    }
+
+    .feature-card-content {
+        margin-top: 40px;
+    }
+
+    .feature-card-icon {
+        margin-bottom: 24px;
+    }
+
+    .feature-card-text {
+        font-size: 0.95rem;
+
+        line-height: 1.6;
     }
 }

@@ -8,19 +8,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (reviewsSection) {
 
-        const slides = reviewsSection.querySelectorAll('.review-slide');
-        const reviewsCard = reviewsSection.querySelector('.reviews-card');
-        const prevButton = reviewsSection.querySelector('.prev-btn');
-        const nextButton = reviewsSection.querySelector('.next-btn');
+        const slides =
+            reviewsSection.querySelectorAll('.review-slide');
 
-        if (slides.length && reviewsCard && prevButton && nextButton) {
+        const reviewsCard =
+            reviewsSection.querySelector('.reviews-card');
+
+        const prevButton =
+            reviewsSection.querySelector('.prev-btn');
+
+        const nextButton =
+            reviewsSection.querySelector('.next-btn');
+
+        if (
+            slides.length &&
+            reviewsCard &&
+            prevButton &&
+            nextButton
+        ) {
 
             let currentIndex = 0;
 
             function showSlide(index) {
 
                 slides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === index);
+                    slide.classList.toggle(
+                        'active',
+                        i === index
+                    );
                 });
 
                 reviewsCard.classList.remove(
@@ -30,9 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     'color-4'
                 );
 
-                const colorIndex = (index % 4) + 1;
+                const colorIndex =
+                    (index % 4) + 1;
 
-                reviewsCard.classList.add(`color-${colorIndex}`);
+                reviewsCard.classList.add(
+                    `color-${colorIndex}`
+                );
             }
 
             nextButton.addEventListener('click', () => {
@@ -44,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 showSlide(currentIndex);
-
             });
 
             prevButton.addEventListener('click', () => {
@@ -56,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 showSlide(currentIndex);
-
             });
 
             showSlide(currentIndex);
@@ -68,30 +84,35 @@ document.addEventListener('DOMContentLoaded', () => {
        FEATURES — SCROLL REVEAL
        ================================================== */
 
-    const featuresSection = document.querySelector('.features-section');
+    const featuresSection =
+        document.querySelector('.features-section');
 
     if (featuresSection) {
 
-        const observer = new IntersectionObserver(
-            (entries, observer) => {
+        const observer =
+            new IntersectionObserver(
+                (entries, observer) => {
 
-                entries.forEach((entry) => {
+                    entries.forEach((entry) => {
 
-                    if (entry.isIntersecting) {
+                        if (entry.isIntersecting) {
 
-                        featuresSection.classList.add('is-visible');
+                            entry.target.classList.add(
+                                'is-visible'
+                            );
 
-                        observer.unobserve(entry.target);
+                            observer.unobserve(
+                                entry.target
+                            );
+                        }
 
-                    }
+                    });
 
-                });
-
-            },
-            {
-                threshold: 0.2
-            }
-        );
+                },
+                {
+                    threshold: 0.2
+                }
+            );
 
         observer.observe(featuresSection);
     }

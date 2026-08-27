@@ -57,6 +57,18 @@
     line-height: 1.6;
     margin: 0;
   }
+
+  .hero-widget {
+    width: 100%;
+    max-width: 1280px;
+    margin: 70px auto 0;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-widget > * {
+    max-width: 100%;
+}
   
   /* Fliken med knappen och de sömlösa radie-kurvorna */
   .hero-action-wrapper {
