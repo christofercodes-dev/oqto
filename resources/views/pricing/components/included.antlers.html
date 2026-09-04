@@ -1,12 +1,10 @@
 <section class="pricing-included-section">
-
-    <div class="pricing-included-container">
+    <div class="container pricing-included-container">
 
         <!-- HEADER -->
         <div class="pricing-included-header">
 
             <div class="pricing-included-heading">
-
                 <span class="pricing-included-small-title">
                     {{ included_small_title }}
                 </span>
@@ -14,87 +12,149 @@
                 <h2 class="pricing-included-title">
                     {{ included_title | nl2br }}
                 </h2>
-
             </div>
 
             <div class="pricing-included-intro">
-
                 <p>
                     {{ included_text }}
                 </p>
-
             </div>
 
         </div>
 
 
-        <!-- TRE KOLUMNER -->
+        <!-- KORT -->
         <div class="pricing-included-columns">
 
-            <!-- KOLUMN 1 -->
-            <div class="pricing-included-column">
+            <!-- KORT 01 -->
+            <article class="pricing-included-card">
 
-                <h3 class="pricing-included-column-title">
-                    {{ included_columns:0:title }}
-                </h3>
+                <div class="pricing-included-card-top">
+                    <span class="pricing-included-number">
+                        01
+                    </span>
 
-                <ul class="pricing-included-list">
+                    <span class="pricing-included-line"></span>
+                </div>
 
-                    {{ included_columns:0:items }}
-                        <li>
-                            <span class="pricing-included-dot"></span>
-                            <span>{{ value }}</span>
-                        </li>
-                    {{ /included_columns:0:items }}
+                <div class="pricing-included-card-body">
 
-                </ul>
+                    <h3 class="pricing-included-card-title">
+                        {{ included_columns:0:title }}
+                    </h3>
 
-            </div>
+                    <ul class="pricing-included-list">
+
+                        {{ included_columns:0:items }}
+                            <li>
+                                <span class="pricing-included-check">
+                                    ✓
+                                </span>
+
+                                <span>
+                                    {{ value }}
+                                </span>
+                            </li>
+                        {{ /included_columns:0:items }}
+
+                    </ul>
+
+                </div>
+
+                <div class="pricing-included-card-footer">
+                    <span>Per enhet och månad. Traditionell och Modern.
+                    </span>
+                </div>
+
+            </article>
 
 
-            <!-- KOLUMN 2 -->
-            <div class="pricing-included-column">
+            <!-- KORT 02 -->
+            <article class="pricing-included-card">
 
-                <h3 class="pricing-included-column-title">
-                    {{ included_columns:1:title }}
-                </h3>
+                <div class="pricing-included-card-top">
+                    <span class="pricing-included-number">
+                        02
+                    </span>
 
-                <ul class="pricing-included-list">
+                    <span class="pricing-included-line"></span>
+                </div>
 
-                    {{ included_columns:1:items }}
-                        <li>
-                            <span class="pricing-included-dot"></span>
-                            <span>{{ value }}</span>
-                        </li>
-                    {{ /included_columns:1:items }}
+                <div class="pricing-included-card-body">
 
-                </ul>
+                    <h3 class="pricing-included-card-title">
+                        {{ included_columns:1:title }}
+                    </h3>
 
-            </div>
+                    <ul class="pricing-included-list">
+
+                        {{ included_columns:1:items }}
+                            <li>
+                                <span class="pricing-included-check">
+                                    ✓
+                                </span>
+
+                                <span>
+                                    {{ value }}
+                                </span>
+                            </li>
+                        {{ /included_columns:1:items }}
+
+                    </ul>
+
+                </div>
+
+                <div class="pricing-included-card-footer">
+                    <span>Bundle per bolag och månad. Därefter per styck.</span>
+                </div>
+
+            </article>
 
 
-            <!-- KOLUMN 3 -->
-            <div class="pricing-included-column">
+            <!-- KORT 03 -->
+            <article class="pricing-included-card">
 
-                <h3 class="pricing-included-column-title">
-                    {{ included_columns:2:title }}
-                </h3>
+                <div class="pricing-included-card-top">
+                    <span class="pricing-included-number">
+                        03
+                    </span>
 
-                <ul class="pricing-included-list">
+                    <span class="pricing-included-line"></span>
+                </div>
 
-                    {{ included_columns:2:items }}
-                        <li>
-                            <span class="pricing-included-dot"></span>
-                            <span>{{ value }}</span>
-                        </li>
-                    {{ /included_columns:2:items }}
+                <div class="pricing-included-card-body">
 
-                </ul>
+                    <h3 class="pricing-included-card-title">
+                        {{ included_columns:2:title }}
+                    </h3>
 
-            </div>
+                    <ul class="pricing-included-list">
+
+                        {{ included_columns:2:items }}
+                            <li>
+                                <span class="pricing-included-check">
+                                    ✓
+                                </span>
+
+                                <span>
+                                    {{ value }}
+                                </span>
+                            </li>
+                        {{ /included_columns:2:items }}
+
+                    </ul>
+
+                </div>
+
+                <div class="pricing-included-card-footer">
+                    <span>Ingår inte i transaktionsbundeln.
+                    </span>
+                </div>
+
+            </article>
 
         </div>
 
     </div>
-
 </section>
+

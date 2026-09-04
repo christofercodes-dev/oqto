@@ -1,54 +1,126 @@
+
 <section class="team-section">
 
-    <div class="team-container">
+    <div class="container team-container">
 
-        <!-- Small title -->
         <div class="team-header">
             <span class="team-small-title">
-                {{ small_title_team }}
+                Vårt team
             </span>
         </div>
 
-        <!-- Team cards -->
         <div class="team-grid">
 
-            {{ team_members }}
+            <!-- Anna -->
+            <article class="team-card">
 
-                <article class="team-card">
+                <div class="team-image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900"
+                        alt="Anna Andersson"
+                        class="team-image"
+                    >
+                </div>
 
-                    {{ if image }}
-                        <img
-                            src="{{ image:url }}"
-                            alt="{{ image:alt }}"
-                            class="team-image"
-                        >
-                    {{ /if }}
+                <div class="team-info">
+                    <p class="team-role">
+                        Creative Director
+                    </p>
 
-                    <div class="team-overlay">
+                    <h3 class="team-name">
+                        Anna Andersson
+                    </h3>
 
-                        <div class="team-content">
+                    <p class="team-description">
+                        Ansvarar för kreativ riktning och koncept.
+                    </p>
+                </div>
 
-                            <span class="team-role">
-                                {{ role }}
-                            </span>
+            </article>
 
-                            <h3 class="team-name">
-                                {{ name }}
-                            </h3>
 
-                            {{ if description }}
-                                <p class="team-description">
-                                    {{ description }}
-                                </p>
-                            {{ /if }}
+            <!-- Erik -->
+            <article class="team-card">
 
-                        </div>
+                <div class="team-image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900"
+                        alt="Erik Johansson"
+                        class="team-image"
+                    >
+                </div>
 
-                    </div>
+                <div class="team-info">
+                    <p class="team-role">
+                        Art Director
+                    </p>
 
-                </article>
+                    <h3 class="team-name">
+                        Erik Johansson
+                    </h3>
 
-            {{ /team_members }}
+                    <p class="team-description">
+                        Ansvarar för visuell identitet och design.
+                    </p>
+                </div>
+
+            </article>
+
+
+            <!-- Sofia -->
+            <article class="team-card">
+
+                <div class="team-image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900"
+                        alt="Sofia Lind"
+                        class="team-image"
+                    >
+                </div>
+
+                <div class="team-info">
+                    <p class="team-role">
+                        Project Manager
+                    </p>
+
+                    <h3 class="team-name">
+                        Sofia Lind
+                    </h3>
+
+                    <p class="team-description">
+                        Driver projekt från idé till färdig leverans.
+                    </p>
+                </div>
+
+            </article>
+
+
+            <!-- Johan -->
+            <article class="team-card">
+
+                <div class="team-image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900"
+                        alt="Johan Berg"
+                        class="team-image"
+                    >
+                </div>
+
+                <div class="team-info">
+                    <p class="team-role">
+                        Developer
+                    </p>
+
+                    <h3 class="team-name">
+                        Johan Berg
+                    </h3>
+
+                    <p class="team-description">
+                        Bygger digitala lösningar med fokus på kvalitet.
+                    </p>
+                </div>
+
+            </article>
 
         </div>
 

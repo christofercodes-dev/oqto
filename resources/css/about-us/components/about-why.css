@@ -6,27 +6,13 @@
     padding: 100px 40px;
 
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
 
     color: #1a1715;
 }
 
-.about-why-container {
-    max-width: 1280px;
 
-    margin: 0 auto;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 24px;
-}
 
 /* Övre etiketter */
 

@@ -1,0 +1,251 @@
+/* =========================
+   DEVELOPERS HERO
+   ========================= */
+
+   .developers-hero-section {
+    width: 100%;
+    min-height: 650px;
+    padding: 100px 0;
+    box-sizing: border-box;
+    background: #dceefa;
+    color: #1a1715;
+    font-family: "Inter", sans-serif;
+}
+
+.developers-hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+}
+
+
+/* =========================
+   TEXT ANIMATION
+   ========================= */
+
+.developers-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 650px;
+
+    animation:
+        developersContentIn 1s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
+}
+
+
+/* Rubrik */
+
+.developers-hero-title {
+    font-size: clamp(5rem, 7vw, 7rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+    color: #2e251f;
+    margin: 0;
+    padding-top: 100px;
+
+    animation:
+        developersTitleIn 1s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.1s
+        both;
+}
+
+
+/* Brödtext */
+
+.developers-hero-body {
+    max-width: 520px;
+    margin: 30px 0 0;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #454b50;
+
+    animation:
+        developersBodyIn 0.9s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.35s
+        both;
+}
+
+
+/* Knapp */
+
+.developers-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-top: 32px;
+    padding: 15px 18px 15px 22px;
+
+    border-radius: 999px;
+
+    background: #f35d08;
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    animation:
+        developersButtonIn 0.8s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.55s
+        both;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.developers-button:hover {
+    transform: translateY(-3px);
+    background: #e95100;
+
+    box-shadow:
+        0 12px 30px rgba(243, 93, 8, 0.22);
+}
+
+.developers-button span {
+    font-size: 20px;
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+.developers-button:hover span {
+    transform: translateX(4px);
+}
+
+
+/* =========================
+   KEYFRAMES
+   ========================= */
+
+@keyframes developersContentIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes developersTitleIn {
+    from {
+        opacity: 0;
+        transform: translateY(45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes developersBodyIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes developersButtonIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .developers-hero-content,
+    .developers-hero-title,
+    .developers-hero-body,
+    .developers-button {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 960px) {
+    .developers-hero-section {
+        padding: 90px 0;
+    }
+
+    .developers-hero-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .developers-hero-visual {
+        justify-content: flex-start;
+    }
+
+    .developers-hero-visual svg {
+        width: 420px;
+        max-width: 100%;
+    }
+
+    .developers-hero-title {
+        padding-top: 0;
+    }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+    .developers-hero-section {
+        padding: 70px 0;
+    }
+
+    .developers-hero-container {
+        gap: 50px;
+    }
+
+    .developers-hero-title {
+        font-size: 56px;
+    }
+
+    .developers-hero-body {
+        font-size: 16px;
+    }
+
+    .developers-hero-visual svg {
+        width: 100%;
+    }
+}

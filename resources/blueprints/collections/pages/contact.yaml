@@ -1,0 +1,63 @@
+title: contact
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+          -
+            handle: author
+            field:
+              type: users
+              display: author
+      -
+        display: 'contact hero'
+        fields:
+          -
+            handle: contact_small_title
+            field:
+              type: text
+              display: 'contact small title'
+          -
+            handle: contact_title
+            field:
+              type: text
+              display: 'contact title'
+          -
+            handle: contact_body
+            field:
+              type: textarea
+              display: 'contact body'
+          -
+            handle: contact_email
+            field:
+              type: text
+              display: 'contact email'
+          -
+            handle: contact_phone
+            field:
+              type: text
+              display: 'contact phone'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

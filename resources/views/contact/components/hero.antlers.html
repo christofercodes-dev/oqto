@@ -1,0 +1,110 @@
+<section class="contact-section">
+    <div class="contact-container">
+
+        <!-- VÄNSTER -->
+        <div class="contact-content">
+
+            {{ if contact_small_title }}
+                <span class="contact-eyebrow">
+                    {{ contact_small_title }}
+                </span>
+            {{ /if }}
+
+            <h1 class="contact-title">
+                {{ contact_title | nl2br }}
+            </h1>
+
+            {{ if contact_body }}
+                <p class="contact-body">
+                    {{ contact_body }}
+                </p>
+            {{ /if }}
+
+            <div class="contact-details">
+
+                {{ if contact_email }}
+                    <a href="mailto:{{ contact_email }}" class="contact-detail">
+                        <span class="contact-detail-label">E-post</span>
+                        <span class="contact-detail-value">
+                            {{ contact_email }}
+                        </span>
+                    </a>
+                {{ /if }}
+
+                {{ if contact_phone }}
+                    <a href="tel:{{ contact_phone }}" class="contact-detail">
+                        <span class="contact-detail-label">Telefon</span>
+                        <span class="contact-detail-value">
+                            {{ contact_phone }}
+                        </span>
+                    </a>
+                {{ /if }}
+
+            </div>
+
+        </div>
+
+
+        <!-- HÖGER / FORMULÄR -->
+        <div class="contact-form-wrapper">
+
+            <form class="contact-form">
+
+                <div class="contact-form-row">
+
+                    <div class="contact-field">
+                        <label for="name">Namn</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Ditt namn"
+                        >
+                    </div>
+
+                    <div class="contact-field">
+                        <label for="email">E-post</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="din@email.se"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="contact-field">
+                    <label for="company">Företag</label>
+                    <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        placeholder="Företagsnamn"
+                    >
+                </div>
+
+
+                <div class="contact-field">
+                    <label for="message">Meddelande</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        placeholder="Berätta lite om vad du behöver hjälp med..."
+                    ></textarea>
+                </div>
+
+
+                <button type="submit" class="contact-button">
+                    Skicka meddelande
+                    <span aria-hidden="true">→</span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>

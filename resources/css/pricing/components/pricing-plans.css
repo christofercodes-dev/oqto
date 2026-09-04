@@ -6,12 +6,7 @@
 
     box-sizing: border-box;
 
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
+    font-family: "Inter", sans-serif;
 
     color: #1a1715;
 }
@@ -89,7 +84,7 @@
 .pricing-card-title {
     margin: 0;
 
-    font-size: clamp(2rem, 3vw, 3rem);
+    font-size: clamp(2rem, 3vw, 2rem);
 
     font-weight: 400;
 
@@ -99,7 +94,7 @@
 }
 
 .pricing-card-number {
-    font-size: clamp(3rem, 5vw, 5rem);
+    font-size: clamp(2rem, 5vw, 1rem);
 
     font-weight: 400;
 
@@ -126,11 +121,12 @@
 
     margin: 0 0 32px;
 
-    font-size: 1rem;
+    font-size: 1.2rem;
 
     line-height: 1.6;
 
     color: #4a4744;
+    font-weight: 500;
 }
 
 
@@ -158,7 +154,7 @@
 
     gap: 12px;
 
-    font-size: 0.95rem;
+    font-size: 1rem;
 
     color: #1a1715;
 }
@@ -172,6 +168,58 @@
     border-radius: 50%;
 
     background-color: #f35d08;
+}
+
+/* ==================================================
+   INGÅR EJ
+   ================================================== */
+
+   .pricing-not-included {
+    margin-top: 10px;
+    padding-top: 24px;
+}
+
+/* Rubrik */
+
+.pricing-not-included-title {
+    margin: 0 0 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #77736f;
+}
+
+/* Lista */
+
+.pricing-not-included-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.pricing-not-included-list li {
+    position: relative;
+    padding-left: 16px;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #77736f;
+}
+
+/* Litet streck framför varje punkt */
+
+.pricing-not-included-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    color: #999590;
 }
 
 
@@ -190,7 +238,6 @@
 
     padding-top: 40px;
 
-    border-top: 1px solid rgba(26, 23, 21, 0.15);
 }
 
 

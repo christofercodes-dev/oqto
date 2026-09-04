@@ -1,0 +1,602 @@
+/* ==================================================
+   CONTACT SECTION
+   ================================================== */
+
+   .contact-section {
+    width: 100%;
+    min-height: 760px;
+    padding: 140px 40px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0) 30%
+        ),
+        #f3f1ef;
+
+    color: #1a1715;
+    font-family: "Inter", sans-serif;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* ==================================================
+   CONTAINER
+   ================================================== */
+
+.contact-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+
+    gap: 100px;
+    align-items: center;
+}
+
+
+/* ==================================================
+   VÄNSTER
+   ================================================== */
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    max-width: 580px;
+}
+
+
+/* ==================================================
+   EYEBROW
+   ================================================== */
+
+.contact-eyebrow {
+    margin-bottom: 28px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: #7b7671;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-eyebrow::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #f35d08;
+}
+
+
+/* ==================================================
+   TITEL
+   ================================================== */
+
+.contact-title {
+    margin: 0;
+
+    max-width: 650px;
+
+    font-size: clamp(
+        4rem,
+        7vw,
+        7.2rem
+    );
+
+    font-weight: 400;
+
+    line-height: 0.92;
+    letter-spacing: -0.065em;
+
+    color: #1a1715;
+
+    animation:
+        contactTitleIn
+        0.9s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
+}
+
+@keyframes contactTitleIn {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==================================================
+   BRÖDTEXT
+   ================================================== */
+
+.contact-body {
+    max-width: 500px;
+
+    margin: 34px 0 0;
+
+    font-size: 1.05rem;
+    line-height: 1.7;
+
+    color: #625d58;
+
+    animation:
+        contactBodyIn
+        0.9s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.12s
+        both;
+}
+
+@keyframes contactBodyIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==================================================
+   KONTAKTDETALJER
+   ================================================== */
+
+.contact-details {
+    width: 100%;
+    max-width: 500px;
+
+    margin-top: 52px;
+
+    display: flex;
+    flex-direction: column;
+
+    border-top: 1px solid rgba(26, 23, 21, 0.12);
+}
+
+
+.contact-detail {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid rgba(26, 23, 21, 0.12);
+
+    color: #1a1715;
+    text-decoration: none;
+
+    transition:
+        padding 0.3s ease,
+        color 0.3s ease;
+}
+
+
+.contact-detail::after {
+    content: "↗";
+
+    font-size: 18px;
+
+    opacity: 0;
+
+    transform: translate(-8px, 4px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.contact-detail:hover {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+
+.contact-detail:hover::after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+
+.contact-detail-label {
+    font-family: "Geist Mono", monospace;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #96908a;
+}
+
+
+.contact-detail-value {
+    margin-left: auto;
+    margin-right: 24px;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    color: #2b2724;
+}
+
+
+/* ==================================================
+   FORM WRAPPER
+   ================================================== */
+
+.contact-form-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    padding: 46px;
+
+    box-sizing: border-box;
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 2px 4px rgba(26, 23, 21, 0.02),
+        0 12px 30px rgba(26, 23, 21, 0.05),
+        0 35px 80px rgba(26, 23, 21, 0.08);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    animation:
+        contactFormIn
+        1s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.15s
+        both;
+}
+
+@keyframes contactFormIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ==================================================
+   LITEN FORM HEADER
+   ================================================== */
+
+.contact-form-wrapper::before {
+    content: "SKICKA ETT MEDDELANDE";
+
+    display: block;
+
+    margin-bottom: 34px;
+
+    font-family: "Geist Mono", monospace;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.1em;
+
+    color: #9a948f;
+}
+
+
+/* ==================================================
+   FORM
+   ================================================== */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+/* ==================================================
+   FORM ROW
+   ================================================== */
+
+.contact-form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+
+/* ==================================================
+   FIELD
+   ================================================== */
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.contact-field label {
+    font-family: "Geist Mono", monospace;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: #716b66;
+}
+
+
+.contact-field input,
+.contact-field textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 16px 17px;
+
+    border: 1px solid rgba(26, 23, 21, 0.10);
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background: rgba(248, 247, 246, 0.8);
+
+    color: #1a1715;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 0.94rem;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.contact-field textarea {
+    min-height: 150px;
+
+    resize: vertical;
+}
+
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+    color: #aaa49f;
+}
+
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+    border-color: rgba(243, 93, 8, 0.45);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(243, 93, 8, 0.07);
+
+    transform: translateY(-1px);
+}
+
+
+/* ==================================================
+   KNAPP
+   ================================================== */
+
+.contact-button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 8px;
+
+    padding: 17px 18px 17px 22px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #1a1715;
+
+    color: #ffffff;
+
+    font-family: "Geist Mono", monospace;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.contact-button span {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f35d08;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 18px;
+    line-height: 1;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.contact-button:hover {
+    background: #27221f;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 30px rgba(26, 23, 21, 0.15);
+}
+
+
+.contact-button:hover span {
+    transform: translateX(4px);
+}
+
+
+/* ==================================================
+   TABLET
+   ================================================== */
+
+@media (max-width: 960px) {
+
+    .contact-section {
+        padding: 100px 24px;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+
+        gap: 70px;
+    }
+
+    .contact-content {
+        max-width: 700px;
+    }
+
+    .contact-form-wrapper {
+        max-width: 700px;
+    }
+
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 600px) {
+
+    .contact-section {
+        padding: 80px 20px;
+    }
+
+    .contact-container {
+        gap: 55px;
+    }
+
+    .contact-title {
+        font-size: clamp(
+            3.5rem,
+            17vw,
+            5.5rem
+        );
+    }
+
+    .contact-body {
+        font-size: 1rem;
+    }
+
+    .contact-details {
+        margin-top: 40px;
+    }
+
+    .contact-form-wrapper {
+        padding: 26px 22px;
+
+        border-radius: 24px;
+    }
+
+    .contact-form-row {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+    .contact-field textarea {
+        min-height: 130px;
+    }
+
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .contact-title,
+    .contact-body,
+    .contact-form-wrapper {
+        animation: none;
+    }
+
+    .contact-button,
+    .contact-detail,
+    .contact-field input,
+    .contact-field textarea {
+        transition: none;
+    }
+
+}

@@ -1,0 +1,461 @@
+.integrations-section {
+    width: 100%;
+    padding-top: var(--section-padding-top);
+    padding-bottom: var(--section-padding-bottom);
+    background-color: #ffffff;
+}
+
+
+/* =========================================
+   CONTAINER
+   ========================================= */
+
+.integrations-container {
+    /*
+     * Viktigt:
+     * Ingen egen max-width, margin eller
+     * horisontell padding här.
+     *
+     * Den globala .container styr detta.
+     */
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.integrations-header {
+    max-width: 850px;
+    margin-bottom: 48px;
+}
+
+.integrations-title {
+    margin: 0;
+
+    font-size: clamp(2.8rem, 5vw, 5.5rem);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+
+    color: var(--color-text);
+}
+
+.integrations-intro {
+    max-width: 650px;
+
+    margin: 24px 0 0;
+
+    font-size: 1rem;
+    line-height: 1.6;
+
+    color: #777777;
+}
+
+
+/* =========================================
+   FILTER
+   ========================================= */
+
+.integrations-filter-wrapper {
+    position: relative;
+
+    display: inline-block;
+
+    margin-bottom: 32px;
+}
+
+.integrations-filter-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+
+    min-width: 190px;
+
+    padding: 13px 16px;
+
+    border: 1px solid #dedbd8;
+    border-radius: 999px;
+
+    background-color: #ffffff;
+
+    color: var(--color-text);
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.integrations-filter-trigger:hover {
+    border-color: #bdb8b4;
+    background-color: #faf9f8;
+}
+
+.integrations-filter-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.integrations-filter-icon {
+    flex-shrink: 0;
+}
+
+.integrations-filter-chevron {
+    flex-shrink: 0;
+
+    transition: transform 0.25s ease;
+}
+
+.integrations-filter-trigger[aria-expanded="true"]
+.integrations-filter-chevron {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================
+   FILTER MENU
+   ========================================= */
+
+.integrations-filter-menu {
+    position: absolute;
+    z-index: 20;
+
+    top: calc(100% + 8px);
+    left: 0;
+
+    min-width: 220px;
+
+    padding: 8px;
+
+    border: 1px solid #e5e2df;
+    border-radius: 16px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.integrations-filter-option {
+    display: block;
+
+    width: 100%;
+
+    padding: 11px 12px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    text-align: left;
+
+    color: var(--color-text);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.integrations-filter-option:hover {
+    background-color: #f5f3f1;
+}
+
+.integrations-filter-option.is-active {
+    background-color: #f1efed;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   GRID
+   ========================================= */
+
+.integrations-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.integration-card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 360px;
+
+    padding: 28px;
+
+    border: 1px solid #e5e2df;
+    border-radius: 24px;
+
+    background-color: #ffffff;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.18s ease;
+}
+
+.integration-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================
+   CARD HEADER
+   ========================================= */
+
+.integration-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.integration-logo {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background-color: #f3f1ef;
+}
+
+.integration-logo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+.integration-logo-placeholder {
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    color: var(--color-text);
+}
+
+.integration-card-heading {
+    min-width: 0;
+}
+
+.integration-card-title {
+    margin: 0;
+
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2;
+
+    letter-spacing: -0.02em;
+
+    color: var(--color-text);
+}
+
+.integration-card-category {
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--color-accent);
+}
+
+
+/* =========================================
+   CARD CONTENT
+   ========================================= */
+
+.integration-card-content {
+    flex: 1;
+
+    padding-top: 28px;
+}
+
+.integration-card-short {
+    margin: 0;
+
+    font-size: 0.95rem;
+    line-height: 1.55;
+
+    color: #55504c;
+}
+
+.integration-card-body {
+    margin-top: 14px;
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+
+    color: #777777;
+}
+
+
+/* =========================================
+   CARD FOOTER
+   ========================================= */
+
+.integration-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-top: 28px;
+    padding-top: 20px;
+
+    border-top: 1px solid #ebe8e5;
+}
+
+.integration-card-activate {
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    color: var(--color-text);
+}
+
+.integration-card-activate:hover {
+    color: var(--color-accent);
+}
+
+.integration-card-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    background-color: #f3f1ef;
+
+    font-size: 1rem;
+    line-height: 1;
+
+    text-decoration: none;
+
+    color: var(--color-text);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.integration-card-arrow:hover {
+    background-color: #e9e5e2;
+    transform: translate(2px, -2px);
+}
+
+
+/* =========================================
+   FILTER ANIMATION
+   ========================================= */
+
+.integration-card.is-filtered-out {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .integrations-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .integrations-section {
+        padding-top: var(--section-padding-top);
+        padding-bottom: var(--section-padding-bottom);
+    }
+
+    .integrations-header {
+        margin-bottom: 36px;
+    }
+
+    .integrations-title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .integrations-intro {
+        margin-top: 18px;
+        font-size: 0.95rem;
+    }
+
+    .integrations-filter-wrapper {
+        width: 100%;
+    }
+
+    .integrations-filter-trigger {
+        width: 100%;
+    }
+
+    .integrations-filter-menu {
+        width: 100%;
+    }
+
+    .integrations-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .integration-card {
+        min-height: 320px;
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+}

@@ -12,9 +12,7 @@ Route::get('/jobs/{slug}', function ($slug) {
     $jobs = collect($jobsPage->get('jobs'));
 
     $job = $jobs->first(function ($set) use ($slug) {
-
         return ($set['job_slug'] ?? null) === $slug;
-
     });
 
     abort_unless($job, 404);

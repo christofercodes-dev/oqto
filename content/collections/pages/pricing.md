@@ -6,7 +6,7 @@ template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1787739631
+updated_at: 1787911261
 pricing_button_text: 'Boka demo'
 intro_small_title: Bolagslägen
 intro_title: "Ingen byrålicens, \Lbara olika bolagslägen."
@@ -14,7 +14,7 @@ intro_body: 'Vi har ingen byrålicens och systemet kostar ingenting för er som 
 pricing_plans:
   -
     id: SOfAiZFnbi7K6ImrmAgJm
-    plan_title: Traditioenell
+    plan_title: Traditionell
     plan_number: '01'
     description: 'I det traditionella läger arbetar byrå och kund tillsammans utan månadsavslut och automationer. Passar bolag med mindre transaktionsvolym.'
     monthly_price: '125'
@@ -22,19 +22,32 @@ pricing_plans:
     type: pricing_plan
     enabled: true
     features:
-      - test
-      - test
-      - test
-      - test
+      - Bokföring
+      - Försäljning
+      - Inköp
+      - Anläggningsregister
+      - Periodisering
+      - Avtalsfakturering
+      - 'Bank & Skatt'
+      - Lön
+      - 'Attest & Betalning'
   -
     id: eTiJRgHFQetkdFMafsa1S
     plan_title: Modern
     plan_number: '02'
     description: 'Byrå och kund arbetar tillsammans. med månadsavslut och automationer. Passar volah med hög transaktionsvolym.'
     features:
-      - test
-      - test
-      - test
+      - Bokföring
+      - Försäljning
+      - Inköp
+      - Anläggningsregister
+      - Periodisering
+      - Avtalsfakturering
+      - 'Bank & Skatt'
+      - Lön
+      - 'Attest & Betalning'
+      - Månadsavslut
+      - 'Automationer (Autopilot)'
     monthly_price: '250'
     verification_limit: Fritt!
     type: pricing_plan
@@ -50,25 +63,29 @@ users_title: "Tre nivåer för kunden.\LOch alltid gratis för revisorn."
 users_text: "Byrån avgör vilka nivåer varje kund får tillgång till. En enkel användare kan signera betalning, attestera, fakturera, app-funktionalitet. En avancerad \Lanvändare kan göra exakt det byrån tillåter – inte mer. Läsbehöriga kan se allt, men inte göra något. Revisor har tidsbegränsad åtkomst. Passar vid t.ex. bokslut — och gäller över alla bolagslägen."
 user_levels:
   - id: hwGLoSApfQOTP4KdFahxM
-    user_title: '01 test'
-    user_description: test
+    user_title: 'Enkel användare'
+    user_description: 'Signera betalning, attestera, fakturera, app-funktionalitet'
     type: levels
     enabled: true
+    user_price: '50'
   - id: 2TLxPzv7EOJUmVsrRoSAy
-    user_title: '02'
-    user_description: test
+    user_title: 'Avancerad användare'
+    user_description: 'Allt byrån ger tillgång till – full systemåtkomst'
     type: levels
     enabled: true
+    user_price: '100'
   - id: lseZKWxepojbhh9ILASzX
-    user_title: '03'
-    user_description: test
+    user_title: Läsbarhet
+    user_description: 'Kan se allt, kan inte göra något — löpande åtkomst'
     type: levels
     enabled: true
+    user_price: '25'
   - id: BRlEzE1444k12P8xxvM7s
-    user_title: '04'
-    user_description: test
+    user_title: Revisor
+    user_description: 'Tidsbegränsad. Gäller alla bolagslägen.'
     type: levels
     enabled: true
+    user_price: '0'
 included_small_title: 'Löpande avgifter & transaktioner'
 included_title: 'Och så det du använder. Inget annat.'
 included_text: 'Transaktioner har en bundle på 10 st per bolag som ingår i månadspriset. Därefter prissätts varje enhet. Lönespec och extra bankkonton ligger utanför bundeln.'
@@ -77,27 +94,23 @@ included_columns:
     id: CyBABpca8ZD_uwhb1Gt0V
     title: Löpande
     items:
-      - test
-      - test
-      - test
+      - 'Extra bankkonto 30 kr/konto/mån'
     type: columns
     enabled: true
   -
     id: KV7SOy1OTTtLbbR8GaNJW
     title: Transaktioner
     items:
-      - test
-      - test
-      - test
+      - 'Skicka e-faktura 3 kr/st'
+      - 'Ta emot e-faktura 3 kr/st'
+      - 'Dokumenttolkning 3 kr/st'
     type: columns
     enabled: true
   -
     id: xlw7eLNoe7j4K95V6pCAP
     title: Pay-as-you-go
     items:
-      - test
-      - test
-      - test
+      - 'Lönespecifikation 20 kr/st'
     type: columns
     enabled: true
 text_small_title: Test

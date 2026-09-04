@@ -1,27 +1,38 @@
-.faq-cta-section {
+/* =========================
+   FAQ CTA SECTION
+   ========================= */
+
+   .faq-cta-section {
     width: 100%;
     background-color: #ffffff;
-    padding: 100px 40px;
+    padding: 100px 0;
     box-sizing: border-box;
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
+    font-family: "Inter", sans-serif;
     color: #1a1715;
 }
 
+
+/* =========================
+   CONTAINER
+   ========================= */
+
 .faq-cta-container {
-    max-width: 1280px;
-    margin: 0 auto;
+    width: 100%;
 }
+
+
+/* =========================
+   CONTENT
+   ========================= */
 
 .faq-cta-content {
     max-width: 1000px;
 }
 
-/* Stor heading */
+
+/* =========================
+   TITLE
+   ========================= */
 
 .faq-cta-title {
     font-size: clamp(3rem, 5vw, 4.8rem);
@@ -33,7 +44,10 @@
     max-width: 800px;
 }
 
-/* Knappar */
+
+/* =========================
+   BUTTONS
+   ========================= */
 
 .faq-cta-buttons {
     display: flex;
@@ -47,12 +61,16 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
+
     padding: 15px 24px;
     border-radius: 999px;
+
     text-decoration: none;
+
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.02em;
+
     transition:
         transform 0.25s ease,
         background-color 0.25s ease,
@@ -62,10 +80,15 @@
 .faq-cta-arrow {
     font-size: 1.1rem;
     line-height: 1;
-    transition: transform 0.25s ease;
+
+    transition:
+        transform 0.25s ease;
 }
 
-/* Orange knapp */
+
+/* =========================
+   PRIMARY BUTTON
+   ========================= */
 
 .faq-cta-button-primary {
     background-color: #f35d08 !important;
@@ -82,7 +105,10 @@
     transform: translateX(3px);
 }
 
-/* Sekundär knapp */
+
+/* =========================
+   SECONDARY BUTTON
+   ========================= */
 
 .faq-cta-button-secondary {
     background-color: #f1f1f1;
@@ -99,12 +125,15 @@
     transform: translateX(3px);
 }
 
-/* Mobil */
+
+/* =========================
+   MOBILE
+   ========================= */
 
 @media (max-width: 600px) {
 
     .faq-cta-section {
-        padding: 90px 24px;
+        padding: 90px 0;
     }
 
     .faq-cta-title {

@@ -7,13 +7,13 @@
     justify-content: space-between;
     padding: 100px 40px 0 40px;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: "Inter", sans-serif;
     position: relative;
   }
   
   .hero-container {
     padding-top: 100px;
-    max-width: 1280px;
+    max-width: 1300px;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -21,6 +21,7 @@
     justify-content: space-between;
     height: 100%;
     flex: 1;
+
   }
   
   /* Typografi och layout */

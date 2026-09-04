@@ -1,0 +1,340 @@
+
+<section class="integrations-section">
+    <div class="container">
+
+
+
+        <div class="integrations-header">
+            <h1 class="integrations-title">
+                {{ integrations_title | nl2br }}
+            </h1>
+
+            {{ if integrations_intro }}
+                <p class="integrations-intro">
+                    {{ integrations_intro }}
+                </p>
+            {{ /if }}
+        </div>
+
+
+        <!-- FILTER -->
+        <div class="integrations-filter-wrapper">
+
+            <button
+                type="button"
+                class="integrations-filter-trigger"
+                aria-expanded="false"
+                aria-controls="integration-filter-menu"
+            >
+                <span class="integrations-filter-trigger-left">
+
+                    <!-- FILTER IKON -->
+                    <svg
+                        class="integrations-filter-icon"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M4 7H20M7 12H17M10 17H14"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+
+                    <span>Filter</span>
+
+                </span>
+
+                <svg
+                    class="integrations-filter-chevron"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M6 9L12 15L18 9"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
+
+
+            <div
+                id="integration-filter-menu"
+                class="integrations-filter-menu"
+                hidden
+            >
+
+                <button
+                    type="button"
+                    class="integrations-filter-option is-active"
+                    data-filter="all"
+                >
+                    Alla integrationer
+                </button>
+
+                {{ integrations }}
+                    {{ if category }}
+                        <button
+                            type="button"
+                            class="integrations-filter-option"
+                            data-filter="{{ category }}"
+                        >
+                            {{ category }}
+                        </button>
+                    {{ /if }}
+                {{ /integrations }}
+
+            </div>
+
+        </div>
+
+
+        <!-- INTEGRATIONER -->
+        <div class="integrations-grid">
+
+            {{ integrations }}
+
+                <article
+                    class="integration-card"
+                    data-category="{{ category }}"
+                >
+
+                    <!-- CARD HEADER -->
+                    <div class="integration-card-header">
+
+                        <div class="integration-logo">
+
+                            {{ if logo }}
+
+                                <img
+                                    src="{{ logo:url }}"
+                                    alt="{{ title }}"
+                                >
+
+                            {{ else }}
+
+                                <span class="integration-logo-placeholder">
+                                    {{ title | first }}
+                                </span>
+
+                            {{ /if }}
+
+                        </div>
+
+
+                        <div class="integration-card-heading">
+
+                            <h2 class="integration-card-title">
+                                {{ title }}
+                            </h2>
+
+                            {{ if category }}
+                                <span class="integration-card-category">
+                                    {{ category }}
+                                </span>
+                            {{ /if }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CARD CONTENT -->
+                    <div class="integration-card-content">
+
+                        {{ if short_text }}
+
+                            <p class="integration-card-short">
+                                {{ short_text }}
+                            </p>
+
+                        {{ /if }}
+
+
+                        {{ if body }}
+
+                            <div class="integration-card-body">
+                                {{ body }}
+                            </div>
+
+                        {{ /if }}
+
+                    </div>
+
+
+                    <!-- CARD FOOTER -->
+                    <div class="integration-card-footer">
+
+                        <a
+                            href="#"
+                            class="integration-card-activate"
+                        >
+                            Aktivera i Oqto
+                        </a>
+
+
+                        {{ if url }}
+
+                            <a
+                                href="{{ url }}"
+                                class="integration-card-arrow"
+                                aria-label="Läs mer om {{ title }}"
+                            >
+                                ↗
+                            </a>
+
+                        {{ else }}
+
+                            <a
+                                href="#"
+                                class="integration-card-arrow"
+                                aria-label="Läs mer om {{ title }}"
+                            >
+                                ↗
+                            </a>
+
+                        {{ /if }}
+
+                    </div>
+
+                </article>
+
+            {{ /integrations }}
+
+        </div>
+
+    </div>
+</section>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const trigger = document.querySelector('.integrations-filter-trigger');
+    const menu = document.querySelector('.integrations-filter-menu');
+    const options = document.querySelectorAll('.integrations-filter-option');
+    const cards = document.querySelectorAll('.integration-card');
+
+    if (!trigger || !menu) return;
+
+
+    /*
+     * Öppna / stäng dropdown
+     */
+    trigger.addEventListener('click', function () {
+
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+        trigger.setAttribute('aria-expanded', !isOpen);
+
+        if (isOpen) {
+            menu.hidden = true;
+        } else {
+            menu.hidden = false;
+        }
+
+    });
+
+
+    /*
+     * Filtrera kort
+     */
+    options.forEach(function (option) {
+
+        option.addEventListener('click', function () {
+
+            const filter = option.dataset.filter;
+
+            /*
+             * Aktiv knapp
+             */
+            options.forEach(function (item) {
+                item.classList.remove('is-active');
+            });
+
+            option.classList.add('is-active');
+
+
+            /*
+             * Uppdatera texten på dropdownen
+             */
+            const triggerText = trigger.querySelector(
+                '.integrations-filter-trigger-left span:last-child'
+            );
+
+            if (triggerText) {
+                triggerText.textContent =
+                    filter === 'all'
+                        ? 'Filter'
+                        : option.textContent.trim();
+            }
+
+
+            /*
+             * Visa / dölj kort
+             */
+            cards.forEach(function (card) {
+
+                const category = card.dataset.category;
+
+                if (filter === 'all' || category === filter) {
+
+                    card.style.display = '';
+
+                    requestAnimationFrame(function () {
+                        card.classList.remove('is-filtered-out');
+                    });
+
+                } else {
+
+                    card.classList.add('is-filtered-out');
+
+                    setTimeout(function () {
+                        card.style.display = 'none';
+                    }, 180);
+
+                }
+
+            });
+
+
+            /*
+             * Stäng dropdown
+             */
+            trigger.setAttribute('aria-expanded', 'false');
+            menu.hidden = true;
+
+        });
+
+    });
+
+
+    /*
+     * Stäng när man klickar utanför
+     */
+    document.addEventListener('click', function (event) {
+
+        if (!event.target.closest('.integrations-filter-wrapper')) {
+
+            trigger.setAttribute('aria-expanded', 'false');
+            menu.hidden = true;
+
+        }
+
+    });
+
+});
+</script>
+

@@ -161,6 +161,11 @@ tabs:
                             type: text
                             display: 'user title'
                         -
+                          handle: user_price
+                          field:
+                            type: text
+                            display: 'user price'
+                        -
                           handle: user_description
                           field:
                             type: textarea

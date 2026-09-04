@@ -3,8 +3,9 @@
     background-color: #ffffff;
     padding: 10px 40px;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: #1a1715;
+    font-family: "Inter", sans-serif;
+
 }
 
 .why-oqto-container {
@@ -14,6 +15,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 48px;
+
+    
 }
 
 /* Vänster textkolumn */
@@ -24,6 +27,7 @@
     flex-direction: column;
     gap: 24px;
     max-width: 580px;
+    
 }
 
 .why-oqto-subtitle {

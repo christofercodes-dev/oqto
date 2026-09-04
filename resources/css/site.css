@@ -1,4 +1,148 @@
-@import "./components/navbar.css";
+/* =========================================
+   GLOBAL DESIGN SYSTEM
+   ========================================= */
+
+   :root {
+    --page-padding: 40px;
+    --content-width: 1300px;
+  
+    --section-padding-top: 100px;
+    --section-padding-bottom: 100px;
+  
+    --color-text: #2e251f;
+    --color-text-light: #1a1715;
+    --color-accent: #ff5500;
+  }
+  
+  
+  /* =========================================
+     GLOBAL RESET
+     ========================================= */
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    color: var(--color-text);
+  }
+  
+  
+  /* =========================================
+     GLOBAL CONTAINER
+     ========================================= */
+  
+  .container {
+    width: 100%;
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+  }
+  
+  
+  /* =========================================
+     GLOBAL SECTIONS
+     ========================================= */
+  
+  .section {
+    width: 100%;
+    padding-top: var(--section-padding-top);
+    padding-bottom: var(--section-padding-bottom);
+  }
+  
+  
+  /* =========================================
+     GLOBAL SECTION INNER
+     ========================================= */
+  
+  .section-inner {
+    width: 100%;
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+  }
+  
+  
+  /* =========================================
+     GLOBAL TYPOGRAPHY
+     ========================================= */
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin-top: 0;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-text);
+  }
+  
+  
+  /* =========================================
+     GLOBAL LINKS
+     ========================================= */
+  
+  a {
+    color: inherit;
+  }
+  
+  
+  /* =========================================
+     RESPONSIVE
+     ========================================= */
+  
+  @media (max-width: 960px) {
+    :root {
+      --page-padding: 24px;
+  
+      --section-padding-top: 70px;
+      --section-padding-bottom: 70px;
+    }
+  }
+  
+  
+  @media (max-width: 600px) {
+    :root {
+      --page-padding: 20px;
+  
+      --section-padding-top: 60px;
+      --section-padding-bottom: 60px;
+    }
+  }
+
+
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+
+/* Css-komponenter*/
+
+ @import "./components/navbar.css";
 @import "./components/hero.css";
 @import "./components/cards-section.css";
 @import "./components/video-section.css";
@@ -33,8 +177,16 @@
 @import "./jobs/components/openings.css";
 @import "./jobs/components/show.css";
 
+@import "./developers/components/hero.css";
+
+@import "./contact/components/hero.css";
+
+@import "./integrations/components/cards.css";
+
+
 
 
 @import "tailwindcss";
 @source "../views";
 @source "../../content";
+

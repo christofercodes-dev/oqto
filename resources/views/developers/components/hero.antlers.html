@@ -1,0 +1,80 @@
+<section class="developers-hero-section">
+
+    <div class="container developers-hero-container">
+
+        <div class="developers-hero-content">
+
+            
+
+            <h1 class="developers-hero-title">
+                {{ developers_title | nl2br }}
+            </h1>
+
+            {{ if developers_body }}
+                <p class="developers-hero-body">
+                    {{ developers_body }}
+                </p>
+            {{ /if }}
+
+            {{ if developers_button_text }}
+                <a
+                    href="{{ developers_button_url ?? '#' }}"
+                    class="developers-button"
+                >
+                    {{ developers_button_text }}
+                    <span aria-hidden="true">→</span>
+                </a>
+            {{ /if }}
+
+        </div>
+
+        <div class="developers-hero-visual" aria-hidden="true">
+
+            <svg
+                viewBox="0 0 600 600"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <rect
+                    x="80"
+                    y="80"
+                    width="440"
+                    height="440"
+                    rx="80"
+                    fill="white"
+                    fill-opacity="0.45"
+                />
+
+                <rect
+                    x="140"
+                    y="140"
+                    width="320"
+                    height="320"
+                    rx="60"
+                    fill="white"
+                    fill-opacity="0.7"
+                />
+
+                <circle
+                    cx="300"
+                    cy="300"
+                    r="190"
+                    stroke="#1A1715"
+                    stroke-opacity="0.12"
+                    stroke-width="2"
+                />
+
+                <path
+                    d="M210 300L270 360L390 240"
+                    stroke="#1A1715"
+                    stroke-width="18"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+
+        </div>
+
+    </div>
+
+</section>

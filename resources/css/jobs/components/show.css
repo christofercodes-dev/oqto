@@ -4,12 +4,8 @@
     padding: 140px 40px 120px;
     box-sizing: border-box;
 
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
+    font-family: "Inter", sans-serif;
+
 
     color: #1a1715;
 }

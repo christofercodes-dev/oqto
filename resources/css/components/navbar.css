@@ -1,6 +1,6 @@
-/* Navbar placering */
-.navbar-wrapper {
-    position: absolute;
+
+   .navbar-wrapper {
+    position: fixed;
     top: 24px;
     left: 0;
     right: 0;
@@ -8,76 +8,165 @@
     justify-content: center;
     padding: 0 20px;
     z-index: 100;
-  }
-  
-  /* Det vita rundade kortet */
-  .navbar-container {
-    background-color: #f4f4f4;
+}
+
+
+/* ==================================================
+   NAVBAR CONTAINER — GLASS EFFECT
+   ================================================== */
+
+.navbar-container {
+    background: rgba(244, 244, 244, 0.72);
+
+    /* Glas-effekt */
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+
     border-radius: 999px;
+
     padding: 8px 12px 8px 32px;
+
     display: flex;
     align-items: center;
     gap: 40px;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
-  }
-  
-  /* Logotyp */
-  .navbar-logo {
+
+    /* Mjuk glass-skugga */
+    box-shadow:
+        0 4px 10px rgba(26, 23, 21, 0.04),
+        0 12px 30px rgba(26, 23, 21, 0.07),
+        0 24px 60px rgba(26, 23, 21, 0.06);
+
+    /* Liten mjuk transition */
+    transition:
+        box-shadow 0.3s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* ==================================================
+   NAVBAR HOVER
+   ================================================== */
+
+.navbar-container:hover {
+    background: rgba(244, 244, 244, 0.82);
+
+    border-color: rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 6px 14px rgba(26, 23, 21, 0.05),
+        0 16px 36px rgba(26, 23, 21, 0.08),
+        0 28px 70px rgba(26, 23, 21, 0.07);
+}
+
+
+/* ==================================================
+   LOGOTYP
+   ================================================== */
+
+.navbar-logo {
     font-size: 1.6rem;
     font-weight: 800;
     color: #ff5500;
     text-decoration: none;
     letter-spacing: -0.04em;
-  }
-  
-  /* Länkar */
-  .navbar-menu {
+}
+
+.navbar-logo img {
+    width: 50px;
+    height: auto;
+    display: block;
+}
+
+
+/* ==================================================
+   NAVIGATION
+   ================================================== */
+
+.navbar-menu {
     display: flex;
     align-items: center;
     gap: 24px;
-  }
-  
-  .nav-link {
+}
+
+.nav-link {
     color: #1a1715;
     text-decoration: none;
+
     font-size: 0.75rem;
     font-weight: 600;
+
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    transition: opacity 0.2s ease;
-  }
-  
-  .nav-link:hover {
+
+    font-family: "Geist Mono", monospace;
+
+    transition:
+        opacity 0.2s ease;
+}
+
+.nav-link:hover {
     opacity: 0.6;
-  }
-  
-  /* Logga in-knapp */
-  .btn-login {
+}
+
+
+/* ==================================================
+   LOGGA IN
+   ================================================== */
+
+.btn-login {
     display: inline-flex;
     align-items: center;
     gap: 10px;
+
     background-color: #1c1917;
     color: #ffffff;
+
     padding: 10px 16px 10px 20px;
+
     border-radius: 999px;
+
     text-decoration: none;
+
     font-size: 0.75rem;
     font-weight: 600;
+
     letter-spacing: 0.06em;
-    transition: background-color 0.2s ease;
-  }
-  
-  .btn-login:hover {
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-login:hover {
     background-color: #332f2c;
-  }
-  
-  .login-arrow {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 16px rgba(26, 23, 21, 0.15);
+}
+
+.login-arrow {
     font-size: 0.9rem;
-  }
-  
-  /* Responsiv döljning för mindre skärmar */
-  @media (max-width: 900px) {
+}
+
+
+/* ==================================================
+   MOBIL
+   ================================================== */
+
+@media (max-width: 900px) {
+
     .navbar-menu {
-      display: none;
+        display: none;
     }
-  }
+
+    .navbar-container {
+        padding: 8px 12px 8px 20px;
+    }
+
+}

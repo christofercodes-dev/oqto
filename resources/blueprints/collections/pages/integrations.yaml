@@ -1,0 +1,114 @@
+title: integrations
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+          -
+            handle: author
+            field:
+              type: users
+              display: author
+      -
+        display: 'integrations sidan'
+        fields:
+          -
+            handle: integrations_small_title
+            field:
+              type: text
+              display: 'integrations small title'
+          -
+            handle: integrations_title
+            field:
+              type: textarea
+              display: 'integrations title'
+          -
+            handle: integrations_intro
+            field:
+              type: textarea
+              display: 'integrations intro'
+          -
+            handle: integrations
+            field:
+              type: replicator
+              display: integrations
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    integrations:
+                      display: integration
+                      fields:
+                        -
+                          handle: logo
+                          field:
+                            container: assets
+                            type: assets
+                            display: logo
+                        -
+                          handle: title
+                          field:
+                            type: text
+                            display: title
+                        -
+                          handle: short_text
+                          field:
+                            type: text
+                            display: 'short text'
+                        -
+                          handle: body
+                          field:
+                            type: textarea
+                            display: body
+                        -
+                          handle: url
+                          field:
+                            type: link
+                            display: url
+                        -
+                          handle: category
+                          field:
+                            options:
+                              - key: accounting
+                                value: 'Ekonomi & bokföring'
+                              - key: payments
+                                value: Betalningar
+                              - key: crm
+                                value: CRM
+                              - key: ecommerce
+                                value: E-handel
+                              - key: communication
+                                value: Kommunikation
+                              - key: analytics
+                                value: Analys
+                              - key: automation
+                                value: Automation
+                            clearable: true
+                            multiple: true
+                            max_items: 2
+                            type: select
+                            display: category
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

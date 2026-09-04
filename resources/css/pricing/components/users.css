@@ -1,21 +1,21 @@
+
 .pricing-users-section {
     width: 100%;
-
-    background-color: #ffffff;
+    background: #ffffff;
 
     padding: 100px 40px;
 
     box-sizing: border-box;
 
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
+    font-family: "Inter", sans-serif;
 
     color: #1a1715;
 }
+
+
+/* ==================================================
+   CONTAINER
+   ================================================== */
 
 .pricing-users-container {
     max-width: 1280px;
@@ -24,7 +24,7 @@
 
     display: grid;
 
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 0.8fr 1.2fr;
 
     gap: 100px;
 
@@ -32,26 +32,25 @@
 }
 
 
-/* =========================
+/* ==================================================
    VÄNSTER
-   ========================= */
+   ================================================== */
 
 .pricing-users-content {
-    max-width: 520px;
+    max-width: 500px;
 
     display: flex;
-
     flex-direction: column;
 
     gap: 24px;
 }
 
 .pricing-users-small-title {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
 
     font-weight: 700;
 
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
 
     text-transform: uppercase;
 
@@ -61,33 +60,33 @@
 .pricing-users-title {
     margin: 0;
 
-    font-size: clamp(3rem, 5vw, 4.8rem);
+    font-size: clamp(3rem, 5vw, 5rem);
 
     font-weight: 400;
 
-    line-height: 1.05;
+    line-height: 1;
 
-    letter-spacing: -0.03em;
+    letter-spacing: -0.045em;
 
     color: #1a1715;
 }
 
 .pricing-users-text {
-    margin: 0;
+    max-width: 440px;
 
-    max-width: 480px;
+    margin: 0;
 
     font-size: 1rem;
 
     line-height: 1.65;
 
-    color: #4a4744;
+    color: #6b6763;
 }
 
 
-/* =========================
-   NIVÅER
-   ========================= */
+/* ==================================================
+   KORTEN
+   ================================================== */
 
 .pricing-users-levels {
     display: flex;
@@ -98,113 +97,220 @@
 }
 
 
-/* =========================
-   VARJE NIVÅ
-   ========================= */
+/* ==================================================
+   ENSKILT KORT
+   ================================================== */
 
 .pricing-user-level {
-    display: grid;
+    position: relative;
 
-    grid-template-columns: 72px 1fr;
-
-    align-items: center;
-
-    min-height: 110px;
-
-    padding: 20px 28px;
+    padding: 30px 32px;
 
     box-sizing: border-box;
 
     border-radius: 22px;
 
-    background-color: #f5f5f5;
+    background: #f5f5f5;
+
+    box-shadow:
+        0 1px 2px rgba(26, 23, 21, 0.02);
 
     transition:
         transform 0.3s ease,
-        background-color 0.3s ease,
-        box-shadow 0.3s ease;
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
 }
+
+
+/* ==================================================
+   HOVER
+   ================================================== */
 
 .pricing-user-level:hover {
-    transform: translateX(8px);
+    transform: translateY(-5px);
 
-    background-color: #fcebe4;
+    background: #ececec;
 
     box-shadow:
-        0 16px 35px rgba(26, 23, 21, 0.07);
+        0 18px 45px rgba(26, 23, 21, 0.08);
 }
 
 
-/* =========================
+/* ==================================================
+   TOPP
+   ================================================== */
+
+.pricing-user-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-bottom: 22px;
+
+    border-bottom:
+        1px solid rgba(26, 23, 21, 0.10);
+}
+
+
+/* ==================================================
+   NUMMER + TITEL
+   ================================================== */
+
+.pricing-user-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    min-width: 0;
+}
+
+
+/* ==================================================
    NUMMER
-   ========================= */
+   ================================================== */
 
 .pricing-user-number {
-    font-size: 0.75rem;
+    flex-shrink: 0;
+
+    font-size: 0.7rem;
 
     font-weight: 700;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
 
     color: #ff5500;
 }
 
 
-/* =========================
-   TEXT
-   ========================= */
+/* ==================================================
+   TITEL
+   ================================================== */
 
-.pricing-user-info {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 6px;
-}
-
-.pricing-user-info h3 {
+.pricing-user-heading h3 {
     margin: 0;
 
-    font-size: 1.25rem;
+    font-size: 1.4rem;
 
     font-weight: 500;
 
-    letter-spacing: -0.02em;
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
 
     color: #1a1715;
 }
 
-.pricing-user-info p {
+
+/* ==================================================
+   PRIS
+   ================================================== */
+
+.pricing-user-price {
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 7px;
+
+    text-align: right;
+}
+
+.pricing-user-price-value {
+    font-size: 1.8rem;
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -0.04em;
+
+    color: #1a1715;
+}
+
+.pricing-user-price-label {
+    font-size: 0.7rem;
+
+    color: #77736f;
+}
+
+
+/* ==================================================
+   BESKRIVNING UNDER LINJEN
+   ================================================== */
+
+.pricing-user-description {
+    padding-top: 18px;
+}
+
+.pricing-user-description p {
+    max-width: 560px;
+
     margin: 0;
 
     font-size: 0.9rem;
 
-    line-height: 1.5;
+    line-height: 1.55;
 
-    color: #5b5754;
+    color: #66615d;
 }
 
 
-/* =========================
-   VARIATIONER
-   ========================= */
-
-.pricing-user-level:nth-child(2) {
-    margin-left: 30px;
-}
-
-.pricing-user-level:nth-child(3) {
-    margin-left: 60px;
-}
-
-.pricing-user-level:nth-child(4) {
-    margin-left: 90px;
-}
-
-
-/* =========================
+/* ==================================================
    MOBIL
-   ========================= */
+   ================================================== */
+
+@media (max-width: 600px) {
+
+    .pricing-user-top {
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .pricing-user-heading {
+        gap: 14px;
+    }
+
+    .pricing-user-heading h3 {
+        font-size: 1.15rem;
+    }
+
+    .pricing-user-price {
+        flex-direction: column;
+
+        align-items: flex-end;
+
+        gap: 2px;
+    }
+
+    .pricing-user-price-value {
+        font-size: 1.5rem;
+    }
+
+    .pricing-user-description {
+        padding-top: 16px;
+    }
+
+    .pricing-user-description p {
+        font-size: 0.85rem;
+    }
+
+}
+
+
+
+
+/* ==================================================
+   MOBIL / TABLET
+   ================================================== */
 
 @media (max-width: 960px) {
 
@@ -218,26 +324,81 @@
         gap: 60px;
     }
 
-    .pricing-user-level:nth-child(2),
-    .pricing-user-level:nth-child(3),
-    .pricing-user-level:nth-child(4) {
-        margin-left: 0;
+    .pricing-users-content {
+        max-width: 600px;
     }
 
 }
 
+
+/* ==================================================
+   MOBIL
+   ================================================== */
+
 @media (max-width: 600px) {
 
-    .pricing-user-level {
-        grid-template-columns: 52px 1fr;
-
-        padding: 20px;
-
-        min-height: 100px;
+    .pricing-users-section {
+        padding: 60px 20px;
     }
 
-    .pricing-user-info h3 {
-        font-size: 1.1rem;
+    .pricing-users-title {
+        font-size: clamp(2.8rem, 12vw, 4rem);
+    }
+
+    .pricing-user-level {
+        padding: 24px 22px;
+
+        border-radius: 20px;
+    }
+
+    .pricing-user-top {
+        gap: 20px;
+
+        padding-bottom: 18px;
+    }
+
+    .pricing-user-price {
+        flex-direction: column;
+
+        align-items: flex-end;
+
+        gap: 2px;
+    }
+
+    .pricing-user-price-value {
+        font-size: 1.5rem;
+    }
+
+    .pricing-user-main {
+        padding-top: 18px;
+    }
+
+    .pricing-user-main h3 {
+        font-size: 1.2rem;
+    }
+
+    .pricing-user-main p {
+        font-size: 0.85rem;
+    }
+
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pricing-user-level {
+        transition: none;
+    }
+
+    .pricing-user-level:hover {
+        transform: none;
+
+        box-shadow:
+            0 1px 2px rgba(26, 23, 21, 0.02);
     }
 
 }
