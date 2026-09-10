@@ -8,7 +8,7 @@ title_row_2: 'Gånger åtta.'
 author: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 knapptext: 'Boka demo'
 updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1787906641
+updated_at: 1789036256
 title_card_1: 'Effektiv bokföring'
 text_card_1: 'Hantera bokföring, fakturor och underlag i ett och samma system. Automatiserade flöden minskar manuellt arbete och frigör tid för mer värdeskapande rådgivning och högre kvalitet.'
 title_card_2: 'Ekonomisk överblick'
@@ -29,7 +29,7 @@ faq_items:
     faq_answer: 'Vi utgår från ekonomens vardag. Mindre klick, bättre överblick och ett system som respekterar yrkets komplexitet. Enkelt där det ska vara enkelt. Noggrant där det måste vara noggrant.'
   - id: '-bqP5QUTrPdEKHZnA7W2Z'
     faq_question: 'Är Oqto byggt för redovisningsbyråer?'
-why_oqto_small_title: 'Smart system'
+why_oqto_small_title: 'Varför Oqto?'
 why_oqto_title: 'Gamla arbetssätt hör hemma i historien. Välkommen till Oqto.'
 why_oqto_body: |-
   Vi lämnade penna och papper bakom oss för länge sedan. Nu är det dags att lämna  gamla ekonomisystem där också.
@@ -39,15 +39,16 @@ why_oqto_button_text: 'Läs mer'
 reviews_title: Kundomdömen
 reviews_items:
   - id: 3y6NcynRAZlMU0YMZJx7A
-    author_name: Namn
-    author_title: Efternamn
+    author_name: 'Namn Efternamn'
+    author_title: Redovisning
     quote: 'Förutom att Oqto är ett fullt kapabelt system så drivs det också av folk i branschen som vet vad vi vill ha. Ett självklart val om du vill ha något nytt som snart kommer vara standard.'
   - id: yRuawbRivUe4pw3P7qyhY
     quote: |-
       Protect and secure access to your project
       Customize how visitors access your project using password protection available on the Pro plan.
-    author_name: Namn
-    author_title: Efternamn
+    author_name: 'Namn Efternamn'
+    author_title: Redovisning
+embed_code: 'https://vimeo.com/1223949720?share=copy&fl=sv&fe=ci'
 ---
 Oqto är nästa generations ekonomisystem, skapat för att ge ekonomer superkrafter. Inte för att ersätta rollen, som många andra verkar sikta på, utan för att göra den ännu starkare.
 

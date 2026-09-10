@@ -6,7 +6,7 @@ template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1787911261
+updated_at: 1789034281
 pricing_button_text: 'Boka demo'
 intro_small_title: Bolagslägen
 intro_title: "Ingen byrålicens, \Lbara olika bolagslägen."
@@ -113,13 +113,13 @@ included_columns:
       - 'Lönespecifikation 20 kr/st'
     type: columns
     enabled: true
-text_small_title: Test
+text_small_title: Fakturering
 text_title: "Hur och när\Lvi fakturerar."
 text_body: |-
   Byrån styr vem som får fakturan för varje kostnadstyp på byrånivå med möjlighet att justera per bolag.
 
   Inställningarna kan enkelt anpassas efter respektive bolags behov.
-notice_text: 'Priserna i denna modell gäller vid helårsbetalning. Under uppstartsperioden fakturerar vi dock månadsvis. Transaktioner faktureras alltid månadsvis, oavsett avtalsform.'
+notice_text: '<strong>Priserna i denna modell gäller vid helårsbetalning.</strong> Under uppstartsperioden fakturerar vi dock månadsvis. Transaktioner faktureras alltid månadsvis, oavsett avtalsform.'
 routing_text: 'Tre delar kan styras- På byrånivå bestämmer ni vem som får fakturan för respektive kostnadstyp — byrån eller slutkunden.'
 replicator_field:
   - id: pJ_DVRY74lIgZvIxZD6d9
@@ -151,7 +151,7 @@ routing_items:
     enabled: true
     routing_title: 'E-fakturor och dokumenttolkning utöver de 10 som ingår.'
 routing_title: Routing-inställningar
-cta_title: "Trött på att betala premium \Lför något som känns utdaterat? \LBoka demo eller logga in."
+cta_title: 'Trött på att betala premium för något som känns utdaterat? Boka demo eller logga in.'
 cta_button_1_text: 'Boka demo'
 cta_button_2_text: 'Logga in'
 ---

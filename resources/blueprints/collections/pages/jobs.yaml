@@ -110,6 +110,51 @@ tabs:
                           field:
                             type: textarea
                             display: 'job apply text'
+                        -
+                          handle: category
+                          field:
+                            type: replicator
+                            display: category
+                            sets:
+                              new_set_group:
+                                display: 'New Set Group'
+                                sets:
+                                  new_set:
+                                    display: 'New Set'
+                                    fields:
+                                      -
+                                        handle: categories
+                                        field:
+                                          type: text
+                                          display: categories
+      -
+        display: CTA
+        fields:
+          -
+            handle: cta_title
+            field:
+              type: textarea
+              display: 'cta title'
+          -
+            handle: button_1_text
+            field:
+              type: text
+              display: 'button 1 text'
+          -
+            handle: button_1_url
+            field:
+              type: link
+              display: 'button 1 url'
+          -
+            handle: button_2_text
+            field:
+              type: text
+              display: 'button 2 text'
+          -
+            handle: button_2_url
+            field:
+              type: link
+              display: 'button 2 url'
   sidebar:
     display: Sidebar
     sections:

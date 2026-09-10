@@ -3,7 +3,7 @@ id: dce7b77e-9458-4179-8002-8876b40e75ab
 blueprint: faq
 title: faq
 updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1787641256
+updated_at: 1789017982
 faq: faq
 template: faq
 author:
@@ -59,7 +59,7 @@ faq_redovisningsbyra:
     faq_answer: 'test 2'
     type: question
     enabled: true
-cta_faq_title: "Trött på att betala premium \Lför något som känns utdaterat? \LBoka demo eller logga in."
+cta_faq_title: 'Trött på att betala premium för något som känns utdaterat? Boka demo eller logga in.'
 cta_faq_button_text_1: 'Boka demo'
 cta_faq_button_text_2: 'Logga in'
 ---

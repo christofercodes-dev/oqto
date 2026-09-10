@@ -9,17 +9,13 @@
     color: #1a1715;
 
     background:
-        radial-gradient(
-            circle at 85% 35%,
+        radial-gradient(circle at 85% 35%,
             rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 255, 255, 0) 35%
-        ),
-        linear-gradient(
-            135deg,
+            rgba(255, 255, 255, 0) 35%),
+        linear-gradient(135deg,
             #fcebe4 0%,
             #fcab83 45%,
-            #f35d08 100%
-        );
+            #f35d08 100%);
 
     display: flex;
     align-items: center;
@@ -109,7 +105,7 @@
     position: relative;
 
     width: 150px;
-    height: 190px;
+    height: 150px;
 
     background-color: #ffffff;
 
@@ -155,44 +151,220 @@
 
     border-radius: 50%;
 }
-/* Mobil */
 
-@media (max-width: 960px) {
+
+/* ==================================================
+   TABLET
+   ================================================== */
+
+@media (max-width: 1100px) {
 
     .faq-hero-section {
-        min-height: 560px;
+        min-height: 580px;
 
-        padding: 80px 24px;
+        padding: 110px 32px 90px;
+    }
+
+    .faq-hero-container {
+        max-width: 100%;
+    }
+
+    .faq-hero-content {
+        max-width: 650px;
     }
 
     .faq-hero-title {
-        font-size: clamp(
-            3.5rem,
-            13vw,
-            6rem
-        );
+        font-size: clamp(3.8rem, 8vw, 5.5rem);
+    }
+
+    .faq-hero-body {
+        max-width: 500px;
+        font-size: 1rem;
+    }
+
+    .faq-eyes {
+        right: -2%;
+        gap: 16px;
+    }
+
+    .faq-eye {
+        width: 115px;
+        height: 150px;
+    }
+
+    .faq-pupil {
+        width: 48px;
+        height: 48px;
     }
 
 }
 
-@media (max-width: 600px) {
+
+/* ==================================================
+   TABLET / SMALLER
+   ================================================== */
+
+@media (max-width: 850px) {
 
     .faq-hero-section {
-        min-height: 520px;
+        min-height: auto;
 
-        padding: 70px 24px;
+        padding: 110px 32px 80px;
+
+        align-items: flex-start;
     }
 
     .faq-hero-content {
-        gap: 20px;
+        max-width: 100%;
     }
 
     .faq-hero-title {
-        font-size: clamp(
-            3.2rem,
-            15vw,
-            5rem
-        );
+        font-size: clamp(3.5rem, 9vw, 5rem);
+    }
+
+    /*
+       Flytta ögonen längre åt sidan
+       så de inte stör texten
+    */
+
+    .faq-eyes {
+        right: -8%;
+        top: 58%;
+
+        transform: translateY(-50%);
+
+        opacity: 0.9;
+    }
+
+    .faq-eye {
+        width: 100px;
+        height: 135px;
+    }
+
+    .faq-pupil {
+        width: 42px;
+        height: 42px;
+    }
+
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 767px) {
+
+    .faq-hero-section {
+        min-height: 340px;
+
+        padding: 120px 18px 70px;
+
+        align-items: flex-start;
+    }
+
+    .faq-hero-container {
+        width: 100%;
+    }
+
+    .faq-hero-content {
+        width: 100%;
+
+        gap: 18px;
+
+        align-items: flex-start;
+    }
+
+    .faq-hero-eyebrow {
+        font-size: 0.68rem;
+    }
+
+    .faq-hero-title {
+        max-width: 100%;
+
+        font-size: clamp(3rem, 14vw, 4.5rem);
+
+        line-height: 0.98;
+
+        letter-spacing: -0.045em;
+    }
+
+    .faq-hero-body {
+        max-width: 100%;
+
+        margin-top: 6px;
+
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+
+
+    .faq-eyes {
+        display: none;
+    }
+
+    .faq-eye {
+        width: 82px;
+        height: 108px;
+
+        box-shadow:
+            0 14px 35px rgba(0, 0, 0, 0.07);
+    }
+
+    .faq-pupil {
+        width: 36px;
+        height: 36px;
+    }
+
+    .faq-pupil::after {
+        width: 9px;
+        height: 9px;
+
+        top: 7px;
+        left: 7px;
+    }
+
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+   ================================================== */
+
+@media (max-width: 380px) {
+
+    .faq-hero-section {
+        min-height: 500px;
+
+        padding: 110px 16px 60px;
+    }
+
+    .faq-hero-content {
+        gap: 16px;
+    }
+
+    .faq-hero-title {
+        font-size: 2.8rem;
+    }
+
+    .faq-hero-body {
+        font-size: 0.9rem;
+        line-height: 1.55;
+    }
+
+    .faq-eyes {
+        right: -15px;
+        bottom: -25px;
+    }
+
+    .faq-eye {
+        width: 72px;
+        height: 95px;
+    }
+
+    .faq-pupil {
+        width: 32px;
+        height: 32px;
     }
 
 }

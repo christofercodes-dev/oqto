@@ -1,140 +1,208 @@
+
+/* =========================================================
+   WHY OQTO
+   ========================================================= */
+
 .why-oqto-section {
     width: 100%;
     background-color: #ffffff;
     padding: 10px 40px;
     box-sizing: border-box;
     color: #1a1715;
-    font-family: "Inter", sans-serif;
-
 }
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
 
 .why-oqto-container {
     max-width: 1280px;
     margin: 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 48px;
 
-    
+    gap: 48px;
 }
 
-/* Vänster textkolumn */
+
+/* =========================================================
+   TEXTKOLUMN
+   ========================================================= */
 
 .why-oqto-text {
     flex: 1;
+
     display: flex;
     flex-direction: column;
+
     gap: 24px;
+
     max-width: 580px;
-    
 }
 
 .why-oqto-subtitle {
-    font-size: 0.75rem;
+    display: block;
+
+    font-size: 1rem;
     font-weight: 700;
+
+    line-height: 1.2;
     letter-spacing: 0.1em;
+
     text-transform: uppercase;
+
     color: #ff5500;
 }
 
 .why-oqto-title {
-    font-size: clamp(3rem, 5vw, 4.8rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #1a1715;
     margin: 0;
+
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    font-weight: 400;
+
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+
+    color: #1a1715;
 }
 
 .why-oqto-body {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #4a4744;
     margin: 0;
+
+    font-size: 0.9rem;
+    line-height: 1.6;
+
+    color: #4a4744;
 }
 
-/* Höger bildkort */
+
+/* =========================================================
+   BILD / VISUAL
+   ========================================================= */
 
 .why-oqto-visual {
     flex: 1;
-    max-width: 600px;
+
     width: 100%;
+    max-width: 600px;
 }
 
 .why-oqto-card {
     position: relative;
+
     width: 100%;
     height: 480px;
-    border-radius: 28px;
+
     overflow: hidden;
+
+    border-radius: 28px;
+
     background-color: #f4f4f5;
 }
 
 .why-oqto-img {
+    display: block;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
-    display: block;
 }
 
 .why-oqto-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #e8f2fc 0%, #d3e5f8 100%);
+
+    background: linear-gradient(
+        135deg,
+        #e8f2fc 0%,
+        #d3e5f8 100%
+    );
 }
 
-/* Överlappande knapp i högra hörnet med whitespace */
 
-.why-oqto-btn-wrapper {
+/* =========================================================
+   CTA WRAPPER
+   ========================================================= */
+
+   .why-oqto-btn-wrapper {
     position: absolute;
-    bottom: 0;
     right: 0;
+    bottom: 0;
+
     background-color: #ffffff;
-    padding: 16px 0 0 16px;
+    padding: 12px 0 0 12px;
+
     border-top-left-radius: 32px;
 }
 
-/* Inåtböjda kurvor för mjuk övergång mot bilden */
+
+/* =========================================================
+   MJUKA KURVOR RUNT CTA
+   ========================================================= */
 
 .why-oqto-btn-wrapper::before,
 .why-oqto-btn-wrapper::after {
     content: "";
+
     position: absolute;
+
     width: 20px;
     height: 20px;
+
     background-color: transparent;
+
     pointer-events: none;
 }
 
 .why-oqto-btn-wrapper::before {
     top: -20px;
     right: 0;
+
     border-bottom-right-radius: 20px;
+
     box-shadow: 6px 6px 0 6px #ffffff;
 }
 
 .why-oqto-btn-wrapper::after {
-    bottom: 0;
     left: -20px;
+    bottom: 0;
+
     border-bottom-right-radius: 20px;
+
     box-shadow: 6px 6px 0 6px #ffffff;
 }
 
-/* Styling för själva knappen */
 
-.why-oqto-btn {
+/* =========================================================
+   CTA KNAPP
+   ========================================================= */
+
+   .why-oqto-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
-    background-color: #f35d08 !important;
-    color: #fff !important;
+    min-height: 52px;
     padding: 14px 28px;
-    border-radius: 99px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    border: 1px solid #1a1715;
+    background-color: #ffffff !important;
+    color: #1a1715 !important;
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 600;
+    line-height: 1;
     letter-spacing: 0.05em;
+    white-space: nowrap;
+    margin-bottom: 2px;
+    position: relative;
+    z-index: 2;
+
     transition:
         background-color 0.2s ease,
         transform 0.2s ease;
@@ -143,32 +211,299 @@
 .why-oqto-btn:hover {
     background-color: #383331 !important;
     color: #ffffff !important;
+    border: 1px solid #1a1715;
+
     transform: translateY(-2px);
 }
 
 .why-oqto-btn-arrow {
+    display: inline-block;
+
     font-size: 1.1rem;
     line-height: 1;
+
+    transition: transform 0.2s ease;
 }
 
-/* Responsiv anpassning */
+.why-oqto-btn:hover .why-oqto-btn-arrow {
+    transform: translateX(3px);
+}
 
-@media (max-width: 960px) {
+
+/* =========================================================
+   TABLET
+   768px – 1024px
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
     .why-oqto-section {
-        padding: 60px 24px;
+        padding: 60px 32px 70px;
     }
 
     .why-oqto-container {
         flex-direction: column;
-        gap: 40px;
+
+        align-items: stretch;
+
+        gap: 42px;
+
+        width: 100%;
     }
 
-    .why-oqto-text,
+    /* Text */
+
+    .why-oqto-text {
+        width: 100%;
+        max-width: 760px;
+
+        gap: 18px;
+    }
+
+    .why-oqto-subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+    }
+
+    .why-oqto-title {
+        font-size: clamp(2.8rem, 6vw, 4rem);
+
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+    }
+
+    .why-oqto-body {
+        max-width: 700px;
+
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    /* Bild */
+
     .why-oqto-visual {
+        width: 100%;
         max-width: 100%;
     }
 
     .why-oqto-card {
+        width: 100%;
+        height: 440px;
+
+        border-radius: 26px;
+    }
+
+    /* CTA */
+
+    .why-oqto-btn-wrapper {
+        padding: 14px 0 0 14px;
+
+        border-top-left-radius: 30px;
+    }
+
+    .why-oqto-btn-wrapper::before,
+    .why-oqto-btn-wrapper::after {
+        width: 18px;
+        height: 18px;
+    }
+
+    .why-oqto-btn-wrapper::before {
+        top: -18px;
+
+        border-bottom-right-radius: 18px;
+
+        box-shadow: 5px 5px 0 5px #ffffff;
+    }
+
+    .why-oqto-btn-wrapper::after {
+        left: -18px;
+
+        border-bottom-right-radius: 18px;
+
+        box-shadow: 5px 5px 0 5px #ffffff;
+    }
+
+    .why-oqto-btn {
+        min-height: 52px;
+
+        padding: 13px 22px;
+
+        gap: 10px;
+
+        font-size: 0.8rem;
+    }
+
+    .why-oqto-btn-arrow {
+        font-size: 1.05rem;
+    }
+}
+
+
+/* =========================================================
+   MOBIL
+   0px – 767px
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .why-oqto-section {
+        padding: 42px 18px 52px;
+    }
+
+    .why-oqto-container {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 30px;
+
+        width: 100%;
+    }
+
+    /* Text */
+
+    .why-oqto-text {
+        width: 100%;
+        max-width: 100%;
+
+        gap: 15px;
+    }
+
+    .why-oqto-subtitle {
+        font-size: 0.7rem;
+
+        line-height: 1.25;
+
+        letter-spacing: 0.11em;
+    }
+
+    .why-oqto-title {
+        font-size: clamp(2.25rem, 10vw, 3rem);
+
+        line-height: 1.06;
+
+        letter-spacing: -0.03em;
+    }
+
+    .why-oqto-body {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 0.9rem;
+
+        line-height: 1.65;
+    }
+
+    /* Bild */
+
+    .why-oqto-visual {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .why-oqto-card {
+        width: 100%;
         height: 360px;
+
+        border-radius: 24px;
+    }
+
+    .why-oqto-img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+    /* CTA */
+
+    .why-oqto-btn-wrapper {
+        right: 0;
+        bottom: 0;
+
+        padding: 11px 0 0 11px;
+
+        border-top-left-radius: 25px;
+    }
+
+    .why-oqto-btn-wrapper::before,
+    .why-oqto-btn-wrapper::after {
+        width: 15px;
+        height: 15px;
+    }
+
+    .why-oqto-btn-wrapper::before {
+        top: -15px;
+
+        border-bottom-right-radius: 15px;
+
+        box-shadow: 5px 5px 0 5px #ffffff;
+    }
+
+    .why-oqto-btn-wrapper::after {
+        left: -15px;
+
+        border-bottom-right-radius: 15px;
+
+        box-shadow: 5px 5px 0 5px #ffffff;
+    }
+
+    .why-oqto-btn {
+        min-height: 48px;
+
+        padding: 11px 18px;
+
+        gap: 9px;
+
+        font-size: 0.74rem;
+
+        letter-spacing: 0.04em;
+    }
+
+    .why-oqto-btn-arrow {
+        font-size: 1rem;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBIL
+   0px – 380px
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .why-oqto-section {
+        padding: 36px 16px 46px;
+    }
+
+    .why-oqto-container {
+        gap: 26px;
+    }
+
+    .why-oqto-title {
+        font-size: 2.15rem;
+    }
+
+    .why-oqto-body {
+        font-size: 0.88rem;
+    }
+
+    .why-oqto-card {
+        height: 330px;
+
+        border-radius: 22px;
+    }
+
+    .why-oqto-btn-wrapper {
+        padding: 10px 0 0 10px;
+
+        border-top-left-radius: 23px;
+    }
+
+    .why-oqto-btn {
+        min-height: 46px;
+
+        padding: 10px 16px;
     }
 }

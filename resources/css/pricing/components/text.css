@@ -4,13 +4,10 @@
     background-color: #ffffff;
 
     padding: 100px 40px;
+    padding-bottom: 10px;
 
     box-sizing: border-box;
-
-    font-family: "Inter", sans-serif;
-
-
-    color: #1a1715;
+    color: #2E251F;
 }
 
 .pricing-text-container {
@@ -43,14 +40,10 @@
 }
 
 .pricing-text-small-title {
-    font-size: 0.75rem;
-
+    font-size: 1rem;
     font-weight: 700;
-
     letter-spacing: 0.1em;
-
     text-transform: uppercase;
-
     color: #ff5500;
 }
 
@@ -65,7 +58,7 @@
 
     letter-spacing: -0.03em;
 
-    color: #1a1715;
+    color: #2E251F;
 }
 
 
@@ -82,9 +75,9 @@
 .pricing-text-body {
     margin: 0;
 
-    font-size: 1rem;
+    font-size: 1.1rem;
 
-    line-height: 1.7;
+    line-height: 23px;
 
     color: #4a4744;
 }

@@ -1,17 +1,10 @@
 <section class="jobs-openings-section">
-
     <div class="container jobs-openings-container">
 
         <div class="jobs-openings-header">
-
             <span class="jobs-openings-small-title">
                 Lediga tjänster
             </span>
-
-            <h2 class="jobs-openings-title">
-                Bli en del av Oqto.
-            </h2>
-
         </div>
 
 
@@ -19,42 +12,40 @@
 
             {{ jobs }}
 
-                <a
-                    href="/jobs/{{ job_slug }}"
-                    class="job-opening-card"
-                >
+            <a href="/jobs/{{ job_slug }}" class="job-opening-card">
 
-                    <div class="jobs-opening-left">
+                <h3 class="jobs-opening-title">
+                    {{ job_title }}
+                </h3>
 
-                        <span class="jobs-opening-type">
-                            {{ job_type }}
-                        </span>
+                <span class="jobs-opening-location">
+                    {{ job_location }}
+                </span>
 
-                        <h3 class="jobs-opening-title">
-                            {{ job_title }}
-                        </h3>
+                <div class="jobs-opening-bottom">
 
+                    <div class="jobs-opening-categories">
+                
+                        {{ category }}
+                            <span class="jobs-opening-category">
+                                {{ categories }}
+                            </span>
+                        {{ /category }}
+                
                     </div>
+                
+                    <span class="jobs-opening-arrow">
+                        →
+                    </span>
+                
+                </div>
 
-
-                    <div class="jobs-opening-right">
-
-                        <span class="jobs-opening-location">
-                            {{ job_location }}
-                        </span>
-
-                        <span class="jobs-opening-arrow">
-                            →
-                        </span>
-
-                    </div>
-
-                </a>
+            </a>
 
             {{ /jobs }}
 
         </div>
+        
 
     </div>
-
 </section>

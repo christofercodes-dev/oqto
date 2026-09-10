@@ -32,23 +32,18 @@
 
         <div class="video-wrapper">
 
-            {{ if video_file }}
-
-                <video
-                    controls
-                    class="video-element"
-                >
-                    <source src="{{ video_file:url }}" type="video/mp4">
-                </video>
-
-            {{ elseif embed_code }}
-
-                <div class="video-placeholder">
-                    {{ embed_code }}
+            {{ if embed_code }}
+                <div class="video-element">
+                    <iframe
+                        src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last }}"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                        title="{{ video_heading }}"
+                    ></iframe>
                 </div>
-
             {{ /if }}
-
+        
         </div>
 
     </div>

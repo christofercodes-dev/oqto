@@ -7,6 +7,7 @@
         <title>{{ (title ?? site:name) | sanitize }}</title>
         <script src="https://markly.kortaben.work/api/public/widget.js" data-project="oqto" defer></script>
         {{ vite src="resources/js/site.js|resources/css/site.css" }}
+        <link rel="stylesheet" href="https://use.typekit.net/uwn4tkk.css">
     </head>
     <body class="antialiased font-sans leading-normal text-zinc-800 bg-white dark:text-zinc-400">
         {{ template_content }}

@@ -1,33 +1,54 @@
-/* =========================
+/* =========================================================
    DEVELOPERS HERO
-   ========================= */
+========================================================= */
 
-   .developers-hero-section {
+.developers-hero-section {
     width: 100%;
     min-height: 650px;
-    padding: 100px 0;
+
+    padding: 120px 40px;
+
     box-sizing: border-box;
+
     background: #dceefa;
     color: #1a1715;
+
     font-family: "Inter", sans-serif;
 }
 
-.developers-hero-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 80px;
+.developers-hero-section *,
+.developers-hero-section *::before,
+.developers-hero-section *::after {
+    box-sizing: border-box;
 }
 
 
-/* =========================
-   TEXT ANIMATION
-   ========================= */
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.developers-hero-container {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 64px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .developers-hero-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    width: 100%;
     max-width: 650px;
 
     animation:
@@ -37,16 +58,20 @@
 }
 
 
-/* Rubrik */
+/* =========================================================
+   TITLE
+========================================================= */
 
 .developers-hero-title {
-    font-size: clamp(5rem, 7vw, 7rem);
-    font-weight: 400;
-    line-height: 0.95;
-    letter-spacing: -0.055em;
-    color: #2e251f;
     margin: 0;
-    padding-top: 100px;
+    padding: 0;
+
+    font-size: clamp(4rem, 6.5vw, 7rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+
+    color: #2e251f;
 
     animation:
         developersTitleIn 1s
@@ -56,13 +81,18 @@
 }
 
 
-/* Brödtext */
+/* =========================================================
+   BODY
+========================================================= */
 
 .developers-hero-body {
     max-width: 520px;
+
     margin: 30px 0 0;
+
     font-size: 18px;
     line-height: 1.6;
+
     color: #454b50;
 
     animation:
@@ -73,15 +103,21 @@
 }
 
 
-/* Knapp */
+/* =========================================================
+   BUTTON
+========================================================= */
 
 .developers-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+
     gap: 16px;
 
+    min-height: 48px;
+
     margin-top: 32px;
-    padding: 15px 18px 15px 22px;
+    padding: 14px 18px 14px 22px;
 
     border-radius: 999px;
 
@@ -93,6 +129,7 @@
     font-family: "Geist Mono", monospace;
     font-size: 12px;
     font-weight: 600;
+
     text-transform: uppercase;
     letter-spacing: 0.05em;
 
@@ -110,6 +147,7 @@
 
 .developers-button:hover {
     transform: translateY(-3px);
+
     background: #e95100;
 
     box-shadow:
@@ -128,9 +166,31 @@
 }
 
 
-/* =========================
+/* =========================================================
+   VISUAL
+========================================================= */
+
+.developers-hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.developers-hero-visual svg {
+    display: block;
+
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+}
+
+
+/* =========================================================
    KEYFRAMES
-   ========================= */
+========================================================= */
 
 @keyframes developersContentIn {
     from {
@@ -179,11 +239,12 @@
 }
 
 
-/* =========================
+/* =========================================================
    REDUCED MOTION
-   ========================= */
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
     .developers-hero-content,
     .developers-hero-title,
     .developers-hero-body,
@@ -192,60 +253,128 @@
         opacity: 1;
         transform: none;
     }
+
+    .developers-button,
+    .developers-button span {
+        transition: none;
+    }
 }
 
 
-/* =========================
-   TABLET
-   ========================= */
+@media (max-width: 767px) {
 
-@media (max-width: 960px) {
     .developers-hero-section {
-        padding: 90px 0;
+        min-height: auto;
+        padding: 120px 18px 70px;
     }
 
     .developers-hero-container {
-        grid-template-columns: 1fr;
-        gap: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+
+        text-align: center;
     }
 
-    .developers-hero-visual {
-        justify-content: flex-start;
+    .developers-hero-content {
+        width: 100%;
+        max-width: none;
+        align-items: center;
     }
 
-    .developers-hero-visual svg {
-        width: 420px;
+    /* TITEL */
+    .developers-hero-title {
+        width: 100%;
         max-width: 100%;
-    }
 
-    .developers-hero-title {
         padding-top: 0;
-    }
-}
+        margin: 0;
 
-
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 600px) {
-    .developers-hero-section {
-        padding: 70px 0;
+        font-size: clamp(3rem, 13vw, 4.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
     }
 
-    .developers-hero-container {
-        gap: 50px;
-    }
-
-    .developers-hero-title {
-        font-size: 56px;
-    }
-
+    /* TEXT */
     .developers-hero-body {
+        max-width: 100%;
+
+        margin: 22px 0 0;
+        text-align: left;
         font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* BILD */
+    .developers-hero-visual {
+        order: 2;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+
+        margin-top: 40px;
     }
 
     .developers-hero-visual svg {
         width: 100%;
+        max-width: 420px;
+        height: auto;
+    }
+
+    /* KNAPP */
+    .developers-button {
+        order: 3;
+
+        margin-top: 32px;
+
+        min-height: 50px;
+    }
+
+    /* Ta bort hover-effekter på touch */
+    .developers-button:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .developers-button:hover span {
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .developers-hero-section {
+        padding: 96px 16px 60px;
+    }
+
+    .developers-hero-title {
+        font-size: 2.8rem;
+    }
+
+    .developers-hero-body {
+        margin-top: 20px;
+        font-size: 15px;
+    }
+
+    .developers-hero-visual {
+        margin-top: 34px;
+    }
+
+    .developers-hero-visual svg {
+        max-width: 340px;
+    }
+
+    .developers-button {
+        width: 100%;
+        margin-top: 28px;
     }
 }

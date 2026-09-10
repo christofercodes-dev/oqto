@@ -7,10 +7,9 @@
 
     box-sizing: border-box;
 
-    font-family: "Inter", sans-serif;
 
 
-    color: #1a1715;
+    color: #2E251F;
 }
 
 .pricing-cta-container {
@@ -25,15 +24,15 @@
 .pricing-cta-title {
     margin: 0;
 
-    max-width: 900px;
+    max-width: 998px;
 
-    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-size: clamp(3.5rem, 6vw, 4rem);
 
     font-weight: 400;
 
-    line-height: 1.02;
+    line-height: 75px;
 
-    letter-spacing: -0.045em;
+    letter-spacing: -1%;
 
     color: #1a1715;
 }
@@ -196,29 +195,65 @@
 
 
 /* =========================
-   MOBIL
-   ========================= */
+   Mobile
+========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
 
     .pricing-cta-section {
-        padding: 90px 24px;
+        padding: 55px 18px;
+    }
+
+    .pricing-cta-container {
+        width: 100%;
     }
 
     .pricing-cta-title {
-        font-size: clamp(3rem, 13vw, 5rem);
+        max-width: 100%;
+        margin-bottom: 28px;
+
+        font-size: clamp(30px, 9vw, 42px);
+        line-height: 1.08;
+        letter-spacing: -0.025em;
     }
 
     .pricing-cta-buttons {
         flex-direction: column;
-
-        align-items: flex-start;
-
-        margin-top: 36px;
+        width: 100%;
+        gap: 12px;
     }
 
     .pricing-cta-button {
-        width: auto;
+        width: 100%;
+        min-height: 58px;
+        padding: 0 22px;
+
+        font-size: 16px;
     }
 
+    .pricing-cta-arrow {
+        margin-left: auto;
+    }
+}
+
+
+/* =========================
+   Extra small phones
+========================= */
+
+@media (max-width: 380px) {
+
+    .pricing-cta-section {
+        padding: 45px 16px;
+    }
+
+    .pricing-cta-title {
+        font-size: 30px;
+    }
+
+    .pricing-cta-button {
+        min-height: 56px;
+        padding: 0 18px;
+        font-size: 15px;
+    }
 }

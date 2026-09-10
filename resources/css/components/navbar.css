@@ -1,172 +1,557 @@
+/* ==================================================
+   NAVBAR
+   ================================================== */
 
    .navbar-wrapper {
     position: fixed;
     top: 24px;
     left: 0;
     right: 0;
+  
     display: flex;
     justify-content: center;
+  
     padding: 0 20px;
-    z-index: 100;
-}
-
-
-/* ==================================================
-   NAVBAR CONTAINER — GLASS EFFECT
-   ================================================== */
-
-.navbar-container {
+  
+    z-index: 1000;
+  }
+  
+  
+  /* ==================================================
+     NAVBAR CONTAINER
+     ================================================== */
+  
+  .navbar-container {
+    width: auto;
+  
     background: rgba(244, 244, 244, 0.72);
-
-    /* Glas-effekt */
+  
     backdrop-filter: blur(10px) saturate(140%);
     -webkit-backdrop-filter: blur(10px) saturate(140%);
-
+  
     border: 1px solid rgba(255, 255, 255, 0.65);
-
     border-radius: 999px;
-
+  
     padding: 8px 12px 8px 32px;
-
+  
     display: flex;
     align-items: center;
     gap: 40px;
-
-    /* Mjuk glass-skugga */
+  
     box-shadow:
-        0 4px 10px rgba(26, 23, 21, 0.04),
-        0 12px 30px rgba(26, 23, 21, 0.07),
-        0 24px 60px rgba(26, 23, 21, 0.06);
-
-    /* Liten mjuk transition */
+      0 4px 10px rgba(26, 23, 21, 0.04),
+      0 12px 30px rgba(26, 23, 21, 0.07),
+      0 24px 60px rgba(26, 23, 21, 0.06);
+  
     transition:
-        box-shadow 0.3s ease,
-        background-color 0.3s ease,
-        border-color 0.3s ease;
-}
-
-
-/* ==================================================
-   NAVBAR HOVER
-   ================================================== */
-
-.navbar-container:hover {
+      box-shadow 0.3s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  
+  .navbar-container:hover {
     background: rgba(244, 244, 244, 0.82);
-
+  
     border-color: rgba(255, 255, 255, 0.8);
-
+  
     box-shadow:
-        0 6px 14px rgba(26, 23, 21, 0.05),
-        0 16px 36px rgba(26, 23, 21, 0.08),
-        0 28px 70px rgba(26, 23, 21, 0.07);
-}
-
-
-/* ==================================================
-   LOGOTYP
-   ================================================== */
-
-.navbar-logo {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #ff5500;
+      0 6px 14px rgba(26, 23, 21, 0.05),
+      0 16px 36px rgba(26, 23, 21, 0.08),
+      0 28px 70px rgba(26, 23, 21, 0.07);
+  }
+  
+  
+  /* ==================================================
+     LOGO
+     ================================================== */
+  
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  
     text-decoration: none;
-    letter-spacing: -0.04em;
-}
-
-.navbar-logo img {
+  }
+  
+  .navbar-logo img {
     width: 50px;
     height: auto;
     display: block;
+  }
+
+  /* =========================
+   ACTIVE NAV LINK
+   ========================= */
+
+.nav-link.active {
+  color: #f35d08;
+  opacity: 1;
+}
+
+.nav-link.active:hover {
+  opacity: 1;
 }
 
 
-/* ==================================================
-   NAVIGATION
-   ================================================== */
+/* =========================
+ ACTIVE MOBILE NAV LINK
+ ========================= */
 
-.navbar-menu {
+.mobile-nav-link.active {
+  color: #f35d08;
+}
+
+.mobile-nav-link.active:hover {
+  color: #f35d08;
+}
+  
+  
+  /* ==================================================
+     DESKTOP NAVIGATION
+     ================================================== */
+  
+  .navbar-menu {
     display: flex;
     align-items: center;
     gap: 24px;
-}
-
-.nav-link {
+  }
+  
+  .nav-link {
     color: #1a1715;
+  
     text-decoration: none;
-
+  
     font-size: 0.75rem;
     font-weight: 600;
-
+  
     letter-spacing: 0.06em;
     text-transform: uppercase;
-
+  
     font-family: "Geist Mono", monospace;
-
+  
     transition:
-        opacity 0.2s ease;
-}
-
-.nav-link:hover {
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+  
+  .nav-link:hover {
     opacity: 0.6;
-}
-
-
-/* ==================================================
-   LOGGA IN
-   ================================================== */
-
-.btn-login {
+  }
+  
+  
+  /* ==================================================
+     LOGIN
+     ================================================== */
+  
+  .btn-login {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-
+  
     background-color: #1c1917;
     color: #ffffff;
-
+  
     padding: 10px 16px 10px 20px;
-
+  
     border-radius: 999px;
-
+  
     text-decoration: none;
-
+  
     font-size: 0.75rem;
     font-weight: 600;
-
+  
     letter-spacing: 0.06em;
-
+  
     transition:
-        background-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.btn-login:hover {
+      background-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  
+  .btn-login:hover {
     background-color: #332f2c;
-
+  
     transform: translateY(-1px);
-
+  
     box-shadow:
-        0 6px 16px rgba(26, 23, 21, 0.15);
-}
-
-.login-arrow {
+      0 6px 16px rgba(26, 23, 21, 0.15);
+  }
+  
+  .login-arrow {
     font-size: 0.9rem;
-}
+  }
+  
+  
+  /* ==================================================
+     MOBILE MENU BUTTON
+     ================================================== */
+  
+  .menu-toggle {
+    display: none;
+  
+    width: 44px;
+    height: 44px;
+  
+    padding: 0;
+  
+    border: 0;
+    border-radius: 50%;
+  
+  
+    cursor: pointer;
+  
+    align-items: center;
+    justify-content: center;
+  
+    flex-direction: column;
+    gap: 5px;
+  
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
+  }
+  
+  .menu-toggle span {
+    display: block;
+  
+    width: 25px;
+    height: 1.5px;
+  
+    background: #111;
+  
+    border-radius: 999px;
+  
+    transition:
+      transform 0.35s ease,
+      opacity 0.25s ease;
+  }
+  
+  
+  /* ==================================================
+     MOBILE MENU
+     ================================================== */
+  
+  .mobile-menu {
+    position: fixed;
+  
+    inset: 0;
+  
+    z-index: 900;
+  
+    background: rgba(244, 244, 244, 0.94);
+  
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  
+    opacity: 0;
+    visibility: hidden;
+  
+    transform: translateY(-20px);
+  
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease,
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .mobile-menu-inner {
+    height: 100%;
+  
+    padding:
+      130px
+      24px
+      32px;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    box-sizing: border-box;
+  }
+  
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 16px 0;
+  
+    border-bottom: 1px solid rgba(26, 23, 21, 0.12);
+  
+    color: #1a1715;
+  
+    text-decoration: none;
+  
+  
+    font-size: 0.9rem;
+    font-weight: 600;
+  
+    letter-spacing: 0.05em;
+  
+    transform: translateY(20px);
+    opacity: 0;
+  
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease,
+      padding-left 0.25s ease;
+  }
+  
+  .mobile-nav-link:hover {
+    padding-left: 8px;
+  }
+  
+  .mobile-nav-link span:last-child {
+    font-size: 1rem;
+  }
+  
+  
+  /* ==================================================
+     MOBILE LOGIN
+     ================================================== */
+  
+  .mobile-login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    width: 100%;
+  
+    padding: 16px 20px;
+  
+    box-sizing: border-box;
+  
+    border-radius: 999px;
+  
+    background: #1c1917;
+    color: #ffffff;
+  
+    text-decoration: none;
+  
+  
+    font-size: 0.75rem;
+    font-weight: 600;
+  
+    letter-spacing: 0.06em;
+  
+    transform: translateY(20px);
+    opacity: 0;
+  
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease,
+      background-color 0.2s ease;
+  }
+  
+  .mobile-login:hover {
+    background: #332f2c;
+  }
+  
+  
+  /* ==================================================
+     MENU OPEN
+     ================================================== */
+  
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  .mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+  
+    transform: translateY(0);
+  }
+  
+  .mobile-menu.is-open .mobile-nav-link,
+  .mobile-menu.is-open .mobile-login {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .mobile-menu.is-open .mobile-nav-link:nth-child(1) {
+    transition-delay: 0.05s;
+  }
+  
+  .mobile-menu.is-open .mobile-nav-link:nth-child(2) {
+    transition-delay: 0.09s;
+  }
+  
+  .mobile-menu.is-open .mobile-nav-link:nth-child(3) {
+    transition-delay: 0.13s;
+  }
+  
+  .mobile-menu.is-open .mobile-nav-link:nth-child(4) {
+    transition-delay: 0.17s;
+  }
+  
+  .mobile-menu.is-open .mobile-nav-link:nth-child(5) {
+    transition-delay: 0.21s;
+  }
+  
+  .mobile-menu.is-open .mobile-nav-link:nth-child(6) {
+    transition-delay: 0.25s;
+  }
+  
+  .mobile-menu.is-open .mobile-nav-link:nth-child(7) {
+    transition-delay: 0.29s;
+  }
+  
+  .mobile-menu.is-open .mobile-login {
+    transition-delay: 0.34s;
+  }
+  
+  
+  /* ==================================================
+     HAMBURGER → X
+     ================================================== */
+  
+  .menu-toggle.is-open span:first-child {
+    transform: translateY(3.25px) rotate(45deg);
+  }
+  
+  .menu-toggle.is-open span:last-child {
+    transform: translateY(-3.25px) rotate(-45deg);
+  }
+  
+  .menu-toggle.is-open {
+    transform: rotate(0deg);
+  }
 
 
-/* ==================================================
-   MOBIL
+  
+  
+  /* ==================================================
+     TABLET / MOBILE
+     ================================================== */
+  
+  @media (max-width: 1100px) {
+  
+    .navbar-container {
+      gap: 24px;
+    }
+  
+    .navbar-menu {
+      gap: 16px;
+    }
+  
+    .nav-link {
+      font-size: 0.68rem;
+    }
+  
+  }
+  
+  
+  /* ==================================================
+     MOBILE
+     ================================================== */
+  
+  @media (max-width: 900px) {
+  
+  /* ==================================================
+   NAVBAR
    ================================================== */
 
-@media (max-width: 900px) {
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
-    .navbar-menu {
-        display: none;
-    }
+  width: 100%;
+  padding: 0;
 
-    .navbar-container {
-        padding: 8px 12px 8px 20px;
-    }
+  display: flex;
+  justify-content: center;
 
+  z-index: 1000;
 }
+
+/* ==================================================
+   NAVBAR CONTAINER
+   ================================================== */
+
+.navbar-container {
+  width: 100%;
+  max-width: none;
+
+  background: rgba(244, 244, 244, 0.82);
+
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+
+  border: 0;
+  border-bottom: 1px solid rgba(26, 23, 21, 0.08);
+
+  border-radius: 0;
+
+  padding: 10px 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  box-shadow:
+    0 4px 10px rgba(26, 23, 21, 0.03),
+    0 12px 30px rgba(26, 23, 21, 0.05);
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.navbar-container:hover {
+  background: rgba(244, 244, 244, 0.9);
+}   
+  
+    .navbar-logo img {
+      width: 56px;
+    }
+  
+    .navbar-menu,
+    .btn-login {
+      display: none;
+    }
+  
+    .menu-toggle {
+      display: flex;
+    }
+  
+  }
+  
+  
+  /* ==================================================
+     SMALL MOBILE
+     ================================================== */
+  
+  @media (max-width: 380px) {
+  
+    .navbar-wrapper {
+      top: 12px;
+      padding: 0 12px;
+    }
+  
+    .navbar-container {
+      padding-left: 16px;
+    }
+  
+    .navbar-logo img {
+      width: 43px;
+    }
+  
+    .menu-toggle {
+      width: 42px;
+      height: 42px;
+    }
+  
+  }
+
+  

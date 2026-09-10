@@ -7,8 +7,7 @@
     background: #e7f1fa;
     border-radius: 50px;
 
-    font-family: "Inter", sans-serif;
-    color: #1a1715;
+    color: #2E251F;
 }
 
 .pricing-included-container {
@@ -37,8 +36,8 @@
 }
 
 .pricing-included-small-title {
-    font-size: 0.7rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
 
@@ -50,12 +49,12 @@
 
     max-width: 800px;
 
-    font-size: clamp(3rem, 5vw, 5rem);
+    font-size: clamp(3rem, 5vw, 4.8rem);
     font-weight: 400;
     line-height: 0.98;
-    letter-spacing: -0.055em;
+    letter-spacing: -2.5%;
 
-    color: #1a1715;
+    color: #2E251F;
 }
 
 .pricing-included-intro {
@@ -65,8 +64,8 @@
 .pricing-included-intro p {
     margin: 0;
 
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 1.1rem;
+    line-height: 23px;
 
     color: #625d58;
 }

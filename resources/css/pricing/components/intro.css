@@ -4,10 +4,9 @@
     padding: 100px 40px;
     box-sizing: border-box;
 
-    font-family: "Inter", sans-serif;
 
 
-    color: #1a1715;
+    color: #2E251F;
 }
 
 .pricing-intro-container {
@@ -47,7 +46,7 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
 
-    color: #1a1715;
+    color: #2E251F;
 }
 
 .pricing-intro-title {
@@ -63,7 +62,7 @@
 
     letter-spacing: -0.03em;
 
-    color: #1a1715;
+    color: #2E251F;
 }
 
 

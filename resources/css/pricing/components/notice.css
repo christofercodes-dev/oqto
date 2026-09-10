@@ -7,7 +7,6 @@
 
     box-sizing: border-box;
 
-    font-family: "Inter", sans-serif;
 
 }
 
@@ -16,7 +15,7 @@
 
     margin: 0 auto;
 
-    padding: 38px 44px;
+    padding: 25px 44px;
 
     box-sizing: border-box;
 
@@ -28,7 +27,7 @@
 
     gap: 80px;
 
-    border-radius: 24px;
+    border-radius: 100px;
 
     background:
         linear-gradient(
@@ -43,24 +42,29 @@
    VÄNSTER
    ========================= */
 
-.pricing-notice-label {
+   .pricing-notice-label {
     display: flex;
-
     flex-direction: column;
-
-    gap: 10px;
+    gap: 2px;
 }
 
 .pricing-notice-small-title {
-    font-size: 0.7rem;
-
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 24px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    background-color: #f35d08;
+    color: #ffffff;
+    font-size: 0.85rem;
     font-weight: 700;
-
-    letter-spacing: 0.12em;
-
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 
-    color: #ff5500;
+    align-self: center;
 }
 
 .pricing-notice-title {
@@ -74,7 +78,7 @@
 
     letter-spacing: -0.03em;
 
-    color: #1a1715;
+    color: #2E251F;
 }
 
 
@@ -83,15 +87,15 @@
    ========================= */
 
 .pricing-notice-content {
-    max-width: 650px;
+    max-width: 700px;
 }
 
 .pricing-notice-text {
     margin: 0;
 
-    font-size: 0.95rem;
+    font-size: 1rem;
 
-    line-height: 1.65;
+    line-height: 23px;
 
     color: #3e3936;
 }

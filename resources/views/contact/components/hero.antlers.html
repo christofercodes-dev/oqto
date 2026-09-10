@@ -1,40 +1,53 @@
-<section class="contact-section">
-    <div class="contact-container">
+<section class="oqto-contact-section">
+
+    <div class="oqto-contact-container">
 
         <!-- VÄNSTER -->
-        <div class="contact-content">
+        <div class="oqto-contact-content">
 
             {{ if contact_small_title }}
-                <span class="contact-eyebrow">
+                <span class="oqto-contact-subtitle">
                     {{ contact_small_title }}
                 </span>
             {{ /if }}
 
-            <h1 class="contact-title">
-                {{ contact_title | nl2br }}
-            </h1>
+            <h2 class="oqto-contact-title">
+                {{ contact_title }}
+            </h2>
 
             {{ if contact_body }}
-                <p class="contact-body">
+                <p class="oqto-contact-body">
                     {{ contact_body }}
                 </p>
             {{ /if }}
 
-            <div class="contact-details">
+            <div class="oqto-contact-details">
 
                 {{ if contact_email }}
-                    <a href="mailto:{{ contact_email }}" class="contact-detail">
-                        <span class="contact-detail-label">E-post</span>
-                        <span class="contact-detail-value">
+                    <a
+                        href="mailto:{{ contact_email }}"
+                        class="oqto-contact-detail"
+                    >
+                        <span class="oqto-contact-detail-label">
+                            E-post
+                        </span>
+
+                        <span class="oqto-contact-detail-value">
                             {{ contact_email }}
                         </span>
                     </a>
                 {{ /if }}
 
                 {{ if contact_phone }}
-                    <a href="tel:{{ contact_phone }}" class="contact-detail">
-                        <span class="contact-detail-label">Telefon</span>
-                        <span class="contact-detail-value">
+                    <a
+                        href="tel:{{ contact_phone }}"
+                        class="oqto-contact-detail"
+                    >
+                        <span class="oqto-contact-detail-label">
+                            Telefon
+                        </span>
+
+                        <span class="oqto-contact-detail-value">
                             {{ contact_phone }}
                         </span>
                     </a>
@@ -46,60 +59,109 @@
 
 
         <!-- HÖGER / FORMULÄR -->
-        <div class="contact-form-wrapper">
+        <div class="oqto-contact-form">
 
-            <form class="contact-form">
+            <div class="oqto-contact-form-intro">
 
-                <div class="contact-form-row">
+                <span class="oqto-contact-form-label">
+                    Starta ett projekt
+                </span>
 
-                    <div class="contact-field">
-                        <label for="name">Namn</label>
+                <p>
+                    Har du en idé eller ett projekt på gång?
+                    Berätta lite om vad du behöver hjälp med.
+                </p>
+
+            </div>
+
+
+            <form>
+
+                <div class="oqto-contact-form-row">
+
+                    <div class="oqto-contact-field">
+
+                        <label for="oqto-name">
+                            Namn
+                        </label>
+
                         <input
                             type="text"
-                            id="name"
+                            id="oqto-name"
                             name="name"
                             placeholder="Ditt namn"
                         >
+
                     </div>
 
-                    <div class="contact-field">
-                        <label for="email">E-post</label>
+
+                    <div class="oqto-contact-field">
+
+                        <label for="oqto-email">
+                            E-post
+                        </label>
+
                         <input
                             type="email"
-                            id="email"
+                            id="oqto-email"
                             name="email"
                             placeholder="din@email.se"
                         >
+
                     </div>
 
                 </div>
 
 
-                <div class="contact-field">
-                    <label for="company">Företag</label>
+                <div class="oqto-contact-field">
+
+                    <label for="oqto-company">
+                        Företag
+                    </label>
+
                     <input
                         type="text"
-                        id="company"
+                        id="oqto-company"
                         name="company"
                         placeholder="Företagsnamn"
                     >
+
                 </div>
 
 
-                <div class="contact-field">
-                    <label for="message">Meddelande</label>
+                <div class="oqto-contact-field">
+
+                    <label for="oqto-message">
+                        Meddelande
+                    </label>
+
                     <textarea
-                        id="message"
+                        id="oqto-message"
                         name="message"
                         rows="5"
-                        placeholder="Berätta lite om vad du behöver hjälp med..."
+                        placeholder="Berätta om projektet..."
                     ></textarea>
+
                 </div>
 
 
-                <button type="submit" class="contact-button">
-                    Skicka meddelande
-                    <span aria-hidden="true">→</span>
+                <!-- SAMMA KNAPPSTIL SOM WHY OQTO -->
+                <button
+                    type="submit"
+                    class="oqto-contact-btn"
+                >
+
+                    <span class="oqto-contact-btn-text">
+                        Skicka meddelande
+                    </span>
+
+                    <span
+                        class="oqto-contact-btn-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </span>
+
                 </button>
 
             </form>
@@ -107,4 +169,5 @@
         </div>
 
     </div>
+
 </section>

@@ -1,131 +1,369 @@
+
 .faq-section {
     width: 100%;
     background-color: #ffffff;
     padding: 100px 40px;
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;
     color: #1a1715;
-  }
-  
-  .faq-container {
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.faq-container {
+    width: 100%;
     max-width: 1280px;
     margin: 0 auto;
+
     display: flex;
     flex-direction: column;
+
     gap: 48px;
-  }
-  
-  /* Header-sektion */
-  .faq-header {
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.faq-header {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-  }
-  
-  .faq-subtitle {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #ff5500;
-  }
-  
-  .faq-title {
-    font-size: clamp(3rem, 5vw, 4.8rem);
-    font-weight: 400;
-    max-width: 900px;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #1a1715;
-    margin: 0;
-  }
-  
-  /* Accordion-uppbyggnad */
-  .faq-accordion {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid #e5e5e5;
-  }
-  
-  .faq-item {
-    border-bottom: 1px solid #e5e5e5;
-    transition: background-color 0.2s ease;
-  }
-  
-  .faq-question {
-    padding: 24px 0;
+
+    gap: 20px;
+}
+
+.faq-subtitle {
+    display: block;
+
     font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: #ff5500;
+}
+
+.faq-title {
+    max-width: 900px;
+
+    margin: 0;
+
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    font-weight: 400;
+
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+
     color: #1a1715;
-    cursor: pointer;
+}
+
+
+/* =========================================================
+   ACCORDION
+   ========================================================= */
+
+.faq-accordion {
+    width: 100%;
+
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+
+    border-top: 1px solid #e5e5e5;
+}
+
+.faq-item {
+    width: 100%;
+
+    border-bottom: 1px solid #e5e5e5;
+
+    transition: background-color 0.2s ease;
+}
+
+
+/* =========================================================
+   FRÅGA
+   ========================================================= */
+
+.faq-question {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 25px 0;
+
+    display: flex;
     align-items: center;
-    list-style: none; /* Döljer webbläsarens standardpilar */
-  }
-  
-  .faq-question::-webkit-details-marker {
+    justify-content: space-between;
+
+    gap: 30px;
+
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+
+    color: #1a1715;
+
+    cursor: pointer;
+
+    list-style: none;
+}
+
+.faq-question::-webkit-details-marker {
     display: none;
-  }
-  
-/* Styling för den runda knappen */
+}
+
+
+/* =========================================================
+   IKON
+   ========================================================= */
+
 .faq-icon-wrapper {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+
     border-radius: 50%;
+
     background-color: #f4f4f5;
     color: #1a1715;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    flex-shrink: 0;
-  }
-  
-  /* Ikonens animation och storlek */
-  .faq-icon {
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.faq-icon {
     width: 14px;
     height: 14px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Hover-effekt på hela frågan */
-  .faq-item:hover .faq-icon-wrapper {
+
+    transition:
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.faq-item:hover .faq-icon-wrapper {
     background-color: #ff5500;
     color: #ffffff;
-  }
-  
-  /* När kortet öppnas: Roterar ikonen 45 grader (blir ett kryss) och ändrar bakgrund */
-  .faq-item[open] .faq-icon-wrapper {
+}
+
+
+/* =========================================================
+   OPEN
+   ========================================================= */
+
+.faq-item[open] .faq-icon-wrapper {
     background-color: #1a1715;
     color: #ffffff;
-  }
-  
-  .faq-item[open] .faq-icon {
+}
+
+.faq-item[open] .faq-icon {
     transform: rotate(45deg);
-  }
-  
-  .faq-answer {
-    padding-bottom: 24px;
-  }
-  
-  .faq-answer p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #4a4744;
-    margin: 0;
+}
+
+
+/* =========================================================
+   SVAR
+   ========================================================= */
+
+.faq-answer {
+    padding: 0 68px 25px 0;
+}
+
+.faq-answer p {
     max-width: 780px;
-  }
-  
-  /* Responsiv anpassning */
-  @media (max-width: 960px) {
+
+    margin: 0;
+
+    font-size: 1rem;
+    line-height: 1.65;
+
+    color: #4a4744;
+}
+
+.faq-more {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -24px;
+}
+
+.faq-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #1a1715;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+}
+
+/* .faq-more-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+} */
+
+
+.faq-more-link:hover {
+  color: #f35d08;
+}
+
+.faq-more-link:hover .faq-more-arrow {
+  transform: translateX(4px);
+}
+
+/* =========================================
+   FAQ – MOBILE FIX
+   ========================================= */
+
+   @media (max-width: 767px) {
+
     .faq-section {
-      padding: 60px 24px;
+      width: 100% !important;
+      padding: 42px 18px 52px !important;
+      box-sizing: border-box !important;
+    }
+  
+    .faq-container {
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 30px !important;
+    }
+  
+    .faq-header {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      gap: 15px !important;
+    }
+  
+    .faq-subtitle {
+      font-size: 0.7rem !important;
+      line-height: 1.25 !important;
+    }
+  
+    .faq-title {
+      margin: 0 !important;
+      font-size: clamp(2.25rem, 10vw, 3rem) !important;
+      line-height: 1.06 !important;
+      letter-spacing: -0.03em !important;
+    }
+  
+    .faq-accordion {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  
+    .faq-item {
+      width: 100% !important;
+      margin: 0 !important;
     }
   
     .faq-question {
-      font-size: 1.1rem;
-      padding: 20px 0;
+      width: 100% !important;
+      box-sizing: border-box !important;
+  
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+  
+      gap: 16px !important;
+      padding: 20px 0 !important;
+  
+      font-size: 1rem !important;
+      line-height: 1.4 !important;
+    }
+  
+    .faq-question > span:first-child {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+    }
+  
+    .faq-icon-wrapper {
+      width: 34px !important;
+      height: 34px !important;
+      min-width: 34px !important;
+      flex: 0 0 34px !important;
+    }
+  
+    .faq-icon {
+      width: 14px !important;
+      height: 14px !important;
+    }
+  
+    .faq-answer {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      padding: 0 48px 20px 0 !important;
+    }
+  
+    .faq-answer p {
+      margin: 0 !important;
+      font-size: 0.9rem !important;
+      line-height: 1.65 !important;
+    }
+  }
+  
+  
+  /* Extra small phones */
+  @media (max-width: 380px) {
+  
+    .faq-section {
+      padding: 38px 16px 48px !important;
+    }
+  
+    .faq-container {
+      gap: 26px !important;
+    }
+  
+    .faq-title {
+      font-size: 2.15rem !important;
+    }
+  
+    .faq-question {
+      padding: 18px 0 !important;
+      font-size: 0.95rem !important;
+      gap: 14px !important;
+    }
+  
+    .faq-icon-wrapper {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      flex-basis: 32px !important;
+    }
+  
+    .faq-answer {
+      padding-right: 42px !important;
+      padding-bottom: 18px !important;
+    }
+  
+    .faq-answer p {
+      font-size: 0.88rem !important;
     }
   }

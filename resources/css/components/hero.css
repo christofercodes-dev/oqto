@@ -1,13 +1,16 @@
-/* Grundläggande inställningar */
-.hero-section {
+/* ==================================================
+   HERO – BASE
+   ================================================== */
+
+   .hero-section {
     min-height: 80vh;
     background: linear-gradient(180deg, #8bc1ff 0%, #f5f9fd 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 100px 40px 0 40px;
+    padding: 100px 40px 0;
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+    font-family: "neue-haas-grotesk-text", sans-serif;
     position: relative;
   }
   
@@ -21,10 +24,13 @@
     justify-content: space-between;
     height: 100%;
     flex: 1;
-
   }
   
-  /* Typografi och layout */
+  
+  /* ==================================================
+     HERO CONTENT
+     ================================================== */
+  
   .hero-content {
     display: flex;
     justify-content: space-between;
@@ -34,44 +40,56 @@
   
   .hero-left {
     flex: 1.3;
+    min-width: 0;
   }
   
   .hero-title {
-    font-size: clamp(6rem, 5vw, 5rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: 0.01em;
-    color: #2E251F;
     margin: 0;
+    font-size: clamp(4rem, 7vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: #2E251F;
   }
   
   .hero-right {
     flex: 1;
     max-width: 520px;
     padding-top: 10px;
-    color: #1a1715;
-    font-weight: 500;
+    color: #2E251F;
+    font-weight: 400;
+    line-height: 1;
+    font-family: "neue-haas-grotesk-text", sans-serif;
   }
   
   .hero-text {
-    font-size: 0.95rem;
-    line-height: 1.6;
     margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
-
+  
+  
+  /* ==================================================
+     HERO WIDGET
+     ================================================== */
+  
   .hero-widget {
     width: 100%;
     max-width: 1280px;
     margin: 70px auto 0;
     position: relative;
     z-index: 2;
-}
-
-.hero-widget > * {
-    max-width: 100%;
-}
+  }
   
-  /* Fliken med knappen och de sömlösa radie-kurvorna */
+  .hero-widget > * {
+    max-width: 100%;
+  }
+  
+  
+  /* ==================================================
+     ACTION / BUTTON AREA
+     ================================================== */
+  
   .hero-action-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -81,151 +99,547 @@
   
   .hero-action-card {
     background-color: #ffffff;
-    padding: 30px 40px 0 40px;
+    padding: 30px 40px 0;
     border-radius: 36px 36px 0 0;
     display: inline-flex;
   }
   
-  /* Skapar de inåtböjda rundade hörnen mot nästa sektion */
+  
+  /* ==================================================
+     CORNER CURVES
+     ================================================== */
+  
   .corner-curve {
     width: 36px;
     height: 36px;
     background-color: #ffffff;
-    -webkit-mask-image: radial-gradient(circle at 0 0, transparent 36px, black 36.5px);
-    mask-image: radial-gradient(circle at 0 0, transparent 36px, black 36.5px);
+    -webkit-mask-image: radial-gradient(
+      circle at 0 0,
+      transparent 36px,
+      black 36.5px
+    );
+    mask-image: radial-gradient(
+      circle at 0 0,
+      transparent 36px,
+      black 36.5px
+    );
   }
   
   .corner-curve.curve-left {
-    -webkit-mask-image: radial-gradient(circle at 0 0, transparent 36px, black 36.5px);
-    mask-image: radial-gradient(circle at 0 0, transparent 36px, black 36.5px);
+    -webkit-mask-image: radial-gradient(
+      circle at 0 0,
+      transparent 36px,
+      black 36.5px
+    );
+    mask-image: radial-gradient(
+      circle at 0 0,
+      transparent 36px,
+      black 36.5px
+    );
   }
   
   .corner-curve.curve-right {
-    -webkit-mask-image: radial-gradient(circle at 100% 0, transparent 36px, black 36.5px);
-    mask-image: radial-gradient(circle at 100% 0, transparent 36px, black 36.5px);
+    -webkit-mask-image: radial-gradient(
+      circle at 100% 0,
+      transparent 36px,
+      black 36.5px
+    );
+    mask-image: radial-gradient(
+      circle at 100% 0,
+      transparent 36px,
+      black 36.5px
+    );
   }
   
-  /* Knappstil */
+  
+  /* ==================================================
+     BUTTON
+     ================================================== */
+  
+     .btn-demo {
+      position: relative;
+      isolation: isolate;
+    
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    
+      width: auto;
+      min-width: 300px;
+      box-sizing: border-box;
+    
+      padding: 6px 6px 6px 28px;
+    
+      border: 1px solid #2e251f;
+      border-radius: 999px;
+    
+      text-decoration: none;
+      color: #2e251f;
+      background: #ffffff;
+    
+      overflow: hidden;
+    
+      transition:
+        color 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    
+    /* FÄRG SOM SVEPer IN */
+    .btn-demo::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+    
+      top: 0;
+      left: 0;
+    
+      width: 0;
+      height: 100%;
+    
+      background: #ff5500;
+    
+      border-radius: inherit;
+    
+      transition:
+        width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    
+    /* TEXT */
+    .btn-text {
+      position: relative;
+      z-index: 2;
+    
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    
+      transition: color 0.3s ease;
+    }
+    
+    
+    /* PILEN */
+    .btn-arrow {
+      position: relative;
+      z-index: 2;
+    
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+    
+      background: #ff5500;
+      color: #ffffff;
+    
+      border-radius: 50%;
+    
+      transition:
+        opacity 0.2s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    
+    /* HOVER */
+    .btn-demo:hover {
+      color: #ffffff;
+      border-color: #ff5500;
+      transform: translateY(-2px);
+    }
+    
+    .btn-demo:hover::before {
+      width: 100%;
+    }
+    
+    .btn-demo:hover .btn-text {
+      color: #ffffff;
+    }
+    
+    .btn-demo:hover .btn-arrow {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  
+  /* ==================================================
+     HERO TEXT ANIMATION
+     ================================================== */
+  
+  .hero-title,
+  .hero-text {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroTextReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  
+  .hero-title {
+    animation-delay: 0.15s;
+  }
+  
+  .hero-text {
+    animation-delay: 0.35s;
+  }
+  
+  @keyframes heroTextReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+  /* ==================================================
+   TABLET
+   ================================================== */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .hero-section {
+    min-height: auto;
+    padding: 110px 32px 0;
+  }
+
+  .hero-container {
+    padding-top: 50px;
+    max-width: 100%;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(3.8rem, 9vw, 5.5rem);
+    line-height: 1;
+  }
+
+  .hero-right {
+    width: 100%;
+    max-width: 700px;
+    padding-top: 0;
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .hero-widget {
+    margin-top: 50px;
+    max-width: 100%;
+  }
+
+  .hero-action-wrapper {
+    margin-top: 40px;
+  }
+
+  .hero-action-card {
+    padding: 22px 28px 0;
+  }
+
+  .corner-curve {
+    width: 32px;
+    height: 32px;
+  }
+
   .btn-demo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    border: 1px solid #1a1715;
-    border-radius: 999px;
-    min-width: 300px;
-    padding: 6px 6px 6px 28px;
-    text-decoration: none;
-    color: #1a1715;
-    transition: all 0.25s ease;
-    background-color: #ffffff;
+    min-width: 280px;
   }
-  
-  .btn-text {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    align-items: center;
-  }
-  
-  .btn-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    background-color: #ff5500;
-    color: #ffffff;
-    border-radius: 50%;
-    transition: transform 0.25s ease, background-color 0.25s ease;
-  }
-  
-  .btn-demo:hover {
-    border-color: #ff5500;
-  }
-  
-  .btn-demo:hover .btn-arrow {
-    transform: translateX(3px);
-    background-color: #e04b00;
-  }
+}
 
 
 /* ==================================================
-   HERO TEXT ANIMATION
+   MOBILE
    ================================================== */
 
-   .hero-title,
-   .hero-text {
-       opacity: 0;
-       transform: translateY(40px);
-       animation: heroTextReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-   }
-   
-   
-   /* Rubriken kommer först */
-   
-   .hero-title {
-       animation-delay: 0.15s;
-   }
-   
-   
-   /* Brödtexten kommer strax efter */
-   
-   .hero-text {
-       animation-delay: 0.35s;
-   }
-   
-   
-   @keyframes heroTextReveal {
-   
-       0% {
-           opacity: 0;
-           transform: translateY(40px);
-       }
-   
-       100% {
-           opacity: 1;
-           transform: translateY(0);
-       }
-   
-   }
-   
-   
-   /* Respektera användare som vill minska rörelse */
-   
-   @media (prefers-reduced-motion: reduce) {
-   
-       .hero-title,
-       .hero-text {
-           opacity: 1;
-           transform: none;
-           animation: none;
-       }
-   
-   }
+@media (max-width: 767px) {
+
+  /* ------------------------------------------
+     HERO
+     ------------------------------------------ */
+
+  .hero-section {
+    width: 100%;
+    min-height: auto;
+    padding: 115px 18px 0;
+
+    box-sizing: border-box;
+  }
 
 
-  
-  
-  /* Responsiv anpassning */
-  @media (max-width: 960px) {
-    .hero-section {
-      min-height: auto;
-      padding: 60px 24px 0 24px;
+  /* ------------------------------------------
+     CONTAINER
+     ------------------------------------------ */
+
+  .hero-container {
+    width: 100%;
+    max-width: none;
+
+    padding-top: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  /* ------------------------------------------
+     CONTENT
+     ------------------------------------------ */
+
+     .hero-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
   
-    .hero-content {
-      flex-direction: column;
-      gap: 32px;
+    .hero-left {
+      width: 100%;
+    }
+  
+    .hero-title {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
     }
   
     .hero-right {
-      max-width: 100%;
+      width: 100%;
+      max-width: 500px;
+      padding: 0;
+      margin: 0;
     }
   
-    .hero-action-wrapper {
-      justify-content: center;
-      margin-top: 60px;
+    .hero-text {
+      margin: 0;
+      text-align: left;
     }
+  
+
+
+  /* ------------------------------------------
+     CTA
+     
+     Flyttar upp knappen visuellt direkt
+     efter texten och före widgeten.
+     ------------------------------------------ */
+
+  .hero-action-wrapper {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 24px;
+    order: 2;
   }
+
+
+  /* ------------------------------------------
+     WIDGET
+     ------------------------------------------ */
+
+  .hero-widget {
+    width: 100%;
+    max-width: none;
+
+    margin: 42px 0 0;
+
+    order: 3;
+  }
+
+
+  /* ------------------------------------------
+     GÖR BORT DESKTOP-KORTET PÅ MOBIL
+     ------------------------------------------ */
+
+  .hero-action-card {
+    width: auto;
+
+    padding: 0;
+
+    background: transparent;
+
+    border-radius: 0;
+
+    display: flex;
+  }
+
+
+  /* ------------------------------------------
+     TA BORT KURVORNA PÅ MOBIL
+     ------------------------------------------ */
+
+  .corner-curve {
+    display: none;
+  }
+
+
+  /* ------------------------------------------
+     LITEN SNYGG KNAPP
+     ------------------------------------------ */
+
+  .btn-demo {
+    width: auto;
+    min-width: 0;
+
+    height: 50px;
+
+    padding: 4px 4px 4px 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    border: 1px solid #ff5500;
+    border-radius: 999px;
+
+    background: #ff5500;
+    color: #ffffff;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 6px 18px rgba(46, 37, 31, 0.08);
+
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+
+  .btn-text {
+    font-size: 0.68rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.07em;
+
+    line-height: 1;
+
+    white-space: nowrap;
+  }
+
+
+  .btn-arrow {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #ff5500;
+
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+
+  .btn-arrow svg {
+    width: 15px;
+    height: 15px;
+  }
+
+
+  /* ------------------------------------------
+     BUTTON HOVER / TAP
+     ------------------------------------------ */
+
+  .btn-demo:hover {
+    border-color: #ff5500;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 10px 24px rgba(46, 37, 31, 0.12);
+  }
+
+  .btn-demo:hover .btn-arrow {
+    transform: translateX(3px);
+
+    background: #e04b00;
+  }
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+   ================================================== */
+
+@media (max-width: 380px) {
+
+  .hero-section {
+    padding-left: 16px;
+    padding-right: 16px;
+
+    /*
+     * Fortfarande tillräckligt med plats
+     * under navbaren.
+     */
+    padding-top: 105px;
+  }
+
+  .hero-content {
+    gap: 18px;
+  }
+
+  .hero-title {
+    font-size: 2.55rem;
+  }
+
+  .hero-text {
+    font-size: 0.87rem;
+    line-height: 1.65;
+  }
+
+  .hero-action-wrapper {
+    margin-top: 22px;
+  }
+
+  .hero-widget {
+    margin-top: 36px;
+  }
+
+  .btn-demo {
+    height: 47px;
+    padding-left: 18px;
+    gap: 15px;
+  }
+
+  .btn-text {
+    font-size: 0.64rem;
+  }
+
+  .btn-arrow {
+    width: 39px;
+    height: 39px;
+    flex-basis: 39px;
+  }
+}

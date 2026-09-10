@@ -1,171 +1,436 @@
-.about-hero-section {
+
+   .about-hero-section {
     width: 100%;
     background-color: #ffffff;
+
     padding: 100px 40px;
+
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+
     color: #1a1715;
+
     margin-top: 100px;
 }
 
+
+/* ==================================================
+   CONTAINER
+   ================================================== */
+
 .about-hero-container {
+    width: 100%;
     max-width: 1280px;
+
     margin: 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 48px;
+
+    gap: 64px;
 }
 
-/* Vänster textkolumn */
+
+/* ==================================================
+   LEFT – TEXT
+   ================================================== */
 
 .about-hero-text {
     flex: 1;
+
     display: flex;
     flex-direction: column;
+
     gap: 24px;
+
     max-width: 580px;
 }
 
-.about-hero-subtitle {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #ff5500;
-}
-
 .about-hero-title {
-    font-size: clamp(3rem, 5vw, 4.8rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #1a1715;
     margin: 0;
+
+    font-size: clamp(3rem, 5vw, 4.6rem);
+    font-weight: 400;
+
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+
+    color: #2e251f;
 }
 
 .about-hero-body {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #4a4744;
     margin: 0;
+    max-width: 520px;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    color: #2e251f;
 }
 
-/* Höger bildkort */
+
+/* ==================================================
+   RIGHT – IMAGE
+   ================================================== */
 
 .about-hero-visual {
     flex: 1;
-    max-width: 600px;
+
     width: 100%;
+    max-width: 600px;
 }
 
 .about-hero-card {
     position: relative;
+
     width: 100%;
     height: 480px;
+
     border-radius: 28px;
+
     overflow: hidden;
+
     background-color: #f4f4f5;
 }
 
 .about-hero-img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     display: block;
 }
+
+
+/* ==================================================
+   IMAGE PLACEHOLDER
+   ================================================== */
 
 .about-hero-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #e8f2fc 0%, #d3e5f8 100%);
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8f2fc 0%,
+            #d3e5f8 100%
+        );
 }
 
-/* Överlappande knapp i högra hörnet med whitespace */
+
+/* ==================================================
+   BUTTON WRAPPER
+   ================================================== */
 
 .about-hero-btn-wrapper {
     position: absolute;
-    bottom: 0;
+
     right: 0;
+    bottom: 0;
+
     background-color: #ffffff;
+
     padding: 16px 0 0 16px;
+
     border-top-left-radius: 32px;
 }
 
-/* Inåtböjda kurvor för mjuk övergång mot bilden */
+
+/* ==================================================
+   CORNER CURVES
+   ================================================== */
 
 .about-hero-btn-wrapper::before,
 .about-hero-btn-wrapper::after {
     content: "";
+
     position: absolute;
+
     width: 20px;
     height: 20px;
+
     background-color: transparent;
+
     pointer-events: none;
 }
 
 .about-hero-btn-wrapper::before {
     top: -20px;
     right: 0;
+
     border-bottom-right-radius: 20px;
-    box-shadow: 6px 6px 0 6px #ffffff;
+
+    box-shadow:
+        6px 6px 0 6px #ffffff;
 }
 
 .about-hero-btn-wrapper::after {
     bottom: 0;
     left: -20px;
+
     border-bottom-right-radius: 20px;
-    box-shadow: 6px 6px 0 6px #ffffff;
+
+    box-shadow:
+        6px 6px 0 6px #ffffff;
 }
 
-/* Styling för själva knappen */
+
+/* ==================================================
+   BUTTON
+   ================================================== */
 
 .about-hero-btn {
     display: inline-flex;
+
     align-items: center;
+    justify-content: center;
+
     gap: 12px;
-    background-color: #f35d08 !important;
-    color: #fff !important;
+    margin-bottom: 2px;
+    background-color: #ffffff !important;
+    color: #1a1715 !important;
+    border: 1px solid #1a1715;
     padding: 14px 28px;
-    border-radius: 99px;
+
+    border-radius: 999px;
+
     text-decoration: none;
+
     font-size: 0.85rem;
     font-weight: 600;
+
     letter-spacing: 0.05em;
+
     transition:
-        background-color 0.2s ease,
-        transform 0.2s ease;
+        background-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .about-hero-btn:hover {
     background-color: #383331 !important;
     color: #ffffff !important;
+
     transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(26, 23, 21, 0.14);
 }
 
 .about-hero-btn-arrow {
     font-size: 1.1rem;
     line-height: 1;
+
+    transition:
+        transform 0.25s ease;
 }
 
-/* Responsiv anpassning */
+.about-hero-btn:hover .about-hero-btn-arrow {
+    transform: translateX(3px);
+}
 
-@media (max-width: 960px) {
+
+/* ==================================================
+   TABLET
+   ================================================== */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
     .about-hero-section {
-        padding: 60px 24px;
+        padding: 70px 32px 80px;
+
+        margin-top: 70px;
     }
 
     .about-hero-container {
-        flex-direction: column;
         gap: 40px;
     }
 
-    .about-hero-text,
+    .about-hero-text {
+        max-width: 500px;
+        gap: 20px;
+    }
+
+    .about-hero-title {
+        font-size: clamp(2.8rem, 6vw, 4rem);
+        line-height: 1.03;
+    }
+
+    .about-hero-body {
+        max-width: 500px;
+
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
     .about-hero-visual {
-        max-width: 100%;
+        max-width: 520px;
     }
 
     .about-hero-card {
+        height: 420px;
+        border-radius: 24px;
+    }
+
+    .about-hero-btn-wrapper {
+        padding: 14px 0 0 14px;
+
+        border-top-left-radius: 28px;
+    }
+
+    .about-hero-btn {
+        padding: 13px 24px;
+        font-size: 0.8rem;
+    }
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 767px) {
+
+    .about-hero-section {
+        width: 100%;
+
+        padding: 48px 18px 56px;
+
+        margin-top: 70px;
+    }
+
+    .about-hero-container {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 36px;
+    }
+
+
+    /* TEXT */
+
+    .about-hero-text {
+        width: 100%;
+        max-width: none;
+
+        gap: 20px;
+    }
+
+    .about-hero-title {
+        width: 100%;
+
+        font-size: clamp(2.5rem, 11vw, 3.5rem);
+
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+    }
+
+    .about-hero-body {
+        width: 100%;
+        max-width: none;
+
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+
+    /* IMAGE */
+
+    .about-hero-visual {
+        width: 100%;
+        max-width: none;
+    }
+
+    .about-hero-card {
+        width: 100%;
         height: 360px;
+
+        border-radius: 22px;
+    }
+
+
+    /* BUTTON */
+
+    .about-hero-btn-wrapper {
+        padding: 12px 0 0 12px;
+
+        border-top-left-radius: 26px;
+    }
+
+    .about-hero-btn-wrapper::before,
+    .about-hero-btn-wrapper::after {
+        width: 18px;
+        height: 18px;
+    }
+
+    .about-hero-btn-wrapper::before {
+        top: -18px;
+    }
+
+    .about-hero-btn-wrapper::after {
+        left: -18px;
+    }
+
+    .about-hero-btn {
+        padding: 12px 20px;
+
+        font-size: 0.72rem;
+
+        letter-spacing: 0.05em;
+
+        gap: 10px;
+    }
+
+    .about-hero-btn-arrow {
+        font-size: 1rem;
+    }
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+   ================================================== */
+
+@media (max-width: 380px) {
+
+    .about-hero-section {
+        padding: 42px 16px 48px;
+
+        margin-top: 32px;
+    }
+
+    .about-hero-container {
+        gap: 30px;
+    }
+
+    .about-hero-title {
+        font-size: 2.35rem;
+    }
+
+    .about-hero-body {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .about-hero-card {
+        height: 330px;
+
+        border-radius: 20px;
+    }
+
+    .about-hero-btn-wrapper {
+        padding: 10px 0 0 10px;
+
+        border-top-left-radius: 22px;
+    }
+
+    .about-hero-btn {
+        padding: 11px 18px;
+
+        font-size: 0.68rem;
     }
 }

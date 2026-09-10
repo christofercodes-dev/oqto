@@ -16,10 +16,9 @@
     display: flex;
     flex-direction: column;
 
-    font-family: "Inter", sans-serif;
 
 
-    color: #1a1715;
+    color: #2E251F;
 }
 
 .jobs-intro-container {
@@ -58,22 +57,19 @@
 }
 
 .jobs-intro-small-title {
-    font-size: 0.75rem;
-
+    font-size: 1rem;
     font-weight: 700;
-
     letter-spacing: 0.1em;
-
     text-transform: uppercase;
-
     color: #ff5500;
+    padding-bottom: 10px;
 }
 
 .jobs-intro-title {
-    font-size: clamp(5rem, 5vw, 5rem);
+    font-size: clamp(4.5rem, 5vw, 4.6rem);
     font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: 0.01em;
+    line-height: 80px;
+    letter-spacing: -2.5%;
     color: #2E251F;
     margin: 0;
 }
@@ -197,59 +193,119 @@
 }
 
 
-/* ==================================================
-   TABLET
-   ================================================== */
-
-@media (max-width: 960px) {
+/* TABLET */
+@media (max-width: 1024px) {
 
     .jobs-intro-section {
-        padding: 70px 24px 90px;
+        min-height: 680px;
+        height: auto;
+
+        padding: 110px 32px 50px;
     }
 
     .jobs-intro-header {
         grid-template-columns: 1fr;
+        gap: 24px;
+    }
 
-        gap: 32px;
+    .jobs-intro-title {
+        font-size: clamp(3.8rem, 9vw, 5.5rem);
     }
 
     .jobs-intro-right {
         padding-top: 0;
-
         max-width: 680px;
     }
 
     .jobs-intro-visual {
-        margin-top: 60px;
-
-        min-height: 280px;
-    }
-
-}
-
-
-/* ==================================================
-   MOBIL
-   ================================================== */
-
-@media (max-width: 600px) {
-
-    .jobs-intro-section {
-        padding: 60px 20px 70px;
-    }
-
-    .jobs-intro-title {
-        font-size: clamp(3rem, 13vw, 5rem);
-    }
-
-    .jobs-intro-visual {
-        margin-top: 48px;
-
-        min-height: 220px;
+        min-height: 0;
+        margin-top: 35px;
     }
 
     .jobs-intro-visual svg {
-        max-height: 320px;
+        max-width: 700px;
+        max-height: 300px;
+    }
+}
+
+
+/* MOBILE */
+@media (max-width: 767px) {
+
+    .jobs-intro-section {
+        min-height: 520px;
+        height: auto;
+
+        padding: 100px 18px 40px;
     }
 
+    .jobs-intro-header {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .jobs-intro-left {
+        gap: 16px;
+    }
+
+    .jobs-intro-small-title {
+        font-size: 0.68rem;
+    }
+
+    .jobs-intro-title {
+        font-size: clamp(3rem, 13vw, 4.5rem);
+        line-height: 0.95;
+    }
+
+    .jobs-intro-right {
+        padding-top: 20px;
+        max-width: none;
+    }
+
+    .jobs-intro-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .jobs-intro-visual {
+        min-height: 0;
+        margin-top: 30px;
+    }
+
+    .jobs-intro-visual svg {
+        width: 100%;
+        max-width: 100%;
+        max-height: 250px;
+    }
+}
+
+
+/* SMALL MOBILE */
+@media (max-width: 380px) {
+
+    .jobs-intro-section {
+        min-height: 570px;
+        padding: 88px 16px 32px;
+    }
+
+    .jobs-intro-title {
+        font-size: 2.8rem;
+    }
+
+    .jobs-intro-right {
+        padding-top: 18px;
+    }
+
+    .jobs-intro-text {
+        font-size: 0.9rem;
+    }
+
+    .jobs-intro-visual {
+        margin-top: 24px;
+    }
+
+    .jobs-intro-visual svg {
+        max-height: 220px;
+    }
 }

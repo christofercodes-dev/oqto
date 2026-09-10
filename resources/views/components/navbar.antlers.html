@@ -1,27 +1,162 @@
 <nav class="navbar-wrapper">
-    <div class="navbar-container">
-      
-      <!-- Logotyp -->
-      <a href="/" class="navbar-logo">
-        <img src="/images/logos/logga02.svg" alt="OQTO">
+
+  <div class="navbar-container">
+
+    <!-- LOGO -->
+    <a href="/" class="navbar-logo">
+      <img src="/images/logos/logga02.svg" alt="OQTO">
     </a>
-  
-      <!-- Meny-länkar -->
-      <div class="navbar-menu">
-        <a href="/about" class="nav-link">OM OSS</a>
-        <a href="/faq" class="nav-link">FAQ</a>
-        <a href="/integrationer" class="nav-link">INTEGRATIONER</a>
-        <a href="/developers" class="nav-link">FÖR UTVECKLARE</a>
-        <a href="/jobs" class="nav-link">JOBB</a>
-        <a href="/pricing" class="nav-link">PRISER</a>
-        <a href="/contact" class="nav-link">KONTAKT</a>
-      </div>
-  
-      <!-- Logga in-knapp -->
-      <a href="#login" class="btn-login">
-        <span>LOGGA IN</span>
-        <span class="login-arrow">→</span>
+
+    <!-- DESKTOP MENU -->
+    <div class="navbar-menu">
+
+      <a href="/about" class="nav-link{{ if current_uri == '/about' }} active{{ /if }}">
+          OM OSS
       </a>
   
+      <a href="/faq" class="nav-link{{ if current_uri == '/faq' }} active{{ /if }}">
+          FAQ
+      </a>
+  
+      <a href="/integrationer" class="nav-link{{ if current_uri == '/integrationer' }} active{{ /if }}">
+          INTEGRATIONER
+      </a>
+  
+      <a href="/developers" class="nav-link{{ if current_uri == '/developers' }} active{{ /if }}">
+          FÖR UTVECKLARE
+      </a>
+  
+      <a href="/jobs" class="nav-link{{ if current_uri == '/jobs' }} active{{ /if }}">
+          JOBB
+      </a>
+  
+      <a href="/pricing" class="nav-link{{ if current_uri == '/pricing' }} active{{ /if }}">
+          PRISER
+      </a>
+  
+      <a href="/contact" class="nav-link{{ if current_uri == '/contact' }} active{{ /if }}">
+          KONTAKT
+      </a>
+  
+  </div>
+
+    <!-- DESKTOP LOGIN -->
+    <a href="#login" class="btn-login">
+      <span>LOGGA IN</span>
+      <span class="login-arrow">→</span>
+    </a>
+
+    <!-- MOBILE MENU BUTTON -->
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Öppna meny"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobile-menu">
+
+  <div class="mobile-menu-inner">
+
+    <div class="mobile-menu-links">
+
+      <a href="/about" class="mobile-nav-link">
+        <span>OM OSS</span>
+        <span>↗</span>
+      </a>
+
+      <a href="/faq" class="mobile-nav-link">
+        <span>FAQ</span>
+        <span>↗</span>
+      </a>
+
+      <a href="/integrationer" class="mobile-nav-link">
+        <span>INTEGRATIONER</span>
+        <span>↗</span>
+      </a>
+
+      <a href="/developers" class="mobile-nav-link">
+        <span>FÖR UTVECKLARE</span>
+        <span>↗</span>
+      </a>
+
+      <a href="/jobs" class="mobile-nav-link">
+        <span>JOBB</span>
+        <span>↗</span>
+      </a>
+
+      <a href="/pricing" class="mobile-nav-link">
+        <span>PRISER</span>
+        <span>↗</span>
+      </a>
+
+      <a href="/contact" class="mobile-nav-link">
+        <span>KONTAKT</span>
+        <span>↗</span>
+      </a>
+
     </div>
-  </nav>
+
+    <a href="#login" class="mobile-login">
+      <span>LOGGA IN</span>
+      <span>→</span>
+    </a>
+
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".mobile-menu");
+  
+    if (!toggle || !menu) return;
+  
+    toggle.addEventListener("click", function () {
+  
+      const isOpen = menu.classList.toggle("is-open");
+  
+      toggle.classList.toggle("is-open", isOpen);
+  
+      document.body.classList.toggle("menu-open", isOpen);
+  
+      toggle.setAttribute("aria-expanded", isOpen);
+  
+      toggle.setAttribute(
+        "aria-label",
+        isOpen ? "Stäng meny" : "Öppna meny"
+      );
+  
+    });
+  
+    /* Stäng menyn när man klickar på en länk */
+    menu.querySelectorAll("a").forEach(function (link) {
+  
+      link.addEventListener("click", function () {
+  
+        menu.classList.remove("is-open");
+        toggle.classList.remove("is-open");
+        document.body.classList.remove("menu-open");
+  
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Öppna meny");
+  
+      });
+  
+    });
+  
+  });
+  </script>

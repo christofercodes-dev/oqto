@@ -1,7 +1,7 @@
 
 .team-section {
     width: 100%;
-    padding-top: var(--section-padding-top);
+    padding-top: 10px;
     padding-bottom: var(--section-padding-bottom);
     background-color: #ffffff;
 }
@@ -16,16 +16,12 @@
 }
 
 .team-small-title {
-    display: inline-block;
-
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 700;
-    line-height: 1;
-
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-
-    color: var(--color-accent);
+    color: #ff5500;
+    padding-bottom: 10px;
 }
 
 

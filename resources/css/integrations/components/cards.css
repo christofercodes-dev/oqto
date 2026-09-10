@@ -1,8 +1,9 @@
 .integrations-section {
     width: 100%;
-    padding-top: var(--section-padding-top);
-    padding-bottom: var(--section-padding-bottom);
     background-color: #ffffff;
+    padding: 220px 40px;
+    box-sizing: border-box;
+    color: #1a1715;
 }
 
 
@@ -397,65 +398,191 @@
 }
 
 
-/* =========================================
+/* =========================================================
    TABLET
-   ========================================= */
+========================================================= */
 
-@media (max-width: 1000px) {
-
-    .integrations-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 600px) {
+@media (max-width: 767px) {
 
     .integrations-section {
-        padding-top: var(--section-padding-top);
-        padding-bottom: var(--section-padding-bottom);
+        padding: 120px 18px 100px;
     }
+
+
+    /* HEADER */
 
     .integrations-header {
         margin-bottom: 36px;
     }
 
     .integrations-title {
-        font-size: clamp(2.5rem, 12vw, 4rem);
+        font-size: clamp(2.8rem, 11vw, 4.5rem);
+        line-height: 0.98;
     }
 
     .integrations-intro {
-        margin-top: 18px;
+        margin-top: 24px;
+
         font-size: 0.95rem;
+        line-height: 1.65;
     }
 
+
+    /* FILTER */
+
     .integrations-filter-wrapper {
+        display: block;
+
         width: 100%;
+
+        margin-bottom: 24px;
     }
 
     .integrations-filter-trigger {
         width: 100%;
+        min-height: 48px;
     }
 
     .integrations-filter-menu {
         width: 100%;
+        min-width: 0;
     }
+
+
+    /* GRID */
 
     .integrations-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 14px;
+    }
+
+
+    /* CARD */
+
+    .integration-card {
+        min-height: 0;
+
+        padding: 22px;
+
+        border-radius: 22px;
+    }
+
+    .integration-card-header {
+        gap: 14px;
+    }
+
+    .integration-logo {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 13px;
+    }
+
+    .integration-card-title {
+        font-size: 1.15rem;
+    }
+
+    .integration-card-category {
+        margin-top: 5px;
+        font-size: 0.65rem;
+    }
+
+    .integration-card-content {
+        padding-top: 24px;
+    }
+
+    .integration-card-short {
+        font-size: 0.9rem;
+        line-height: 1.55;
+    }
+
+    .integration-card-body {
+        font-size: 0.82rem;
+        line-height: 1.6;
+    }
+
+    .integration-card-footer {
+        margin-top: 24px;
+        padding-top: 18px;
+    }
+
+
+    /* TOUCH */
+
+    .integration-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .integration-card-arrow:hover {
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .integrations-section {
+        padding: 76px 16px 84px;
+    }
+
+    .integrations-header {
+        margin-bottom: 30px;
+    }
+
+    .integrations-title {
+        font-size: 2.7rem;
+        line-height: 0.98;
+    }
+
+    .integrations-intro {
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    .integrations-filter-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .integrations-filter-trigger {
+        min-height: 46px;
+        padding: 11px 14px;
+        font-size: 0.8rem;
+    }
+
+    .integrations-grid {
+        gap: 12px;
     }
 
     .integration-card {
-        min-height: 320px;
-        padding: 22px;
+        padding: 20px;
         border-radius: 20px;
     }
 
+    .integration-logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+    }
+
+    .integration-card-title {
+        font-size: 1.08rem;
+    }
+
+    .integration-card-short {
+        font-size: 0.88rem;
+    }
+
+    .integration-card-body {
+        font-size: 0.8rem;
+    }
+
+    .integration-card-arrow {
+        width: 34px;
+        height: 34px;
+    }
 }
