@@ -67,6 +67,7 @@
     border-radius: 28px;
     background: #FCE3D6;
     text-decoration: none;
+    
     color: #1a1715;
     transition:
         transform 0.3s ease,
@@ -87,6 +88,8 @@
     letter-spacing: -0.035em;
     color: #1a1715;
     transition: color 0.25s ease;
+    font-family: "Geist Mono", monospace;
+
 }
 
 

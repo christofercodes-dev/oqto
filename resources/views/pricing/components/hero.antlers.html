@@ -1,3 +1,59 @@
+<div class="pricing-gate" id="pricingGate">
+    <div class="pricing-gate-overlay"></div>
+
+    <div class="pricing-gate-modal">
+
+        <div class="pricing-gate-logo">
+            <img
+            <img src="/images/logos/logga02.svg" alt="OQTO">
+            
+        </div>
+
+        <div class="pricing-gate-content">
+
+            <h2 class="pricing-gate-title">
+                Hej, får vi fråga var du jobbar?
+            </h2>
+
+            <div class="pricing-gate-text">
+                <p>
+                    I mångas ögon är vi väldigt redovisningsbyråfixerade.
+                    Och vi kan bara hålla med. Att säkerställa att du är ett
+                    ekonomiproffs är en del i vårt arbete med att skydda
+                    småföretagare från sånt de gör bäst i att lämna till experterna.
+                </p>
+
+                <p>
+                    Den här webbplatsen innehåller priser för Oqto.
+                    För att besöka den måste du arbeta på en redovisningsbyrå.
+                </p>
+            </div>
+
+            <div class="pricing-gate-actions">
+
+                <a
+                    href="/"
+                    class="pricing-gate-btn pricing-gate-btn-secondary"
+                >
+                    Jag jobbar inte på redovisningsbyrå
+                </a>
+
+                <button
+                    type="button"
+                    class="pricing-gate-btn pricing-gate-btn-primary"
+                    id="pricingGateAccept"
+                >
+                    Jag jobbar på redovisningsbyrå
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 <section class="pricing-hero-section">
     <div class="container pricing-hero-container">
 
@@ -22,17 +78,15 @@
         <div class="pricing-hero-visual">
 
             <div class="pricing-hero-card">
-
-                {{ if pricing_hero_image }}
-                    <img
-                        src="{{ pricing_hero_image:url }}"
-                        alt="{{ pricing_hero_image:alt }}"
-                        class="pricing-hero-img"
-                    >
-                {{ /if }}
-
+        
+                <img
+                    src="/assets/price-section.svg"
+                    alt=""
+                    class="pricing-hero-img"
+                >
+        
                 <div class="pricing-hero-btn-wrapper">
-
+        
                     <a
                         href="{{ pricing_button_url }}"
                         class="pricing-hero-btn"
@@ -40,17 +94,40 @@
                         <span class="pricing-hero-btn-text">
                             {{ pricing_button_text }}
                         </span>
-
+        
                         <span class="pricing-hero-btn-arrow">
                             →
                         </span>
                     </a>
-
+        
                 </div>
-
+        
             </div>
-
+        
         </div>
 
     </div>
 </section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    
+        const gate = document.getElementById("pricingGate");
+        const acceptButton = document.getElementById("pricingGateAccept");
+    
+        if (!gate || !acceptButton) return;
+    
+        acceptButton.addEventListener("click", function () {
+    
+            gate.style.opacity = "0";
+            gate.style.transition = "opacity 0.25s ease";
+    
+            setTimeout(function () {
+                gate.remove();
+            }, 250);
+    
+        });
+    
+    });
+    </script>

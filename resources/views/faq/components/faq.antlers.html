@@ -2,172 +2,53 @@
 
     <div class="container faq-container">
 
-        <!-- 01 -->
-        <div class="faq-group">
+        {{ faq_groups }}
 
-            <span class="faq-small-title">
-                För redovisningsbyråer och konsulter
-            </span>
+            <div class="faq-group">
 
-            <div class="faq-card faq-card-1">
+                <span class="faq-small-title">
+                    {{ category_title }}
+                </span>
 
-                <details class="faq-item">
+                <div class="faq-card">
 
-                    <summary class="faq-question">
+                    {{ questions }}
 
-                        <span class="faq-question-text">
-                            {{ faq_questions.0.faq_question }}
-                        </span>
+                        <details class="faq-item">
 
-                        <span class="faq-icon-wrapper">
-                            <span class="faq-icon"></span>
-                        </span>
+                            <summary class="faq-question">
 
-                    </summary>
+                                <span class="faq-question-text">
+                                    {{ faq_question }}
+                                </span>
 
-                    <div class="faq-answer-wrapper">
+                                <span class="faq-icon-wrapper">
+                                    <span class="faq-icon"></span>
+                                </span>
 
-                        <div class="faq-answer">
+                            </summary>
 
-                            <p>
-                                {{ faq_questions.0.faq_answer }}
-                            </p>
+                            <div class="faq-answer-wrapper">
 
-                        </div>
+                                <div class="faq-answer">
 
-                    </div>
+                                    <p>
+                                        {{ faq_answer }}
+                                    </p>
 
-                </details>
+                                </div>
 
-            </div>
+                            </div>
 
-        </div>
+                        </details>
 
+                    {{ /questions }}
 
-        <!-- 02 -->
-        <div class="faq-group">
-
-            <span class="faq-small-title">
-                För företagare
-            </span>
-
-            <div class="faq-card faq-card-2">
-
-                <details class="faq-item">
-
-                    <summary class="faq-question">
-
-                        <span class="faq-question-text">
-                            {{ faq_questions.1.faq_question }}
-                        </span>
-
-                        <span class="faq-icon-wrapper">
-                            <span class="faq-icon"></span>
-                        </span>
-
-                    </summary>
-
-                    <div class="faq-answer-wrapper">
-
-                        <div class="faq-answer">
-
-                            <p>
-                                {{ faq_questions.1.faq_answer }}
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </details>
+                </div>
 
             </div>
 
-        </div>
-
-
-        <!-- 03 -->
-        <div class="faq-group">
-
-            <span class="faq-small-title">
-                Priser & integrationer
-            </span>
-
-            <div class="faq-card faq-card-3">
-
-                <details class="faq-item">
-
-                    <summary class="faq-question">
-
-                        <span class="faq-question-text">
-                            {{ faq_questions.2.faq_question }}
-                        </span>
-
-                        <span class="faq-icon-wrapper">
-                            <span class="faq-icon"></span>
-                        </span>
-
-                    </summary>
-
-                    <div class="faq-answer-wrapper">
-
-                        <div class="faq-answer">
-
-                            <p>
-                                {{ faq_questions.2.faq_answer }}
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </details>
-
-            </div>
-
-        </div>
-
-
-        <!-- 04 -->
-        <div class="faq-group">
-
-            <span class="faq-small-title">
-                Kom igång med Oqto
-            </span>
-
-            <div class="faq-card faq-card-4">
-
-                <details class="faq-item">
-
-                    <summary class="faq-question">
-
-                        <span class="faq-question-text">
-                            {{ faq_questions.3.faq_question }}
-                        </span>
-
-                        <span class="faq-icon-wrapper">
-                            <span class="faq-icon"></span>
-                        </span>
-
-                    </summary>
-
-                    <div class="faq-answer-wrapper">
-
-                        <div class="faq-answer">
-
-                            <p>
-                                {{ faq_questions.3.faq_answer }}
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </details>
-
-            </div>
-
-        </div>
+        {{ /faq_groups }}
 
     </div>
 

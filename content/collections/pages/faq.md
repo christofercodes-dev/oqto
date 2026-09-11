@@ -3,12 +3,12 @@ id: dce7b77e-9458-4179-8002-8876b40e75ab
 blueprint: faq
 title: faq
 updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1789017982
+updated_at: 1789118022
 faq: faq
 template: faq
 author:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-faq_text: "Frequently \Lasked questions"
+faq_text: 'Frequently asked questions'
 faq_items:
   - id: nEa2q5k6PZpyrxiA1yxQk
     faq_question: 'Vad skiljer Oqto från andra ekonomisystem?'
@@ -62,4 +62,60 @@ faq_redovisningsbyra:
 cta_faq_title: 'Trött på att betala premium för något som känns utdaterat? Boka demo eller logga in.'
 cta_faq_button_text_1: 'Boka demo'
 cta_faq_button_text_2: 'Logga in'
+faq_groups:
+  -
+    id: nu3SiAz1qa4-golKuvYlL
+    category_title: 'För redovisningsbyråer och konsulter'
+    questions:
+      - id: CeFGVSuFZnpemaqa3n7sI
+        faq_question: 'Vad skiljer Oqto från andra ekonomisystem?'
+        faq_answer: 'test svar'
+        type: question
+        enabled: true
+    type: faq_group
+    enabled: true
+  -
+    id: RQxJNFuwDNSugwSNLdd5l
+    category_title: 'För företagare'
+    questions:
+      - id: AdtL13BtVVfrGSHNxZpFW
+        faq_question: 'test fråga 2'
+        faq_answer: 'test fråga 2'
+        type: question
+        enabled: true
+      - id: vDuQzQHfg-trsRzSwmFzD
+        faq_question: 'test fråga 2:2'
+        faq_answer: 'test svar 2:2'
+        type: question
+        enabled: true
+    type: faq_group
+    enabled: true
+  -
+    id: elF4jYDW2coDm7vIn_TM7
+    category_title: 'Priser och integrationer'
+    type: faq_group
+    enabled: true
+    questions:
+      - id: 4IMoiJNHDYA9NVHOcaf9a
+        faq_question: 'Är Oqto byggt för redovisningsbyråer?'
+        type: question
+        enabled: true
+      - id: 9MjxF6QnAarcxxiaSHB4u
+        faq_question: 'Automatiserar ni allt?'
+        type: question
+        enabled: true
+  -
+    id: AtPD9490OiFUl4NdD4TJT
+    category_title: 'Kom igång med Oqto'
+    type: faq_group
+    enabled: true
+    questions:
+      - id: fio_VmGo5OKn6K86T0VKJ
+        faq_question: 'Automatiserar ni allt?'
+        type: question
+        enabled: true
+      - id: 4y25PjZ86UeEUCcVipn4U
+        faq_question: 'Automatiserar ni allt?'
+        type: question
+        enabled: true
 ---

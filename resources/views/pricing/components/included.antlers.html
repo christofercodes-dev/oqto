@@ -26,135 +26,151 @@
         <!-- KORT -->
         <div class="pricing-included-columns">
 
-            <!-- KORT 01 -->
-            <article class="pricing-included-card">
-
-                <div class="pricing-included-card-top">
-                    <span class="pricing-included-number">
-                        01
-                    </span>
-
-                    <span class="pricing-included-line"></span>
-                </div>
-
-                <div class="pricing-included-card-body">
-
+            <!-- 01 -->
+            <article class="pricing-included-item">
+        
+        
+                <div class="pricing-included-item-body">
+        
                     <h3 class="pricing-included-card-title">
                         {{ included_columns:0:title }}
                     </h3>
-
+        
                     <ul class="pricing-included-list">
-
+        
                         {{ included_columns:0:items }}
+        
                             <li>
-                                <span class="pricing-included-check">
-                                    ✓
-                                </span>
-
+                                <span class="pricing-included-check">+</span>
+        
                                 <span>
                                     {{ value }}
                                 </span>
                             </li>
+        
                         {{ /included_columns:0:items }}
-
+        
                     </ul>
-
+        
                 </div>
-
+        
                 <div class="pricing-included-card-footer">
-                    <span>Per enhet och månad. Traditionell och Modern.
+                    <span>
+                        Per enhet och månad. Traditionell och Modern.
                     </span>
                 </div>
-
+        
             </article>
+        
+        
+            <!-- 02 -->
+            <article class="pricing-included-item">
+        
 
-
-            <!-- KORT 02 -->
-            <article class="pricing-included-card">
-
-                <div class="pricing-included-card-top">
-                    <span class="pricing-included-number">
-                        02
-                    </span>
-
-                    <span class="pricing-included-line"></span>
-                </div>
-
-                <div class="pricing-included-card-body">
-
+        
+                <div class="pricing-included-item-body">
+        
                     <h3 class="pricing-included-card-title">
                         {{ included_columns:1:title }}
                     </h3>
-
+        
                     <ul class="pricing-included-list">
-
+        
                         {{ included_columns:1:items }}
+        
                             <li>
-                                <span class="pricing-included-check">
-                                    ✓
-                                </span>
-
+                                <span class="pricing-included-check">+</span>
+        
                                 <span>
                                     {{ value }}
                                 </span>
                             </li>
+        
                         {{ /included_columns:1:items }}
-
+        
                     </ul>
-
+        
                 </div>
-
+        
                 <div class="pricing-included-card-footer">
-                    <span>Bundle per bolag och månad. Därefter per styck.</span>
-                </div>
-
-            </article>
-
-
-            <!-- KORT 03 -->
-            <article class="pricing-included-card">
-
-                <div class="pricing-included-card-top">
-                    <span class="pricing-included-number">
-                        03
+                    <span>
+                        Bundle per bolag och månad. Därefter per styck.
                     </span>
-
-                    <span class="pricing-included-line"></span>
                 </div>
+        
+            </article>
+        
+        
+            <!-- 03 -->
+            <article class="pricing-included-item">
+        
 
-                <div class="pricing-included-card-body">
-
+        
+                <div class="pricing-included-item-body">
+        
                     <h3 class="pricing-included-card-title">
                         {{ included_columns:2:title }}
                     </h3>
-
+        
                     <ul class="pricing-included-list">
-
+        
                         {{ included_columns:2:items }}
+        
                             <li>
-                                <span class="pricing-included-check">
-                                    ✓
-                                </span>
-
+                                <span class="pricing-included-check">+</span>
+        
                                 <span>
                                     {{ value }}
                                 </span>
                             </li>
+        
                         {{ /included_columns:2:items }}
-
+        
                     </ul>
-
+        
                 </div>
-
+        
                 <div class="pricing-included-card-footer">
-                    <span>Ingår inte i transaktionsbundeln.
+                    <span>
+                        Ingår inte i transaktionsbundeln.
                     </span>
                 </div>
-
+        
             </article>
-
+        
         </div>
 
     </div>
 </section>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const section = document.querySelector(".pricing-included-section");
+
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    section.classList.add("is-visible");
+
+                    observer.unobserve(section);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.18
+        }
+    );
+
+    observer.observe(section);
+
+});
+</script>

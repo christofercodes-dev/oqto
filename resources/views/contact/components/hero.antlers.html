@@ -145,7 +145,6 @@
                 </div>
 
 
-                <!-- SAMMA KNAPPSTIL SOM WHY OQTO -->
                 <button
                     type="submit"
                     class="oqto-contact-btn"
@@ -165,6 +164,85 @@
                 </button>
 
             </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TEAM / KONTAKTPERSONER
+========================================================= -->
+
+<section class="team-section">
+
+    <div class="container team-container">
+
+        <div class="team-header">
+            <span class="team-small-title">
+                Vårt team
+            </span>
+        </div>
+
+        <div class="team-grid">
+
+            {{ contact_team }}
+
+                <article class="team-card">
+
+                    {{ if image }}
+                    <div class="team-image-wrapper">
+                        {{ image }}
+                            <img
+                                src="{{ url }}"
+                                alt="{{ alt ?? title }}"
+                                class="team-image"
+                            >
+                        {{ /image }}
+                    </div>
+                {{ /if }}
+
+                    <div class="team-info">
+
+                        {{ if role }}
+                            <p class="team-role">
+                                {{ role }}
+                            </p>
+                        {{ /if }}
+
+                        <h3 class="team-name">
+                            {{ title }}
+                        </h3>
+
+                        {{ if description }}
+                            <p class="team-description">
+                                {{ description }}
+                            </p>
+                        {{ /if }}
+
+                        <div class="team-contact">
+
+                            {{ if email }}
+                                <a href="mailto:{{ email }}" class="team-contact-link">
+                                    {{ email }}
+                                </a>
+                            {{ /if }}
+
+                            {{ if phone }}
+                                <a href="tel:{{ phone }}" class="team-contact-link">
+                                    {{ phone }}
+                                </a>
+                            {{ /if }}
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {{ /contact_team }}
 
         </div>
 

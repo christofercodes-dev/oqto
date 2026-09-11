@@ -1,20 +1,17 @@
+/* =========================================================
+   JOB SHOW
+========================================================= */
 
 .job-show-section {
     width: 100%;
     min-height: 100vh;
 
-    margin: 0;
     padding: 150px 40px 120px;
 
     box-sizing: border-box;
 
     background: #ffffff;
     color: #1a1715;
-
-    font-family: "Inter", sans-serif;
-
-    position: relative;
-    display: block;
 }
 
 .job-show-section *,
@@ -33,76 +30,144 @@
     max-width: 1280px;
 
     margin: 0 auto;
-    padding: 0;
-
-    display: block;
 }
 
 
 /* =========================================================
-   HEADER
+   GRID
 ========================================================= */
 
-.job-show-header {
-    width: 100%;
-    max-width: 1100px;
+.job-show-grid {
+    display: grid;
 
-    margin: 0;
-    padding: 0;
+    grid-template-columns:
+        minmax(0, 1fr)
+        360px;
+
+    gap: 120px;
+
+    align-items: start;
 }
 
 
-/* META */
+/* =========================================================
+   MAIN
+========================================================= */
+
+.job-show-main {
+    width: 100%;
+    max-width: 800px;
+}
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+.job-show-categories {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 26px;
+}
+
+.job-show-category {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 30px;
+
+    padding: 7px 13px;
+
+    border: 1px solid rgba(26, 23, 21, 0.16);
+
+    border-radius: 999px;
+
+    background: #ffffff;
+
+    color: #4a4744;
+
+    font-family: "Geist Mono", monospace;
+
+    font-size: 9px;
+    line-height: 1;
+
+    font-weight: 500;
+
+    letter-spacing: 0.05em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.job-show-title {
+    margin: 0;
+    padding: 0;
+
+    font-size: clamp(4.5rem, 7.5vw, 7.5rem);
+
+    line-height: 0.88;
+
+    font-weight: 400;
+
+    letter-spacing: -0.06em;
+
+    color: #1a1715;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
 
 .job-show-meta {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 
-    gap: 28px;
+    gap: 10px 22px;
 
-    margin: 0 0 28px;
-    padding: 0;
+    margin-top: 26px;
 }
 
 .job-show-meta-item {
-    display: block;
+    display: inline-flex;
+    align-items: center;
 
-    margin: 0;
-    padding: 0;
+    font-family: "Geist Mono", monospace;
 
-    font-size: 11px;
-    line-height: 16px;
-    font-weight: 700;
+    font-size: 9px;
 
-    letter-spacing: 0.1em;
+    line-height: 14px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.05em;
+
     text-transform: uppercase;
 
-    color: #ff5500;
-}
-
-.job-show-meta-item + .job-show-meta-item {
     color: #77716d;
 }
 
+.job-show-meta-item + .job-show-meta-item::before {
+    content: "";
 
-/* TITLE */
+    width: 3px;
+    height: 3px;
 
-.job-show-title {
-    display: block;
+    margin-right: 22px;
 
-    width: 100%;
+    border-radius: 50%;
 
-    margin: 0;
-    padding: 0;
-
-    font-size: clamp(4.5rem, 8vw, 8rem);
-    line-height: 0.92;
-    font-weight: 400;
-
-    letter-spacing: -0.055em;
-
-    color: #1a1715;
+    background: #ff5500;
 }
 
 
@@ -111,24 +176,19 @@
 ========================================================= */
 
 .job-show-intro {
-    width: 100%;
-    max-width: 760px;
+    max-width: 650px;
 
-    margin: 90px 140px 0 auto;
-    padding: 0;
+    margin-top: 86px;
 }
 
 .job-show-intro p {
-    display: block;
-
     margin: 0;
-    padding: 0;
 
-    font-size: clamp(1.25rem, 2vw, 1.65rem);
-    line-height: 1.55;
-    font-weight: 400;
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
 
-    letter-spacing: -0.015em;
+    line-height: 1.48;
+
+    letter-spacing: -0.02em;
 
     color: #4a4744;
 }
@@ -139,74 +199,59 @@
 ========================================================= */
 
 .job-show-content {
-    width: 100%;
-
-    margin: 140px 0 0;
-    padding: 40px 0 0;
-
     display: grid;
-    grid-template-columns: 0.35fr 1fr;
-    column-gap: 80px;
-    align-items: start;
+
+    grid-template-columns: 100px minmax(0, 1fr);
+
+    gap: 40px;
+
+    margin-top: 100px;
+
+    padding-top: 30px;
 
     border-top: 1px solid #e8e6e4;
 }
 
-
-/* LABEL */
-
 .job-show-content-label {
-    margin: 0;
-    padding: 0;
+    font-family: "Geist Mono", monospace;
 
-    font-size: 11px;
-    line-height: 16px;
-    font-weight: 700;
+    font-size: 9px;
 
-    letter-spacing: 0.1em;
+    line-height: 14px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+
     text-transform: uppercase;
 
     color: #ff5500;
 }
 
-
-/* BODY */
-
 .job-show-content-body {
-    width: 100%;
-    max-width: 760px;
+    max-width: 650px;
 
-    margin: 0;
-    padding: 0;
+    font-size: 15px;
 
-    font-size: 16px;
     line-height: 1.8;
-    font-weight: 400;
 
     color: #4a4744;
 }
 
-
-/* TEXT */
-
 .job-show-content-body p {
-    margin: 0 0 28px;
-    padding: 0;
+    margin: 0 0 26px;
 }
 
 .job-show-content-body p:last-child {
     margin-bottom: 0;
 }
 
-
-/* HEADINGS */
-
 .job-show-content-body h2,
 .job-show-content-body h3 {
-    margin: 56px 0 20px;
-    padding: 0;
+    margin: 52px 0 18px;
 
     font-weight: 400;
+
     line-height: 1.1;
 
     letter-spacing: -0.03em;
@@ -215,212 +260,357 @@
 }
 
 .job-show-content-body h2 {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
 }
 
 .job-show-content-body h3 {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
 }
-
-
-/* LISTS */
 
 .job-show-content-body ul,
 .job-show-content-body ol {
-    margin: 24px 0 32px;
-    padding-left: 22px;
+    margin: 22px 0 30px;
+
+    padding-left: 20px;
 }
 
 .job-show-content-body li {
-    margin: 0 0 12px;
-    padding-left: 6px;
+    margin-bottom: 10px;
 }
 
-.job-show-content-body li:last-child {
-    margin-bottom: 0;
+
+.job-show-sidebar {
+    position: sticky;
+    top: 40px;
 }
 
 
 /* =========================================================
-   APPLY
+   CLEAN APPLY
 ========================================================= */
 
-.job-show-apply {
+.job-apply {
     width: 100%;
 
-    margin: 140px 0 0;
-    padding: 56px 60px;
-
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-
-    gap: 60px;
-
-    background: #f3f0ed;
-    border-radius: 28px;
-}
-
-
-/* CONTENT */
-
-.job-show-apply-content {
-    max-width: 650px;
-
-    margin: 0;
     padding: 0;
+
+    background: transparent;
+
+    border: 0;
 }
 
 
-/* LABEL */
+/* =========================================================
+   HEADING
+========================================================= */
 
-.job-show-apply-label {
+.job-apply-heading {
+    padding-bottom: 28px;
+
+    border-bottom: 1px solid #1a1715;
+}
+
+.job-apply-label {
     display: block;
 
-    margin: 0 0 16px;
-    padding: 0;
+    margin-bottom: 18px;
 
-    font-size: 11px;
-    line-height: 16px;
-    font-weight: 700;
+    font-family: "Geist Mono", monospace;
 
-    letter-spacing: 0.1em;
+    font-size: 9px;
+
+    line-height: 14px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+
     text-transform: uppercase;
 
     color: #ff5500;
 }
 
-
-/* TITLE */
-
-.job-show-apply-title {
-    display: block;
-
+.job-apply-heading h2 {
     margin: 0;
-    padding: 0;
 
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    line-height: 1;
+    font-size: 2.5rem;
+
+    line-height: 0.95;
+
     font-weight: 400;
 
-    letter-spacing: -0.045em;
+    letter-spacing: -0.05em;
 
     color: #1a1715;
 }
 
+.job-apply-heading p {
+    max-width: 280px;
 
-/* TEXT */
+    margin: 14px 0 0;
 
-.job-show-apply-text {
-    display: block;
+    font-size: 13px;
 
-    margin: 18px 0 0;
-    padding: 0;
+    line-height: 1.5;
 
-    font-size: 16px;
-    line-height: 1.6;
-
-    color: #4a4744;
+    color: #77716d;
 }
 
 
 /* =========================================================
-   APPLY BUTTON
+   FORM
 ========================================================= */
 
-.job-show-apply-button {
-    flex-shrink: 0;
-
-    min-width: 190px;
-    min-height: 58px;
-
-    padding: 7px 7px 7px 28px;
+.job-application-form {
+    width: 100%;
 
     display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+}
+
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.job-form-field {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #dedbd8;
+}
+
+.job-form-field label {
+    font-family: "Geist Mono", monospace;
+
+    font-size: 8px;
+
+    line-height: 12px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: #77716d;
+}
+
+.job-form-field input,
+.job-form-field textarea {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    outline: 0;
+
+    border-radius: 0;
+
+    background: transparent;
+
+    color: #1a1715;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    box-shadow: none;
+
+    appearance: none;
+}
+
+.job-form-field input {
+    height: 26px;
+}
+
+.job-form-field textarea {
+    min-height: 60px;
+
+    resize: vertical;
+}
+
+.job-form-field input::placeholder,
+.job-form-field textarea::placeholder {
+    color: #aaa39e;
+}
+
+.job-form-field input:focus,
+.job-form-field textarea:focus {
+    border: 0;
+    outline: 0;
+}
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+.job-form-submit {
+    width: 100%;
+
+    height: 54px;
+
+    margin-top: 24px;
+
+    padding: 0 6px 0 20px;
+
+    display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
 
     border: 1px solid #1a1715;
+
     border-radius: 999px;
 
-    background: transparent;
-    color: #1a1715;
+    background: #1a1715;
 
-    text-decoration: none;
+    color: #ffffff;
 
-    font-size: 14px;
+    font-family: inherit;
+
+    font-size: 13px;
+
     font-weight: 600;
 
+    cursor: pointer;
+
     transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease;
+        background-color 0.2s ease,
+        border-color 0.2s ease;
 }
 
-.job-show-apply-arrow {
-    width: 44px;
-    height: 44px;
+.job-form-arrow {
+    width: 42px;
+    height: 42px;
 
-    flex-shrink: 0;
+    flex: 0 0 42px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 50%;
 
     background: #ff5500;
+
     color: #ffffff;
 
-    font-size: 18px;
+    font-size: 17px;
 
     transition:
-        transform 0.3s ease,
-        background-color 0.3s ease;
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
 
-.job-show-apply-button:hover {
-    background: #1a1715;
-    border-color: #1a1715;
-    color: #ffffff;
+.job-form-submit:hover {
+    background: #ff5500;
+
+    border-color: #ff5500;
 }
 
-.job-show-apply-button:hover .job-show-apply-arrow {
-    transform: translateX(4px);
+.job-form-submit:hover .job-form-arrow {
+    transform: translateX(3px);
+
+    background: #ffffff;
+
+    color: #ff5500;
 }
 
+
+/* =========================================================
+   NOTE
+========================================================= */
+
+.job-apply-note {
+    margin: 14px 0 0;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    color: #aaa39e;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .job-show-sidebar {
+        position: relative;
+        top: auto;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .job-apply-heading h2 {
+        font-size: 2.25rem;
+    }
+
+    .job-apply-heading {
+        padding-bottom: 24px;
+    }
+
+    .job-form-field {
+        padding: 16px 0;
+    }
+
+    .job-form-submit {
+        margin-top: 22px;
+    }
+
+}
 
 /* =========================================================
    BACK
 ========================================================= */
 
 .job-show-back {
-    width: 100%;
-
-    margin: 70px 0 0;
-    padding: 0;
+    margin-top: 80px;
 }
 
 .job-show-back-link {
     display: inline-flex;
+
     align-items: center;
 
     gap: 10px;
 
-    margin: 0;
-    padding: 0;
-
     color: #77716d;
 
-    font-size: 13px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: 12px;
 
     text-decoration: none;
 
-    transition: color 0.25s ease;
+    transition: color 0.2s ease;
 }
 
 .job-show-back-link:hover {
@@ -429,191 +619,56 @@
 
 
 /* =========================================================
-   JOB SHOW — MOBILE FORCE
-   Lägg detta LÄNGST NER i CSS-filen
+   TABLET
 ========================================================= */
 
-@media (max-width: 767px) {
+@media (max-width: 1050px) {
+
+    .job-show-grid {
+        grid-template-columns:
+            minmax(0, 1fr)
+            330px;
+
+        gap: 60px;
+    }
+
+    .job-apply {
+        padding: 25px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
 
     .job-show-section {
-        width: 100% !important;
-        min-height: 0 !important;
-        height: auto !important;
-
-        padding: 110px 18px 70px !important;
-
-        display: block !important;
-        overflow: visible !important;
+        padding: 110px 24px 80px;
     }
 
-    .job-show-container {
-        width: 100% !important;
-        max-width: none !important;
+    .job-show-grid {
+        grid-template-columns: 1fr;
 
-        margin: 0 !important;
-        padding: 0 !important;
-
-        display: block !important;
+        gap: 65px;
     }
 
-
-    /* HEADER */
-
-    .job-show-header {
-        width: 100% !important;
-        max-width: none !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
+    .job-show-main {
+        max-width: none;
     }
 
-    .job-show-meta {
-        display: flex !important;
-        flex-wrap: wrap !important;
+    .job-show-sidebar {
+        position: relative;
 
-        gap: 8px 16px !important;
-
-        margin: 0 0 22px !important;
-        padding: 0 !important;
+        top: auto;
     }
 
-    .job-show-meta-item {
-        font-size: 9px !important;
-        line-height: 14px !important;
+    .job-apply {
+        max-width: 600px;
     }
 
-    .job-show-title {
-        width: 100% !important;
-        max-width: none !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        font-size: clamp(3rem, 13vw, 4.5rem) !important;
-        line-height: 0.94 !important;
-        letter-spacing: -0.05em !important;
-    }
-
-
-    /* INTRO */
-
-    .job-show-intro {
-        width: 100% !important;
-        max-width: none !important;
-
-        margin: 50px 0 0 !important;
-        padding: 0 !important;
-    }
-
-    .job-show-intro p {
-        margin: 0 !important;
-        padding: 0 !important;
-
-        font-size: 17px !important;
-        line-height: 1.6 !important;
-    }
-
-
-    /* CONTENT */
-
-    .job-show-content {
-        width: 100% !important;
-        max-width: none !important;
-
-        margin: 70px 0 0 !important;
-        padding: 28px 0 0 !important;
-
-        display: flex !important;
-        flex-direction: column !important;
-
-        gap: 22px !important;
-    }
-
-    .job-show-content-label {
-        font-size: 9px !important;
-        line-height: 14px !important;
-    }
-
-    .job-show-content-body {
-        width: 100% !important;
-        max-width: none !important;
-
-        font-size: 15px !important;
-        line-height: 1.7 !important;
-    }
-
-    .job-show-content-body p {
-        margin: 0 0 24px !important;
-    }
-
-    .job-show-content-body h2 {
-        font-size: 1.8rem !important;
-        margin: 42px 0 16px !important;
-    }
-
-    .job-show-content-body h3 {
-        font-size: 1.3rem !important;
-        margin: 36px 0 16px !important;
-    }
-
-
-    /* APPLY */
-
-    .job-show-apply {
-        width: 100% !important;
-        max-width: none !important;
-
-        margin: 70px 0 0 !important;
-        padding: 34px 24px !important;
-
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-
-        gap: 28px !important;
-
-        border-radius: 22px !important;
-    }
-
-    .job-show-apply-content {
-        width: 100% !important;
-        max-width: none !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .job-show-apply-title {
-        margin: 0 !important;
-        padding: 0 !important;
-
-        font-size: clamp(2.2rem, 10vw, 3rem) !important;
-        line-height: 1 !important;
-    }
-
-    .job-show-apply-text {
-        margin: 14px 0 0 !important;
-        padding: 0 !important;
-
-        font-size: 14px !important;
-        line-height: 1.6 !important;
-    }
-
-    .job-show-apply-button {
-        width: 100% !important;
-        min-width: 0 !important;
-        min-height: 54px !important;
-    }
-
-
-    /* BACK */
-
-    .job-show-back {
-        width: 100% !important;
-
-        margin: 50px 0 0 !important;
-        padding: 0 !important;
-    }
 }
 
 
@@ -621,30 +676,100 @@
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 767px) {
 
     .job-show-section {
-        padding: 96px 16px 60px !important;
+        padding: 96px 18px 70px;
     }
+
+
+    /* CATEGORIES */
+
+    .job-show-categories {
+        margin-bottom: 22px;
+    }
+
+
+    /* TITLE */
 
     .job-show-title {
-        font-size: 2.8rem !important;
+        font-size: clamp(3.2rem, 14vw, 5rem);
+
+        line-height: 0.92;
     }
 
+
+    /* META */
+
+    .job-show-meta {
+        margin-top: 20px;
+    }
+
+
+    /* INTRO */
+
     .job-show-intro {
-        margin-top: 46px !important;
+        margin-top: 50px;
     }
 
     .job-show-intro p {
-        font-size: 16px !important;
+        font-size: 17px;
+
+        line-height: 1.58;
     }
+
+
+    /* CONTENT */
 
     .job-show-content {
-        margin-top: 62px !important;
+        margin-top: 65px;
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
     }
 
-    .job-show-apply {
-        margin-top: 62px !important;
-        padding: 30px 20px !important;
+    .job-show-content-body {
+        font-size: 15px;
+
+        line-height: 1.7;
     }
+
+
+    /* FORM */
+
+    .job-apply {
+        padding: 26px 22px;
+
+        border-radius: 22px;
+    }
+
+    .job-apply-heading h2 {
+        font-size: 2.2rem;
+    }
+
+
+    /* BACK */
+
+    .job-show-back {
+        margin-top: 55px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .job-form-submit,
+    .job-form-submit-arrow,
+    .job-show-back-link,
+    .job-form-field input,
+    .job-form-field textarea {
+        transition: none;
+    }
+
 }

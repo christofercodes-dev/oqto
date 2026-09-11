@@ -6,10 +6,10 @@ template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1789034281
+updated_at: 1789055466
 pricing_button_text: 'Boka demo'
 intro_small_title: Bolagslägen
-intro_title: "Ingen byrålicens, \Lbara olika bolagslägen."
+intro_title: 'Ingen byrålicens, </br>bara olika bolagslägen.'
 intro_body: 'Vi har ingen byrålicens och systemet kostar ingenting för er som redovisningsbyrå. Vi tar betalt per företag och användarna på dessa. Välj mellan Traditionell, Modern eller Förvaltning nedan.'
 pricing_plans:
   -
@@ -35,7 +35,7 @@ pricing_plans:
     id: eTiJRgHFQetkdFMafsa1S
     plan_title: Modern
     plan_number: '02'
-    description: 'Byrå och kund arbetar tillsammans. med månadsavslut och automationer. Passar volah med hög transaktionsvolym.'
+    description: 'Byrå och kund arbetar tillsammans. med månadsavslut och automationer. Passar bolag med hög transaktionsvolym.'
     features:
       - Bokföring
       - Försäljning

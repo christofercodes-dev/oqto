@@ -50,6 +50,14 @@ tabs:
             field:
               type: text
               display: 'contact phone'
+      -
+        display: team
+        fields:
+          -
+            handle: contact_team
+            field:
+              type: entries
+              display: Kontaktpersoner
   sidebar:
     display: Sidebar
     sections:

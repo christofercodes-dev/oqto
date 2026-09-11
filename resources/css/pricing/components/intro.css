@@ -45,21 +45,22 @@
 
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    font-family: "Geist Mono", monospace;
 
     color: #2E251F;
 }
 
 .pricing-intro-title {
-    max-width: 800px;
+    max-width: 700px;
 
     margin: 0;
 
-    font-size: clamp(3rem, 5vw, 4.8rem);
+    font-size: clamp(3rem, 5vw, 4rem);
 
     font-weight: 400;
 
     line-height: 1.08;
-
+    
     letter-spacing: -0.03em;
 
     color: #2E251F;
@@ -71,18 +72,18 @@
    ========================= */
 
 .pricing-intro-body {
-    max-width: 500px;
-
+    max-width: 400px;
+    margin-left: 200px;
     padding-top: 50px;
 }
 
 .pricing-intro-body p {
     margin: 0;
-
+    
     font-size: 1rem;
 
     line-height: 1.7;
-
+    
     color: #4a4744;
 }
 

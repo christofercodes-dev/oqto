@@ -161,12 +161,11 @@
 
 
 .feature-card-2 {
-    background:
-        linear-gradient(
-            135deg,
-            #e8f2fc 0%,
-            #b9d9f5 100%
-        );
+    background: linear-gradient(
+        135deg,
+        #f5e9a8 0%,
+        #f3cf1b4d 100%
+    );
 }
 
 
@@ -274,6 +273,7 @@
 .feature-card-title {
 
     margin: 0 0 18px;
+    font-family: "Geist Mono", monospace;
 
     font-size:
         clamp(1.5rem, 3vw, 1rem);

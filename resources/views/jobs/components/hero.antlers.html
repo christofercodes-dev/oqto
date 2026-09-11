@@ -1,40 +1,51 @@
 <section class="jobs-intro-section">
 
     <div class="container jobs-intro-container">
-
+    
         <div class="jobs-intro-header">
-
+    
             <div class="jobs-intro-left">
-
+    
                 <span class="jobs-intro-small-title">
                     {{ jobs_small_title }}
                 </span>
-
+    
                 <h1 class="jobs-intro-title">
                     {{ jobs_title | nl2br }}
                 </h1>
-
+    
             </div>
-
+    
             <div class="jobs-intro-right">
-
+    
                 <p class="jobs-intro-text">
                     {{ jobs_text | nl2br }}
                 </p>
-
+    
+                <div class="jobs-intro-visual">
+    
+                    <div class="jobs-intro-svg">
+                        <img
+                            src="/assets/job-img-1.svg"
+                            alt=""
+                        >
+                    </div>
+    
+                    <div class="jobs-intro-svg">
+                        <img
+                            src="/assets/job-img-2.svg"
+                            alt=""
+                        >
+                    </div>
+    
+                </div>
+    
             </div>
-
+    
         </div>
-
-
-        <div class="jobs-intro-visual">
-
-            {{ if jobs_svg }}
-                {{ jobs_svg }}
-            {{ /if }}
-
-        </div>
-
+    
     </div>
-
-</section>
+    
+    
+    </section>
+    

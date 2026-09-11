@@ -1,184 +1,168 @@
-.pricing-plans-section {
+/* =========================================================
+   PRICING PLANS
+   ========================================================= */
+
+   .pricing-plans-section {
     width: 100%;
     background-color: #ffffff;
-
     padding: 100px 40px 100px;
-
     box-sizing: border-box;
-
-
     color: #2E251F;
 }
 
 .pricing-plans-container {
     max-width: 1280px;
-
     margin: 0 auto;
-
     display: grid;
-
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
     gap: 24px;
 }
 
 
-/* =========================
+/* =========================================================
    PRISKORT
-   ========================= */
+   ========================================================= */
 
 .pricing-card {
     min-height: 620px;
-
     padding: 40px;
-
     box-sizing: border-box;
-
     border-radius: 28px;
-
     display: flex;
     flex-direction: column;
-
     justify-content: space-between;
-
     overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 
-/* Färger */
+/* =========================================================
+   KORTFÄRGER
+   ========================================================= */
 
 .pricing-card-1 {
-    background:
-        linear-gradient(
-            135deg,
-            #fcebe4 0%,
-            #fcab83 100%
-        );
+    background-color: #E2ECE4;
 }
 
 .pricing-card-2 {
-    background:
-        linear-gradient(
-            135deg,
-            #e8f2fc 0%,
-            #b9d9f5 100%
-        );
+    background-color: #F5EED9;
 }
 
 
-/* =========================
+/* =========================================================
    TOPP
-   ========================= */
+   ========================================================= */
 
 .pricing-card-top {
     display: flex;
-
     align-items: flex-start;
-
     justify-content: space-between;
-
     gap: 24px;
 }
 
 .pricing-card-title {
     margin: 0;
-
-    font-size: clamp(2rem, 3vw, 2rem);
-
+    font-size: clamp(1.7rem, 3vw, 2rem);
+    font-family: "Geist Mono", monospace;
     font-weight: 400;
-
     line-height: 1;
-
     letter-spacing: -0.03em;
 }
 
 .pricing-card-number {
     font-size: clamp(2rem, 5vw, 1rem);
-
+    font-family: "Geist Mono", monospace;
     font-weight: 400;
-
     line-height: 0.85;
-
     letter-spacing: -0.05em;
-
     opacity: 0.8;
 }
 
 
-/* =========================
+/* =========================================================
    INNEHÅLL
-   ========================= */
+   ========================================================= */
 
 .pricing-card-content {
     margin-top: 60px;
-
     flex: 1;
 }
 
 .pricing-card-description {
-    max-width: 480px;
-
+    max-width: 500px;
     margin: 0 0 32px;
-
-    font-size: 1.2rem;
-
+    font-size: 18px;
     line-height: 1.6;
-
     color: #4a4744;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 
-/* =========================
+/* =========================================================
    FEATURES
-   ========================= */
+   ========================================================= */
 
 .pricing-card-features {
     list-style: none;
-
     padding: 0;
     margin: 0;
-
     display: flex;
-
     flex-direction: column;
-
     gap: 14px;
 }
 
 .pricing-card-features li {
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     font-size: 1rem;
-
     color: #1a1715;
 }
 
+
+/* Checkmark */
+
 .feature-dot {
-    width: 7px;
-    height: 7px;
-
+    width: 24px;
+    height: 24px;
     flex-shrink: 0;
-
-    border-radius: 50%;
-
-    background-color: #f35d08;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
 }
 
-/* ==================================================
-   INGÅR EJ
-   ================================================== */
 
-   .pricing-not-included {
+/* Checkmark – kort 1 */
+
+.pricing-card-1 .feature-dot {
+    background-color: #B8CCBC;
+    color: #2E4A36;
+}
+
+
+/* Checkmark – kort 2 */
+
+.pricing-card-2 .feature-dot {
+    background-color: #E8DDBB;
+    color: #665A35;
+}
+
+
+/* =========================================================
+   INGÅR EJ
+   ========================================================= */
+
+.pricing-not-included {
     margin-top: 10px;
     padding-top: 24px;
 }
-
-/* Rubrik */
 
 .pricing-not-included-title {
     margin: 0 0 12px;
@@ -189,13 +173,10 @@
     color: #77736f;
 }
 
-/* Lista */
-
 .pricing-not-included-list {
     list-style: none;
     margin: 0;
     padding: 0;
-
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -204,125 +185,138 @@
 .pricing-not-included-list li {
     position: relative;
     padding-left: 16px;
-
     font-size: 0.9rem;
     line-height: 1.5;
     color: #77736f;
 }
-
-/* Litet streck framför varje punkt */
 
 .pricing-not-included-list li::before {
     content: "–";
     position: absolute;
     left: 0;
     top: 0;
-
     color: #999590;
 }
 
 
-/* =========================
+/* =========================================================
    BOTTEN
-   ========================= */
+   ========================================================= */
 
-.pricing-card-bottom {
+   .pricing-card-bottom {
     display: flex;
-
-    align-items: flex-end;
-
-    justify-content: space-between;
-
-    gap: 24px;
-
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
     padding-top: 40px;
-
+    text-align: center;
 }
 
-
-/* Månadskostnad */
-
+/* Pris + månad på samma rad */
 .pricing-card-price {
     display: flex;
-
-    flex-direction: column;
-
-    gap: 4px;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
 }
 
 .pricing-price {
-    font-size: clamp(2rem, 3vw, 3rem);
-
+    font-size: clamp(3.5rem, 6vw, 5rem);
     font-weight: 400;
-
-    line-height: 1;
-
-    letter-spacing: -0.03em;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    color: #1a1715;
 }
 
 .pricing-price-label {
-    font-size: 0.8rem;
-
+    font-size: 0.9rem;
+    line-height: 1;
     color: #4a4744;
 }
 
-
 /* Verifikationsgräns */
-
 .pricing-card-limit {
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
-    flex-direction: column;
+    padding: 10px 20px;
+    border: 1px solid rgba(26, 23, 21, 0.15);
+    border-radius: 999px;
 
-    align-items: flex-end;
+    background-color: rgba(255, 255, 255, 0.35);
 
-    gap: 4px;
-
-    text-align: right;
+    text-align: center;
 }
 
 .pricing-limit-label {
-    font-size: 0.75rem;
-
+    font-size: 0.65rem;
     text-transform: uppercase;
-
     letter-spacing: 0.08em;
-
     font-weight: 700;
-
     color: #4a4744;
 }
 
 .pricing-limit-value {
-    font-size: 1rem;
-
+    font-size: 0.85rem;
     font-weight: 600;
-
     color: #1a1715;
 }
 
-
-/* =========================
+/* =========================================================
    HOVER
-   ========================= */
-
-.pricing-card {
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
+   ========================================================= */
 
 .pricing-card:hover {
     transform: translateY(-6px);
-
     box-shadow:
         0 24px 50px rgba(26, 23, 21, 0.08);
 }
 
+/* =========================================================
+   INGÅR EJ – KRYSS
+   ========================================================= */
 
-/* =========================
+   .pricing-not-included-list li {
+    position: relative;
+    padding-left: 36px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #77736f;
+}
+
+.pricing-not-included-list li::before {
+    content: "×";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+
+    background-color: #D7DFD9;
+    color: #68756C;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+
+/* =========================================================
    MOBIL
-   ========================= */
+   ========================================================= */
 
 @media (max-width: 960px) {
 
@@ -332,15 +326,12 @@
 
     .pricing-plans-container {
         grid-template-columns: 1fr;
-
         gap: 20px;
     }
 
     .pricing-card {
         min-height: 560px;
-
         padding: 32px 24px;
-
         border-radius: 24px;
     }
 
@@ -350,13 +341,11 @@
 
     .pricing-card-bottom {
         flex-direction: column;
-
         align-items: flex-start;
     }
 
     .pricing-card-limit {
         align-items: flex-start;
-
         text-align: left;
     }
 }

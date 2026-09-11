@@ -2,117 +2,203 @@
 
     <div class="job-show-container">
 
-        <!-- ==================================================
-             HEADER
-             ================================================== -->
+        <div class="job-show-grid">
 
-        <div class="job-show-header">
+            <!-- ==================================================
+                 JOBB
+                 ================================================== -->
 
-            <div class="job-show-meta">
+            <main class="job-show-main">
 
-                {{ if job:job_type }}
-                    <span class="job-show-meta-item">
-                        {{ job:job_type }}
-                    </span>
-                {{ /if }}
+                <!-- KATEGORIER -->
+                <div class="job-show-categories">
 
-                {{ if job:job_location }}
-                    <span class="job-show-meta-item">
-                        {{ job:job_location }}
-                    </span>
-                {{ /if }}
+                    {{ job:category }}
+                        <span class="job-show-category">
+                            {{ categories }}
+                        </span>
+                    {{ /job:category }}
 
-            </div>
-
-            <h1 class="job-show-title">
-                {{ job:job_title }}
-            </h1>
-
-        </div>
-
-
-        <!-- ==================================================
-             INTRO
-             ================================================== -->
-
-        {{ if job:job_intro }}
-
-            <div class="job-show-intro">
-
-                <p>
-                    {{ job:job_intro | nl2br }}
-                </p>
-
-            </div>
-
-        {{ /if }}
-
-
-        <!-- ==================================================
-             CONTENT
-             ================================================== -->
-
-        {{ if job:job_content }}
-
-            <div class="job-show-content">
-
-                <div class="job-show-content-label">
-                    Om rollen
                 </div>
 
-                <div class="job-show-content-body">
-                    {{ job:job_content }}
+
+                <!-- TITEL -->
+                <h1 class="job-show-title">
+                    {{ job:job_title }}
+                </h1>
+
+
+                <!-- META -->
+                <div class="job-show-meta">
+
+                    {{ if job:job_location }}
+                        <span class="job-show-meta-item">
+                            {{ job:job_location }}
+                        </span>
+                    {{ /if }}
+
+                    {{ if job:job_type }}
+                        <span class="job-show-meta-item">
+                            {{ job:job_type }}
+                        </span>
+                    {{ /if }}
+
                 </div>
 
-            </div>
 
-        {{ /if }}
+                <!-- INTRO -->
+                {{ if job:job_intro }}
+                    <div class="job-show-intro">
+                        <p>
+                            {{ job:job_intro | nl2br }}
+                        </p>
+                    </div>
+                {{ /if }}
 
 
-        <!-- ==================================================
-             APPLY
-             ================================================== -->
+                <!-- CONTENT -->
+                {{ if job:job_content }}
 
-        {{ if job:job_apply_url }}
+                    <div class="job-show-content">
 
-            <div class="job-show-apply">
+                        <div class="job-show-content-label">
+                            Om rollen
+                        </div>
 
-                <div class="job-show-apply-content">
+                        <div class="job-show-content-body">
+                            {{ job:job_content }}
+                        </div>
 
-                    <span class="job-show-apply-label">
-                        Nästa steg
-                    </span>
+                    </div>
 
-                    <h2 class="job-show-apply-title">
-                        Låter det som du?
-                    </h2>
+                {{ /if }}
 
-                    <p class="job-show-apply-text">
-                        Skicka in din ansökan så hör vi av oss.
+            </main>
+
+
+            <!-- ==================================================
+                 ANSÖKAN
+                 ================================================== -->
+
+            <aside class="job-show-sidebar">
+
+                <div class="job-apply">
+
+                    <div class="job-apply-top">
+
+                        <span class="job-apply-label">
+                            Ansök
+                        </span>
+
+                        
+
+                    </div>
+
+
+                    <div class="job-apply-heading">
+
+                        <h2>
+                            Låter det som du?
+                        </h2>
+
+                        <p>
+                            Skicka dina uppgifter så återkommer vi.
+                        </p>
+
+                    </div>
+
+
+                    <form class="job-application-form">
+
+                        <div class="job-form-field">
+
+                            <label for="job-name">
+                                Namn
+                            </label>
+
+                            <input
+                                type="text"
+                                id="job-name"
+                                name="name"
+                                placeholder="För- och efternamn"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="job-form-field">
+
+                            <label for="job-email">
+                                E-post
+                            </label>
+
+                            <input
+                                type="email"
+                                id="job-email"
+                                name="email"
+                                placeholder="din@email.se"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="job-form-field">
+
+                            <label for="job-phone">
+                                Telefon
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="job-phone"
+                                name="phone"
+                                placeholder="070-000 00 00"
+                            >
+
+                        </div>
+
+
+                        <div class="job-form-field">
+
+                            <label for="job-message">
+                                Kort om dig
+                            </label>
+
+                            <textarea
+                                id="job-message"
+                                name="message"
+                                rows="3"
+                                placeholder="Berätta kort om dig..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="job-form-submit"
+                        >
+                            <span>
+                                Skicka ansökan
+                            </span>
+
+                          
+                        </button>
+
+                    </form>
+
+
+                    <p class="job-apply-note">
+                        Genom att skicka in din ansökan godkänner du att vi behandlar dina uppgifter för rekrytering.
                     </p>
 
                 </div>
 
-                <a
-                    href="{{ job:job_apply_url }}"
-                    class="job-show-apply-button"
-                    target="_blank"
-                    rel="noopener"
-                >
+            </aside>
 
-                    <span>
-                        {{ job:job_apply_text ?? "Ansök nu" }}
-                    </span>
-
-                    <span class="job-show-apply-arrow">
-                        →
-                    </span>
-
-                </a>
-
-            </div>
-
-        {{ /if }}
+        </div>
 
 
         <!-- ==================================================
@@ -121,7 +207,10 @@
 
         <div class="job-show-back">
 
-            <a href="/jobs" class="job-show-back-link">
+            <a
+                href="/jobs"
+                class="job-show-back-link"
+            >
                 <span>←</span>
                 <span>Till alla lediga jobb</span>
             </a>

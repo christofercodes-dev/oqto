@@ -1,0 +1,54 @@
+title: 'Team member'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+      -
+        display: 'team member'
+        fields:
+          -
+            handle: role
+            field:
+              type: text
+              display: Roll
+          -
+            handle: description
+            field:
+              type: text
+              display: Beskrivning
+          -
+            handle: image
+            field:
+              container: assets
+              type: assets
+              display: Bild
+          -
+            handle: email
+            field:
+              type: text
+              display: E-post
+          -
+            handle: phone
+            field:
+              type: text
+              display: Telefon
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

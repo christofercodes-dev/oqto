@@ -1,355 +1,516 @@
 
 .pricing-included-section {
     width: 100%;
-    padding: 110px 40px;
+    padding: 100px 40px;
     box-sizing: border-box;
-
-    background: #e7f1fa;
-    border-radius: 50px;
-
-    color: #2E251F;
+    border-radius: 60px;
+    background-color: #E1EDF7;
+    color: #2e251f;
 }
 
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
 .pricing-included-container {
+    width: 100%;
     max-width: 1280px;
     margin: 0 auto;
 }
 
 
-/* ==================================================
+/* =========================================================
    HEADER
-   ================================================== */
+   ========================================================= */
 
 .pricing-included-header {
     display: grid;
-    grid-template-columns: 1fr 0.5fr;
-    gap: 100px;
-    align-items: end;
-
-    margin-bottom: 70px;
+    grid-template-columns: 1fr 0.7fr;
+    gap: 80px;
+    align-items: start;
 }
+
+
+/* =========================================================
+   RUBRIK
+   ========================================================= */
 
 .pricing-included-heading {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
 }
 
 .pricing-included-small-title {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Geist Mono", monospace;
     text-transform: uppercase;
-
-    color: #77736f;
+    color: #2e251f;
 }
 
 .pricing-included-title {
     margin: 0;
-
     max-width: 800px;
-
-    font-size: clamp(3rem, 5vw, 4.8rem);
+    font-size: 65px;
     font-weight: 400;
-    line-height: 0.98;
-    letter-spacing: -2.5%;
-
-    color: #2E251F;
+    line-height: 70px;
+    letter-spacing: -0.25rem;
+    color: #2e251f;
 }
+
+
+/* =========================================================
+   INTROTEXT
+   ========================================================= */
 
 .pricing-included-intro {
     max-width: 400px;
+    padding-top: 40px;
 }
 
 .pricing-included-intro p {
     margin: 0;
-
-    font-size: 1.1rem;
-    line-height: 23px;
-
+    font-size: 18px;
+    line-height: 1.4;
     color: #625d58;
 }
 
 
-/* ==================================================
-   CARD GRID
-   ================================================== */
+/* =========================================================
+   KOLUMNER
+   ========================================================= */
 
 .pricing-included-columns {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-
-    max-width: 1180px;
-    margin: 0 auto;
+    gap: 70px;
+    margin-top: 90px;
 }
 
 
-/* ==================================================
-   CARD
-   ================================================== */
+/* =========================================================
+   ENSKILD KOLUMN
+   ========================================================= */
 
-.pricing-included-card {
-    position: relative;
-
-    min-height: 430px;
-    padding: 32px;
-
+.pricing-included-item {
     display: flex;
     flex-direction: column;
-
-    box-sizing: border-box;
-
-    background: rgba(255, 255, 255, 0.82);
-
-    border: 1px solid rgba(255, 255, 255, 0.95);
-    border-radius: 24px;
-
-    box-shadow:
-        0 1px 2px rgba(26, 23, 21, 0.03),
-        0 8px 30px rgba(26, 23, 21, 0.045);
-
-    transition:
-        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.4s ease,
-        background-color 0.4s ease;
-}
-
-.pricing-included-card:hover {
-    transform: translateY(-7px);
-
-    background: rgba(255, 255, 255, 0.96);
-
-    box-shadow:
-        0 18px 40px rgba(26, 23, 21, 0.08),
-        0 30px 70px rgba(26, 23, 21, 0.06);
+    align-items: center;
+    min-width: 0;
 }
 
 
-/* ==================================================
-   CARD TOP
-   ================================================== */
+/* =========================================================
+   NUMMER + LINJE
+   ========================================================= */
 
-.pricing-included-card-top {
+.pricing-included-item-top {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 24px;
 }
 
 .pricing-included-number {
+    flex-shrink: 0;
     font-family: "Geist Mono", monospace;
-
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 500;
-
-    letter-spacing: 0.08em;
-
-    color: #99938d;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    color: #625d58;
 }
 
 .pricing-included-line {
-    width: 32px;
+    width: 100%;
     height: 1px;
-
-    background: #d8d5d1;
+    background-color: rgba(26, 23, 21, 0.12);
 }
 
 
-/* ==================================================
-   CARD BODY
-   ================================================== */
-
-.pricing-included-card-body {
-    padding-top: 65px;
-}
-
-
-/* ==================================================
-   TITLE
-   ================================================== */
+/* =========================================================
+   TITEL PILL
+   ========================================================= */
 
 .pricing-included-card-title {
-    margin: 0 0 32px;
-
-    max-width: 270px;
-
-    font-size: 1.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    max-width: 100%;
+    min-height: 42px;
+    margin: 0 0 28px;
+    padding: 10px 18px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    border: 0.5px solid #2e251f;
+    background: transparent;
+    color: #2e251f;
+    font-size: 0.95rem;
     font-weight: 500;
-
-    line-height: 1.08;
-    letter-spacing: -0.04em;
-
-    color: #1a1715;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-align: center;
 }
 
 
-/* ==================================================
-   LIST
-   ================================================== */
+/* =========================================================
+   INNEHÅLL
+   ========================================================= */
 
-.pricing-included-list {
+.pricing-included-item-body {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    min-height: 230px;
+}
 
+
+/* =========================================================
+   INNEHÅLLSLISTA
+   ========================================================= */
+
+.pricing-included-list {
+    width: 100%;
+    max-width: 260px;
+    list-style: none;
     margin: 0;
     padding: 0;
-
-    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .pricing-included-list li {
     display: flex;
     align-items: flex-start;
-
-    gap: 11px;
-
+    gap: 12px;
     margin: 0;
-
-    font-size: 0.9rem;
-    line-height: 1.55;
-
-    color: #55514d;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #2e251f;
 }
 
 
-/* ==================================================
-   CHECK
-   ================================================== */
+/* =========================================================
+   PLUS
+   ========================================================= */
 
 .pricing-included-check {
-    display: flex;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    width: 17px;
-    height: 17px;
-
-    flex: 0 0 17px;
-
     margin-top: 1px;
-
     border-radius: 50%;
-
-    background: #fce9df;
-
-    color: #ff5500;
-
-    font-size: 9px;
-    font-weight: 700;
+    background-color: #2e251f;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1;
 }
 
 
-/* ==================================================
-   FOOTER / INFO
-   ================================================== */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 .pricing-included-card-footer {
-    margin-top: auto;
-    padding-top: 22px;
+    width: 100%;
+    max-width: 260px;
+    min-height: 42px;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    color: #8a8580;
+    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
 
-    border-top: 1px solid rgba(26, 23, 21, 0.07);
-
-    font-size: 0.68rem;
-    line-height: 1.5;
-
-    color: #99938d;
+.pricing-included-card-footer span {
+    display: block;
 }
 
 
-/* ==================================================
-   KORT 2
-   ================================================== */
-
-.pricing-included-card:nth-child(2) {
-    background: rgba(255, 255, 255, 0.76);
-}
-
-
-/* ==================================================
-   KORT 3
-   ================================================== */
-
-.pricing-included-card:nth-child(3) {
-    background: rgba(255, 255, 255, 0.70);
-}
-
-
-/* ==================================================
-   MOBILE / TABLET
-   ================================================== */
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 960px) {
 
     .pricing-included-section {
-        padding: 80px 24px;
-        border-radius: 38px;
+        padding: 70px 24px;
     }
 
     .pricing-included-header {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
 
-        margin-bottom: 55px;
+    .pricing-included-title {
+        font-size: clamp(3.5rem, 8vw, 5rem);
     }
 
     .pricing-included-intro {
         max-width: 600px;
+        padding-top: 0;
     }
 
     .pricing-included-columns {
         grid-template-columns: 1fr;
-        max-width: 650px;
+        gap: 50px;
+        margin-top: 60px;
     }
 
-    .pricing-included-card {
-        min-height: 380px;
+    .pricing-included-item {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
 
-/* ==================================================
-   MOBILE
-   ================================================== */
+/* =========================================================
+   MOBIL
+   ========================================================= */
 
 @media (max-width: 600px) {
 
     .pricing-included-section {
-        padding: 65px 20px;
-        border-radius: 28px;
+        padding: 60px 20px;
+    }
+
+    .pricing-included-header {
+        gap: 24px;
+    }
+
+    .pricing-included-heading {
+        gap: 18px;
+    }
+
+    .pricing-included-small-title {
+        font-size: 0.72rem;
+    }
+
+    .pricing-included-title {
+        font-size: clamp(2.8rem, 12vw, 4rem);
+        line-height: 0.95;
+    }
+
+    .pricing-included-intro p {
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+
+
+    /* KOLUMNER */
+
+    .pricing-included-columns {
+        gap: 42px;
+        margin-top: 50px;
+    }
+
+
+    /* NUMMER */
+
+    .pricing-included-item-top {
+        margin-bottom: 20px;
+    }
+
+
+    /* PILL */
+
+    .pricing-included-card-title {
+        width: 260px;
+        max-width: 100%;
+        min-height: 40px;
+        margin-bottom: 22px;
+        padding: 9px 16px;
+        font-size: 0.9rem;
+    }
+
+
+    /* LISTA */
+
+    .pricing-included-list {
+        max-width: 260px;
+        gap: 12px;
+    }
+
+    .pricing-included-list li {
+        font-size: 0.9rem;
+    }
+
+
+    /* FOOTER */
+
+    .pricing-included-card-footer {
+        max-width: 260px;
+        margin-top: 26px;
+        font-size: 0.68rem;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .pricing-included-section {
+        padding: 50px 16px;
     }
 
     .pricing-included-title {
         font-size: 2.8rem;
     }
 
-    .pricing-included-card {
-        min-height: 350px;
-        padding: 28px 24px;
-        border-radius: 20px;
-    }
-
-    .pricing-included-card-body {
-        padding-top: 52px;
-    }
-
     .pricing-included-card-title {
-        font-size: 1.45rem;
+        width: 240px;
+        max-width: 100%;
+    }
+
+    .pricing-included-list {
+        max-width: 240px;
+    }
+
+    .pricing-included-card-footer {
+        max-width: 240px;
     }
 }
 
 
-/* ==================================================
+/* =========================================================
    REDUCED MOTION
-   ================================================== */
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    .pricing-included-card {
+    .pricing-included-item,
+    .pricing-included-card-title,
+    .pricing-included-check {
         transition: none;
     }
+}
 
-    .pricing-included-card:hover {
+
+/* Startläge */
+
+.pricing-included-section .pricing-included-heading,
+.pricing-included-section .pricing-included-intro,
+.pricing-included-section .pricing-included-item {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* När sektionen är synlig */
+
+.pricing-included-section.is-visible .pricing-included-heading {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.05s;
+}
+
+.pricing-included-section.is-visible .pricing-included-intro {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+}
+
+.pricing-included-section.is-visible .pricing-included-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Korten kommer in efter varandra */
+
+.pricing-included-section.is-visible
+.pricing-included-item:nth-child(1) {
+    transition-delay: 0.25s;
+}
+
+.pricing-included-section.is-visible
+.pricing-included-item:nth-child(2) {
+    transition-delay: 0.38s;
+}
+
+.pricing-included-section.is-visible
+.pricing-included-item:nth-child(3) {
+    transition-delay: 0.51s;
+}
+
+
+/* Pillarna får en liten extra rörelse */
+
+.pricing-included-card-title {
+    transform: scale(0.96);
+    transition:
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.pricing-included-section.is-visible
+.pricing-included-item:nth-child(1)
+.pricing-included-card-title {
+    transform: scale(1);
+    transition-delay: 0.45s;
+}
+
+.pricing-included-section.is-visible
+.pricing-included-item:nth-child(2)
+.pricing-included-card-title {
+    transform: scale(1);
+    transition-delay: 0.58s;
+}
+
+.pricing-included-section.is-visible
+.pricing-included-item:nth-child(3)
+.pricing-included-card-title {
+    transform: scale(1);
+    transition-delay: 0.71s;
+}
+
+
+/* Plus-symbolerna */
+
+.pricing-included-check {
+    transform: scale(0);
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pricing-included-section.is-visible
+.pricing-included-check {
+    transform: scale(1);
+}
+
+
+/* Reducera animationer om användaren valt det */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pricing-included-section .pricing-included-heading,
+    .pricing-included-section .pricing-included-intro,
+    .pricing-included-section .pricing-included-item,
+    .pricing-included-card-title,
+    .pricing-included-check {
+        opacity: 1;
         transform: none;
+        transition: none;
     }
 }

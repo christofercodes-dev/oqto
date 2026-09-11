@@ -30,7 +30,48 @@ tabs:
             field:
               type: text
               display: 'faq text'
-      - display: faq
+      -
+        display: FAQ
+        fields:
+          -
+            handle: faq_groups
+            field:
+              type: replicator
+              display: 'faq groups'
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    faq_group:
+                      display: 'faq group'
+                      fields:
+                        -
+                          handle: category_title
+                          field:
+                            type: text
+                            display: 'category title'
+                        -
+                          handle: questions
+                          field:
+                            type: replicator
+                            display: questions
+                            sets:
+                              new_set_group:
+                                display: 'New Set Group'
+                                sets:
+                                  question:
+                                    display: question
+                                    fields:
+                                      -
+                                        handle: faq_question
+                                        field:
+                                          type: text
+                                          display: 'faq question'
+                                      -
+                                        handle: faq_answer
+                                        field:
+                                          type: textarea
+                                          display: 'faq answer'
       -
         display: 'cta faq'
         fields:
