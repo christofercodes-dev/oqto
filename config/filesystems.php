@@ -66,20 +66,31 @@ return [
         // ImportIntegrations.php. Om bucketen inte är publikt läsbar
         // behöver "visibility" sättas till "private" och "url" pekas mot
         // t.ex. en CloudFront-distribution eller signerade URL:er.
-        'integrations_s3' => [
-            'driver' => 's3',
-            'key' => env('INTEGRATIONS_S3_KEY'),
-            'secret' => env('INTEGRATIONS_S3_SECRET'),
-            // AWS SDK:t kräver en syntaktiskt giltig region redan vid
-            // uppkoppling (oavsett "throw"-inställningen nedan), så vi
-            // faller tillbaka på en riktig regionkod istället för att
-            // krascha helt innan ni satt riktiga INTEGRATIONS_S3_*-värden.
-            'region' => env('INTEGRATIONS_S3_REGION', 'eu-north-1'),
-            'bucket' => env('INTEGRATIONS_S3_BUCKET'),
-            'url' => env('INTEGRATIONS_S3_URL'),
-            'throw' => false,
-            'report' => false,
-        ],
+        //
+        // Så länge INTEGRATIONS_S3_BUCKET inte är satt pekar disken mot en
+        // ofarlig, tom lokal mapp istället för S3. Utan det skulle varje
+        // artisan-kommando som rör asset-containern (t.ex. Statamics egen
+        // stache-uppvärmning vid deploy) krascha hårt - AWS accepterar inte
+        // en tom bucket-parameter, och det stoppar hela deployen. Sätt bara
+        // riktiga INTEGRATIONS_S3_*-värden i .env när bucketen finns, så
+        // växlar den automatiskt över till den riktiga S3-disken.
+        'integrations_s3' => env('INTEGRATIONS_S3_BUCKET')
+            ? [
+                'driver' => 's3',
+                'key' => env('INTEGRATIONS_S3_KEY', ''),
+                'secret' => env('INTEGRATIONS_S3_SECRET', ''),
+                'region' => env('INTEGRATIONS_S3_REGION', 'eu-north-1'),
+                'bucket' => env('INTEGRATIONS_S3_BUCKET'),
+                'url' => env('INTEGRATIONS_S3_URL'),
+                'throw' => false,
+                'report' => false,
+            ]
+            : [
+                'driver' => 'local',
+                'root' => storage_path('app/integrations-s3-unconfigured'),
+                'throw' => false,
+                'report' => false,
+            ],
 
         'assets' => [
             'driver' => 'local',
