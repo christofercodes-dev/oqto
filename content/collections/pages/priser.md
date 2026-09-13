@@ -1,12 +1,12 @@
 ---
 id: 03c890d5-ba59-469a-9151-dc0807f7f3f6
 blueprint: pricing
-title: "Phew…Skönt att \Ldu jobbar på redovisningsbyrå"
+title: Priser
 template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1789055466
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1789335079
 pricing_button_text: 'Boka demo'
 pricing_button_url: /boka-demo
 intro_small_title: Bolagslägen

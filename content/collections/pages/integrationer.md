@@ -1,7 +1,7 @@
 ---
 id: 44657d35-ed8b-451a-a97a-9dfa33683dcb
 blueprint: integrations
-title: integrationer
+title: Integrationer
 integrations_small_title: 'test liten text'
 integrations_title: 'Koppla ihop OQTO med verktygen du redan använder.'
 integrations_intro: 'Smidiga integrationer som samlar ditt arbetsflöde på ett ställe och får allt att fungera sömlöst.'
@@ -24,8 +24,8 @@ integration:
     body: test
     type: integrations
     enabled: true
-updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1788203956
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1789335094
 template: integrations
 author:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2

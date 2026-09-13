@@ -1,9 +1,9 @@
 ---
 id: c1fc7c1d-a63d-4304-98fe-209be09aacbe
 blueprint: om_oss
-title: 'Vi har sett vad som fungerar & vad som inte gör det.'
-updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1789035224
+title: 'Om Oqto'
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1789336025
 template: about
 author:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
@@ -23,6 +23,7 @@ cta_button_2_text: 'Boka demo'
 cta_button_2_url: /boka-demo
 about_button_text: 'Boka demo'
 about_button_url: /boka-demo
+cta_button_1_url: /faqs
 ---
 Så vi tog saken i egna händer och byggde det verktyg vi själva saknade.
 Oqto föddes ur ett enkelt men frustrerande faktum: Systemen som används i dag speglar inte hur ekonomens arbete faktiskt ser ut. Bakom Oqto står människor från JWK och Reda; erfarna ekonomer, rådgivare och utvecklare som under många år har arbetat mitt i den verklighet där bokslut, momsrapporter och kunddialoger sker.

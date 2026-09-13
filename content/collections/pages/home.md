@@ -1,14 +1,14 @@
 ---
 id: 049ed0c0-9796-43f7-b158-4f6129328c12
 blueprint: pages
-title: 'Din högra hand. Gånger åtta.'
+title: 'Oqto - Ekonomens bästa vän'
 template: home
 title_row_1: 'Din högra hand.'
 title_row_2: 'Gånger åtta.'
 author: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 knapptext: 'Boka demo'
-updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1789036256
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1789335160
 title_card_1: 'Effektiv bokföring'
 text_card_1: 'Hantera bokföring, fakturor och underlag i ett och samma system. Automatiserade flöden minskar manuellt arbete och frigör tid för mer värdeskapande rådgivning och högre kvalitet.'
 title_card_2: 'Ekonomisk överblick'

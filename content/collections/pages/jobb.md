@@ -1,9 +1,9 @@
 ---
 id: ca2679f5-8a28-4b31-b743-f1170d0962de
 blueprint: jobs
-title: 'lediga jobb'
-updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1789046303
+title: 'Lediga jobb'
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1789335106
 author:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 template: jobs

@@ -1,9 +1,9 @@
 ---
 id: dce7b77e-9458-4179-8002-8876b40e75ab
 blueprint: faq
-title: faq
-updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1789118022
+title: 'Vanliga frågor'
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1789335069
 faq: faq
 template: faq
 author:

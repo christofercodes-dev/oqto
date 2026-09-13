@@ -1,12 +1,12 @@
 ---
 id: 580a9251-af89-4a48-a7ce-7311bed51fd7
 blueprint: contact
-title: contact
+title: 'Kontakta oss'
 template: contact
 contact_title: 'Frågor, funderingar eller feedback? Hör av dig!'
 contact_body: 'Eller är du sugen på att börja använda Oqto?'
-updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
-updated_at: 1789128497
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1789335088
 contact_email: hej@oqto@gmail.com
 contact_phone: '012345678'
 contact_team:
