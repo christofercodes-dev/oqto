@@ -7,8 +7,7 @@ contact_title: 'Frågor, funderingar eller feedback? Hör av dig!'
 contact_body: 'Eller är du sugen på att börja använda Oqto?'
 updated_by: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_at: 1789128497
-contact_email: hej@oqto@gmail.com
-contact_phone: '012345678'
+contact_email: info@oqto.se
 contact_team:
   - 3ebf0604-6f00-49a7-8a63-ddef40e34001
   - 68aeec5b-de62-4e4e-bb55-e75c82d9ec69

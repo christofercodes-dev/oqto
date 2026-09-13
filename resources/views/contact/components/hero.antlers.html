@@ -21,6 +21,11 @@
                 </p>
             {{ /if }}
 
+            <a href="/boka-demo" class="oqto-contact-demo-link">
+                Boka demo
+                <span aria-hidden="true">→</span>
+            </a>
+
             <div class="oqto-contact-details">
 
                 {{ if contact_email }}
@@ -38,21 +43,6 @@
                     </a>
                 {{ /if }}
 
-                {{ if contact_phone }}
-                    <a
-                        href="tel:{{ contact_phone }}"
-                        class="oqto-contact-detail"
-                    >
-                        <span class="oqto-contact-detail-label">
-                            Telefon
-                        </span>
-
-                        <span class="oqto-contact-detail-value">
-                            {{ contact_phone }}
-                        </span>
-                    </a>
-                {{ /if }}
-
             </div>
 
         </div>
@@ -60,20 +50,6 @@
 
         <!-- HÖGER / FORMULÄR -->
         <div class="oqto-contact-form">
-
-            <div class="oqto-contact-form-intro">
-
-                <span class="oqto-contact-form-label">
-                    Starta ett projekt
-                </span>
-
-                <p>
-                    Har du en idé eller ett projekt på gång?
-                    Berätta lite om vad du behöver hjälp med.
-                </p>
-
-            </div>
-
 
             <form>
 
