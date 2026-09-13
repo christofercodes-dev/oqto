@@ -1,50 +1,57 @@
 <section class="boka-demo-section" data-lookup-url="/boka-demo/lookup">
     <div class="boka-demo-container">
 
-        {{ if boka_demo_small_title }}
-            <span class="boka-demo-eyebrow">
-                {{ boka_demo_small_title }}
-            </span>
-        {{ /if }}
+        <div class="boka-demo-hero-row">
 
-        <h1 class="boka-demo-title">
-            {{ boka_demo_title | nl2br }}
-        </h1>
+            <div class="boka-demo-hero-content">
 
-        {{ if boka_demo_body }}
-            <p class="boka-demo-body">
-                {{ boka_demo_body }}
-            </p>
-        {{ /if }}
+                {{ if boka_demo_small_title }}
+                    <span class="boka-demo-eyebrow">
+                        {{ boka_demo_small_title }}
+                    </span>
+                {{ /if }}
 
+                <h1 class="boka-demo-title">
+                    {{ boka_demo_title | nl2br }}
+                </h1>
 
-        <!-- STEG 1: ORGANISATIONSNUMMER -->
-        <div class="boka-demo-card" data-step="lookup">
+                {{ if boka_demo_body }}
+                    <p class="boka-demo-body">
+                        {{ boka_demo_body }}
+                    </p>
+                {{ /if }}
 
-            <form class="boka-demo-lookup-form" novalidate>
+            </div>
 
-                <div class="boka-demo-field">
-                    <label for="org_number">Organisationsnummer</label>
-                    <input
-                        type="text"
-                        id="org_number"
-                        name="org_number"
-                        placeholder="XXXXXX-XXXX"
-                        inputmode="numeric"
-                        autocomplete="off"
-                        maxlength="11"
-                        required
-                    >
-                </div>
+            <!-- STEG 1: ORGANISATIONSNUMMER -->
+            <div class="boka-demo-card" data-step="lookup">
 
-                <p class="boka-demo-error" data-role="lookup-error" hidden></p>
+                <form class="boka-demo-lookup-form" novalidate>
 
-                <button type="submit" class="boka-demo-button">
-                    <span data-role="lookup-button-text">Fortsätt</span>
-                    <span class="boka-demo-button-icon" aria-hidden="true">→</span>
-                </button>
+                    <div class="boka-demo-field">
+                        <label for="org_number">Organisationsnummer</label>
+                        <input
+                            type="text"
+                            id="org_number"
+                            name="org_number"
+                            placeholder="XXXXXX-XXXX"
+                            inputmode="numeric"
+                            autocomplete="off"
+                            maxlength="11"
+                            required
+                        >
+                    </div>
 
-            </form>
+                    <p class="boka-demo-error" data-role="lookup-error" hidden></p>
+
+                    <button type="submit" class="boka-demo-btn">
+                        <span data-role="lookup-button-text">Fortsätt</span>
+                        <span class="boka-demo-btn-arrow" aria-hidden="true">→</span>
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 
@@ -135,9 +142,9 @@
                         <textarea id="alt2_message" name="message" rows="4" placeholder="Berätta gärna lite om vad ni behöver hjälp med..."></textarea>
                     </div>
 
-                    <button type="submit" class="boka-demo-button">
-                        Skicka
-                        <span class="boka-demo-button-icon" aria-hidden="true">→</span>
+                    <button type="submit" class="boka-demo-btn">
+                        <span>Skicka</span>
+                        <span class="boka-demo-btn-arrow" aria-hidden="true">→</span>
                     </button>
 
                 {{ /if }}

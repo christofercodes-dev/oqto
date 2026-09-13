@@ -35,7 +35,7 @@
             {{ if embed_code }}
                 <div class="video-element">
                     <iframe
-                        src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last }}"
+                        src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last | explode('?') | first }}?title=0&byline=0&portrait=0&badge=0"
                         frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowfullscreen
@@ -43,7 +43,7 @@
                     ></iframe>
                 </div>
             {{ /if }}
-        
+
         </div>
 
     </div>

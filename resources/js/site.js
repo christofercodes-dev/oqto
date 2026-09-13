@@ -300,4 +300,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
+    /* ==================================================
+       LOTTIE-ANIMATIONER
+       ================================================== */
+
+    const lottieElements =
+        document.querySelectorAll('[data-lottie-src]');
+
+    if (lottieElements.length) {
+
+        import('lottie-web').then(({ default: lottie }) => {
+
+            lottieElements.forEach((el) => {
+
+                lottie.loadAnimation({
+                    container: el,
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: el.dataset.lottieSrc,
+                });
+
+            });
+
+        });
+
+    }
+
 });

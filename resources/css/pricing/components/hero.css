@@ -250,10 +250,7 @@
     position: absolute;
     inset: 0;
 
-    background-color: rgba(26, 23, 21, 0.72);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: linear-gradient(135deg, #c94800 0%, #f35d08 55%, #ff7a2e 100%);
 }
 
 .pricing-gate-modal {

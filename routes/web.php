@@ -6,9 +6,9 @@ use Statamic\Facades\Entry;
 
 Route::get('/boka-demo/lookup', BokaDemoLookupController::class)->name('boka-demo.lookup');
 
-Route::get('/jobs/{slug}', function ($slug) {
+Route::get('/jobb/{slug}', function ($slug) {
 
-    $jobsPage = Entry::findByUri('/jobs');
+    $jobsPage = Entry::findByUri('/jobb');
 
     abort_unless($jobsPage, 404);
 

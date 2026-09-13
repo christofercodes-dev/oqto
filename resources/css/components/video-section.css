@@ -44,7 +44,7 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    border-radius: 28px;
+    border-radius: 14px;
     background-color: #1a1715;
 }
 
@@ -89,15 +89,15 @@
     margin: 0;
   }
   
-  /* Videoinramning */
+  /* Videoinramning - matchar videons faktiska 16:9-format för att undvika svarta kanter */
   .video-wrapper {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
-    border-radius: 28px;
+    border-radius: 14px;
     overflow: hidden;
     background-color: #000000;
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 16 / 9;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
   }
   
