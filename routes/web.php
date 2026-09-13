@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\BokaDemoLookupController;
 use Illuminate\Support\Facades\Route;
 use Statamic\Facades\Entry;
+
+Route::get('/boka-demo/lookup', BokaDemoLookupController::class)->name('boka-demo.lookup');
 
 Route::get('/jobs/{slug}', function ($slug) {
 

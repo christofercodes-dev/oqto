@@ -20,7 +20,9 @@ small_title_team: 'Detta är vi'
 cta_title: 'Mer nyfiken på oss på Oqto och vad vi gör? Se vanliga frågor & svar eller boka en demo'
 cta_button_1_text: FAQ
 cta_button_2_text: 'Boka demo'
+cta_button_2_url: /boka-demo
 about_button_text: 'Boka demo'
+about_button_url: /boka-demo
 ---
 Så vi tog saken i egna händer och byggde det verktyg vi själva saknade.
 Oqto föddes ur ett enkelt men frustrerande faktum: Systemen som används i dag speglar inte hur ekonomens arbete faktiskt ser ut. Bakom Oqto står människor från JWK och Reda; erfarna ekonomer, rådgivare och utvecklare som under många år har arbetat mitt i den verklighet där bokslut, momsrapporter och kunddialoger sker.

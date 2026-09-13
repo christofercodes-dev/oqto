@@ -1,0 +1,406 @@
+/* ==================================================
+   BOKA DEMO SECTION
+   ================================================== */
+
+.boka-demo-section {
+    width: 100%;
+    min-height: 760px;
+    padding: 140px 40px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0) 30%
+        ),
+        #f3f1ef;
+
+    color: #1a1715;
+    font-family: "Inter", sans-serif;
+
+    display: flex;
+    align-items: center;
+}
+
+
+.boka-demo-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.boka-demo-eyebrow,
+.boka-demo-title {
+    max-width: 640px;
+}
+
+
+.boka-demo-eyebrow {
+    margin-bottom: 28px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: #7b7671;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.boka-demo-eyebrow::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #f35d08;
+}
+
+
+.boka-demo-title {
+    margin: 0;
+
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+
+    font-weight: 400;
+
+    line-height: 1;
+    letter-spacing: -0.05em;
+
+    color: #1a1715;
+}
+
+
+.boka-demo-body {
+    max-width: 480px;
+
+    margin: 24px 0 0;
+
+    font-size: 1.05rem;
+    line-height: 1.7;
+
+    color: #625d58;
+}
+
+
+/* ==================================================
+   CARD
+   ================================================== */
+
+.boka-demo-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 560px;
+
+    margin-top: 48px;
+
+    padding: 46px;
+
+    box-sizing: border-box;
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 2px 4px rgba(26, 23, 21, 0.02),
+        0 12px 30px rgba(26, 23, 21, 0.05),
+        0 35px 80px rgba(26, 23, 21, 0.08);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    text-align: left;
+}
+
+
+/* ==================================================
+   HÄLSNING (VISAS NÄR ETT FÖRETAG HITTATS)
+   ================================================== */
+
+.boka-demo-greeting {
+    margin: 0 0 6px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: #1a1715;
+}
+
+
+.boka-demo-step-title {
+    margin: 0 0 12px;
+
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    color: #1a1715;
+}
+
+
+.boka-demo-step-body {
+    margin: 0 0 28px;
+
+    font-size: 0.98rem;
+    line-height: 1.6;
+
+    color: #625d58;
+}
+
+
+/* ==================================================
+   FORM
+   ================================================== */
+
+.boka-demo-lookup-form,
+.boka-demo-card form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+.boka-demo-form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+
+.boka-demo-field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.boka-demo-field label {
+    font-family: "Geist Mono", monospace;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: #716b66;
+}
+
+
+.boka-demo-field input,
+.boka-demo-field textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 16px 17px;
+
+    border: 1px solid rgba(26, 23, 21, 0.10);
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background: rgba(248, 247, 246, 0.8);
+
+    color: #1a1715;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 0.94rem;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.boka-demo-field textarea {
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+
+.boka-demo-field input:focus,
+.boka-demo-field textarea:focus {
+    border-color: rgba(243, 93, 8, 0.45);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(243, 93, 8, 0.07);
+
+    transform: translateY(-1px);
+}
+
+
+.boka-demo-error {
+    margin: 0;
+
+    font-size: 0.9rem;
+
+    color: #c0392b;
+}
+
+
+.boka-demo-success {
+    margin: 0;
+
+    font-size: 1rem;
+
+    color: #1a7a3c;
+}
+
+
+/* ==================================================
+   KNAPP
+   ================================================== */
+
+.boka-demo-button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 4px;
+
+    padding: 17px 18px 17px 22px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #1a1715;
+
+    color: #ffffff;
+
+    font-family: "Geist Mono", monospace;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.boka-demo-button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+
+.boka-demo-button-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f35d08;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 18px;
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+
+.boka-demo-button:hover {
+    background: #27221f;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 14px 30px rgba(26, 23, 21, 0.15);
+}
+
+
+.boka-demo-button:hover .boka-demo-button-icon {
+    transform: translateX(4px);
+}
+
+
+/* ==================================================
+   CAL.COM EMBED
+   ================================================== */
+
+.boka-demo-cal-embed {
+    width: 100%;
+    min-height: 560px;
+}
+
+
+/* Alternativ 1 (Cal.com) får ta hela containerns bredd, i linje med
+   t.ex. blocken på FAQ-sidan, eftersom kalendern behöver mer utrymme. */
+.boka-demo-card[data-step="alternative-1"] {
+    max-width: 100%;
+}
+
+
+/* Kontaktformuläret (alternativ 2) breddas lite jämfört med sökrutan,
+   så fältraderna (namn/e-post, telefon/företag) får mer plats. */
+.boka-demo-card[data-step="alternative-2"] {
+    max-width: 760px;
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 600px) {
+
+    .boka-demo-section {
+        padding: 90px 20px;
+    }
+
+    .boka-demo-card {
+        padding: 28px 22px;
+
+        border-radius: 24px;
+    }
+
+    .boka-demo-form-row {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+}

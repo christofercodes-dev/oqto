@@ -1,0 +1,80 @@
+title: 'boka demo'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+          -
+            handle: author
+            field:
+              type: users
+              display: author
+      -
+        display: 'boka demo hero'
+        fields:
+          -
+            handle: boka_demo_small_title
+            field:
+              type: text
+              display: 'boka demo small title'
+          -
+            handle: boka_demo_title
+            field:
+              type: text
+              display: 'boka demo title'
+          -
+            handle: boka_demo_body
+            field:
+              type: textarea
+              display: 'boka demo body'
+          -
+            handle: boka_demo_alt1_title
+            field:
+              type: text
+              display: 'alternativ 1 titel'
+              instructions: 'Visas när företagets SNI-kod matchar en bransch i config/bolagsverket.php'
+          -
+            handle: boka_demo_alt1_body
+            field:
+              type: textarea
+              display: 'alternativ 1 text'
+          -
+            handle: calcom_link
+            field:
+              type: text
+              display: 'Cal.com-länk'
+              instructions: 'T.ex. ditt-team/demo. Används för att bädda in bokningskalendern i alternativ 1.'
+          -
+            handle: boka_demo_alt2_title
+            field:
+              type: text
+              display: 'alternativ 2 titel'
+          -
+            handle: boka_demo_alt2_body
+            field:
+              type: textarea
+              display: 'alternativ 2 text'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

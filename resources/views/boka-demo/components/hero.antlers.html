@@ -1,0 +1,182 @@
+<section class="boka-demo-section" data-lookup-url="/boka-demo/lookup">
+    <div class="boka-demo-container">
+
+        {{ if boka_demo_small_title }}
+            <span class="boka-demo-eyebrow">
+                {{ boka_demo_small_title }}
+            </span>
+        {{ /if }}
+
+        <h1 class="boka-demo-title">
+            {{ boka_demo_title | nl2br }}
+        </h1>
+
+        {{ if boka_demo_body }}
+            <p class="boka-demo-body">
+                {{ boka_demo_body }}
+            </p>
+        {{ /if }}
+
+
+        <!-- STEG 1: ORGANISATIONSNUMMER -->
+        <div class="boka-demo-card" data-step="lookup">
+
+            <form class="boka-demo-lookup-form" novalidate>
+
+                <div class="boka-demo-field">
+                    <label for="org_number">Organisationsnummer</label>
+                    <input
+                        type="text"
+                        id="org_number"
+                        name="org_number"
+                        placeholder="XXXXXX-XXXX"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        maxlength="11"
+                        required
+                    >
+                </div>
+
+                <p class="boka-demo-error" data-role="lookup-error" hidden></p>
+
+                <button type="submit" class="boka-demo-button">
+                    <span data-role="lookup-button-text">Fortsätt</span>
+                    <span class="boka-demo-button-icon" aria-hidden="true">→</span>
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- STEG 2A: CAL.COM (ALTERNATIV 1) -->
+        <div class="boka-demo-card" data-step="alternative-1" hidden>
+
+            <p class="boka-demo-greeting" data-role="greeting" hidden></p>
+
+            {{ if boka_demo_alt1_title }}
+                <h2 class="boka-demo-step-title">{{ boka_demo_alt1_title }}</h2>
+            {{ /if }}
+
+            {{ if boka_demo_alt1_body }}
+                <p class="boka-demo-step-body">{{ boka_demo_alt1_body }}</p>
+            {{ /if }}
+
+            <div
+                class="boka-demo-cal-embed"
+                data-cal-link="{{ calcom_link ?? 'team/oqto/demo' }}"
+            ></div>
+
+        </div>
+
+
+        <!-- STEG 2B: KONTAKTFORMULÄR (ALTERNATIV 2) -->
+        <div class="boka-demo-card" data-step="alternative-2" hidden>
+
+            <p class="boka-demo-greeting" data-role="greeting" hidden></p>
+
+            {{ if boka_demo_alt2_title }}
+                <h2 class="boka-demo-step-title">{{ boka_demo_alt2_title }}</h2>
+            {{ /if }}
+
+            {{ if boka_demo_alt2_body }}
+                <p class="boka-demo-step-body">{{ boka_demo_alt2_body }}</p>
+            {{ /if }}
+
+            {{ form:boka_demo }}
+
+                {{ if error }}
+                    <p class="boka-demo-error">{{ error }}</p>
+                {{ /if }}
+
+                {{ if success }}
+
+                    <p class="boka-demo-success">Tack! Vi hör av oss inom kort.</p>
+
+                {{ else }}
+
+                    <input type="hidden" name="org_number" data-role="alt2-org-number">
+
+                    <div class="boka-demo-form-row">
+
+                        <div class="boka-demo-field">
+                            <label for="alt2_first_name">Förnamn</label>
+                            <input type="text" id="alt2_first_name" name="first_name" placeholder="Förnamn" required>
+                        </div>
+
+                        <div class="boka-demo-field">
+                            <label for="alt2_last_name">Efternamn</label>
+                            <input type="text" id="alt2_last_name" name="last_name" placeholder="Efternamn" required>
+                        </div>
+
+                    </div>
+
+                    <div class="boka-demo-form-row">
+
+                        <div class="boka-demo-field">
+                            <label for="alt2_email">E-post</label>
+                            <input type="email" id="alt2_email" name="email" placeholder="din@email.se" required>
+                        </div>
+
+                        <div class="boka-demo-field">
+                            <label for="alt2_phone">Telefon</label>
+                            <input type="tel" id="alt2_phone" name="phone" placeholder="Telefonnummer">
+                        </div>
+
+                    </div>
+
+                    <div class="boka-demo-field">
+                        <label for="alt2_company">Företag</label>
+                        <input type="text" id="alt2_company" name="company" placeholder="Företagsnamn" data-role="alt2-company-name">
+                    </div>
+
+                    <div class="boka-demo-field">
+                        <label for="alt2_message">Meddelande</label>
+                        <textarea id="alt2_message" name="message" rows="4" placeholder="Berätta gärna lite om vad ni behöver hjälp med..."></textarea>
+                    </div>
+
+                    <button type="submit" class="boka-demo-button">
+                        Skicka
+                        <span class="boka-demo-button-icon" aria-hidden="true">→</span>
+                    </button>
+
+                {{ /if }}
+
+            {{ /form:boka_demo }}
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+    (function (C, A, L) {
+        let p = function (a, ar) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+                cal.ns = {};
+                cal.q = cal.q || [];
+                d.head.appendChild(d.createElement("script")).src = A;
+                cal.loaded = true;
+            }
+            if (ar[0] === L) {
+                const api = function () { p(api, arguments); };
+                const namespace = ar[1];
+                api.q = api.q || [];
+                if (typeof namespace === "string") {
+                    cal.ns[namespace] = cal.ns[namespace] || api;
+                    p(cal.ns[namespace], ar);
+                    p(cal, ["initNamespace", namespace]);
+                } else {
+                    p(cal, ar);
+                }
+                return;
+            }
+            p(cal, ar);
+        };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+</script>
+

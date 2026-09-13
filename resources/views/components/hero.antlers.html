@@ -1,24 +1,24 @@
 <section class="hero-section">
 
     <div class="hero-container">
-  
+
       <div class="hero-content">
-  
+
         <div class="hero-left">
           <h1 class="hero-title">
             {{ title_row_1 }}
             {{ title_row_2 }}
           </h1>
         </div>
-  
+
         <div class="hero-right">
           <p class="hero-text">
             {{ content | nl2br }}
           </p>
         </div>
-  
+
       </div>
-  
+
       <div class="hero-widget">
         <script
           src="https://markly.kortaben.work/api/public/widget.js"
@@ -26,22 +26,22 @@
           defer>
         </script>
       </div>
-  
+
       <div class="hero-action-wrapper">
-  
+
         <div class="corner-curve curve-left"></div>
-  
+
         <div class="hero-action-card">
-  
+
           <a
-            href="{{ cta_link ?? '#demo' }}"
+            href="{{ cta_link ?? '/boka-demo' }}"
             class="btn-demo"
             aria-label="{{ cta_text ?? 'BOKA DEMO' }}"
           >
             <span class="btn-text">
               {{ cta_text ?? "BOKA DEMO" }}
             </span>
-  
+
             <span class="btn-arrow">
               <svg
                 width="16"
@@ -61,13 +61,13 @@
               </svg>
             </span>
           </a>
-  
+
         </div>
-  
+
         <div class="corner-curve curve-right"></div>
-  
+
       </div>
-  
+
     </div>
-  
+
   </section>

@@ -61,6 +61,7 @@ faq_redovisningsbyra:
     enabled: true
 cta_faq_title: 'Trött på att betala premium för något som känns utdaterat? Boka demo eller logga in.'
 cta_faq_button_text_1: 'Boka demo'
+cta_faq_button_1_url: /boka-demo
 cta_faq_button_text_2: 'Logga in'
 faq_groups:
   -

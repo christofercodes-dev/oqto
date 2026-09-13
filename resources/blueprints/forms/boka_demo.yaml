@@ -1,0 +1,46 @@
+title: 'Boka demo'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: first_name
+            field:
+              type: text
+              display: Förnamn
+              validate: required
+          -
+            handle: last_name
+            field:
+              type: text
+              display: Efternamn
+              validate: required
+          -
+            handle: email
+            field:
+              type: text
+              input_type: email
+              display: 'E-post'
+              validate: 'required|email'
+          -
+            handle: phone
+            field:
+              type: text
+              display: Telefon
+          -
+            handle: company
+            field:
+              type: text
+              display: 'Företag'
+          -
+            handle: org_number
+            field:
+              type: text
+              display: 'Organisationsnummer'
+          -
+            handle: message
+            field:
+              type: textarea
+              display: Meddelande
