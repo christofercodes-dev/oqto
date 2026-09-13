@@ -8,5 +8,5 @@ image:
 email: jacob@oqto.se
 phone: '0735 - 35 84 15'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789335741
+updated_at: 1789339240
 ---
