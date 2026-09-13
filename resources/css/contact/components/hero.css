@@ -109,6 +109,40 @@
 
 
 /* =========================================================
+   BOKA DEMO-LÄNK
+   ========================================================= */
+
+.oqto-contact-demo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 18px;
+
+    color: #f35d08;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.oqto-contact-demo-link span {
+    transition: transform 0.2s ease;
+}
+
+.oqto-contact-demo-link:hover {
+    color: #1a1715;
+}
+
+.oqto-contact-demo-link:hover span {
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
    DETAILS
    ========================================================= */
 
@@ -184,49 +218,6 @@
     max-width: 620px;
 
     padding-top: 4px;
-}
-
-
-/* =========================================================
-   FORM INTRO
-   ========================================================= */
-
-.oqto-contact-form-intro {
-    margin-bottom: 34px;
-
-    max-width: 500px;
-}
-
-
-.oqto-contact-form-label {
-    display: block;
-
-    margin-bottom: 12px;
-
-    font-size: 0.68rem;
-
-    font-weight: 700;
-
-    line-height: 1.2;
-
-    letter-spacing: 0.1em;
-
-    text-transform: uppercase;
-
-    color: #ff5500;
-}
-
-
-.oqto-contact-form-intro p {
-    margin: 0;
-
-    max-width: 480px;
-
-    font-size: 1rem;
-
-    line-height: 1.55;
-
-    color: #4a4744;
 }
 
 
@@ -526,23 +517,6 @@
     }
 
 
-    .oqto-contact-form-intro {
-        margin-bottom: 28px;
-    }
-
-
-    .oqto-contact-form-label {
-        font-size: 0.65rem;
-    }
-
-
-    .oqto-contact-form-intro p {
-        font-size: 0.92rem;
-
-        line-height: 1.6;
-    }
-
-
     .oqto-contact-form-row {
         grid-template-columns: 1fr;
 
@@ -603,11 +577,6 @@
 
     .oqto-contact-title {
         font-size: 2.15rem;
-    }
-
-
-    .oqto-contact-form-intro p {
-        font-size: 0.88rem;
     }
 
 }
