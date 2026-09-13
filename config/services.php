@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'integrations_s3' => [
+        // Nyckeln till JSON-filen som .NET-tjänsten dumpar nattligen.
+        // Anslutningsuppgifterna för själva bucketen finns i
+        // config/filesystems.php under disken "integrations_s3".
+        'json_path' => env('INTEGRATIONS_S3_JSON_PATH', 'integrations.json'),
+    ],
+
 ];

@@ -1,0 +1,148 @@
+title: Integration
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Namn
+              instructions: 'Motsvarar Name från källsystemet.'
+              required: true
+              validate:
+                - required
+      -
+        display: Källdata
+        fields:
+          -
+            handle: external_id
+            field:
+              type: text
+              display: 'Externt ID'
+              instructions: 'Matchningsnyckel mot Id i integrations.json. Hanteras av den nattliga importen - redigera inte manuellt.'
+              read_only: true
+          -
+            handle: developer_name
+            field:
+              type: text
+              display: 'Utvecklarnamn'
+          -
+            handle: source_created_at
+            field:
+              type: date
+              display: 'Skapad (källsystem)'
+              time_enabled: true
+              read_only: true
+          -
+            handle: source_updated_at
+            field:
+              type: date
+              display: 'Uppdaterad (källsystem)'
+              time_enabled: true
+              read_only: true
+      -
+        display: Innehåll
+        fields:
+          -
+            handle: short_description
+            field:
+              type: text
+              display: 'Kort beskrivning'
+          -
+            handle: description
+            field:
+              type: textarea
+              display: Beskrivning
+          -
+            handle: reasons
+            field:
+              type: list
+              display: 'Anledningar'
+          -
+            handle: video_url
+            field:
+              type: text
+              display: 'Video-URL'
+          -
+            handle: avatar
+            field:
+              type: assets
+              container: integrations
+              max_files: 1
+              display: Avatar
+          -
+            handle: media
+            field:
+              type: assets
+              container: integrations
+              display: Galleribilder
+      -
+        display: Kategorisering
+        fields:
+          -
+            handle: integration_type
+            field:
+              type: taxonomy
+              taxonomies:
+                - integration_type
+              display: Integrationstyp
+              max_items: 1
+          -
+            handle: sni_codes
+            field:
+              type: taxonomy
+              taxonomies:
+                - sni_codes
+              display: SNI-koder
+          -
+            handle: company_employee_range
+            field:
+              type: text
+              display: 'Antal anställda'
+          -
+            handle: company_revenue_range
+            field:
+              type: text
+              display: Omsättning
+      -
+        display: Partner
+        fields:
+          -
+            handle: partner_email
+            field:
+              type: text
+              display: 'Partner e-post'
+          -
+            handle: partner_phone
+            field:
+              type: text
+              display: 'Partner telefon'
+          -
+            handle: partner_website
+            field:
+              type: text
+              display: 'Partner webbplats'
+          -
+            handle: partner_about
+            field:
+              type: textarea
+              display: 'Om partnern'
+          -
+            handle: price
+            field:
+              type: text
+              display: Pris
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

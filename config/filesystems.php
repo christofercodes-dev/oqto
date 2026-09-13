@@ -61,6 +61,26 @@ return [
             // 'visibility' => 'public', // https://statamic.dev/assets#container-visibility
         ],
 
+        // Bucket som en extern .NET-tjänst nattligen fyller med
+        // integrations.json + avatar-/mediabilder. Se app/Console/Commands/
+        // ImportIntegrations.php. Om bucketen inte är publikt läsbar
+        // behöver "visibility" sättas till "private" och "url" pekas mot
+        // t.ex. en CloudFront-distribution eller signerade URL:er.
+        'integrations_s3' => [
+            'driver' => 's3',
+            'key' => env('INTEGRATIONS_S3_KEY'),
+            'secret' => env('INTEGRATIONS_S3_SECRET'),
+            // AWS SDK:t kräver en syntaktiskt giltig region redan vid
+            // uppkoppling (oavsett "throw"-inställningen nedan), så vi
+            // faller tillbaka på en riktig regionkod istället för att
+            // krascha helt innan ni satt riktiga INTEGRATIONS_S3_*-värden.
+            'region' => env('INTEGRATIONS_S3_REGION', 'eu-north-1'),
+            'bucket' => env('INTEGRATIONS_S3_BUCKET'),
+            'url' => env('INTEGRATIONS_S3_URL'),
+            'throw' => false,
+            'report' => false,
+        ],
+
         'assets' => [
             'driver' => 'local',
             'root' => public_path('assets'),
