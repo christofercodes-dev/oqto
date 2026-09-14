@@ -8,7 +8,7 @@ title_row_2: 'Gånger åtta.'
 author: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 knapptext: 'Boka demo'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789335160
+updated_at: 1789368559
 title_card_1: 'Effektiv bokföring'
 text_card_1: 'Hantera bokföring, fakturor och underlag i ett och samma system. Automatiserade flöden minskar manuellt arbete och frigör tid för mer värdeskapande rådgivning och högre kvalitet.'
 title_card_2: 'Ekonomisk överblick'
@@ -50,8 +50,6 @@ reviews_items:
     author_title: Redovisning
 embed_code: 'https://vimeo.com/1223949720?share=copy&fl=sv&fe=ci'
 ---
-Oqto är nästa generations ekonomisystem, skapat för att ge ekonomer superkrafter. Inte för att ersätta rollen, som många andra verkar sikta på, utan för att göra den ännu starkare.
+Oqto är nästa generations ekonomisystem, byggt för att ge ekonomer superkrafter – inte ersätta rollen, som många andra verkar sikta på, utan göra den ännu starkare. Med smart automation och ett modernt gränssnitt minskar Oqto administration och onödiga klick, så mer tid går till analys och beslut som driver verksamheten framåt.
 
-Med smart automation, intuitiva arbetsflöden och ett modernt gränssnitt minskar Oqto det administrativa arbetet och antalet onödiga klick. Resultatet blir mer tid till analys, rådgivning och beslut som faktiskt driver verksamheten framåt.
-
-Ett ekonomisystem som faktiskt jobbar för dig, inte emot dig.
+Ett ekonomisystem som jobbar för dig, inte emot dig.
