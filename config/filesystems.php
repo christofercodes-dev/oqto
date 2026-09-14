@@ -67,30 +67,27 @@ return [
         // behöver "visibility" sättas till "private" och "url" pekas mot
         // t.ex. en CloudFront-distribution eller signerade URL:er.
         //
-        // Så länge INTEGRATIONS_S3_BUCKET inte är satt pekar disken mot en
-        // ofarlig, tom lokal mapp istället för S3. Utan det skulle varje
-        // artisan-kommando som rör asset-containern (t.ex. Statamics egen
-        // stache-uppvärmning vid deploy) krascha hårt - AWS accepterar inte
-        // en tom bucket-parameter, och det stoppar hela deployen. Sätt bara
-        // riktiga INTEGRATIONS_S3_*-värden i .env när bucketen finns, så
-        // växlar den automatiskt över till den riktiga S3-disken.
-        'integrations_s3' => env('INTEGRATIONS_S3_BUCKET')
-            ? [
-                'driver' => 's3',
-                'key' => env('INTEGRATIONS_S3_KEY', ''),
-                'secret' => env('INTEGRATIONS_S3_SECRET', ''),
-                'region' => env('INTEGRATIONS_S3_REGION', 'eu-north-1'),
-                'bucket' => env('INTEGRATIONS_S3_BUCKET'),
-                'url' => env('INTEGRATIONS_S3_URL'),
-                'throw' => false,
-                'report' => false,
-            ]
-            : [
-                'driver' => 'local',
-                'root' => storage_path('app/integrations-s3-unconfigured'),
-                'throw' => false,
-                'report' => false,
-            ],
+        // Driver "resilient_s3" (registrerad i AppServiceProvider) bygger
+        // en riktig S3-koppling om INTEGRATIONS_S3_BUCKET är satt, annars
+        // en ofarlig tom lokal mapp - och gör i båda fallen filbläddring
+        // ofarlig mot krascher (se app/Filesystem/ResilientListingAdapter.php).
+        // Utan det skulle t.ex. Statamics egen stache-uppvärmning vid varje
+        // deploy krascha helt om bucketen saknas, är fel konfigurerad eller
+        // IAM-användaren saknar behörighet.
+        'integrations_s3' => [
+            'driver' => 'resilient_s3',
+            'key' => env('INTEGRATIONS_S3_KEY', ''),
+            'secret' => env('INTEGRATIONS_S3_SECRET', ''),
+            'region' => env('INTEGRATIONS_S3_REGION', 'eu-north-1'),
+            'bucket' => env('INTEGRATIONS_S3_BUCKET'),
+            // Bucketen delar samma S3-bucket mellan miljöer (t.ex.
+            // .../production, .../staging) - detta prefixar alla
+            // sökvägar (integrations.json, avatars/, media/) automatiskt.
+            'root' => env('INTEGRATIONS_S3_ROOT_PREFIX'),
+            'url' => env('INTEGRATIONS_S3_URL'),
+            'throw' => false,
+            'report' => false,
+        ],
 
         'assets' => [
             'driver' => 'local',
