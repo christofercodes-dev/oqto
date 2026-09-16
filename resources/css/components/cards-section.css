@@ -367,6 +367,23 @@
         gap: 20px;
     }
 
+    /*
+     * På mobil/tablet ligger korten ofta redan i eller nära
+     * viewporten vid sidladdning - kräver då inte en scroll
+     * för att triggas, utan ska synas direkt. Stänger även av
+     * själva reveal-animationen, annars kan IntersectionObserver
+     * fortfarande trigga en (nu onödig) fade-in senare.
+     */
+    .feature-card-reveal,
+    .features-section.is-visible .feature-card-reveal {
+
+        opacity: 1;
+
+        transform: none;
+
+        animation: none;
+    }
+
     .feature-card {
 
         min-height: 560px;

@@ -405,18 +405,18 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: 20px;
     }
-  
+
     .hero-left {
       width: 100%;
     }
-  
+
     .hero-title {
       width: 100%;
-      margin: 0 auto;
-      text-align: center;
+      margin: 0;
+      text-align: left;
     }
   
     .hero-right {
