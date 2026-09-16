@@ -3,7 +3,7 @@ id: c1fc7c1d-a63d-4304-98fe-209be09aacbe
 blueprint: om_oss
 title: 'Om Oqto'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789593204
+updated_at: 1789594655
 template: about
 author:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
@@ -18,7 +18,9 @@ about_oqto_heading: 'Utvecklat och byggt för jobbet'
 image_1:
   - danie-franco-l9i93gzktg4-unsplash.jpg
 small_title_team: 'Detta är vi'
-cta_title: 'Mer nyfiken på oss på Oqto och vad vi gör? Se vanliga frågor & svar eller boka en demo'
+cta_title: |-
+  Mer nyfiken på oss på Oqto och vad vi gör?
+  Se vanliga frågor & svar eller boka en demo.
 cta_button_1_text: FAQ
 cta_button_2_text: 'Boka demo'
 cta_button_2_url: /boka-demo
