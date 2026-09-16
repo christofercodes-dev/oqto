@@ -260,7 +260,11 @@
                     <!-- CARD HEADER -->
                     <div class="integration-card-header">
 
-                        <div class="integration-logo">
+                        <a
+                            href="{{ url }}"
+                            class="integration-logo"
+                            aria-label="Läs mer om {{ title }}"
+                        >
 
                             {{ if avatar }}
 
@@ -277,13 +281,13 @@
 
                             {{ /if }}
 
-                        </div>
+                        </a>
 
 
                         <div class="integration-card-heading">
 
                             <h2 class="integration-card-title">
-                                {{ title }}
+                                <a href="{{ url }}">{{ title }}</a>
                             </h2>
 
                             {{ if developer_name }}

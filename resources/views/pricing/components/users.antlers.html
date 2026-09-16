@@ -24,77 +24,45 @@
         <!-- HÖGER -->
         <div class="pricing-users-levels">
 
-            <article class="pricing-user-level">
-                <span class="pricing-user-number">01</span>
-        
-                <h3 class="pricing-user-title">
-                    {{ user_levels:0:user_title }}
-                </h3>
-        
-                <div class="pricing-user-price">
-                    <span class="pricing-user-price-value">
-                        {{ user_levels:0:user_price }}
-                    </span>
-                    <span class="pricing-user-price-label">
-                        kr / månad
-                    </span>
-                </div>
-            </article>
-        
-        
-            <article class="pricing-user-level">
-                <span class="pricing-user-number">02</span>
-        
-                <h3 class="pricing-user-title">
-                    {{ user_levels:1:user_title }}
-                </h3>
-        
-                <div class="pricing-user-price">
-                    <span class="pricing-user-price-value">
-                        {{ user_levels:1:user_price }}
-                    </span>
-                    <span class="pricing-user-price-label">
-                        kr / månad
-                    </span>
-                </div>
-            </article>
-        
-        
-            <article class="pricing-user-level">
-                <span class="pricing-user-number">03</span>
-        
-                <h3 class="pricing-user-title">
-                    {{ user_levels:2:user_title }}
-                </h3>
-        
-                <div class="pricing-user-price">
-                    <span class="pricing-user-price-value">
-                        {{ user_levels:2:user_price }}
-                    </span>
-                    <span class="pricing-user-price-label">
-                        kr / månad
-                    </span>
-                </div>
-            </article>
-        
-        
-            <article class="pricing-user-level">
-                <span class="pricing-user-number">04</span>
-        
-                <h3 class="pricing-user-title">
-                    {{ user_levels:3:user_title }}
-                </h3>
-        
-                <div class="pricing-user-price">
-                    <span class="pricing-user-price-value">
-                        {{ user_levels:3:user_price }}
-                    </span>
-                    <span class="pricing-user-price-label">
-                        kr / månad
-                    </span>
-                </div>
-            </article>
-        
+            {{ user_levels }}
+
+                <details class="pricing-user-level">
+
+                    <summary class="pricing-user-summary">
+
+                        <span class="pricing-user-number">{{ index | add:1 | str_pad_left:2:0 }}</span>
+
+                        <h3 class="pricing-user-title">
+                            {{ user_title }}
+                        </h3>
+
+                        <div class="pricing-user-price">
+                            <span class="pricing-user-price-value">
+                                {{ user_price }}
+                            </span>
+                            <span class="pricing-user-price-label">
+                                kr / månad
+                            </span>
+                        </div>
+
+                        <span class="pricing-user-chevron-wrapper">
+                            <svg class="pricing-user-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+
+                    </summary>
+
+                    {{ if user_description }}
+                        <div class="pricing-user-description">
+                            <p>{{ user_description }}</p>
+                        </div>
+                    {{ /if }}
+
+                </details>
+
+            {{ /user_levels }}
+
         </div>
 
     </div>

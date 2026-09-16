@@ -3,6 +3,9 @@ tree:
     id: 0b29ddaa-c658-4b36-af75-283e84c2e354
     title: Systemet
     children:
+      - id: d7ec9277-0b16-49c6-b6b5-13748d53ded4
+        entry: e52fccde-78db-464a-a559-b0e48150bb16
+        title: Funktioner
       - id: 5cfc517d-f4cd-412f-af61-3cf137f084de
         entry: 44657d35-ed8b-451a-a97a-9dfa33683dcb
         title: Integrationer

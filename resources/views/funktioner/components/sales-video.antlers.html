@@ -1,0 +1,65 @@
+<section class="video-section">
+
+    <div class="video-container">
+
+        <div class="video-eyebrow">
+
+            {{ if small_title }}
+                <span class="video-title-small">
+                    {{ small_title }}
+                </span>
+            {{ /if }}
+
+            {{ if video_subtitle }}
+                <span class="video-subtitle">
+                    {{ video_subtitle }}
+                </span>
+            {{ /if }}
+
+        </div>
+
+        <div class="video-header">
+
+            <div class="video-left">
+                {{ if video_heading }}
+                    <h2 class="video-title">
+                        {{ video_heading | nl2br }}
+                    </h2>
+                {{ /if }}
+            </div>
+
+            <div class="video-right">
+                {{ if video_body }}
+                    <p class="video-text">
+                        {{ video_body }}
+                    </p>
+                {{ /if }}
+            </div>
+
+        </div>
+
+        <div class="video-wrapper">
+
+            {{ if video_file }}
+                {{ video_file }}
+                    <video class="video-element" controls playsinline preload="metadata">
+                        <source src="{{ url | signed_url }}">
+                    </video>
+                {{ /video_file }}
+            {{ elseif embed_code }}
+                <div class="video-element">
+                    <iframe
+                        src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last | explode('?') | first }}?title=0&byline=0&portrait=0&badge=0"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                        title="{{ video_heading }}"
+                    ></iframe>
+                </div>
+            {{ /if }}
+
+        </div>
+
+    </div>
+
+</section>

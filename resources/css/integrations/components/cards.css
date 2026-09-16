@@ -382,6 +382,12 @@
     border-radius: 16px;
 
     background-color: #f3f1ef;
+
+    transition: opacity 0.2s ease;
+}
+
+a.integration-logo:hover {
+    opacity: 0.75;
 }
 
 .integration-logo img {
@@ -414,6 +420,15 @@
     letter-spacing: -0.02em;
 
     color: var(--color-text);
+}
+
+.integration-card-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.integration-card-title a:hover {
+    color: var(--color-accent);
 }
 
 .integration-card-category {
@@ -536,22 +551,6 @@
         transform 0.2s ease;
 }
 
-/*
- * "Sträckt länk" - gör att hela kortet blir klickbart och leder till
- * detaljsidan, utan att korten behöver en omslutande <a> (ogiltig HTML
- * eftersom "Aktivera i Oqto"-knappen är en egen länk till en annan
- * adress). Den knappen ligger med högre z-index ovanpå och förblir
- * därför oberoende klickbar.
- */
-.integration-card-arrow::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-}
-
-.integration-card:hover .integration-card-arrow,
 .integration-card-arrow:hover {
     background-color: var(--color-accent);
     transform: translate(2px, -2px);

@@ -1,0 +1,95 @@
+/* =========================================================
+   FUNKTIONER - HERO
+   ========================================================= */
+
+.funktioner-hero-section {
+    width: 100%;
+
+    padding: 220px 40px 100px;
+
+    box-sizing: border-box;
+
+    background: linear-gradient(180deg, #e8f2ff 0%, #ffffff 100%);
+
+    text-align: center;
+}
+
+.funktioner-hero-container {
+    max-width: 780px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 22px;
+}
+
+.funktioner-hero-eyebrow {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: var(--color-accent);
+}
+
+.funktioner-hero-title {
+    margin: 0;
+
+    font-size: clamp(2.8rem, 5vw, 4.6rem);
+    font-weight: 400;
+    line-height: 1.05;
+
+    letter-spacing: -0.03em;
+
+    color: var(--color-text);
+}
+
+.funktioner-hero-body {
+    margin: 0;
+
+    max-width: 620px;
+
+    font-size: 1.05rem;
+    line-height: 1.65;
+
+    color: #55504c;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .funktioner-hero-section {
+        padding: 150px 32px 80px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .funktioner-hero-section {
+        padding: 120px 18px 60px;
+    }
+
+    .funktioner-hero-container {
+        gap: 16px;
+    }
+
+    .funktioner-hero-body {
+        font-size: 0.95rem;
+    }
+
+}

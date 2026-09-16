@@ -3,10 +3,11 @@ id: c1fc7c1d-a63d-4304-98fe-209be09aacbe
 blueprint: om_oss
 title: 'Om Oqto'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789336025
+updated_at: 1789593204
 template: about
 author:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
+hero_heading: 'Vi har sett vad som fungerar & vad som inte gör det.'
 small_title: 'Varför Oqto?'
 about_oqto_subtitle: "Utvecklat och \Lbyggt för jobbet"
 about_oqto_body: |-

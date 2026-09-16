@@ -1,0 +1,23 @@
+<section class="funktioner-hero-section">
+
+    <div class="container funktioner-hero-container">
+
+        {{ if hero_small_title }}
+            <span class="funktioner-hero-eyebrow">
+                {{ hero_small_title }}
+            </span>
+        {{ /if }}
+
+        <h1 class="funktioner-hero-title">
+            {{ hero_title | nl2br }}
+        </h1>
+
+        {{ if hero_body }}
+            <p class="funktioner-hero-body">
+                {{ hero_body }}
+            </p>
+        {{ /if }}
+
+    </div>
+
+</section>

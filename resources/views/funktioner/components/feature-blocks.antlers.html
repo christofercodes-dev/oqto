@@ -1,0 +1,67 @@
+<section class="feature-blocks-section">
+
+    <div class="container feature-blocks-container">
+
+        {{ feature_blocks }}
+
+            <article class="feature-block{{ if index | mod:2 == 0 }} feature-block-reverse{{ /if }}">
+
+                <div class="feature-block-media">
+
+                    {{ if type == "bild" }}
+
+                        {{ if image }}
+                            {{ image }}
+                                <img src="{{ url | signed_url }}" alt="{{ title }}">
+                            {{ /image }}
+                        {{ else }}
+                            <div class="feature-block-placeholder"></div>
+                        {{ /if }}
+
+                    {{ elseif type == "video" }}
+
+                        {{ if video_file }}
+                            {{ video_file }}
+                                <video class="feature-block-video" autoplay muted loop playsinline>
+                                    <source src="{{ url | signed_url }}">
+                                </video>
+                            {{ /video_file }}
+                        {{ elseif embed_code }}
+                            <div class="feature-block-embed">
+                                <iframe
+                                    src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last | explode('?') | first }}?title=0&byline=0&portrait=0&badge=0&background=1"
+                                    frameborder="0"
+                                    allow="autoplay; fullscreen"
+                                    allowfullscreen
+                                    title="{{ title }}"
+                                ></iframe>
+                            </div>
+                        {{ else }}
+                            <div class="feature-block-placeholder"></div>
+                        {{ /if }}
+
+                    {{ /if }}
+
+                </div>
+
+                <div class="feature-block-content">
+
+                    <h3 class="feature-block-title">
+                        {{ title }}
+                    </h3>
+
+                    {{ if text }}
+                        <p class="feature-block-text">
+                            {{ text }}
+                        </p>
+                    {{ /if }}
+
+                </div>
+
+            </article>
+
+        {{ /feature_blocks }}
+
+    </div>
+
+</section>

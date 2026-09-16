@@ -97,27 +97,22 @@
 
 .pricing-user-level {
     width: 100%;
-    min-height: 60px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 10px 20px;
 
     box-sizing: border-box;
 
-    border-radius: 999px;
+    border-radius: 30px;
 
     background-color: #f35d08;
     color: #ffffff;
 
-    transition:
-        transform 0.25s ease,
-        background-color 0.25s ease;
+    transition: background-color 0.25s ease;
 }
 
 .pricing-user-level:hover {
-    transform: translateX(6px);
+    background-color: #383331;
+}
+
+.pricing-user-level[open] {
     background-color: #383331;
 }
 
@@ -127,14 +122,97 @@
     border: 1px solid rgba(26, 23, 21, 0.15);
 }
 
+.pricing-user-level:last-child:hover,
+.pricing-user-level:last-child[open] {
+    background-color: #ffffff;
+}
+
 .pricing-user-level:last-child .pricing-user-number,
 .pricing-user-level:last-child .pricing-user-title,
-.pricing-user-level:last-child .pricing-user-price-value {
-    color: #1a1715; 
+.pricing-user-level:last-child .pricing-user-price-value,
+.pricing-user-level:last-child .pricing-user-chevron-wrapper {
+    color: #1a1715;
 }
 
 .pricing-user-level:last-child .pricing-user-price-label {
     color: #77736f;
+}
+
+
+/* =========================================================
+   SUMMARY (SYNLIG RAD)
+   ========================================================= */
+
+.pricing-user-summary {
+    width: 100%;
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 20px;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    list-style: none;
+}
+
+.pricing-user-summary::-webkit-details-marker {
+    display: none;
+}
+
+.pricing-user-summary::marker {
+    display: none;
+    content: "";
+}
+
+
+/* =========================================================
+   CHEVRON
+   ========================================================= */
+
+.pricing-user-chevron-wrapper {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 16px;
+
+    color: #ffffff;
+}
+
+.pricing-user-chevron {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pricing-user-level[open] .pricing-user-chevron {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   BESKRIVNING
+   ========================================================= */
+
+.pricing-user-description {
+    padding: 0 20px 22px 62px;
+}
+
+.pricing-user-description p {
+    margin: 0;
+
+    font-size: 0.9rem;
+    line-height: 1.55;
+
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.pricing-user-level:last-child .pricing-user-description p {
+    color: #55504c;
 }
 
 /* =========================================================
@@ -276,13 +354,13 @@
         gap: 8px;
     }
 
-    .pricing-user-level {
+    .pricing-user-summary {
         min-height: 56px;
         padding: 9px 16px;
     }
 
-    .pricing-user-level:hover {
-        transform: none;
+    .pricing-user-description {
+        padding: 0 16px 18px 50px;
     }
 
 
@@ -327,8 +405,12 @@
         padding: 50px 16px;
     }
 
-    .pricing-user-level {
+    .pricing-user-summary {
         padding: 9px 14px;
+    }
+
+    .pricing-user-description {
+        padding: 0 14px 16px 44px;
     }
 
     .pricing-user-number {
@@ -359,7 +441,7 @@
         transition: none;
     }
 
-    .pricing-user-level:hover {
-        transform: none;
+    .pricing-user-chevron {
+        transition: none;
     }
 }

@@ -1,0 +1,191 @@
+/* =========================================================
+   FUNKTIONER - FUNKTIONSBLOCK
+   ========================================================= */
+
+.feature-blocks-section {
+    width: 100%;
+
+    padding: 100px 40px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    color: var(--color-text);
+}
+
+.feature-blocks-container {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 100px;
+}
+
+
+/* =========================================================
+   BLOCK
+   ========================================================= */
+
+.feature-block {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+    gap: 64px;
+
+    align-items: center;
+}
+
+.feature-block-reverse .feature-block-media {
+    order: 2;
+}
+
+.feature-block-reverse .feature-block-content {
+    order: 1;
+}
+
+
+/* =========================================================
+   MEDIA
+   ========================================================= */
+
+.feature-block-media {
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    background-color: #f3f1ef;
+}
+
+.feature-block-media img,
+.feature-block-video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.feature-block-embed {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.feature-block-embed iframe {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+.feature-block-placeholder {
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(135deg, #f3f1ef 0%, #e8e4df 100%);
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.feature-block-content {
+    max-width: 460px;
+}
+
+.feature-block-title {
+    margin: 0 0 16px;
+
+    font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1.15;
+
+    letter-spacing: -0.02em;
+
+    color: var(--color-text);
+}
+
+.feature-block-text {
+    margin: 0;
+
+    font-size: 1rem;
+    line-height: 1.65;
+
+    color: #55504c;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .feature-blocks-section {
+        padding: 70px 32px;
+    }
+
+    .feature-blocks-container {
+        gap: 70px;
+    }
+
+    .feature-block {
+        gap: 40px;
+    }
+
+    .feature-block-content {
+        max-width: none;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .feature-blocks-section {
+        padding: 56px 18px;
+    }
+
+    .feature-blocks-container {
+        gap: 56px;
+    }
+
+    .feature-block {
+        grid-template-columns: 1fr;
+
+        gap: 24px;
+    }
+
+    .feature-block-reverse .feature-block-media,
+    .feature-block-reverse .feature-block-content {
+        order: initial;
+    }
+
+    .feature-block-media {
+        aspect-ratio: 16 / 10;
+    }
+
+    .feature-block-title {
+        margin-bottom: 12px;
+    }
+
+}

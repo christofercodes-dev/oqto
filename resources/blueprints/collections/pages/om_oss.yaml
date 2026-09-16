@@ -18,6 +18,12 @@ tabs:
               type: template
               display: Template
           -
+            handle: hero_heading
+            field:
+              type: text
+              display: Rubrik
+              instructions: 'Rubriken som visas i hero-blocket. Separat från sidtiteln (som bara syns i webbläsarfliken/SEO).'
+          -
             handle: content
             field:
               type: markdown
