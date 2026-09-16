@@ -14,6 +14,13 @@ tabs:
               required: true
               validate:
                 - required
+          -
+            handle: featured
+            field:
+              type: toggle
+              display: 'Rekommenderad ⭐'
+              instructions: 'Stjärnmärk integrationen som rekommenderad. Rekommenderade integrationer visas först på /integrationer (redaktionellt fält - påverkas inte av den nattliga importen).'
+              default: false
       -
         display: Källdata
         fields:
@@ -85,7 +92,7 @@ tabs:
           -
             handle: integration_type
             field:
-              type: taxonomy
+              type: terms
               taxonomies:
                 - integration_type
               display: Integrationstyp
@@ -93,7 +100,7 @@ tabs:
           -
             handle: sni_codes
             field:
-              type: taxonomy
+              type: terms
               taxonomies:
                 - sni_codes
               display: SNI-koder

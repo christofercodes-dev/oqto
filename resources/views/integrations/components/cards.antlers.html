@@ -17,86 +17,194 @@
         </div>
 
 
-        <!-- FILTER -->
-        <div class="integrations-filter-wrapper">
+        <!-- FILTER + SORTERING -->
+        <div class="integrations-toolbar-row">
 
-            <button
-                type="button"
-                class="integrations-filter-trigger"
-                aria-expanded="false"
-                aria-controls="integration-filter-menu"
-            >
-                <span class="integrations-filter-trigger-left">
+        <div class="integrations-toolbar">
 
-                    <!-- FILTER IKON -->
+            <div class="integrations-filter-wrapper" data-dropdown>
+
+                <button
+                    type="button"
+                    class="integrations-filter-trigger"
+                    aria-expanded="false"
+                    aria-controls="integration-filter-menu"
+                >
+                    <span class="integrations-filter-trigger-left">
+
+                        <!-- FILTER IKON -->
+                        <svg
+                            class="integrations-filter-icon"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M4 7H20M7 12H17M10 17H14"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                                stroke-linecap="round"
+                            />
+                        </svg>
+
+                        <span>Filter</span>
+
+                    </span>
+
                     <svg
-                        class="integrations-filter-icon"
-                        width="16"
-                        height="16"
+                        class="integrations-filter-chevron"
+                        width="14"
+                        height="14"
                         viewBox="0 0 24 24"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true"
                     >
                         <path
-                            d="M4 7H20M7 12H17M10 17H14"
+                            d="M6 9L12 15L18 9"
                             stroke="currentColor"
-                            stroke-width="1.7"
+                            stroke-width="1.8"
                             stroke-linecap="round"
+                            stroke-linejoin="round"
                         />
                     </svg>
-
-                    <span>Filter</span>
-
-                </span>
-
-                <svg
-                    class="integrations-filter-chevron"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        d="M6 9L12 15L18 9"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-                </svg>
-            </button>
-
-
-            <div
-                id="integration-filter-menu"
-                class="integrations-filter-menu"
-                hidden
-            >
-
-                <button
-                    type="button"
-                    class="integrations-filter-option is-active"
-                    data-filter="all"
-                >
-                    Alla integrationer
                 </button>
 
-                {{ integrations }}
-                    {{ if category }}
+
+                <div
+                    id="integration-filter-menu"
+                    class="integrations-filter-menu"
+                    hidden
+                >
+
+                    <button
+                        type="button"
+                        class="integrations-filter-option is-active"
+                        data-filter="all"
+                    >
+                        Alla integrationer
+                    </button>
+
+                    {{ integrations:developers }}
                         <button
                             type="button"
                             class="integrations-filter-option"
-                            data-filter="{{ category }}"
+                            data-filter="{{ slug }}"
                         >
-                            {{ category }}
+                            {{ name }}
                         </button>
-                    {{ /if }}
-                {{ /integrations }}
+                    {{ /integrations:developers }}
+
+                </div>
 
             </div>
+
+
+            <div class="integrations-filter-wrapper" data-dropdown>
+
+                <button
+                    type="button"
+                    class="integrations-filter-trigger"
+                    aria-expanded="false"
+                    aria-controls="integration-sort-menu"
+                >
+                    <span class="integrations-filter-trigger-left">
+
+                        <!-- SORTERINGS-IKON -->
+                        <svg
+                            class="integrations-filter-icon"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M7 5V19M7 19L4 16M7 19L10 16M17 19V5M17 5L14 8M17 5L20 8"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+
+                        <span>Sortera</span>
+
+                    </span>
+
+                    <svg
+                        class="integrations-filter-chevron"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M6 9L12 15L18 9"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+
+
+                <div
+                    id="integration-sort-menu"
+                    class="integrations-filter-menu"
+                    hidden
+                >
+
+                    <button
+                        type="button"
+                        class="integrations-filter-option is-active"
+                        data-sort="featured"
+                    >
+                        Rekommenderade
+                    </button>
+
+                    <button
+                        type="button"
+                        class="integrations-filter-option"
+                        data-sort="title-asc"
+                    >
+                        Namn (A-Ö)
+                    </button>
+
+                    <button
+                        type="button"
+                        class="integrations-filter-option"
+                        data-sort="title-desc"
+                    >
+                        Namn (Ö-A)
+                    </button>
+
+                    <button
+                        type="button"
+                        class="integrations-filter-option"
+                        data-sort="newest"
+                    >
+                        Senast tillagd
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+            <p class="integrations-count">
+                {{ collection:integrations as="all_integrations" }}
+                    Alla integrationer | {{ all_integrations | count }} st
+                {{ /collection:integrations }}
+            </p>
 
         </div>
 
@@ -104,22 +212,32 @@
         <!-- INTEGRATIONER -->
         <div class="integrations-grid">
 
-            {{ integrations }}
+            {{ collection:integrations sort="featured:desc|title:asc" }}
 
                 <article
-                    class="integration-card"
-                    data-category="{{ category }}"
+                    class="integration-card{{ if featured }} integration-card-featured{{ /if }}"
+                    data-category="{{ developer_name | slugify }}"
+                    data-title="{{ title }}"
+                    data-created="{{ source_created_at format='U' }}"
+                    data-featured="{{ if featured }}1{{ else }}0{{ /if }}"
                 >
+
+                    {{ if featured }}
+                        <span class="integration-card-badge">
+                            <span class="integration-card-badge-star">★</span>
+                            Rekommenderad
+                        </span>
+                    {{ /if }}
 
                     <!-- CARD HEADER -->
                     <div class="integration-card-header">
 
                         <div class="integration-logo">
 
-                            {{ if logo }}
+                            {{ if avatar }}
 
                                 <img
-                                    src="{{ logo:url }}"
+                                    src="{{ avatar | signed_url }}"
                                     alt="{{ title }}"
                                 >
 
@@ -140,9 +258,9 @@
                                 {{ title }}
                             </h2>
 
-                            {{ if category }}
+                            {{ if developer_name }}
                                 <span class="integration-card-category">
-                                    {{ category }}
+                                    {{ developer_name }}
                                 </span>
                             {{ /if }}
 
@@ -154,19 +272,19 @@
                     <!-- CARD CONTENT -->
                     <div class="integration-card-content">
 
-                        {{ if short_text }}
+                        {{ if short_description }}
 
                             <p class="integration-card-short">
-                                {{ short_text }}
+                                {{ short_description }}
                             </p>
 
                         {{ /if }}
 
 
-                        {{ if body }}
+                        {{ if description }}
 
                             <div class="integration-card-body">
-                                {{ body }}
+                                {{ description }}
                             </div>
 
                         {{ /if }}
@@ -184,34 +302,19 @@
                             Aktivera i Oqto
                         </a>
 
-
-                        {{ if url }}
-
-                            <a
-                                href="{{ url }}"
-                                class="integration-card-arrow"
-                                aria-label="Läs mer om {{ title }}"
-                            >
-                                ↗
-                            </a>
-
-                        {{ else }}
-
-                            <a
-                                href="#"
-                                class="integration-card-arrow"
-                                aria-label="Läs mer om {{ title }}"
-                            >
-                                ↗
-                            </a>
-
-                        {{ /if }}
+                        <a
+                            href="{{ url }}"
+                            class="integration-card-arrow"
+                            aria-label="Läs mer om {{ title }}"
+                        >
+                            →
+                        </a>
 
                     </div>
 
                 </article>
 
-            {{ /integrations }}
+            {{ /collection:integrations }}
 
         </div>
 
@@ -222,99 +325,59 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    const trigger = document.querySelector('.integrations-filter-trigger');
-    const menu = document.querySelector('.integrations-filter-menu');
-    const options = document.querySelectorAll('.integrations-filter-option');
-    const cards = document.querySelectorAll('.integration-card');
+    const grid = document.querySelector('.integrations-grid');
+    const dropdowns = document.querySelectorAll('[data-dropdown]');
 
-    if (!trigger || !menu) return;
+    if (!grid || !dropdowns.length) return;
 
 
     /*
-     * Öppna / stäng dropdown
+     * Dropdown-hantering (delas mellan filter och sortering)
      */
-    trigger.addEventListener('click', function () {
+    dropdowns.forEach(function (dropdown) {
 
-        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        const trigger = dropdown.querySelector('.integrations-filter-trigger');
+        const menu = dropdown.querySelector('.integrations-filter-menu');
 
-        trigger.setAttribute('aria-expanded', !isOpen);
+        if (!trigger || !menu) return;
 
-        if (isOpen) {
-            menu.hidden = true;
-        } else {
-            menu.hidden = false;
-        }
+        trigger.addEventListener('click', function () {
+
+            const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+            /*
+             * Stäng övriga dropdowns
+             */
+            dropdowns.forEach(function (other) {
+
+                if (other === dropdown) return;
+
+                const otherTrigger = other.querySelector('.integrations-filter-trigger');
+                const otherMenu = other.querySelector('.integrations-filter-menu');
+
+                if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+                if (otherMenu) otherMenu.hidden = true;
+
+            });
+
+            trigger.setAttribute('aria-expanded', !isOpen);
+            menu.hidden = isOpen;
+
+        });
 
     });
 
+    document.addEventListener('click', function (event) {
 
-    /*
-     * Filtrera kort
-     */
-    options.forEach(function (option) {
+        if (event.target.closest('[data-dropdown]')) return;
 
-        option.addEventListener('click', function () {
+        dropdowns.forEach(function (dropdown) {
 
-            const filter = option.dataset.filter;
+            const trigger = dropdown.querySelector('.integrations-filter-trigger');
+            const menu = dropdown.querySelector('.integrations-filter-menu');
 
-            /*
-             * Aktiv knapp
-             */
-            options.forEach(function (item) {
-                item.classList.remove('is-active');
-            });
-
-            option.classList.add('is-active');
-
-
-            /*
-             * Uppdatera texten på dropdownen
-             */
-            const triggerText = trigger.querySelector(
-                '.integrations-filter-trigger-left span:last-child'
-            );
-
-            if (triggerText) {
-                triggerText.textContent =
-                    filter === 'all'
-                        ? 'Filter'
-                        : option.textContent.trim();
-            }
-
-
-            /*
-             * Visa / dölj kort
-             */
-            cards.forEach(function (card) {
-
-                const category = card.dataset.category;
-
-                if (filter === 'all' || category === filter) {
-
-                    card.style.display = '';
-
-                    requestAnimationFrame(function () {
-                        card.classList.remove('is-filtered-out');
-                    });
-
-                } else {
-
-                    card.classList.add('is-filtered-out');
-
-                    setTimeout(function () {
-                        card.style.display = 'none';
-                    }, 180);
-
-                }
-
-            });
-
-
-            /*
-             * Stäng dropdown
-             */
-            trigger.setAttribute('aria-expanded', 'false');
-            menu.hidden = true;
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+            if (menu) menu.hidden = true;
 
         });
 
@@ -322,18 +385,132 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /*
-     * Stäng när man klickar utanför
+     * Aktivera en knapp inom en dropdown-meny och uppdatera dess trigger-text
      */
-    document.addEventListener('click', function (event) {
+    function activateOption(option, defaultLabel) {
 
-        if (!event.target.closest('.integrations-filter-wrapper')) {
+        const menu = option.closest('.integrations-filter-menu');
+        const dropdown = option.closest('[data-dropdown]');
+        const trigger = dropdown.querySelector('.integrations-filter-trigger');
 
-            trigger.setAttribute('aria-expanded', 'false');
-            menu.hidden = true;
+        menu.querySelectorAll('.integrations-filter-option').forEach(function (item) {
+            item.classList.remove('is-active');
+        });
 
+        option.classList.add('is-active');
+
+        const triggerText = trigger.querySelector('.integrations-filter-trigger-left span:last-child');
+
+        if (triggerText) {
+            triggerText.textContent = option.dataset.default === 'true'
+                ? defaultLabel
+                : option.textContent.trim();
         }
 
-    });
+        trigger.setAttribute('aria-expanded', 'false');
+        menu.hidden = true;
+
+    }
+
+
+    /*
+     * Filtrera kort
+     */
+    const filterMenu = document.getElementById('integration-filter-menu');
+
+    if (filterMenu) {
+
+        filterMenu.querySelectorAll('.integrations-filter-option').forEach(function (option) {
+
+            if (option.dataset.filter === 'all') {
+                option.dataset.default = 'true';
+            }
+
+            option.addEventListener('click', function () {
+
+                activateOption(option, 'Filter');
+
+                const filter = option.dataset.filter;
+
+                grid.querySelectorAll('.integration-card').forEach(function (card) {
+
+                    const matches = filter === 'all' || card.dataset.category === filter;
+
+                    if (matches) {
+
+                        card.style.display = '';
+
+                        requestAnimationFrame(function () {
+                            card.classList.remove('is-filtered-out');
+                        });
+
+                    } else {
+
+                        card.classList.add('is-filtered-out');
+
+                        setTimeout(function () {
+                            card.style.display = 'none';
+                        }, 180);
+
+                    }
+
+                });
+
+            });
+
+        });
+
+    }
+
+
+    /*
+     * Sortera kort
+     */
+    const sortMenu = document.getElementById('integration-sort-menu');
+
+    if (sortMenu) {
+
+        const sorters = {
+            featured: function (a, b) {
+                return Number(b.dataset.featured) - Number(a.dataset.featured)
+                    || a.dataset.title.localeCompare(b.dataset.title, 'sv');
+            },
+            'title-asc': function (a, b) {
+                return a.dataset.title.localeCompare(b.dataset.title, 'sv');
+            },
+            'title-desc': function (a, b) {
+                return b.dataset.title.localeCompare(a.dataset.title, 'sv');
+            },
+            newest: function (a, b) {
+                return Number(b.dataset.created) - Number(a.dataset.created);
+            },
+        };
+
+        sortMenu.querySelectorAll('.integrations-filter-option').forEach(function (option) {
+
+            if (option.dataset.sort === 'featured') {
+                option.dataset.default = 'true';
+            }
+
+            option.addEventListener('click', function () {
+
+                activateOption(option, 'Sortera');
+
+                const sorter = sorters[option.dataset.sort];
+
+                if (!sorter) return;
+
+                Array.from(grid.querySelectorAll('.integration-card'))
+                    .sort(sorter)
+                    .forEach(function (card) {
+                        grid.appendChild(card);
+                    });
+
+            });
+
+        });
+
+    }
 
 });
 </script>

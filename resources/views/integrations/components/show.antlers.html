@@ -1,0 +1,203 @@
+<section class="integration-show-section">
+
+    <div class="container integration-show-container">
+
+        <!-- ==================================================
+             TILLBAKA
+             ================================================== -->
+
+        <a href="/integrationer" class="integration-show-back-link">
+            <span>←</span>
+            <span>Till alla integrationer</span>
+        </a>
+
+
+        <!-- ==================================================
+             HERO
+             ================================================== -->
+
+        <div class="integration-show-hero">
+
+            <div class="integration-show-hero-text">
+
+                {{ if short_description }}
+                    <h1 class="integration-show-title">
+                        {{ short_description }}
+                    </h1>
+                {{ else }}
+                    <h1 class="integration-show-title">
+                        {{ title }}
+                    </h1>
+                {{ /if }}
+
+                <p class="integration-show-meta-line">
+                    {{ title }}{{ if developer_name }} &middot; {{ developer_name }}{{ /if }}
+                </p>
+
+                {{ if description }}
+                    <div class="integration-show-description">
+                        {{ description | nl2br }}
+                    </div>
+                {{ /if }}
+
+            </div>
+
+            <div class="integration-show-hero-visual">
+
+                <div class="integration-show-hero-image">
+
+                    {{ if avatar }}
+                        <img src="{{ avatar | signed_url }}" alt="{{ title }}">
+                    {{ else }}
+                        <span class="integration-show-hero-image-placeholder">
+                            {{ title | first }}
+                        </span>
+                    {{ /if }}
+
+                </div>
+
+                {{ if partner_website }}
+                    <a href="{{ partner_website }}" target="_blank" rel="noopener" class="integration-show-visit-button">
+                        <span>Gå till {{ title }}</span>
+                        <span class="integration-show-visit-arrow">→</span>
+                    </a>
+                {{ /if }}
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             VARFÖR / BRANSCHER / PRIS
+             ================================================== -->
+
+        {{ if reasons || sni_codes || price }}
+
+            <div class="integration-show-info-grid">
+
+                {{ if reasons }}
+                    <div class="integration-show-info-card integration-show-info-card-orange">
+                        <span class="integration-show-info-number">01</span>
+                        <span class="integration-show-info-label">Varför {{ title }}?</span>
+                        <ul class="integration-show-info-list">
+                            {{ reasons }}
+                                <li>{{ value }}</li>
+                            {{ /reasons }}
+                        </ul>
+                    </div>
+                {{ /if }}
+
+                {{ if sni_codes }}
+                    <div class="integration-show-info-card integration-show-info-card-yellow">
+                        <span class="integration-show-info-number">02</span>
+                        <span class="integration-show-info-label">Branscher (SNI)</span>
+                        <ul class="integration-show-info-list">
+                            {{ sni_codes }}
+                                <li>{{ title }}</li>
+                            {{ /sni_codes }}
+                        </ul>
+                    </div>
+                {{ /if }}
+
+                {{ if price }}
+                    <div class="integration-show-info-card integration-show-info-card-green">
+                        <span class="integration-show-info-number">03</span>
+                        <span class="integration-show-info-label">Pris</span>
+                        <p class="integration-show-info-price">{{ price }}</p>
+                        <a href="/priser" class="integration-show-info-link">Se mer av våra priser här</a>
+                    </div>
+                {{ /if }}
+
+            </div>
+
+        {{ /if }}
+
+
+        <!-- ==================================================
+             KOM IGÅNG + PARTNER
+             ================================================== -->
+
+        <div class="integration-show-cta">
+
+            <div class="integration-show-cta-main">
+
+                <p class="integration-show-cta-title">
+                    Kom igång med {{ title }} idag.
+                </p>
+
+                <a href="#" class="integration-activate-button">
+                    <span>Aktivera i Oqto</span>
+                    <span class="integration-activate-arrow">→</span>
+                </a>
+
+            </div>
+
+            {{ if partner_email || partner_phone || partner_website || partner_about }}
+
+                <div class="integration-show-cta-partner">
+
+                    {{ if partner_about }}
+                        <p class="integration-partner-about">
+                            {{ partner_about }}
+                        </p>
+                    {{ /if }}
+
+                    <ul class="integration-partner-list">
+
+                        {{ if partner_website }}
+                            <li>
+                                <a href="{{ partner_website }}" target="_blank" rel="noopener">
+                                    {{ partner_website }}
+                                </a>
+                            </li>
+                        {{ /if }}
+
+                        {{ if partner_email }}
+                            <li>
+                                <a href="mailto:{{ partner_email }}">
+                                    {{ partner_email }}
+                                </a>
+                            </li>
+                        {{ /if }}
+
+                        {{ if partner_phone }}
+                            <li>
+                                <a href="tel:{{ partner_phone }}">
+                                    {{ partner_phone }}
+                                </a>
+                            </li>
+                        {{ /if }}
+
+                    </ul>
+
+                </div>
+
+            {{ /if }}
+
+        </div>
+
+
+        <!-- ==================================================
+             GALLERI
+             ================================================== -->
+
+        {{ if media }}
+
+            <div class="integration-show-gallery-section">
+
+                <span class="integration-show-info-label">Skärmdumpar</span>
+
+                <div class="integration-show-gallery">
+                    {{ media }}
+                        <img src="{{ id | signed_url }}" alt="{{ title }}">
+                    {{ /media }}
+                </div>
+
+            </div>
+
+        {{ /if }}
+
+    </div>
+
+</section>

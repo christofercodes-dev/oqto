@@ -55,6 +55,41 @@
 
 
 /* =========================================
+   TOOLBAR (FILTER + SORTERING)
+   ========================================= */
+
+.integrations-toolbar-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 32px;
+}
+
+.integrations-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    gap: 12px;
+}
+
+.integrations-count {
+    margin: 0;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+
+    color: rgba(46, 37, 31, 0.7);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
    FILTER
    ========================================= */
 
@@ -62,8 +97,6 @@
     position: relative;
 
     display: inline-block;
-
-    margin-bottom: 32px;
 }
 
 .integrations-filter-trigger {
@@ -199,6 +232,8 @@
    ========================================= */
 
 .integration-card {
+    position: relative;
+
     display: flex;
     flex-direction: column;
 
@@ -207,10 +242,11 @@
 
     padding: 28px;
 
-    border: 1px solid #e5e2df;
-    border-radius: 24px;
+    border: 1px solid #ebe6df;
+    border-radius: 32px;
 
-    background-color: #ffffff;
+    background-color: #f9f7f4;
+    background-image: linear-gradient(180deg, rgba(242, 236, 227, 0) 0%, rgba(242, 236, 227, 0.35) 100%);
 
     transition:
         transform 0.25s ease,
@@ -225,6 +261,43 @@
         0 14px 40px rgba(0, 0, 0, 0.07);
 }
 
+.integration-card-featured {
+    border-color: rgba(255, 85, 0, 0.35);
+    background-color: #fbf4ee;
+    background-image: linear-gradient(180deg, rgba(255, 99, 25, 0) 0%, rgba(255, 99, 25, 0.08) 100%);
+}
+
+.integration-card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 12px;
+
+    border-radius: 999px;
+
+    background-color: var(--color-accent);
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: #ffffff;
+}
+
+.integration-card-badge-star {
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
 
 /* =========================================
    CARD HEADER
@@ -237,8 +310,8 @@
 }
 
 .integration-logo {
-    width: 52px;
-    height: 52px;
+    width: 64px;
+    height: 64px;
 
     flex-shrink: 0;
 
@@ -248,7 +321,7 @@
 
     overflow: hidden;
 
-    border-radius: 14px;
+    border-radius: 16px;
 
     background-color: #f3f1ef;
 }
@@ -276,9 +349,9 @@
 .integration-card-title {
     margin: 0;
 
-    font-size: 1.25rem;
+    font-size: 1.6rem;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.15;
 
     letter-spacing: -0.02em;
 
@@ -288,15 +361,16 @@
 .integration-card-category {
     display: block;
 
-    margin-top: 6px;
+    margin-top: 8px;
 
+    font-family: "Geist Mono", monospace;
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: 500;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
 
-    color: var(--color-accent);
+    color: rgba(46, 37, 31, 0.6);
 }
 
 
@@ -346,16 +420,33 @@
 }
 
 .integration-card-activate {
-    font-size: 0.8rem;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
+    padding: 8px 18px;
+
+    border: 1.5px solid var(--color-accent);
+    border-radius: 999px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     text-decoration: none;
 
-    color: var(--color-text);
+    color: var(--color-accent);
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
 
 .integration-card-activate:hover {
-    color: var(--color-accent);
+    background-color: var(--color-accent);
+    color: #ffffff;
 }
 
 .integration-card-arrow {
@@ -363,19 +454,21 @@
     align-items: center;
     justify-content: center;
 
-    width: 36px;
-    height: 36px;
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
 
     border-radius: 50%;
 
-    background-color: #f3f1ef;
+    background-color: #2e251f;
 
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1;
 
     text-decoration: none;
 
-    color: var(--color-text);
+    color: #ffffff;
 
     transition:
         background-color 0.2s ease,
@@ -383,7 +476,7 @@
 }
 
 .integration-card-arrow:hover {
-    background-color: #e9e5e2;
+    background-color: var(--color-accent);
     transform: translate(2px, -2px);
 }
 
@@ -428,14 +521,31 @@
     }
 
 
-    /* FILTER */
+    /* TOOLBAR + FILTER */
+
+    .integrations-toolbar-row {
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 12px;
+
+        margin-bottom: 24px;
+    }
+
+    .integrations-toolbar {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .integrations-count {
+        white-space: normal;
+    }
 
     .integrations-filter-wrapper {
         display: block;
 
         width: 100%;
-
-        margin-bottom: 24px;
     }
 
     .integrations-filter-trigger {
@@ -544,7 +654,7 @@
         font-size: 0.9rem;
     }
 
-    .integrations-filter-wrapper {
+    .integrations-toolbar-row {
         margin-bottom: 20px;
     }
 

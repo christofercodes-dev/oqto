@@ -41,6 +41,12 @@ tabs:
               type: textarea
               display: 'integrations intro'
           -
+            handle: integrations_cta_title
+            field:
+              type: textarea
+              display: 'integrations CTA title'
+              instructions: 'Rubriken i rutan längst ner på sidan (FAQ / boka demo).'
+          -
             handle: integrations
             field:
               type: replicator

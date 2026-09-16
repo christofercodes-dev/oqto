@@ -1,9 +1,11 @@
 title: Integrations
 icon: collections
-template: default
+route: '/integrationer/{slug}'
+template: integrations/show
 layout: layout
 revisions: false
 sort_dir: asc
+sort_field: title
 date_behavior:
   past: null
   future: null

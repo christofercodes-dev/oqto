@@ -8,3 +8,5 @@ preferences:
       view: tree
     team:
       view: list
+    integrations:
+      view: list
