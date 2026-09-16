@@ -56,12 +56,10 @@
 
                 </div>
 
-                {{ if partner_website }}
-                    <a href="{{ partner_website }}" target="_blank" rel="noopener" class="integration-show-visit-button">
-                        <span>Gå till {{ title }}</span>
-                        <span class="integration-show-visit-arrow">→</span>
-                    </a>
-                {{ /if }}
+                <a href="https://app.oqto.se" class="integration-show-visit-button">
+                    <span>Aktivera i Oqto</span>
+                    <span class="integration-show-visit-arrow">→</span>
+                </a>
 
             </div>
 
@@ -105,7 +103,6 @@
                         <span class="integration-show-info-number">03</span>
                         <span class="integration-show-info-label">Pris</span>
                         <p class="integration-show-info-price">{{ price }}</p>
-                        <a href="/priser" class="integration-show-info-link">Se mer av våra priser här</a>
                     </div>
                 {{ /if }}
 
@@ -126,10 +123,12 @@
                     Kom igång med {{ title }} idag.
                 </p>
 
-                <a href="#" class="integration-activate-button">
-                    <span>Aktivera i Oqto</span>
-                    <span class="integration-activate-arrow">→</span>
-                </a>
+                {{ if partner_website }}
+                    <a href="{{ partner_website }}" target="_blank" rel="noopener" class="integration-activate-button">
+                        <span>Gå till {{ title }}</span>
+                        <span class="integration-activate-arrow">→</span>
+                    </a>
+                {{ /if }}
 
             </div>
 

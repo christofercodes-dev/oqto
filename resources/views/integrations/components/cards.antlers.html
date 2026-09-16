@@ -17,6 +17,33 @@
         </div>
 
 
+        <!-- SÖK -->
+        <div class="integrations-search-wrapper">
+
+            <svg
+                class="integrations-search-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+            >
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7" />
+                <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+
+            <input
+                type="search"
+                id="integration-search"
+                class="integrations-search-input"
+                placeholder="Sök integration..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
         <!-- FILTER + SORTERING -->
         <div class="integrations-toolbar-row">
 
@@ -167,7 +194,7 @@
                         class="integrations-filter-option is-active"
                         data-sort="featured"
                     >
-                        Rekommenderade
+                        Populära
                     </button>
 
                     <button
@@ -220,12 +247,13 @@
                     data-title="{{ title }}"
                     data-created="{{ source_created_at format='U' }}"
                     data-featured="{{ if featured }}1{{ else }}0{{ /if }}"
+                    data-search="{{ title }} {{ developer_name }}"
                 >
 
                     {{ if featured }}
                         <span class="integration-card-badge">
                             <span class="integration-card-badge-star">★</span>
-                            Rekommenderad
+                            Populär
                         </span>
                     {{ /if }}
 
@@ -278,14 +306,11 @@
                                 {{ short_description }}
                             </p>
 
-                        {{ /if }}
+                        {{ elseif description }}
 
-
-                        {{ if description }}
-
-                            <div class="integration-card-body">
-                                {{ description }}
-                            </div>
+                            <p class="integration-card-short">
+                                {{ description | truncate:110:'…' }}
+                            </p>
 
                         {{ /if }}
 
@@ -296,10 +321,10 @@
                     <div class="integration-card-footer">
 
                         <a
-                            href="#"
+                            href="{{ url }}"
                             class="integration-card-activate"
                         >
-                            Aktivera i Oqto
+                            Läs mer
                         </a>
 
                         <a
@@ -414,8 +439,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /*
-     * Filtrera kort
+     * Filtrera + sök kort (kombineras: ett kort måste matcha bådadera)
      */
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function applyVisibility() {
+
+        grid.querySelectorAll('.integration-card').forEach(function (card) {
+
+            const matchesFilter = currentFilter === 'all' || card.dataset.category === currentFilter;
+
+            const matchesSearch = !currentSearch
+                || (card.dataset.search || '').toLowerCase().includes(currentSearch);
+
+            if (matchesFilter && matchesSearch) {
+
+                card.style.display = '';
+
+                requestAnimationFrame(function () {
+                    card.classList.remove('is-filtered-out');
+                });
+
+            } else {
+
+                card.classList.add('is-filtered-out');
+
+                setTimeout(function () {
+                    card.style.display = 'none';
+                }, 180);
+
+            }
+
+        });
+
+    }
+
     const filterMenu = document.getElementById('integration-filter-menu');
 
     if (filterMenu) {
@@ -430,33 +489,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 activateOption(option, 'Filter');
 
-                const filter = option.dataset.filter;
+                currentFilter = option.dataset.filter;
 
-                grid.querySelectorAll('.integration-card').forEach(function (card) {
-
-                    const matches = filter === 'all' || card.dataset.category === filter;
-
-                    if (matches) {
-
-                        card.style.display = '';
-
-                        requestAnimationFrame(function () {
-                            card.classList.remove('is-filtered-out');
-                        });
-
-                    } else {
-
-                        card.classList.add('is-filtered-out');
-
-                        setTimeout(function () {
-                            card.style.display = 'none';
-                        }, 180);
-
-                    }
-
-                });
+                applyVisibility();
 
             });
+
+        });
+
+    }
+
+
+    /*
+     * Sök
+     */
+    const searchInput = document.getElementById('integration-search');
+
+    if (searchInput) {
+
+        searchInput.addEventListener('input', function () {
+
+            currentSearch = searchInput.value.trim().toLowerCase();
+
+            applyVisibility();
 
         });
 

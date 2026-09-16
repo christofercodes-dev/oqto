@@ -55,6 +55,64 @@
 
 
 /* =========================================
+   SÖK
+   ========================================= */
+
+.integrations-search-wrapper {
+    position: relative;
+
+    max-width: 360px;
+
+    margin-bottom: 20px;
+}
+
+.integrations-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+
+    transform: translateY(-50%);
+
+    color: rgba(46, 37, 31, 0.5);
+
+    pointer-events: none;
+}
+
+.integrations-search-input {
+    width: 100%;
+
+    padding: 13px 16px 13px 42px;
+
+    border: 1px solid #dedbd8;
+    border-radius: 999px;
+
+    background-color: #ffffff;
+
+    color: var(--color-text);
+
+    font-family: inherit;
+    font-size: 0.85rem;
+
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.integrations-search-input::placeholder {
+    color: rgba(46, 37, 31, 0.5);
+}
+
+.integrations-search-input:focus {
+    outline: none;
+
+    border-color: var(--color-accent);
+    background-color: #faf9f8;
+}
+
+.integrations-search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+
+/* =========================================
    TOOLBAR (FILTER + SORTERING)
    ========================================= */
 
@@ -511,6 +569,10 @@
     .integrations-title {
         font-size: clamp(2.8rem, 11vw, 4.5rem);
         line-height: 0.98;
+    }
+
+    .integrations-search-wrapper {
+        max-width: none;
     }
 
     .integrations-intro {
