@@ -235,18 +235,22 @@
 
     justify-content: center;
 
-    margin-bottom: 48px;
+    width: 100%;
+
+    margin-bottom: 32px;
 
     color: #1a1715;
 }
 
 
-.feature-card-icon svg {
+.feature-card-lottie {
 
     display: block;
 
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    max-width: 320px;
+
+    aspect-ratio: 1 / 1;
 }
 
 
@@ -412,14 +416,12 @@
 
     .feature-card-icon {
 
-        margin-bottom: 36px;
+        margin-bottom: 24px;
     }
 
-    .feature-card-icon svg {
+    .feature-card-lottie {
 
-        width: 64px;
-
-        height: 64px;
+        max-width: 220px;
     }
 
     .feature-card-title {
