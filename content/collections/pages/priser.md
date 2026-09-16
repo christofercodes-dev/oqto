@@ -23,32 +23,53 @@ pricing_plans:
     type: pricing_plan
     enabled: true
     features:
-      - Bokföring
-      - Försäljning
-      - Inköp
-      - Anläggningsregister
-      - Periodisering
-      - Avtalsfakturering
-      - 'Bank & Skatt'
-      - Lön
-      - 'Attest & Betalning'
+      -
+        label: Bokföring
+      -
+        label: Försäljning
+      -
+        label: Inköp
+      -
+        label: Anläggningsregister
+      -
+        label: Periodisering
+      -
+        label: Avtalsfakturering
+      -
+        label: 'Bank & Skatt'
+      -
+        label: Lön
+      -
+        label: 'Attest & Betalning'
   -
     id: eTiJRgHFQetkdFMafsa1S
     plan_title: Modern
     plan_number: '02'
     description: 'Byrå och kund arbetar tillsammans. med månadsavslut och automationer. Passar bolag med hög transaktionsvolym.'
     features:
-      - Bokföring
-      - Försäljning
-      - Inköp
-      - Anläggningsregister
-      - Periodisering
-      - Avtalsfakturering
-      - 'Bank & Skatt'
-      - Lön
-      - 'Attest & Betalning'
-      - Månadsavslut
-      - 'Automationer (Autopilot)'
+      -
+        label: Bokföring
+      -
+        label: Försäljning
+      -
+        label: Inköp
+      -
+        label: Anläggningsregister
+      -
+        label: Periodisering
+      -
+        label: Avtalsfakturering
+      -
+        label: 'Bank & Skatt'
+      -
+        label: Lön
+      -
+        label: 'Attest & Betalning'
+        tooltip: 'Godkänn och betala leverantörsfakturor direkt i flödet, med automatiska attestregler.'
+      -
+        label: Månadsavslut
+      -
+        label: 'Automationer (Autopilot)'
     monthly_price: '250'
     verification_limit: Fritt!
     type: pricing_plan

@@ -88,8 +88,24 @@ tabs:
                         -
                           handle: features
                           field:
-                            type: list
+                            type: grid
                             display: features
+                            instructions: 'En rad per funktion. Fyll i "Tooltip" bara på de rader som ska visa en (i)-ikon med förklarande text - lämna tomt annars.'
+                            fields:
+                              -
+                                handle: label
+                                field:
+                                  type: text
+                                  display: Text
+                                  required: true
+                                  validate:
+                                    - required
+                              -
+                                handle: tooltip
+                                field:
+                                  type: textarea
+                                  display: Tooltip
+                                  instructions: 'Valfritt. Visas i en (i)-ikon bredvid texten.'
                         -
                           handle: monthly_price
                           field:

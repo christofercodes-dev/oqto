@@ -255,7 +255,9 @@
 
 .integration-show-info-list {
     margin: 16px 0 0;
-    padding-left: 18px;
+    padding-left: 20px;
+
+    list-style: disc;
 
     font-size: 0.9rem;
     line-height: 1.6;
@@ -265,6 +267,12 @@
 
 .integration-show-info-list li {
     margin-bottom: 6px;
+
+    padding-left: 4px;
+}
+
+.integration-show-info-list li::marker {
+    color: rgba(46, 37, 31, 0.45);
 }
 
 .integration-show-info-price {
@@ -338,6 +346,7 @@
 
     color: #fcfaf7;
 
+    font-family: "Geist Mono", monospace;
     font-size: 13px;
     font-weight: 600;
 

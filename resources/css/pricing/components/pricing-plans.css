@@ -156,6 +156,102 @@
 
 
 /* =========================================================
+   TOOLTIP (info-ikon på enskilda features)
+   ========================================================= */
+
+.feature-tooltip {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(26, 23, 21, 0.35);
+
+    cursor: help;
+
+    outline: none;
+}
+
+.feature-tooltip-icon {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    font-style: italic;
+
+    color: rgba(26, 23, 21, 0.55);
+
+    line-height: 1;
+}
+
+.feature-tooltip-bubble {
+    position: absolute;
+    z-index: 20;
+    bottom: calc(100% + 10px);
+    left: 50%;
+
+    transform: translateX(-50%) translateY(4px);
+
+    width: max-content;
+    max-width: 240px;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    background: #1a1715;
+    color: #ffffff;
+
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.45;
+    text-align: left;
+    white-space: normal;
+
+    box-shadow: 0 12px 28px rgba(26, 23, 21, 0.18);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
+}
+
+.feature-tooltip-bubble::after {
+    content: "";
+
+    position: absolute;
+    top: 100%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border: 6px solid transparent;
+    border-top-color: #1a1715;
+}
+
+.feature-tooltip:hover .feature-tooltip-bubble,
+.feature-tooltip:focus .feature-tooltip-bubble,
+.feature-tooltip:focus-visible .feature-tooltip-bubble {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateX(-50%) translateY(0);
+}
+
+
+/* =========================================================
    INGÅR EJ
    ========================================================= */
 
@@ -347,5 +443,32 @@
     .pricing-card-limit {
         align-items: flex-start;
         text-align: left;
+    }
+
+    /*
+     * Centrerad bubbla riskerar att gå utanför skärmen på smala
+     * kort - höger-ankrad mot ikonen istället, med bredd relativt
+     * viewporten.
+     */
+    .feature-tooltip-bubble {
+        left: auto;
+        right: -8px;
+
+        max-width: min(220px, 65vw);
+
+        transform: translateY(4px);
+    }
+
+    .feature-tooltip-bubble::after {
+        left: auto;
+        right: 12px;
+
+        transform: none;
+    }
+
+    .feature-tooltip:hover .feature-tooltip-bubble,
+    .feature-tooltip:focus .feature-tooltip-bubble,
+    .feature-tooltip:focus-visible .feature-tooltip-bubble {
+        transform: translateY(0);
     }
 }
