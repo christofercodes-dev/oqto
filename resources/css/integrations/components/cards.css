@@ -478,6 +478,9 @@
 }
 
 .integration-card-activate {
+    position: relative;
+    z-index: 2;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -533,6 +536,22 @@
         transform 0.2s ease;
 }
 
+/*
+ * "Sträckt länk" - gör att hela kortet blir klickbart och leder till
+ * detaljsidan, utan att korten behöver en omslutande <a> (ogiltig HTML
+ * eftersom "Aktivera i Oqto"-knappen är en egen länk till en annan
+ * adress). Den knappen ligger med högre z-index ovanpå och förblir
+ * därför oberoende klickbar.
+ */
+.integration-card-arrow::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.integration-card:hover .integration-card-arrow,
 .integration-card-arrow:hover {
     background-color: var(--color-accent);
     transform: translate(2px, -2px);

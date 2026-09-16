@@ -1,4 +1,24 @@
-# admin:
-#   title: Administrator
-#   permissions:
-#     - super
+redaktoer:
+  title: Redaktör
+  permissions:
+    - 'access cp'
+    - 'view pages entries'
+    - 'edit pages entries'
+    - 'create pages entries'
+    - 'publish pages entries'
+    - 'reorder pages entries'
+    - 'view integrations entries'
+    - 'edit integrations entries'
+    - 'publish integrations entries'
+    - 'view sni_codes terms'
+    - 'edit sni_codes terms'
+    - 'create sni_codes terms'
+    - 'view integration_type terms'
+    - 'edit integration_type terms'
+    - 'create integration_type terms'
+    - 'view main nav'
+    - 'edit main nav'
+    - 'view assets assets'
+    - 'upload assets assets'
+    - 'edit assets assets'
+    - 'edit assets folders'
