@@ -1,10 +1,8 @@
 .pricing-intro-section {
     width: 100%;
     background-color: #F5F1EB;
-    padding: 100px 40px;
+    padding: 200px 40px 100px;
     box-sizing: border-box;
-
-
 
     color: #2E251F;
 }
@@ -95,7 +93,7 @@
 @media (max-width: 960px) {
 
     .pricing-intro-section {
-        padding: 70px 24px;
+        padding: 170px 24px 70px;
     }
 
     .pricing-intro-header {
