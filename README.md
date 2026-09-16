@@ -17,11 +17,12 @@ Statamic is the flat-first, Laravel + Git powered CMS designed for building beau
 
 ## Integrationer - nattlig import från S3
 
-En extern .NET-tjänst dumpar nattligen en `integrations.json`-fil plus avatar-/
-mediabilder till en S3-bucket. `App\Services\Integrations\IntegrationsImporter`
-synkar den datan in i `integrations`-collectionen: nya poster skapas, ändrade
-uppdateras, borttagna avpubliceras (raderas aldrig). Poster som inte ändrats
-sedan förra körningen hoppas över.
+En extern .NET-tjänst (Sidekick) dumpar nattligen en `applications.json`-fil
+(`{ generatedAt, applications: [...] }`) plus bilder i en `images/`-mapp till
+en S3-bucket. `App\Services\Integrations\IntegrationsImporter` synkar den
+datan in i `integrations`-collectionen: nya poster skapas, ändrade uppdateras,
+borttagna avpubliceras (raderas aldrig). Om `generatedAt` är oförändrat sedan
+förra körningen hoppas hela importen över.
 
 **Miljövariabler** (se `.env.example`):
 
@@ -30,13 +31,39 @@ INTEGRATIONS_S3_KEY=
 INTEGRATIONS_S3_SECRET=
 INTEGRATIONS_S3_REGION=
 INTEGRATIONS_S3_BUCKET=
+INTEGRATIONS_S3_ROOT_PREFIX=
 INTEGRATIONS_S3_URL=
-INTEGRATIONS_S3_JSON_PATH=integrations.json
+INTEGRATIONS_S3_JSON_PATH=applications.json
 ```
+
+`INTEGRATIONS_S3_ROOT_PREFIX` används när samma bucket delas mellan miljöer
+(t.ex. `production`/`staging`) och prefixas automatiskt på både
+`applications.json` och `images/`. Importen kräver bara `s3:GetObject` -
+den listar aldrig bucketen, eftersom `applications.json` redan innehåller
+kompletta relativa sökvägar (`avatarKey`/`mediaImageKeys`) till bilderna.
 
 Bilderna laddas aldrig ner eller kopieras - asset-containern `integrations`
 (`content/assets/integrations.yaml`) pekar direkt på samma S3-disk, så
 Statamic läser dem i realtid från bucketen.
+
+**Bucketen är privat** (ingen anonym läsning), så `{{ avatar:url }}` och
+`{{ media }}...{{ url }}...{{ /media }}` returnerar `null` - Statamic
+räknar containern som privat eftersom disken saknar `url`-konfiguration
+(se `config/filesystems.php`). Använd istället den egna modifiern för att
+generera en tillfällig, förhandssignerad URL:
+
+```antlers
+{{ avatar:signed_url }}
+{{ avatar:signed_url minutes="60" }}   {# giltighetstid i minuter, default 30 #}
+
+{{ media }}
+    <img src="{{ signed_url }}">
+{{ /media }}
+```
+
+Se `app/Modifiers/SignedUrl.php`. Om bucketen i framtiden görs publik (t.ex.
+via en CloudFront-distribution) räcker det att sätta `INTEGRATIONS_S3_URL`,
+så blir containern "accessible" igen och vanliga `:url`-anrop fungerar direkt.
 
 **Köra importen manuellt lokalt:**
 

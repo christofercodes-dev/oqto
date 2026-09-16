@@ -62,10 +62,15 @@ return [
         ],
 
         // Bucket som en extern .NET-tjänst nattligen fyller med
-        // integrations.json + avatar-/mediabilder. Se app/Console/Commands/
-        // ImportIntegrations.php. Om bucketen inte är publikt läsbar
-        // behöver "visibility" sättas till "private" och "url" pekas mot
-        // t.ex. en CloudFront-distribution eller signerade URL:er.
+        // applications.json + avatar-/mediabilder. Se app/Console/Commands/
+        // ImportIntegrations.php. Bucketen är privat (ingen anonym läsning),
+        // vilket bekräftats genom att en vanlig url() ger HTTP 403. Därför
+        // sätts INGET "url" här - det gör att Statamic självt räknar
+        // containern som privat (AssetContainer::accessible() kollar just
+        // om disken har en "url"), så {{ avatar:url }} m.fl. korrekt
+        // returnerar null istället för en trasig länk. Riktig visning ska
+        // ske via modifiern App\Modifiers\SignedUrl ({{ avatar:signed_url }}),
+        // som genererar en tillfällig, förhandssignerad S3-URL.
         //
         // Driver "resilient_s3" (registrerad i AppServiceProvider) bygger
         // en riktig S3-koppling om INTEGRATIONS_S3_BUCKET är satt, annars
@@ -82,9 +87,12 @@ return [
             'bucket' => env('INTEGRATIONS_S3_BUCKET'),
             // Bucketen delar samma S3-bucket mellan miljöer (t.ex.
             // .../production, .../staging) - detta prefixar alla
-            // sökvägar (integrations.json, avatars/, media/) automatiskt.
+            // sökvägar (applications.json, images/) automatiskt.
             'root' => env('INTEGRATIONS_S3_ROOT_PREFIX'),
-            'url' => env('INTEGRATIONS_S3_URL'),
+            // Sätts bara om ni i framtiden lägger en CDN (t.ex. CloudFront)
+            // framför bucketen och gör den publik - då blir containern
+            // "accessible" igen och {{ avatar:url }} fungerar direkt.
+            'url' => env('INTEGRATIONS_S3_URL') ?: null,
             'throw' => false,
             'report' => false,
         ],
