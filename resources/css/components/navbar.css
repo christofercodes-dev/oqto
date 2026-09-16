@@ -136,8 +136,134 @@
   .nav-link:hover {
     opacity: 0.6;
   }
-  
-  
+
+
+  /* ==================================================
+     DESKTOP DROPDOWN (t.ex. "Systemet")
+     ================================================== */
+
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .nav-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    background: none;
+
+    cursor: pointer;
+  }
+
+  .nav-dropdown-chevron {
+    flex-shrink: 0;
+
+    transition: transform 0.2s ease;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-chevron,
+  .nav-dropdown:focus-within .nav-dropdown-chevron,
+  .nav-dropdown.is-open .nav-dropdown-chevron {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown.active .nav-dropdown-trigger {
+    color: #f35d08;
+    opacity: 1;
+  }
+
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 50%;
+
+    transform: translateX(-50%) translateY(-8px);
+
+    min-width: 190px;
+
+    padding: 8px;
+
+    border-radius: 16px;
+
+    background: rgba(244, 244, 244, 0.9);
+
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+
+    box-shadow:
+      0 16px 36px rgba(26, 23, 21, 0.1),
+      0 4px 12px rgba(26, 23, 21, 0.05);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s ease;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu,
+  .nav-dropdown.is-open .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /*
+   * Osynlig bro mellan triggern och menyn - annars hinner :hover
+   * hinna släppa taget under de 16px marginalen mellan dem.
+   */
+  .nav-dropdown-menu::before {
+    content: "";
+
+    position: absolute;
+    top: -16px;
+    left: 0;
+
+    width: 100%;
+    height: 16px;
+  }
+
+  .nav-dropdown-link {
+    display: block;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    color: #1a1715;
+
+    text-decoration: none;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition: background-color 0.2s ease;
+  }
+
+  .nav-dropdown-link:hover {
+    background-color: rgba(26, 23, 21, 0.06);
+  }
+
+  .nav-dropdown-link.active {
+    color: #f35d08;
+  }
+
+
   /* ==================================================
      LOGIN
      ================================================== */
@@ -146,21 +272,22 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-  
+
     background-color: #1c1917;
     color: #ffffff;
-  
+
     padding: 10px 16px 10px 20px;
-  
+
     border-radius: 999px;
-  
+
     text-decoration: none;
-  
+
+    font-family: "Geist Mono", monospace;
     font-size: 0.75rem;
     font-weight: 600;
-  
+
     letter-spacing: 0.06em;
-  
+
     transition:
       background-color 0.2s ease,
       transform 0.2s ease,
@@ -273,42 +400,129 @@
     flex-direction: column;
   }
   
+  .mobile-nav-item {
+    transform: translateY(20px);
+    opacity: 0;
+
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+  }
+
   .mobile-nav-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  
+
+    width: 100%;
+
     padding: 16px 0;
-  
+
+    border: 0;
     border-bottom: 1px solid rgba(26, 23, 21, 0.12);
-  
+
+    background: none;
+
     color: #1a1715;
-  
+
     text-decoration: none;
-  
-  
+
+
     font-size: 0.9rem;
     font-weight: 600;
-  
+
     letter-spacing: 0.05em;
-  
-    transform: translateY(20px);
-    opacity: 0;
-  
-    transition:
-      opacity 0.4s ease,
-      transform 0.4s ease,
-      padding-left 0.25s ease;
+
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    transition: padding-left 0.25s ease;
   }
-  
+
   .mobile-nav-link:hover {
     padding-left: 8px;
   }
-  
+
   .mobile-nav-link span:last-child {
     font-size: 1rem;
   }
-  
+
+
+  /* ==================================================
+     MOBILE ACKORDEON (t.ex. "Systemet")
+     ================================================== */
+
+  .mobile-nav-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav-group.active .mobile-nav-group-trigger {
+    color: #f35d08;
+  }
+
+  .mobile-nav-group-chevron {
+    display: flex;
+
+    transition: transform 0.25s ease;
+  }
+
+  .mobile-nav-group.is-expanded .mobile-nav-group-chevron {
+    transform: rotate(180deg);
+  }
+
+  .mobile-nav-submenu {
+    display: grid;
+
+    grid-template-rows: 0fr;
+
+    transition: grid-template-rows 0.3s ease;
+  }
+
+  .mobile-nav-group.is-expanded .mobile-nav-submenu {
+    grid-template-rows: 1fr;
+  }
+
+  .mobile-nav-submenu-inner {
+    min-height: 0;
+
+    overflow: hidden;
+  }
+
+  .mobile-nav-sublink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 0 14px 20px;
+
+    border-bottom: 1px solid rgba(26, 23, 21, 0.12);
+
+    color: #4a4744;
+
+    text-decoration: none;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    letter-spacing: 0.05em;
+
+    transition: padding-left 0.25s ease;
+  }
+
+  .mobile-nav-sublink:hover {
+    padding-left: 26px;
+  }
+
+  .mobile-nav-sublink span:last-child {
+    font-size: 0.9rem;
+  }
+
+  .mobile-nav-sublink.active {
+    color: #f35d08;
+  }
+
   
   /* ==================================================
      MOBILE LOGIN
@@ -329,15 +543,15 @@
   
     background: #1c1917;
     color: #ffffff;
-  
+
     text-decoration: none;
-  
-  
+
+    font-family: "Geist Mono", monospace;
     font-size: 0.75rem;
     font-weight: 600;
-  
+
     letter-spacing: 0.06em;
-  
+
     transform: translateY(20px);
     opacity: 0;
   
@@ -367,42 +581,38 @@
     transform: translateY(0);
   }
   
-  .mobile-menu.is-open .mobile-nav-link,
+  .mobile-menu.is-open .mobile-nav-item,
   .mobile-menu.is-open .mobile-login {
     opacity: 1;
     transform: translateY(0);
   }
-  
-  .mobile-menu.is-open .mobile-nav-link:nth-child(1) {
+
+  .mobile-menu.is-open .mobile-nav-item:nth-child(1) {
     transition-delay: 0.05s;
   }
-  
-  .mobile-menu.is-open .mobile-nav-link:nth-child(2) {
+
+  .mobile-menu.is-open .mobile-nav-item:nth-child(2) {
     transition-delay: 0.09s;
   }
-  
-  .mobile-menu.is-open .mobile-nav-link:nth-child(3) {
+
+  .mobile-menu.is-open .mobile-nav-item:nth-child(3) {
     transition-delay: 0.13s;
   }
-  
-  .mobile-menu.is-open .mobile-nav-link:nth-child(4) {
+
+  .mobile-menu.is-open .mobile-nav-item:nth-child(4) {
     transition-delay: 0.17s;
   }
-  
-  .mobile-menu.is-open .mobile-nav-link:nth-child(5) {
+
+  .mobile-menu.is-open .mobile-nav-item:nth-child(5) {
     transition-delay: 0.21s;
   }
-  
-  .mobile-menu.is-open .mobile-nav-link:nth-child(6) {
+
+  .mobile-menu.is-open .mobile-nav-item:nth-child(6) {
     transition-delay: 0.25s;
   }
-  
-  .mobile-menu.is-open .mobile-nav-link:nth-child(7) {
-    transition-delay: 0.29s;
-  }
-  
+
   .mobile-menu.is-open .mobile-login {
-    transition-delay: 0.34s;
+    transition-delay: 0.29s;
   }
   
   

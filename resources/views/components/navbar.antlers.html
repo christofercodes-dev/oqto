@@ -10,34 +10,39 @@
     <!-- DESKTOP MENU -->
     <div class="navbar-menu">
 
-      <a href="/om-oss" class="nav-link{{ if current_uri == '/om-oss' }} active{{ /if }}">
-          OM OSS
-      </a>
-  
-      <a href="/faqs" class="nav-link{{ if current_uri == '/faqs' }} active{{ /if }}">
-          FAQ
-      </a>
-  
-      <a href="/integrationer" class="nav-link{{ if current_uri == '/integrationer' }} active{{ /if }}">
-          INTEGRATIONER
-      </a>
-  
-      <a href="/for-utvecklare" class="nav-link{{ if current_uri == '/for-utvecklare' }} active{{ /if }}">
-          FÖR UTVECKLARE
-      </a>
-  
-      <a href="/jobb" class="nav-link{{ if current_uri == '/jobb' }} active{{ /if }}">
-          JOBB
-      </a>
-  
-      <a href="/priser" class="nav-link{{ if current_uri == '/priser' }} active{{ /if }}">
-          PRISER
-      </a>
-  
-      <a href="/kontakt" class="nav-link{{ if current_uri == '/kontakt' }} active{{ /if }}">
-          KONTAKT
-      </a>
-  
+      {{ nav:main }}
+
+        {{ if children }}
+
+          <div class="nav-dropdown{{ if is_parent }} active{{ /if }}" data-dropdown>
+
+            <button type="button" class="nav-link nav-dropdown-trigger" aria-expanded="false">
+              <span>{{ title | upper }}</span>
+              <svg class="nav-dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+
+            <div class="nav-dropdown-menu">
+              {{ children }}
+                <a href="{{ url }}" class="nav-dropdown-link{{ if is_current }} active{{ /if }}">
+                  {{ title }}
+                </a>
+              {{ /children }}
+            </div>
+
+          </div>
+
+        {{ else }}
+
+          <a href="{{ url }}" class="nav-link{{ if is_current }} active{{ /if }}">
+              {{ title | upper }}
+          </a>
+
+        {{ /if }}
+
+      {{ /nav:main }}
+
   </div>
 
     <!-- DESKTOP LOGIN -->
@@ -71,40 +76,44 @@
 
     <div class="mobile-menu-links">
 
-      <a href="/om-oss" class="mobile-nav-link">
-        <span>OM OSS</span>
-        <span>↗</span>
-      </a>
+      {{ nav:main }}
 
-      <a href="/faqs" class="mobile-nav-link">
-        <span>FAQ</span>
-        <span>↗</span>
-      </a>
+        {{ if children }}
 
-      <a href="/integrationer" class="mobile-nav-link">
-        <span>INTEGRATIONER</span>
-        <span>↗</span>
-      </a>
+          <div class="mobile-nav-item mobile-nav-group{{ if is_parent }} active{{ /if }}">
 
-      <a href="/for-utvecklare" class="mobile-nav-link">
-        <span>FÖR UTVECKLARE</span>
-        <span>↗</span>
-      </a>
+            <button type="button" class="mobile-nav-link mobile-nav-group-trigger" aria-expanded="false">
+              <span>{{ title | upper }}</span>
+              <span class="mobile-nav-group-chevron">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </button>
 
-      <a href="/jobb" class="mobile-nav-link">
-        <span>JOBB</span>
-        <span>↗</span>
-      </a>
+            <div class="mobile-nav-submenu">
+              <div class="mobile-nav-submenu-inner">
+                {{ children }}
+                  <a href="{{ url }}" class="mobile-nav-sublink{{ if is_current }} active{{ /if }}">
+                    <span>{{ title }}</span>
+                    <span>↗</span>
+                  </a>
+                {{ /children }}
+              </div>
+            </div>
 
-      <a href="/priser" class="mobile-nav-link">
-        <span>PRISER</span>
-        <span>↗</span>
-      </a>
+          </div>
 
-      <a href="/kontakt" class="mobile-nav-link">
-        <span>KONTAKT</span>
-        <span>↗</span>
-      </a>
+        {{ else }}
+
+          <a href="{{ url }}" class="mobile-nav-link mobile-nav-item{{ if is_current }} active{{ /if }}">
+            <span>{{ title | upper }}</span>
+            <span>↗</span>
+          </a>
+
+        {{ /if }}
+
+      {{ /nav:main }}
 
     </div>
 
@@ -144,19 +153,81 @@
   
     /* Stäng menyn när man klickar på en länk */
     menu.querySelectorAll("a").forEach(function (link) {
-  
+
       link.addEventListener("click", function () {
-  
+
         menu.classList.remove("is-open");
         toggle.classList.remove("is-open");
         document.body.classList.remove("menu-open");
-  
+
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "Öppna meny");
-  
+
       });
-  
+
     });
-  
+
+
+    /* ==================================================
+       DESKTOP DROPDOWN (t.ex. "Systemet")
+       ================================================== */
+
+    const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+    dropdowns.forEach(function (dropdown) {
+
+      const trigger = dropdown.querySelector(".nav-dropdown-trigger");
+
+      if (!trigger) return;
+
+      trigger.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        const isOpen = dropdown.classList.contains("is-open");
+
+        dropdowns.forEach(function (other) {
+          other.classList.remove("is-open");
+          other.querySelector(".nav-dropdown-trigger")?.setAttribute("aria-expanded", "false");
+        });
+
+        if (!isOpen) {
+          dropdown.classList.add("is-open");
+          trigger.setAttribute("aria-expanded", "true");
+        }
+
+      });
+
+    });
+
+    document.addEventListener("click", function (event) {
+
+      if (event.target.closest(".nav-dropdown")) return;
+
+      dropdowns.forEach(function (dropdown) {
+        dropdown.classList.remove("is-open");
+        dropdown.querySelector(".nav-dropdown-trigger")?.setAttribute("aria-expanded", "false");
+      });
+
+    });
+
+
+    /* ==================================================
+       MOBIL ACKORDEON (t.ex. "Systemet")
+       ================================================== */
+
+    menu.querySelectorAll(".mobile-nav-group-trigger").forEach(function (trigger) {
+
+      trigger.addEventListener("click", function () {
+
+        const group = trigger.closest(".mobile-nav-group");
+        const isOpen = group.classList.toggle("is-expanded");
+
+        trigger.setAttribute("aria-expanded", isOpen);
+
+      });
+
+    });
+
   });
   </script>
