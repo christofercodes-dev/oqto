@@ -175,9 +175,11 @@
       text-decoration: none;
       color: #2e251f;
       background: #ffffff;
-    
+
       overflow: hidden;
-    
+
+      font-family: "Geist Mono", monospace;
+
       transition:
         color 0.35s ease,
         border-color 0.35s ease,

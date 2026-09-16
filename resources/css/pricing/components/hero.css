@@ -180,6 +180,7 @@
 
     text-decoration: none;
 
+    font-family: "Geist Mono", monospace;
     font-size: 0.85rem;
     font-weight: 600;
 
@@ -364,7 +365,7 @@
 
     border-radius: 999px;
 
-    font-family: inherit;
+    font-family: "Geist Mono", monospace;
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.04em;
