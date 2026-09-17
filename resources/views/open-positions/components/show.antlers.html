@@ -1,0 +1,400 @@
+<section class="job-show-section">
+
+    <div class="job-show-container">
+
+        <div class="job-show-grid">
+
+            <!-- ==================================================
+                 JOBB
+                 ================================================== -->
+
+            <main class="job-show-main">
+
+                <!-- KATEGORIER -->
+                {{ if job_experiences }}
+                    <div class="job-show-categories">
+
+                        {{ job_experiences }}
+                            <span class="job-show-category">
+                                {{ title }}
+                            </span>
+                        {{ /job_experiences }}
+
+                    </div>
+                {{ /if }}
+
+
+                <!-- TITEL -->
+                <h1 class="job-show-title">
+                    {{ title }}
+                </h1>
+
+
+                <!-- META -->
+                {{ if locations | count || employment_type }}
+                    <div class="job-show-meta">
+                        <span class="job-show-meta-item">
+                            {{ locations }}{{ if index > 0 }} / {{ /if }}{{ value }}{{ /locations }}{{ if locations | count && employment_type }} / {{ /if }}{{ employment_type }}
+                        </span>
+                    </div>
+                {{ /if }}
+
+
+                <!-- CONTENT -->
+                {{ if content }}
+
+                    <div class="job-show-content">
+
+                        <div class="job-show-content-label">
+                            Om rollen
+                        </div>
+
+                        <div class="job-show-content-body">
+                            {{ content }}
+                        </div>
+
+                    </div>
+
+                {{ /if }}
+
+            </main>
+
+
+            <!-- ==================================================
+                 ANSÖKAN
+                 ================================================== -->
+
+            <aside class="job-show-sidebar">
+
+                <div class="job-apply">
+
+                    <div class="job-apply-top">
+
+                        <span class="job-apply-label">
+                            Ansök
+                        </span>
+
+                    </div>
+
+
+                    <div class="job-apply-heading">
+
+                        <h2>
+                            Låter det som du?
+                        </h2>
+
+                        <p>
+                            Skicka dina uppgifter så återkommer vi.
+                        </p>
+
+                    </div>
+
+
+                    {{ form:job_application class="job-application-form" }}
+
+                    {{ if success }}
+
+                        <p class="job-form-success">
+                            Tack för din ansökan! Vi återkommer så snart vi kan.
+                        </p>
+
+                    {{ else }}
+
+                        <input type="hidden" name="job_title" value="{{ title }}">
+
+                        <div class="job-form-honeypot" aria-hidden="true">
+                            <label for="job-honeypot">Lämna detta fält tomt</label>
+                            <input type="text" id="job-honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        {{ if errors }}
+                            <ul class="job-form-errors">
+                                {{ errors }}
+                                    <li>{{ value }}</li>
+                                {{ /errors }}
+                            </ul>
+                        {{ /if }}
+
+                        <div class="job-form-field">
+
+                            <label for="job-name">
+                                Förnamn &amp; efternamn
+                            </label>
+
+                            <input
+                                type="text"
+                                id="job-name"
+                                name="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="job-form-row">
+
+                            <div class="job-form-field">
+
+                                <label for="job-email">
+                                    E-post
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="job-email"
+                                    name="email"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="job-form-field">
+
+                                <label for="job-phone">
+                                    Telefonnummer
+                                </label>
+
+                                <div class="job-phone-group">
+
+                                    <select class="job-phone-code" name="phone_country" aria-label="Landskod">
+                                        <option value="+46">🇸🇪 +46</option>
+                                        <option value="+47">🇳🇴 +47</option>
+                                        <option value="+45">🇩🇰 +45</option>
+                                        <option value="+358">🇫🇮 +358</option>
+                                        <option value="+49">🇩🇪 +49</option>
+                                        <option value="+44">🇬🇧 +44</option>
+                                    </select>
+
+                                    <input
+                                        type="tel"
+                                        id="job-phone"
+                                        name="phone"
+                                        placeholder="70-799 88 77"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="job-form-field">
+
+                            <label for="job-linkedin">
+                                LinkedIn
+                            </label>
+
+                            <input
+                                type="text"
+                                id="job-linkedin"
+                                name="linkedin"
+                                placeholder="linkedin.com/in/dittnamn"
+                            >
+
+                        </div>
+
+
+                        <div class="job-form-field">
+
+                            <label for="job-message">
+                                Berätta kort vad som gör att vi är en perfekt match:
+                            </label>
+
+                            <textarea
+                                id="job-message"
+                                name="message"
+                                rows="5"
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="job-form-field">
+
+                            <label>
+                                Vilken eller vilka av följande områden är din expertis?
+                            </label>
+
+                            <div class="job-pill-group">
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="expertise[]" value="Admin">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Admin</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="expertise[]" value="Customer Success">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Customer Success</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="expertise[]" value="Development">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Development</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="expertise[]" value="Marketing">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Marketing</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="expertise[]" value="Product Management">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Product Management</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="expertise[]" value="Sales">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Sales</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="expertise[]" value="UI/UX">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>UI/UX</span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="job-form-field">
+
+                            <label>
+                                Önskad placeringsort
+                            </label>
+
+                            <div class="job-pill-group">
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="location_preference[]" value="Malmö/Lund">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Malmö/Lund</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="location_preference[]" value="Växjö">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Växjö</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="location_preference[]" value="Stockholm">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Stockholm</span>
+                                </label>
+
+                                <label class="job-pill">
+                                    <input type="checkbox" name="location_preference[]" value="Hybrid">
+                                    <span class="job-pill-check">
+                                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M1 3.5L3.2 5.7L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <span>Hybrid</span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="job-form-bottom">
+
+                            <p class="job-apply-note">
+                                Vi är glada att du vill söka jobba hos oss! Genom att skicka in dina uppgifter godkänner du att Oqto sparar och behandlar informationen i syfte att hantera din jobbansökan. Vi hör av oss!
+                            </p>
+
+                            <button
+                                type="submit"
+                                class="job-form-submit"
+                            >
+                                <span>
+                                    Ansök
+                                </span>
+
+                                <span class="job-form-arrow">
+                                    →
+                                </span>
+                            </button>
+
+                        </div>
+
+                    {{ /if }}
+
+                    {{ /form:job_application }}
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <!-- ==================================================
+             BACK
+             ================================================== -->
+
+        <div class="job-show-back">
+
+            <a
+                href="/jobb"
+                class="job-show-back-link"
+            >
+                <span>←</span>
+                <span>Till alla lediga jobb</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

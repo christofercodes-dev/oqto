@@ -70,8 +70,9 @@ tabs:
                                       -
                                         handle: faq_answer
                                         field:
-                                          type: textarea
+                                          type: markdown
                                           display: 'faq answer'
+                                          instructions: 'Stöder länkar, t.ex. [priser](/priser).'
       -
         display: 'cta faq'
         fields:

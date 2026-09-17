@@ -3,46 +3,48 @@
 
         <div class="jobs-openings-header">
             <span class="jobs-openings-small-title">
-                Lediga tjänster
+                * Lediga tjänster
             </span>
         </div>
 
 
         <div class="jobs-openings-list">
 
-            {{ jobs }}
+            {{ collection:open_positions sort="title:asc" }}
 
-            <a href="/jobb/{{ job_slug }}" class="job-opening-card">
+            <a href="{{ url }}" class="job-opening-card">
 
                 <h3 class="jobs-opening-title">
-                    {{ job_title }}
+                    {{ title }}
                 </h3>
 
-                <span class="jobs-opening-location">
-                    {{ job_location }}
-                </span>
+                {{ if locations | count || employment_type }}
+                    <span class="jobs-opening-location">
+                        {{ locations }}{{ if index > 0 }} / {{ /if }}{{ value }}{{ /locations }}{{ if locations | count && employment_type }} / {{ /if }}{{ employment_type }}
+                    </span>
+                {{ /if }}
 
                 <div class="jobs-opening-bottom">
 
                     <div class="jobs-opening-categories">
-                
-                        {{ category }}
+
+                        {{ job_experiences }}
                             <span class="jobs-opening-category">
-                                {{ categories }}
+                                {{ title }}
                             </span>
-                        {{ /category }}
-                
+                        {{ /job_experiences }}
+
                     </div>
-                
+
                     <span class="jobs-opening-arrow">
                         →
                     </span>
-                
+
                 </div>
 
             </a>
 
-            {{ /jobs }}
+            {{ /collection:open_positions }}
 
         </div>
         

@@ -274,6 +274,35 @@
 }
 
 
+.boka-demo-honeypot {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+}
+
+
+.boka-demo-errors {
+    margin: 0 0 16px;
+
+    padding: 12px 14px 12px 28px;
+
+    border-radius: 10px;
+
+    background: #fdecea;
+
+    color: #b3261e;
+
+    font-size: 0.85rem;
+
+    line-height: 1.5;
+}
+
+
 /* ==================================================
    KNAPP
    SAMMA KÄNSLA SOM .oqto-contact-btn / .why-oqto-btn

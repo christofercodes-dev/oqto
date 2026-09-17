@@ -444,8 +444,12 @@
     padding-left: 8px;
   }
 
-  .mobile-nav-link span:last-child {
-    font-size: 1rem;
+  .mobile-nav-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
   }
 
 
@@ -513,10 +517,6 @@
 
   .mobile-nav-sublink:hover {
     padding-left: 26px;
-  }
-
-  .mobile-nav-sublink span:last-child {
-    font-size: 0.9rem;
   }
 
   .mobile-nav-sublink.active {

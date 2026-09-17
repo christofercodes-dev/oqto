@@ -96,7 +96,11 @@
                 {{ children }}
                   <a href="{{ url }}" class="mobile-nav-sublink{{ if is_current }} active{{ /if }}">
                     <span>{{ title }}</span>
-                    <span>↗</span>
+                    <span class="mobile-nav-arrow">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
                   </a>
                 {{ /children }}
               </div>
@@ -108,7 +112,11 @@
 
           <a href="{{ url }}" class="mobile-nav-link mobile-nav-item{{ if is_current }} active{{ /if }}">
             <span>{{ title | upper }}</span>
-            <span>↗</span>
+            <span class="mobile-nav-arrow">
+                <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
           </a>
 
         {{ /if }}

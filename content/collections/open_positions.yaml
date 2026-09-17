@@ -1,0 +1,11 @@
+title: 'Lediga jobb'
+icon: collections
+route: '/jobb/{slug}'
+template: open-positions/show
+layout: layout
+revisions: false
+sort_dir: asc
+sort_field: title
+date_behavior:
+  past: null
+  future: null

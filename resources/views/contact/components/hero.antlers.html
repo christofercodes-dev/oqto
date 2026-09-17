@@ -51,21 +51,78 @@
         <!-- HÖGER / FORMULÄR -->
         <div class="oqto-contact-form">
 
-            <form>
+            {{ form:contact }}
 
-                <div class="oqto-contact-form-row">
+                {{ if success }}
+
+                    <p class="oqto-contact-success">
+                        Tack för ditt meddelande! Vi återkommer så snart vi kan.
+                    </p>
+
+                {{ else }}
+
+                    <div class="oqto-contact-honeypot" aria-hidden="true">
+                        <label for="oqto-honeypot">Lämna detta fält tomt</label>
+                        <input type="text" id="oqto-honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    {{ if errors }}
+                        <ul class="oqto-contact-errors">
+                            {{ errors }}
+                                <li>{{ value }}</li>
+                            {{ /errors }}
+                        </ul>
+                    {{ /if }}
+
+                    <div class="oqto-contact-form-row">
+
+                        <div class="oqto-contact-field">
+
+                            <label for="oqto-name">
+                                Namn
+                            </label>
+
+                            <input
+                                type="text"
+                                id="oqto-name"
+                                name="name"
+                                placeholder="Ditt namn"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="oqto-contact-field">
+
+                            <label for="oqto-email">
+                                E-post
+                            </label>
+
+                            <input
+                                type="email"
+                                id="oqto-email"
+                                name="email"
+                                placeholder="din@email.se"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
 
                     <div class="oqto-contact-field">
 
-                        <label for="oqto-name">
-                            Namn
+                        <label for="oqto-company">
+                            Företag
                         </label>
 
                         <input
                             type="text"
-                            id="oqto-name"
-                            name="name"
-                            placeholder="Ditt namn"
+                            id="oqto-company"
+                            name="company"
+                            placeholder="Företagsnamn"
                         >
 
                     </div>
@@ -73,73 +130,41 @@
 
                     <div class="oqto-contact-field">
 
-                        <label for="oqto-email">
-                            E-post
+                        <label for="oqto-message">
+                            Meddelande
                         </label>
 
-                        <input
-                            type="email"
-                            id="oqto-email"
-                            name="email"
-                            placeholder="din@email.se"
-                        >
+                        <textarea
+                            id="oqto-message"
+                            name="message"
+                            rows="5"
+                            placeholder="Berätta om projektet..."
+                        ></textarea>
 
                     </div>
 
-                </div>
 
-
-                <div class="oqto-contact-field">
-
-                    <label for="oqto-company">
-                        Företag
-                    </label>
-
-                    <input
-                        type="text"
-                        id="oqto-company"
-                        name="company"
-                        placeholder="Företagsnamn"
+                    <button
+                        type="submit"
+                        class="oqto-contact-btn"
                     >
 
-                </div>
+                        <span class="oqto-contact-btn-text">
+                            Skicka meddelande
+                        </span>
 
+                        <span
+                            class="oqto-contact-btn-arrow"
+                            aria-hidden="true"
+                        >
+                            →
+                        </span>
 
-                <div class="oqto-contact-field">
+                    </button>
 
-                    <label for="oqto-message">
-                        Meddelande
-                    </label>
+                {{ /if }}
 
-                    <textarea
-                        id="oqto-message"
-                        name="message"
-                        rows="5"
-                        placeholder="Berätta om projektet..."
-                    ></textarea>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="oqto-contact-btn"
-                >
-
-                    <span class="oqto-contact-btn-text">
-                        Skicka meddelande
-                    </span>
-
-                    <span
-                        class="oqto-contact-btn-arrow"
-                        aria-hidden="true"
-                    >
-                        →
-                    </span>
-
-                </button>
-
-            </form>
+            {{ /form:contact }}
 
         </div>
 

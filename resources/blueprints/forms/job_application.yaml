@@ -1,0 +1,69 @@
+title: 'Jobbansökan'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: job_title
+            field:
+              type: text
+              display: 'Tjänst'
+              validate: required
+          -
+            handle: name
+            field:
+              type: text
+              display: 'Förnamn & efternamn'
+              validate: required
+          -
+            handle: email
+            field:
+              type: text
+              input_type: email
+              display: 'E-post'
+              validate: 'required|email'
+          -
+            handle: phone_country
+            field:
+              type: text
+              display: 'Landskod'
+          -
+            handle: phone
+            field:
+              type: text
+              display: 'Telefonnummer'
+          -
+            handle: linkedin
+            field:
+              type: text
+              display: 'LinkedIn'
+          -
+            handle: message
+            field:
+              type: textarea
+              display: 'Meddelande'
+          -
+            handle: expertise
+            field:
+              type: checkboxes
+              display: 'Expertis'
+              options:
+                - Admin
+                - 'Customer Success'
+                - Development
+                - Marketing
+                - 'Product Management'
+                - Sales
+                - UI/UX
+          -
+            handle: location_preference
+            field:
+              type: checkboxes
+              display: 'Önskad placeringsort'
+              options:
+                - Malmö/Lund
+                - Växjö
+                - Stockholm
+                - Hybrid

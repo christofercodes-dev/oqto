@@ -35,6 +35,14 @@ return [
         ],
     ],
 
+    'zapier' => [
+        'webhooks' => [
+            'job_application' => env('ZAPIER_JOB_APPLICATION_WEBHOOK_URL'),
+            'boka_demo' => env('ZAPIER_BOKA_DEMO_WEBHOOK_URL'),
+            'contact' => env('ZAPIER_CONTACT_WEBHOOK_URL'),
+        ],
+    ],
+
     'integrations_s3' => [
         // Nyckeln till JSON-filen som .NET-tjänsten dumpar nattligen.
         // Anslutningsuppgifterna för själva bucketen finns i

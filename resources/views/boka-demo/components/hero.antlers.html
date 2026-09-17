@@ -102,6 +102,19 @@
 
                 {{ else }}
 
+                    <div class="boka-demo-honeypot" aria-hidden="true">
+                        <label for="boka-demo-honeypot">Lämna detta fält tomt</label>
+                        <input type="text" id="boka-demo-honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    {{ if errors }}
+                        <ul class="boka-demo-errors">
+                            {{ errors }}
+                                <li>{{ value }}</li>
+                            {{ /errors }}
+                        </ul>
+                    {{ /if }}
+
                     <input type="hidden" name="org_number" data-role="alt2-org-number">
 
                     <div class="boka-demo-form-row">

@@ -1,0 +1,77 @@
+title: 'Ledigt jobb'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: locations
+            field:
+              type: select
+              display: Orter
+              instructions: 'Visas under titeln tillsammans med anställningsform, t.ex. "Kristianstad / Växjö / Stockholm".'
+              multiple: true
+              options:
+                - key: 1
+                  value: Göteborg
+                - key: 2
+                  value: Kristianstad
+                - key: 3
+                  value: Malmö
+                - key: 4
+                  value: Stockholm
+                - key: 5
+                  value: Växjö
+                - key: 6
+                  value: Distans
+                - key: 7
+                  value: Hybrid
+          -
+            handle: employment_type
+            field:
+              type: select
+              display: Anställningsform
+              options:
+                - Heltid
+                - Deltid
+              default: Heltid
+          -
+            handle: job_experiences
+            field:
+              type: terms
+              taxonomies:
+                - job_experience
+              display: 'Erfarenhet / roll'
+              instructions: 'Taggarna som visas på jobbkortet, t.ex. Programmering, Support.'
+          -
+            handle: content
+            field:
+              type: markdown
+              display: Innehåll
+              instructions: 'Stöder rubriker, fet/kursiv text, punktlistor och länkar.'
+          -
+            handle: author
+            field:
+              type: users
+              display: Author
+              default: current
+              max_items: 1
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

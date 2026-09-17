@@ -139,8 +139,9 @@ tabs:
                         -
                           handle: answer
                           field:
-                            type: textarea
+                            type: markdown
                             display: answer
+                            instructions: 'Stöder länkar, t.ex. [priser](/priser).'
       -
         display: 'user levels'
         fields:

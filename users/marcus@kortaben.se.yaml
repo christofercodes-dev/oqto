@@ -10,3 +10,5 @@ preferences:
       view: list
     integrations:
       view: list
+    open_positions:
+      view: list

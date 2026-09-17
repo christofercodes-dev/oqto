@@ -218,6 +218,16 @@
   color: #4a4744;
 }
 
+.faq-answer a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.faq-answer a:hover {
+  color: #1a1715;
+}
+
 
 /* =========================================================
  SE FLER FRÅGOR
