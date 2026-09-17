@@ -1,0 +1,38 @@
+title: Kundomdöme
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            display: 'Namn Efternamn'
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: author_title
+            field:
+              type: text
+              display: 'Roll / bransch'
+          -
+            handle: quote
+            field:
+              type: textarea
+              display: Citat
+              validate:
+                - required
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

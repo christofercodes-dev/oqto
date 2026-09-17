@@ -38,16 +38,7 @@ why_oqto_body: |-
 why_oqto_button_text: 'Läs mer'
 reviews_title: Kundomdömen
 reviews_items:
-  - id: 3y6NcynRAZlMU0YMZJx7A
-    author_name: 'Namn Efternamn'
-    author_title: Redovisning
-    quote: 'Förutom att Oqto är ett fullt kapabelt system så drivs det också av folk i branschen som vet vad vi vill ha. Ett självklart val om du vill ha något nytt som snart kommer vara standard.'
-  - id: yRuawbRivUe4pw3P7qyhY
-    quote: |-
-      Protect and secure access to your project
-      Customize how visitors access your project using password protection available on the Pro plan.
-    author_name: 'Namn Efternamn'
-    author_title: Redovisning
+  - 03350484-4109-42c6-8551-f7b90d9554f8
 embed_code: 'https://vimeo.com/1223949720?share=copy&fl=sv&fe=ci'
 ---
 Oqto är nästa generations ekonomisystem, skapat för att ge ekonomer superkrafte. Smart automation och ett modernt gränssnitt minskar administration och onödiga klick, så mer tid går till analys och beslut som driver verksamheten framåt.

@@ -199,24 +199,11 @@ tabs:
           -
             handle: reviews_items
             field:
-              type: grid
+              type: entries
               display: 'reviews items'
-              fields:
-                -
-                  handle: quote
-                  field:
-                    type: textarea
-                    display: quote
-                -
-                  handle: author_name
-                  field:
-                    type: text
-                    display: 'author name'
-                -
-                  handle: author_title
-                  field:
-                    type: text
-                    display: 'author title'
+              instructions: 'Välj vilka omdömen som ska visas och i vilken ordning. Dra i handtaget för att ändra ordning.'
+              collections:
+                - reviews
   sidebar:
     display: Sidebar
     sections:
