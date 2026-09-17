@@ -31,12 +31,14 @@
         
                             <div class="reviews-author">
                                 <span class="author-name">
-                                    {{ title }}
+                                    {{ title }}{{ if company }}, {{ company }}{{ /if }}
                                 </span>
-        
-                                <span class="author-title">
-                                    {{ author_title }}
-                                </span>
+
+                                {{ if role }}
+                                    <span class="author-title">
+                                        {{ role }}
+                                    </span>
+                                {{ /if }}
                             </div>
         
                         </div>

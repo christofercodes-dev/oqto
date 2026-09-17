@@ -14,10 +14,23 @@ tabs:
               validate:
                 - required
           -
-            handle: author_title
+            handle: company
             field:
               type: text
-              display: 'Roll / bransch'
+              display: Företag
+          -
+            handle: role
+            field:
+              type: text
+              display: Roll
+          -
+            handle: industry
+            field:
+              type: terms
+              display: Bransch
+              taxonomies:
+                - review_industry
+              instructions: 'Används för att på sikt kunna filtrera omdömen per bransch.'
           -
             handle: quote
             field:
