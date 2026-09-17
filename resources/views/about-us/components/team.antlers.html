@@ -5,122 +5,67 @@
 
         <div class="team-header">
             <span class="team-small-title">
-                Vårt team
+                {{ small_title_team ?? 'Vårt team' }}
             </span>
         </div>
 
         <div class="team-grid">
 
-            <!-- Anna -->
-            <article class="team-card">
+            {{ about_team }}
 
-                <div class="team-image-wrapper">
-                    <img
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900"
-                        alt="Anna Andersson"
-                        class="team-image"
-                    >
-                </div>
+                <article class="team-card">
 
-                <div class="team-info">
-                    <p class="team-role">
-                        Creative Director
-                    </p>
+                    {{ if image }}
+                        <div class="team-image-wrapper">
+                            {{ image }}
+                                <img
+                                    src="{{ url }}"
+                                    alt="{{ alt ?? title }}"
+                                    class="team-image"
+                                >
+                            {{ /image }}
+                        </div>
+                    {{ /if }}
 
-                    <h3 class="team-name">
-                        Anna Andersson
-                    </h3>
+                    <div class="team-info">
 
-                    <p class="team-description">
-                        Ansvarar för kreativ riktning och koncept.
-                    </p>
-                </div>
+                        {{ if role }}
+                            <p class="team-role">
+                                {{ role }}
+                            </p>
+                        {{ /if }}
 
-            </article>
+                        <h3 class="team-name">
+                            {{ title }}
+                        </h3>
 
+                        {{ if description }}
+                            <p class="team-description">
+                                {{ description }}
+                            </p>
+                        {{ /if }}
 
-            <!-- Erik -->
-            <article class="team-card">
+                        <div class="team-contact">
 
-                <div class="team-image-wrapper">
-                    <img
-                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900"
-                        alt="Erik Johansson"
-                        class="team-image"
-                    >
-                </div>
+                            {{ if email }}
+                                <a href="mailto:{{ email }}" class="team-contact-link">
+                                    {{ email }}
+                                </a>
+                            {{ /if }}
 
-                <div class="team-info">
-                    <p class="team-role">
-                        Art Director
-                    </p>
+                            {{ if phone }}
+                                <a href="tel:{{ phone }}" class="team-contact-link">
+                                    {{ phone }}
+                                </a>
+                            {{ /if }}
 
-                    <h3 class="team-name">
-                        Erik Johansson
-                    </h3>
+                        </div>
 
-                    <p class="team-description">
-                        Ansvarar för visuell identitet och design.
-                    </p>
-                </div>
+                    </div>
 
-            </article>
+                </article>
 
-
-            <!-- Sofia -->
-            <article class="team-card">
-
-                <div class="team-image-wrapper">
-                    <img
-                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900"
-                        alt="Sofia Lind"
-                        class="team-image"
-                    >
-                </div>
-
-                <div class="team-info">
-                    <p class="team-role">
-                        Project Manager
-                    </p>
-
-                    <h3 class="team-name">
-                        Sofia Lind
-                    </h3>
-
-                    <p class="team-description">
-                        Driver projekt från idé till färdig leverans.
-                    </p>
-                </div>
-
-            </article>
-
-
-            <!-- Johan -->
-            <article class="team-card">
-
-                <div class="team-image-wrapper">
-                    <img
-                        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900"
-                        alt="Johan Berg"
-                        class="team-image"
-                    >
-                </div>
-
-                <div class="team-info">
-                    <p class="team-role">
-                        Developer
-                    </p>
-
-                    <h3 class="team-name">
-                        Johan Berg
-                    </h3>
-
-                    <p class="team-description">
-                        Bygger digitala lösningar med fokus på kvalitet.
-                    </p>
-                </div>
-
-            </article>
+            {{ /about_team }}
 
         </div>
 

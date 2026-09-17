@@ -6,10 +6,10 @@ template: contact
 contact_title: 'Frågor, funderingar eller feedback? Hör av dig!'
 contact_body: 'Eller är du sugen på att börja använda Oqto?'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789335088
+updated_at: 1789678998
 contact_email: info@oqto.se
 contact_team:
-  - 3ebf0604-6f00-49a7-8a63-ddef40e34001
   - 68aeec5b-de62-4e4e-bb55-e75c82d9ec69
+  - 3ebf0604-6f00-49a7-8a63-ddef40e34001
   - 26644e94-5e4c-4be1-bf3d-1d04db9d04f4
 ---

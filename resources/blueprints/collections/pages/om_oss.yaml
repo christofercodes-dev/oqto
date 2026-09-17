@@ -74,44 +74,13 @@ tabs:
         display: Team
         fields:
           -
-            handle: team
+            handle: about_team
             field:
-              type: replicator
-              display: team
-              sets:
-                member:
-                  display: member
-                  sets:
-                    new_set:
-                      display: 'New Set'
-                      fields:
-                        -
-                          handle: image
-                          field:
-                            container: assets
-                            type: assets
-                            display: image
-                        -
-                          handle: name
-                          field:
-                            type: text
-                            display: name
-                        -
-                          handle: role
-                          field:
-                            type: text
-                            display: role
-                        -
-                          handle: description
-                          field:
-                            type: textarea
-                            display: description
-                new_set_group:
-                  display: 'New Set Group'
-                  sets:
-                    new_set:
-                      display: 'New Set'
-                      fields: {}
+              type: entries
+              display: Team
+              instructions: 'Välj vilka som ska visas och i vilken ordning. Dra i handtaget för att ändra ordning.'
+              collections:
+                - team
           -
             handle: small_title_team
             field:
