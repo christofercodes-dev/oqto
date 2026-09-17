@@ -12,3 +12,5 @@ preferences:
       view: list
     open_positions:
       view: list
+    reviews:
+      view: list
