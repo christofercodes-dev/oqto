@@ -221,7 +221,7 @@ dpa_content: |
 
   ### 15. Kontakt
 
-  Vid frågor gällande Oqtos hantering av personuppgifter, kontakta: [dpo@oqto.ai](mailto:dpo@oqto.ai)
+  Vid frågor gällande Oqtos hantering av personuppgifter, kontakta: [dpo@oqto.se](mailto:dpo@oqto.se)
 
   ### Bilaga 1 – Godkända underbiträden
 

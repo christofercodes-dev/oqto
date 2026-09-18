@@ -1,27 +1,70 @@
 <section class="villkor-content-section">
 
-    <div class="container villkor-content-container">
+    <div class="container villkor-content-layout">
 
-        <article id="allmanna-villkor" class="villkor-document">
-            <h2>{{ terms_title ?? 'Allmänna villkor' }}</h2>
-            {{ terms_content }}
-        </article>
+        <aside class="villkor-nav">
+            <nav aria-label="Snabblänkar till villkor">
+                <a href="#allmanna-villkor" data-villkor-nav-link>{{ terms_title ?? 'Allmänna villkor' }}</a>
+                <a href="#personuppgiftsbitradesavtal" data-villkor-nav-link>{{ dpa_title ?? 'Personuppgiftsbiträdesavtal' }}</a>
+                <a href="#integritetspolicy" data-villkor-nav-link>{{ privacy_title ?? 'Integritetspolicy' }}</a>
+                <a href="#utvecklaravtal" data-villkor-nav-link>{{ developer_title ?? 'Utvecklaravtal' }}</a>
+            </nav>
+        </aside>
 
-        <article id="personuppgiftsbitradesavtal" class="villkor-document">
-            <h2>{{ dpa_title ?? 'Personuppgiftsbiträdesavtal' }}</h2>
-            {{ dpa_content }}
-        </article>
+        <div class="villkor-content-container">
 
-        <article id="integritetspolicy" class="villkor-document">
-            <h2>{{ privacy_title ?? 'Integritetspolicy' }}</h2>
-            {{ privacy_content }}
-        </article>
+            <article id="allmanna-villkor" class="villkor-document">
+                <h2>{{ terms_title ?? 'Allmänna villkor' }}</h2>
+                {{ terms_content }}
+            </article>
 
-        <article id="utvecklaravtal" class="villkor-document">
-            <h2>{{ developer_title ?? 'Utvecklaravtal' }}</h2>
-            {{ developer_content }}
-        </article>
+            <article id="personuppgiftsbitradesavtal" class="villkor-document">
+                <h2>{{ dpa_title ?? 'Personuppgiftsbiträdesavtal' }}</h2>
+                {{ dpa_content }}
+            </article>
+
+            <article id="integritetspolicy" class="villkor-document">
+                <h2>{{ privacy_title ?? 'Integritetspolicy' }}</h2>
+                {{ privacy_content }}
+            </article>
+
+            <article id="utvecklaravtal" class="villkor-document">
+                <h2>{{ developer_title ?? 'Utvecklaravtal' }}</h2>
+                {{ developer_content }}
+            </article>
+
+        </div>
 
     </div>
 
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const links = document.querySelectorAll("[data-villkor-nav-link]");
+        const sections = document.querySelectorAll(".villkor-document");
+
+        if (!links.length || !sections.length) return;
+
+        const setActive = (id) => {
+            links.forEach((link) => {
+                link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+            });
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActive(entry.target.id);
+                    }
+                });
+            },
+            { rootMargin: "-100px 0px -70% 0px" }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+
+    });
+</script>

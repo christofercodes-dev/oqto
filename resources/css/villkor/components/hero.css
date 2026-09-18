@@ -44,47 +44,10 @@
     color: #4a4744;
 }
 
-.villkor-hero-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-
-    margin-top: 16px;
-}
-
-.villkor-hero-nav a {
-    padding: 10px 20px;
-
-    border: 1px solid #e5e0db;
-    border-radius: 999px;
-
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--color-text);
-
-    transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.villkor-hero-nav a:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-}
-
 @media (max-width: 960px) {
 
     .villkor-hero-section {
         padding: 70px 24px 40px;
-    }
-
-    .villkor-hero-nav {
-        gap: 8px;
-    }
-
-    .villkor-hero-nav a {
-        padding: 8px 16px;
-        font-size: 0.9rem;
     }
 
 }
