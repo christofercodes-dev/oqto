@@ -1,0 +1,94 @@
+title: villkor
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+          -
+            handle: intro_title
+            field:
+              type: text
+              display: 'intro title'
+          -
+            handle: intro_body
+            field:
+              type: textarea
+              display: 'intro body'
+      -
+        display: 'Allmänna villkor'
+        fields:
+          -
+            handle: terms_title
+            field:
+              type: text
+              display: 'terms title'
+          -
+            handle: terms_content
+            field:
+              type: markdown
+              display: 'terms content'
+      -
+        display: 'Personuppgiftsbiträdesavtal'
+        fields:
+          -
+            handle: dpa_title
+            field:
+              type: text
+              display: 'dpa title'
+          -
+            handle: dpa_content
+            field:
+              type: markdown
+              display: 'dpa content'
+      -
+        display: Integritetspolicy
+        fields:
+          -
+            handle: privacy_title
+            field:
+              type: text
+              display: 'privacy title'
+          -
+            handle: privacy_content
+            field:
+              type: markdown
+              display: 'privacy content'
+      -
+        display: Utvecklaravtal
+        fields:
+          -
+            handle: developer_title
+            field:
+              type: text
+              display: 'developer title'
+          -
+            handle: developer_content
+            field:
+              type: markdown
+              display: 'developer content'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            import: seo

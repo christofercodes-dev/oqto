@@ -1,0 +1,82 @@
+.villkor-content-section {
+    width: 100%;
+
+    background-color: #ffffff;
+
+    padding: 0 40px 100px;
+
+    box-sizing: border-box;
+    color: var(--color-text);
+}
+
+.villkor-content-container {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.villkor-document {
+    scroll-margin-top: 100px;
+}
+
+.villkor-document h2 {
+    margin: 0 0 24px;
+
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+
+    color: var(--color-text);
+}
+
+.villkor-document h3 {
+    margin: 40px 0 12px;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    color: var(--color-text);
+}
+
+.villkor-document p {
+    margin: 0 0 16px;
+
+    font-size: 1rem;
+    line-height: 1.7;
+
+    color: #4a4744;
+}
+
+.villkor-document ul {
+    margin: 0 0 16px;
+    padding-left: 20px;
+
+    font-size: 1rem;
+    line-height: 1.7;
+
+    color: #4a4744;
+}
+
+.villkor-document li {
+    margin-bottom: 8px;
+}
+
+.villkor-document a {
+    color: var(--color-accent);
+}
+
+@media (max-width: 960px) {
+
+    .villkor-content-section {
+        padding: 0 24px 70px;
+    }
+
+    .villkor-content-container {
+        gap: 56px;
+    }
+
+}

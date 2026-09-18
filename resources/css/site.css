@@ -189,6 +189,8 @@
 @import "./funktioner/components/hero.css";
 @import "./funktioner/components/feature-blocks.css";
 
+@import "./villkor/components/hero.css";
+@import "./villkor/components/content.css";
 
 
 

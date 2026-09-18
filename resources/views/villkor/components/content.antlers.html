@@ -1,0 +1,27 @@
+<section class="villkor-content-section">
+
+    <div class="container villkor-content-container">
+
+        <article id="allmanna-villkor" class="villkor-document">
+            <h2>{{ terms_title ?? 'Allmänna villkor' }}</h2>
+            {{ terms_content }}
+        </article>
+
+        <article id="personuppgiftsbitradesavtal" class="villkor-document">
+            <h2>{{ dpa_title ?? 'Personuppgiftsbiträdesavtal' }}</h2>
+            {{ dpa_content }}
+        </article>
+
+        <article id="integritetspolicy" class="villkor-document">
+            <h2>{{ privacy_title ?? 'Integritetspolicy' }}</h2>
+            {{ privacy_content }}
+        </article>
+
+        <article id="utvecklaravtal" class="villkor-document">
+            <h2>{{ developer_title ?? 'Utvecklaravtal' }}</h2>
+            {{ developer_content }}
+        </article>
+
+    </div>
+
+</section>
