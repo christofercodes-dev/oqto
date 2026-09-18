@@ -1,9 +1,9 @@
 .villkor-hero-section {
     width: 100%;
 
-    background-color: #ffffff;
+    background-color: #F5F1EB;
 
-    padding: 100px 40px 60px;
+    padding: 200px 40px 100px;
 
     box-sizing: border-box;
     color: var(--color-text);
@@ -47,7 +47,7 @@
 @media (max-width: 960px) {
 
     .villkor-hero-section {
-        padding: 70px 24px 40px;
+        padding: 130px 24px 60px;
     }
 
 }
