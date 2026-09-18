@@ -13,8 +13,11 @@ partner_phone: '+46727307430'
 partner_website: 'https://www.reda.ai'
 partner_about: 'Automatiserad fakturahantering som bara funkar. Reda tolkar, konterar, skickar för attest och skapar betalfil. Utan att du behöver lyfta mer än ett finger. Mindre administration, mer tid till det som spelar roll.'
 source_created_at: '2025-02-03 15:11'
-avatar: images/7ebfb036-04fe-4000-ac1a-641773f265ce.png
+avatar:
+  - images/7ebfb036-04fe-4000-ac1a-641773f265ce.png
 featured: true
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
 updated_at: 1789495160
+media:
+  - images/d5e6ef27-62e7-428c-a7b9-6a4873362fe0.png
 ---

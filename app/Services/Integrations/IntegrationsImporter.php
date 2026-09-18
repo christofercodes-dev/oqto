@@ -159,7 +159,12 @@ class IntegrationsImporter
 
         $entry->set('media', array_values(array_filter($item['mediaImageKeys'] ?? [])));
 
+        // Källdatan representerar varje SNI-kod som ett objekt
+        // {"code": "...", "name": "..."} - inte en ren sträng. Vi bryr oss
+        // bara om koden, för att matcha hur befintliga sni_codes-termer
+        // redan är namngivna (title = koden, t.ex. "69").
         $sniCodes = collect($item['sniCodes'] ?? [])
+            ->map(fn ($code) => is_array($code) ? ($code['code'] ?? null) : $code)
             ->filter()
             ->map(fn (string $code) => $this->firstOrCreateTerm('sni_codes', $code))
             ->values()
