@@ -1,0 +1,12 @@
+name: 'Eric Damberg'
+roles:
+  - redaktoer
+super: false
+id: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
+password_hash: $2y$12$krHR0lhJ1RB8lqY/y2vYfullKqHOnFEvEq9M/gFhl2wH.oIYFJepO
+preferences:
+  collections:
+    integrations:
+      view: list
+    pages:
+      view: tree
