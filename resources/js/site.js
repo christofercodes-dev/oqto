@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const slides =
             reviewsSection.querySelectorAll('.review-slide');
 
+        const reviewsSlides =
+            reviewsSection.querySelector('.reviews-slides');
+
         const reviewsCard =
             reviewsSection.querySelector('.reviews-card');
 
@@ -22,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (
             slides.length &&
+            reviewsSlides &&
             reviewsCard &&
             prevButton &&
             nextButton
@@ -29,53 +33,142 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let currentIndex = 0;
 
-            function showSlide(index) {
+            /*
+             * Alla slides ligger absolut positionerade på varandra (för
+             * mjuk övertoning), vilket gör att containern annars kollapsar
+             * till 0 höjd. Vi mäter därför upp det längsta citatet och
+             * låser containerns höjd till det, så korten aldrig blir
+             * trängre än det behöver för den längsta texten.
+             */
+            function setSlidesHeight() {
 
-                slides.forEach((slide, i) => {
-                    slide.classList.toggle(
-                        'active',
-                        i === index
-                    );
+                let maxHeight = 0;
+
+                slides.forEach((slide) => {
+
+                    const content =
+                        slide.querySelector('.reviews-card-content');
+
+                    if (content) {
+
+                        const slideStyle = getComputedStyle(slide);
+
+                        const paddingY =
+                            parseFloat(slideStyle.paddingTop) +
+                            parseFloat(slideStyle.paddingBottom);
+
+                        maxHeight = Math.max(
+                            maxHeight,
+                            content.offsetHeight + paddingY
+                        );
+                    }
                 });
 
-                reviewsCard.classList.remove(
-                    'color-1',
-                    'color-2',
-                    'color-3',
-                    'color-4'
-                );
+                reviewsSlides.style.height = `${maxHeight}px`;
+            }
 
-                const colorIndex =
-                    (index % 4) + 1;
+            let isAnimating = false;
 
-                reviewsCard.classList.add(
-                    `color-${colorIndex}`
-                );
+            /*
+             * "Push"-övergång: det inkommande kortet placeras direkt
+             * utanför synligt område (höger vid nästa, vänster vid
+             * föregående) och de båda korten skjuts sedan samtidigt åt
+             * samma håll, som en riktig slider.
+             */
+            function goToSlide(targetIndex, direction) {
+
+                if (isAnimating || targetIndex === currentIndex) {
+                    return;
+                }
+
+                isAnimating = true;
+
+                const currentSlide = slides[currentIndex];
+                const nextSlide = slides[targetIndex];
+
+                const outTransform =
+                    direction > 0 ? 'translateX(-100%)' : 'translateX(100%)';
+
+                const inStartTransform =
+                    direction > 0 ? 'translateX(100%)' : 'translateX(-100%)';
+
+                nextSlide.classList.add('no-transition');
+                nextSlide.style.transform = inStartTransform;
+                nextSlide.style.opacity = '1';
+                nextSlide.style.visibility = 'visible';
+                nextSlide.style.zIndex = '2';
+
+                // Tvinga fram en reflow så startläget hinner registreras
+                // innan övergången animeras.
+                void nextSlide.offsetWidth;
+
+                nextSlide.classList.remove('no-transition');
+
+                requestAnimationFrame(() => {
+                    currentSlide.style.transform = outTransform;
+                    nextSlide.style.transform = 'translateX(0)';
+                });
+
+                const handleTransitionEnd = (event) => {
+
+                    if (event.target !== nextSlide || event.propertyName !== 'transform') {
+                        return;
+                    }
+
+                    nextSlide.removeEventListener('transitionend', handleTransitionEnd);
+
+                    currentSlide.classList.remove('active');
+                    currentSlide.style.opacity = '0';
+                    currentSlide.style.visibility = 'hidden';
+                    currentSlide.style.zIndex = '';
+                    currentSlide.classList.add('no-transition');
+                    currentSlide.style.transform = 'translateX(0)';
+                    void currentSlide.offsetWidth;
+                    currentSlide.classList.remove('no-transition');
+
+                    nextSlide.classList.add('active');
+                    nextSlide.style.zIndex = '';
+
+                    currentIndex = targetIndex;
+                    isAnimating = false;
+                };
+
+                nextSlide.addEventListener('transitionend', handleTransitionEnd);
             }
 
             nextButton.addEventListener('click', () => {
 
-                currentIndex++;
+                let targetIndex = currentIndex + 1;
 
-                if (currentIndex >= slides.length) {
-                    currentIndex = 0;
+                if (targetIndex >= slides.length) {
+                    targetIndex = 0;
                 }
 
-                showSlide(currentIndex);
+                goToSlide(targetIndex, 1);
             });
 
             prevButton.addEventListener('click', () => {
 
-                currentIndex--;
+                let targetIndex = currentIndex - 1;
 
-                if (currentIndex < 0) {
-                    currentIndex = slides.length - 1;
+                if (targetIndex < 0) {
+                    targetIndex = slides.length - 1;
                 }
 
-                showSlide(currentIndex);
+                goToSlide(targetIndex, -1);
             });
 
-            showSlide(currentIndex);
+            setSlidesHeight();
+            slides[currentIndex].classList.add('active');
+
+            let resizeTimeout;
+
+            window.addEventListener('resize', () => {
+
+                clearTimeout(resizeTimeout);
+
+                resizeTimeout = setTimeout(setSlidesHeight, 150);
+            });
         }
     }
 
