@@ -8,7 +8,7 @@ title_row_2: 'Gånger åtta.'
 author: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 knapptext: 'Boka demo'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789682535
+updated_at: 1789723779
 title_card_1: 'Effektiv bokföring'
 text_card_1: 'Hantera bokföring, fakturor och underlag i ett och samma system. Automatiserade flöden minskar manuellt arbete och frigör tid för mer värdeskapande rådgivning och högre kvalitet.'
 title_card_2: 'Ekonomisk överblick'
@@ -29,6 +29,7 @@ faq_items:
     faq_answer: 'Vi utgår från ekonomens vardag. Mindre klick, bättre överblick och ett system som respekterar yrkets komplexitet. Enkelt där det ska vara enkelt. Noggrant där det måste vara noggrant.'
   - id: '-bqP5QUTrPdEKHZnA7W2Z'
     faq_question: 'Är Oqto byggt för redovisningsbyråer?'
+    faq_answer: 'Ja verkligen! Det är hela kärnan till det vi gör. Vi bygger, tillsammans med er, ett ekonomisystem som finns till för att underlätta för dig.'
 why_oqto_small_title: 'Varför Oqto?'
 why_oqto_title: 'Gamla arbetssätt hör hemma i historien. Välkommen till Oqto.'
 why_oqto_body: |-
