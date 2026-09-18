@@ -5,7 +5,7 @@ title: 'Vanliga frågor'
 seo_title: 'FAQ – Vanliga frågor'
 seo_description: 'Svar på vanliga frågor om Oqto – priser, integrationer, kom igång och hur systemet fungerar för redovisningsbyråer och företag.'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789669961
+updated_at: 1789769611
 faq: faq
 template: faq
 author:
@@ -72,7 +72,7 @@ faq_groups:
     questions:
       - id: CeFGVSuFZnpemaqa3n7sI
         faq_question: 'Är Oqto byggt för redovisningsbyråer?'
-        faq_answer: 'Absolut! Men du får gå via en byrå, det blir bäst!'
+        faq_answer: 'Ja verkligen! Det är främst till för dig som jobbar på byrå!'
         type: question
         enabled: true
       - id: gbVW06Z8Dx7U2ys-5ymtK
