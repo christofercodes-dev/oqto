@@ -8,3 +8,5 @@ preferences:
   collections:
     integrations:
       view: list
+    pages:
+      view: tree
