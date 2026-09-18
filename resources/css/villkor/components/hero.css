@@ -18,8 +18,8 @@
     flex-direction: column;
     gap: 24px;
 
-    text-align: center;
-    align-items: center;
+    text-align: left;
+    align-items: flex-start;
 }
 
 .villkor-hero-title {

@@ -3,7 +3,7 @@
 
     background-color: #ffffff;
 
-    padding: 0 40px 100px;
+    padding: 100px 40px;
 
     box-sizing: border-box;
     color: var(--color-text);
@@ -115,7 +115,7 @@
 @media (max-width: 960px) {
 
     .villkor-content-section {
-        padding: 0 24px 70px;
+        padding: 60px 24px 70px;
     }
 
     .villkor-content-layout {
