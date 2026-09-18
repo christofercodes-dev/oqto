@@ -1,0 +1,15 @@
+title: SEO
+fields:
+  -
+    handle: seo_title
+    field:
+      type: text
+      display: 'SEO-titel'
+      instructions: 'Visas i webbläsarfliken och i Googles sökresultat. Lämna tomt för att använda sidans titel. "– Oqto ekonomisystem" läggs till automatiskt på slutet.'
+  -
+    handle: seo_description
+    field:
+      type: textarea
+      display: 'SEO-beskrivning'
+      instructions: 'Kort beskrivning (ca 150–160 tecken) som Google visar under titeln i sökresultat.'
+      character_limit: 160

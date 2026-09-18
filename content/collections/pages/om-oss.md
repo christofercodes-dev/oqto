@@ -2,6 +2,8 @@
 id: c1fc7c1d-a63d-4304-98fe-209be09aacbe
 blueprint: om_oss
 title: 'Om Oqto'
+seo_title: 'Om oss'
+seo_description: 'Oqto byggs av ekonomer, rådgivare och utvecklare från JWK och Reda – för att lösa problem vi själva stötte på i vardagen. Läs mer om teamet.'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
 updated_at: 1789723881
 template: about

@@ -2,6 +2,8 @@
 id: ca2679f5-8a28-4b31-b743-f1170d0962de
 blueprint: jobs
 title: 'Lediga jobb'
+seo_title: 'Lediga jobb'
+seo_description: 'Vi växer och söker fler kollegor som vill bygga framtidens ekonomisystem tillsammans med oss. Se våra lediga tjänster och ansök redan idag.'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
 updated_at: 1789335106
 author:

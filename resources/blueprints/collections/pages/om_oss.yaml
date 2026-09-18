@@ -125,3 +125,5 @@ tabs:
               type: slug
               localizable: true
               validate: 'max:200'
+          -
+            import: seo

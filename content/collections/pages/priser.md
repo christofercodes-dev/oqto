@@ -2,6 +2,8 @@
 id: 03c890d5-ba59-469a-9151-dc0807f7f3f6
 blueprint: pricing
 title: Priser
+seo_title: 'Priser & bolagslägen'
+seo_description: 'Ingen byrålicens – välj mellan Traditionell, Modern eller Förvaltning och betala per företag och användare. Se alla priser och vad som ingår.'
 template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2

@@ -2,6 +2,8 @@
 id: 44657d35-ed8b-451a-a97a-9dfa33683dcb
 blueprint: integrations
 title: Integrationer
+seo_title: Integrationer
+seo_description: 'Koppla ihop Oqto med verktygen ni redan använder. Se alla integrationer för fakturering, betalningar, bokföring och mer.'
 integrations_small_title: 'test liten text'
 integrations_title: 'Koppla ihop Oqto med verktygen du redan använder.'
 integrations_intro: 'Smidiga integrationer som samlar ditt arbetsflöde på ett ställe och får allt att fungera sömlöst.'

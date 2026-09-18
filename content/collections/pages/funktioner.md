@@ -2,6 +2,8 @@
 id: e52fccde-78db-464a-a559-b0e48150bb16
 blueprint: funktioner
 title: Funktioner
+seo_title: Funktioner
+seo_description: 'Upptäck funktionerna som gör Oqto till ett komplett ekonomisystem – från smart fakturering till bokföring i realtid.'
 template: funktioner
 hero_small_title: Funktioner
 hero_title: 'Allt du behöver för att driva bolaget, på ett ställe.'

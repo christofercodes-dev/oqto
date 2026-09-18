@@ -2,6 +2,8 @@
 id: 580a9251-af89-4a48-a7ce-7311bed51fd7
 blueprint: contact
 title: 'Kontakta oss'
+seo_title: Kontakt
+seo_description: 'Frågor, funderingar eller feedback? Hör av dig till oss på Oqto så återkommer vi så snart vi kan.'
 template: contact
 contact_title: 'Frågor, funderingar eller feedback? Hör av dig!'
 contact_body: 'Eller är du sugen på att börja använda Oqto?'

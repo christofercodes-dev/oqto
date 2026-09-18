@@ -2,6 +2,8 @@
 id: 049ed0c0-9796-43f7-b158-4f6129328c12
 blueprint: pages
 title: 'Oqto - Ekonomens bästa vän'
+seo_title: 'Modernt ekonomisystem för redovisningsbyråer'
+seo_description: 'Oqto samlar bokföring, fakturering och rapporter i ett system. Ingen byrålicens, integrationer ingår och du betalar bara per användare.'
 template: home
 title_row_1: 'Din högra hand.'
 title_row_2: 'Gånger åtta.'

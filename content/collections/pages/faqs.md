@@ -2,6 +2,8 @@
 id: dce7b77e-9458-4179-8002-8876b40e75ab
 blueprint: faq
 title: 'Vanliga frågor'
+seo_title: 'FAQ – Vanliga frågor'
+seo_description: 'Svar på vanliga frågor om Oqto – priser, integrationer, kom igång och hur systemet fungerar för redovisningsbyråer och företag.'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
 updated_at: 1789669961
 faq: faq

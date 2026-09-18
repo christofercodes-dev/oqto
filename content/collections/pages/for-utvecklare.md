@@ -2,6 +2,8 @@
 id: c5c238ce-d891-4d01-80aa-ea1bf8835415
 blueprint: developers
 title: Utvecklare
+seo_title: 'För utvecklare – API & dokumentation'
+seo_description: 'Allt du behöver för att komma igång med Oqtos API. Gratis att använda – kom igång med dokumentationen direkt.'
 developers_small_title: 'För utvecklare'
 developers_title: 'Hej utvecklare!'
 developers_body: 'Här finns allt du behöver för att komma igång. Vårt API kostar ingenting. Bara kör igång!'

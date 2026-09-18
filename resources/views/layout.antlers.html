@@ -4,7 +4,15 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ (title ?? site:name) | sanitize }}</title>
+        {{ if seo_title ?? title }}
+            <title>{{ (seo_title ?? title) | sanitize }} – {{ site:name }}</title>
+        {{ else }}
+            <title>{{ site:name }}</title>
+        {{ /if }}
+
+        {{ if seo_description }}
+            <meta name="description" content="{{ seo_description | sanitize }}">
+        {{ /if }}
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
