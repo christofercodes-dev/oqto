@@ -10,13 +10,13 @@ title_row_2: 'Gånger åtta.'
 author: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 knapptext: 'Boka demo'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789723779
+updated_at: 1789732332
 title_card_1: 'Effektiv bokföring'
 text_card_1: 'Hantera bokföring, fakturor och underlag i ett och samma system. Automatiserade flöden minskar manuellt arbete och frigör tid för mer värdeskapande rådgivning och högre kvalitet.'
 title_card_2: 'Ekonomisk överblick'
 text_card_2: 'Få alltid uppdaterad ekonomisk data och tydliga rapporter – för byrån att ge bättre rådgivning samtidigt som kunden får full insyn och kan fatta snabbare, tryggare beslut.'
 title_card_3: 'Allt i ett system'
-text_card_3: 'Koppla bank, lön och kvittohantering i ett skalbart system, byrån har ett fast pris och kunderna väljer själva de funktioner som passar deras verksamhet bäst.'
+text_card_3: 'Koppla bank, lön och kvittohantering i ett skalbart system, byrån har ett fast pris och kunderna väljer själva de funktioner som passar deras verksamhet och behov bäst.'
 small_title: 'Varför Oqto?'
 video_heading: 'Vi har sett vad som fungerar. Och vad om inte gör det.'
 video_body: |-
