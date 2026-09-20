@@ -81,6 +81,12 @@ tabs:
                             type: text
                             display: 'plan number'
                         -
+                          handle: recommended
+                          field:
+                            type: toggle
+                            display: recommended
+                            instructions: 'Visar en "Rekommenderad"-badge på kortet.'
+                        -
                           handle: description
                           field:
                             type: textarea

@@ -7,9 +7,17 @@
 
             <div class="pricing-card-top">
 
-                <h3 class="pricing-card-title">
-                    {{ pricing_plans:0:plan_title }}
-                </h3>
+                <div class="pricing-card-top-left">
+
+                    <h3 class="pricing-card-title">
+                        {{ pricing_plans:0:plan_title }}
+                    </h3>
+
+                    {{ if pricing_plans:0:recommended }}
+                        <span class="pricing-card-badge">Rekommenderad</span>
+                    {{ /if }}
+
+                </div>
 
                 <span class="pricing-card-number">
                     {{ pricing_plans:0:plan_number }}
@@ -89,9 +97,17 @@
 
             <div class="pricing-card-top">
 
-                <h3 class="pricing-card-title">
-                    {{ pricing_plans:1:plan_title }}
-                </h3>
+                <div class="pricing-card-top-left">
+
+                    <h3 class="pricing-card-title">
+                        {{ pricing_plans:1:plan_title }}
+                    </h3>
+
+                    {{ if pricing_plans:1:recommended }}
+                        <span class="pricing-card-badge">Rekommenderad</span>
+                    {{ /if }}
+
+                </div>
 
                 <span class="pricing-card-number">
                     {{ pricing_plans:1:plan_number }}

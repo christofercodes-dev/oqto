@@ -19,9 +19,9 @@ pricing_plans:
     id: SOfAiZFnbi7K6ImrmAgJm
     plan_title: Traditionell
     plan_number: '01'
-    description: 'I det traditionella läger arbetar byrå och kund tillsammans utan månadsavslut och automationer. Passar bolag med mindre transaktionsvolym.'
+    description: 'Passar framförallt årskunder med lägre transaktionsvolym. Byrå och kund arbetar tillsammans utan månadsavslut och automationer.'
     monthly_price: '125'
-    verification_limit: '100 st / mån'
+    verification_limit: '1200 st/år'
     type: pricing_plan
     enabled: true
     features:
@@ -49,6 +49,7 @@ pricing_plans:
     id: eTiJRgHFQetkdFMafsa1S
     plan_title: Modern
     plan_number: '02'
+    recommended: true
     description: 'Byrå och kund arbetar tillsammans. med månadsavslut och automationer. Passar bolag med hög transaktionsvolym.'
     features:
       - id: GudXNrjP
