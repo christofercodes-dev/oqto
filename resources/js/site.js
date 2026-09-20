@@ -235,9 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const lookupButtonText =
             bokaDemoSection.querySelector('[data-role="lookup-button-text"]');
 
+        const looksLikeOrgNumberInput = (value) =>
+            /^[\d\s-]*$/.test(value);
+
+        const isCompleteOrgNumber = (value) =>
+            /^\d{6}-?\d{4}$/.test(value.replace(/\s+/g, ''));
+
         if (lookupInput) {
 
             lookupInput.addEventListener('input', () => {
+
+                // Bara maska som org.nummer om användaren bara har
+                // skrivit siffror/mellanslag/bindestreck hittills -
+                // annars skriver de förmodligen ett bolagsnamn.
+                if (!looksLikeOrgNumberInput(lookupInput.value)) {
+                    return;
+                }
 
                 const digits =
                     lookupInput.value.replace(/\D/g, '').slice(0, 10);
@@ -294,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     step.querySelector('[data-role="alt2-org-number"]');
 
                 if (orgNumberField) {
-                    orgNumberField.value = lookupInput.value.trim();
+                    orgNumberField.value = data.org_number || '';
                 }
 
                 const companyField =
@@ -346,13 +359,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 lookupError.hidden = true;
 
-                const orgNumber = lookupInput.value.trim();
+                const inputValue = lookupInput.value.trim();
 
-                if (!orgNumber) {
-                    lookupError.textContent = 'Ange ett organisationsnummer.';
+                if (!inputValue) {
+                    lookupError.textContent = 'Ange ett organisationsnummer eller bolagsnamn.';
                     lookupError.hidden = false;
                     return;
                 }
+
+                if (!isCompleteOrgNumber(inputValue)) {
+                    // Ser inte ut som ett org.nummer - tolka som bolagsnamn
+                    // och gå direkt till det generella formuläret.
+                    showStep({
+                        alternative: 2,
+                        org_number: null,
+                        company_name: inputValue,
+                    });
+
+                    return;
+                }
+
+                const orgNumber = inputValue;
 
                 lookupButtonText.textContent = 'Söker...';
                 lookupForm.querySelector('button').disabled = true;

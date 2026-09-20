@@ -7,7 +7,7 @@ seo_description: 'Boka en kostnadsfri demo av Oqto och se hur ditt ekonomisystem
 template: boka-demo
 boka_demo_small_title: 'Boka demo'
 boka_demo_title: 'Se Oqto i praktiken'
-boka_demo_body: 'Fyll i ditt organisationsnummer så anpassar vi nästa steg efter er bransch.'
+boka_demo_body: 'Fyll i ditt organisationsnummer så anpassar vi nästa steg efter er bransch, eller ange bolagsnamn om du inte har det till hands.'
 boka_demo_alt1_title: 'Boka en tid direkt'
 boka_demo_alt1_body: 'Välj en tid som passar dig i kalendern nedan.'
 calcom_link: 'team/oqto/demo'
