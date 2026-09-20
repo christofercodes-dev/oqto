@@ -167,6 +167,45 @@
 
 
 /* =========================================================
+   NAVIGATION — UNDERGRUPP (t.ex. "Systemet")
+========================================================= */
+
+.site-footer .footer-links li.footer-nav-group {
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.site-footer .footer-nav-group-title {
+  display: block;
+
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+
+  color: rgba(255,255,255,0.38);
+}
+
+.site-footer .footer-nav-subgroup {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+  padding: 0 0 0 16px;
+
+  list-style: none;
+
+  gap: 8px;
+}
+
+.site-footer .footer-nav-subgroup li {
+  height: 19px;
+}
+
+
+/* =========================================================
    CONTACT
 ========================================================= */
 
