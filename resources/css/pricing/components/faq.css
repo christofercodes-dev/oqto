@@ -118,14 +118,14 @@
    ========================= */
 
 .pricing-faq-answer {
-    max-width: 720px;
-
     padding: 0 24px 24px 24px;
 
     animation: pricingFaqOpen 0.3s ease;
 }
 
 .pricing-faq-answer p {
+    max-width: 720px;
+
     margin: 0;
 
     font-size: 0.95rem;
