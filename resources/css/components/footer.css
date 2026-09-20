@@ -29,7 +29,8 @@
   padding: 0;
 
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 24px;
   align-items: start;
 }
 
@@ -228,7 +229,12 @@
   }
 
   .footer-container {
-    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 40px;
+  }
+
+  .site-footer .footer-brand {
+    grid-column: 1 / -1;
   }
 
   .site-footer .footer-logo {
