@@ -24,6 +24,8 @@
    ========================================================= */
 
 .pricing-card {
+    position: relative;
+
     min-height: 620px;
     padding: 40px;
     box-sizing: border-box;
@@ -31,7 +33,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;
 
     transition:
         transform 0.3s ease,
@@ -63,12 +64,6 @@
     gap: 24px;
 }
 
-.pricing-card-top-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
 .pricing-card-title {
     margin: 0;
     font-size: clamp(1.7rem, 3vw, 2rem);
@@ -79,7 +74,13 @@
 }
 
 .pricing-card-badge {
-    padding: 6px 14px;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    transform: translateY(-50%);
+    z-index: 2;
+
+    padding: 8px 18px;
 
     border-radius: 999px;
 
@@ -91,6 +92,8 @@
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+
+    box-shadow: 0 8px 20px rgba(243, 93, 8, 0.3);
 
     white-space: nowrap;
 }
@@ -443,9 +446,10 @@
         padding: 20px 24px 70px;
     }
 
-    .pricing-card-top-left {
-        flex-wrap: wrap;
-        gap: 8px;
+    .pricing-card-badge {
+        left: 24px;
+        font-size: 0.65rem;
+        padding: 7px 14px;
     }
 
     .pricing-plans-container {

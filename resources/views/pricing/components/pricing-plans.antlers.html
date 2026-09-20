@@ -5,19 +5,15 @@
         <!-- KORT 1 -->
         <article class="pricing-card pricing-card-1">
 
+            {{ if pricing_plans:0:recommended }}
+                <span class="pricing-card-badge">Rekommenderad</span>
+            {{ /if }}
+
             <div class="pricing-card-top">
 
-                <div class="pricing-card-top-left">
-
-                    <h3 class="pricing-card-title">
-                        {{ pricing_plans:0:plan_title }}
-                    </h3>
-
-                    {{ if pricing_plans:0:recommended }}
-                        <span class="pricing-card-badge">Rekommenderad</span>
-                    {{ /if }}
-
-                </div>
+                <h3 class="pricing-card-title">
+                    {{ pricing_plans:0:plan_title }}
+                </h3>
 
                 <span class="pricing-card-number">
                     {{ pricing_plans:0:plan_number }}
@@ -95,19 +91,15 @@
         <!-- KORT 2 -->
         <article class="pricing-card pricing-card-2">
 
+            {{ if pricing_plans:1:recommended }}
+                <span class="pricing-card-badge">Rekommenderad</span>
+            {{ /if }}
+
             <div class="pricing-card-top">
 
-                <div class="pricing-card-top-left">
-
-                    <h3 class="pricing-card-title">
-                        {{ pricing_plans:1:plan_title }}
-                    </h3>
-
-                    {{ if pricing_plans:1:recommended }}
-                        <span class="pricing-card-badge">Rekommenderad</span>
-                    {{ /if }}
-
-                </div>
+                <h3 class="pricing-card-title">
+                    {{ pricing_plans:1:plan_title }}
+                </h3>
 
                 <span class="pricing-card-number">
                     {{ pricing_plans:1:plan_number }}
