@@ -1,0 +1,141 @@
+<section class="pricing-comparison-section">
+
+    <div class="container pricing-comparison-container">
+
+        {{ if comparison_small_title || comparison_title }}
+            <div class="pricing-comparison-header">
+
+                {{ if comparison_small_title }}
+                    <span class="pricing-comparison-small-title">{{ comparison_small_title }}</span>
+                {{ /if }}
+
+                {{ if comparison_title }}
+                    <h2 class="pricing-comparison-title">{{ comparison_title | nl2br }}</h2>
+                {{ /if }}
+
+            </div>
+        {{ /if }}
+
+        <div class="pricing-comparison-table">
+
+            <div class="pricing-comparison-row pricing-comparison-row-head">
+
+                <div class="pricing-comparison-cell pricing-comparison-cell-label"></div>
+
+                <div class="pricing-comparison-cell pricing-comparison-plan-head pricing-comparison-plan-forvaltning">
+                    <span class="pricing-comparison-plan-title">Förvaltning</span>
+                    <span class="pricing-comparison-plan-price">{{ comparison_forvaltning_price }} kr/mån</span>
+                </div>
+
+                <div class="pricing-comparison-cell pricing-comparison-plan-head pricing-comparison-plan-traditionell">
+                    <span class="pricing-comparison-plan-title">Traditionell</span>
+                    <span class="pricing-comparison-plan-price">{{ pricing_plans:0:monthly_price }} kr/mån</span>
+                </div>
+
+                <div class="pricing-comparison-cell pricing-comparison-plan-head pricing-comparison-plan-modern">
+                    <span class="pricing-comparison-plan-title">Modern</span>
+                    <span class="pricing-comparison-plan-price">{{ pricing_plans:1:monthly_price }} kr/mån</span>
+                </div>
+
+            </div>
+
+            {{ comparison_categories }}
+
+                <div class="pricing-comparison-category-row">
+                    <span>{{ category_title | upper }}</span>
+                </div>
+
+                {{ rows }}
+
+                    <div class="pricing-comparison-row-group">
+
+                        <div class="pricing-comparison-row{{ if detail }} has-detail{{ /if }}">
+
+                            {{ if detail }}
+                                <button type="button" class="pricing-comparison-cell pricing-comparison-cell-label" data-comparison-toggle>
+                                    <span>{{ label }}</span>
+                                    <span class="pricing-comparison-expand-icon" aria-hidden="true">
+                                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            {{ else }}
+                                <div class="pricing-comparison-cell pricing-comparison-cell-label">
+                                    <span>{{ label }}</span>
+                                </div>
+                            {{ /if }}
+
+                            <div class="pricing-comparison-cell">
+                                {{ if forvaltning_value == "check" }}
+                                    <span class="pricing-comparison-icon pricing-comparison-icon-check">✓</span>
+                                {{ elseif forvaltning_value == "cross" }}
+                                    <span class="pricing-comparison-icon pricing-comparison-icon-cross">×</span>
+                                {{ else }}
+                                    <span class="pricing-comparison-value-text">{{ forvaltning_value }}</span>
+                                {{ /if }}
+                            </div>
+
+                            <div class="pricing-comparison-cell">
+                                {{ if traditionell_value == "check" }}
+                                    <span class="pricing-comparison-icon pricing-comparison-icon-check">✓</span>
+                                {{ elseif traditionell_value == "cross" }}
+                                    <span class="pricing-comparison-icon pricing-comparison-icon-cross">×</span>
+                                {{ else }}
+                                    <span class="pricing-comparison-value-text">{{ traditionell_value }}</span>
+                                {{ /if }}
+                            </div>
+
+                            <div class="pricing-comparison-cell">
+                                {{ if modern_value == "check" }}
+                                    <span class="pricing-comparison-icon pricing-comparison-icon-check">✓</span>
+                                {{ elseif modern_value == "cross" }}
+                                    <span class="pricing-comparison-icon pricing-comparison-icon-cross">×</span>
+                                {{ else }}
+                                    <span class="pricing-comparison-value-text">{{ modern_value }}</span>
+                                {{ /if }}
+                            </div>
+
+                        </div>
+
+                        {{ if detail }}
+                            <div class="pricing-comparison-detail" hidden>
+                                <p>{{ detail }}</p>
+                            </div>
+                        {{ /if }}
+
+                    </div>
+
+                {{ /rows }}
+
+            {{ /comparison_categories }}
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        document.querySelectorAll("[data-comparison-toggle]").forEach((button) => {
+
+            button.addEventListener("click", () => {
+
+                const group = button.closest(".pricing-comparison-row-group");
+                const detail = group?.querySelector(".pricing-comparison-detail");
+
+                if (!detail) return;
+
+                const isOpen = !detail.hidden;
+
+                detail.hidden = isOpen;
+                button.closest(".pricing-comparison-row").classList.toggle("is-open", !isOpen);
+
+            });
+
+        });
+
+    });
+</script>

@@ -19,7 +19,7 @@ pricing_plans:
     id: SOfAiZFnbi7K6ImrmAgJm
     plan_title: Traditionell
     plan_number: '01'
-    description: 'Passar framförallt årskunder med lägre transaktionsvolym. Byrå och kund arbetar tillsammans utan månadsavslut och automationer.'
+    description: 'För årskunder utan löpande uppföljning — upp till 1200 verifikat/år.'
     monthly_price: '125'
     verification_limit: '1200 st/år'
     type: pricing_plan
@@ -50,7 +50,7 @@ pricing_plans:
     plan_title: Modern
     plan_number: '02'
     recommended: true
-    description: 'Byrå och kund arbetar tillsammans. med månadsavslut och automationer. Passar bolag med hög transaktionsvolym.'
+    description: 'Standardvalet för i princip alla aktiva bolag.'
     features:
       - id: GudXNrjP
         label: Bokföring
@@ -80,6 +80,128 @@ pricing_plans:
     verification_limit: Fritt!
     type: pricing_plan
     enabled: true
+comparison_small_title: Jämför
+comparison_title: 'Alla bolagslägen sida vid sida.'
+comparison_forvaltning_price: '20'
+comparison_categories:
+  -
+    id: cmp_cat_bokforing
+    category_title: 'Bokföring & fakturering'
+    type: category
+    enabled: true
+    rows:
+      - id: cmp_row_bokforing
+        label: Bokföring
+        forvaltning_value: check
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_forsaljning
+        label: Försäljning
+        forvaltning_value: cross
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_inkop
+        label: Inköp
+        forvaltning_value: cross
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_anlaggningsregister
+        label: Anläggningsregister
+        forvaltning_value: cross
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_periodisering
+        label: Periodisering
+        forvaltning_value: cross
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_avtalsfakturering
+        label: Avtalsfakturering
+        forvaltning_value: cross
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+  -
+    id: cmp_cat_bank
+    category_title: 'Bank, skatt & lön'
+    type: category
+    enabled: true
+    rows:
+      - id: cmp_row_bank_skatt
+        label: 'Bank & Skatt'
+        forvaltning_value: cross
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_lon
+        label: Lön
+        detail: 'Lönespecifikation 20 kr/st.'
+        forvaltning_value: cross
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+  -
+    id: cmp_cat_automatisering
+    category_title: Automatisering
+    type: category
+    enabled: true
+    rows:
+      - id: cmp_row_attest
+        label: 'Attest & Betalning'
+        detail: 'Kräver en användare.'
+        forvaltning_value: cross
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_manadsavslut
+        label: Månadsavslut
+        forvaltning_value: cross
+        traditionell_value: cross
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_automationer
+        label: 'Automationer (Autopilot)'
+        forvaltning_value: cross
+        traditionell_value: cross
+        modern_value: check
+        type: row
+        enabled: true
+  -
+    id: cmp_cat_granser
+    category_title: 'Gränser & tillägg'
+    type: category
+    enabled: true
+    rows:
+      - id: cmp_row_verifikationsgrans
+        label: Verifikationsgräns
+        forvaltning_value: '50 st/år'
+        traditionell_value: '1200 st/år'
+        modern_value: Fritt
+        type: row
+        enabled: true
+      - id: cmp_row_transaktioner
+        label: Transaktioner
+        detail: 'En bundle på 10 st per bolag och månad ingår i månadspriset. Skicka e-faktura 3 kr/st, ta emot e-faktura 3 kr/st, dokumenttolkning 3 kr/st.'
+        forvaltning_value: '—'
+        traditionell_value: '10 st/mån'
+        modern_value: '10 st/mån'
+        type: row
+        enabled: true
 pricing_faq:
   - id: xgzvthM_wYrukerIZTeKq
     question: 'Har ni något för vilande eller holdingbolag?'
@@ -112,9 +234,15 @@ users_small_title: Användarnivåer
 users_title: "Tre nivåer för kunden.\LOch alltid gratis för revisorn."
 users_text: 'Byrån avgör vilka nivåer varje kund får tillgång till. Enkel och tydligt både för dig och dina kunder.'
 user_levels:
+  - id: mN1_MiniUserLevel001
+    user_title: Mini
+    user_description: 'App-användare: Skicka in underlag, aktivera bankkoppling och ta emot lönebesked.'
+    type: levels
+    enabled: true
+    user_price: '0'
   - id: hwGLoSApfQOTP4KdFahxM
     user_title: 'Enkel användare'
-    user_description: 'Kan signera betalning, attestera, fakturera, app-funktionalitet.'
+    user_description: 'Allt från Mini + signera betalning, attestera, fakturera.'
     type: levels
     enabled: true
     user_price: '50'

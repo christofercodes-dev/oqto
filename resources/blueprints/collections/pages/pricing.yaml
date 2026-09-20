@@ -123,6 +123,81 @@ tabs:
                             type: text
                             display: 'verification limit'
       -
+        display: 'comparison table'
+        fields:
+          -
+            handle: comparison_small_title
+            field:
+              type: text
+              display: 'comparison small title'
+          -
+            handle: comparison_title
+            field:
+              type: text
+              display: 'comparison title'
+          -
+            handle: comparison_forvaltning_price
+            field:
+              type: text
+              display: 'comparison förvaltning price'
+              instructions: 'Endast siffror, t.ex. "20". Traditionell och Modern hämtar sitt pris automatiskt från korten ovan.'
+          -
+            handle: comparison_categories
+            field:
+              type: replicator
+              display: 'comparison categories'
+              instructions: 'Rader per kategori. Ange "check" eller "cross" som värde för att visa bock/kryss, eller skriv en egen text t.ex. "1200 st/år".'
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    category:
+                      display: Category
+                      fields:
+                        -
+                          handle: category_title
+                          field:
+                            type: text
+                            display: 'category title'
+                        -
+                          handle: rows
+                          field:
+                            type: replicator
+                            display: rows
+                            sets:
+                              new_set_group:
+                                display: 'New Set Group'
+                                sets:
+                                  row:
+                                    display: Row
+                                    fields:
+                                      -
+                                        handle: label
+                                        field:
+                                          type: text
+                                          display: label
+                                      -
+                                        handle: detail
+                                        field:
+                                          type: textarea
+                                          display: detail
+                                          instructions: 'Valfritt. Om ifyllt visas ett expandera-alternativ på raden istället för en tooltip.'
+                                      -
+                                        handle: forvaltning_value
+                                        field:
+                                          type: text
+                                          display: 'förvaltning value'
+                                      -
+                                        handle: traditionell_value
+                                        field:
+                                          type: text
+                                          display: 'traditionell value'
+                                      -
+                                        handle: modern_value
+                                        field:
+                                          type: text
+                                          display: 'modern value'
+      -
         display: 'pricing faq'
         fields:
           -

@@ -162,6 +162,7 @@
 @import "./pricing/components/hero.css";
 @import "./pricing/components/intro.css";
 @import "./pricing/components/pricing-plans.css";
+@import "./pricing/components/comparison.css";
 @import "./pricing/components/faq.css";
 @import "./pricing/components/users.css";
 @import "./pricing/components/included.css";

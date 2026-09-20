@@ -1,0 +1,317 @@
+/* =========================================================
+   PRICING COMPARISON
+   ========================================================= */
+
+.pricing-comparison-section {
+    width: 100%;
+
+    background-color: #ffffff;
+
+    padding: 40px 40px 100px;
+
+    box-sizing: border-box;
+
+    color: #2e251f;
+}
+
+.pricing-comparison-container {
+    max-width: 1280px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.pricing-comparison-header {
+    max-width: 700px;
+
+    margin: 0 0 48px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pricing-comparison-small-title {
+    font-size: 1rem;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: var(--color-accent);
+}
+
+.pricing-comparison-title {
+    margin: 0;
+
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+
+    color: #1a1715;
+}
+
+
+/* =========================
+   TABLE
+   ========================= */
+
+.pricing-comparison-table {
+    width: 100%;
+
+    border: 1px solid rgba(26, 23, 21, 0.1);
+    border-radius: 24px;
+
+    overflow: hidden;
+}
+
+.pricing-comparison-row {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+
+    align-items: center;
+
+    border-bottom: 1px solid rgba(26, 23, 21, 0.08);
+}
+
+.pricing-comparison-row:last-child {
+    border-bottom: none;
+}
+
+.pricing-comparison-cell {
+    padding: 18px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 0.9rem;
+    color: #1a1715;
+}
+
+.pricing-comparison-cell-label {
+    justify-content: flex-start;
+    text-align: left;
+
+    gap: 8px;
+
+    font-weight: 500;
+
+    background: none;
+    border: none;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: #1a1715;
+
+    cursor: default;
+}
+
+button.pricing-comparison-cell-label {
+    cursor: pointer;
+}
+
+button.pricing-comparison-cell-label:hover {
+    color: var(--color-accent);
+}
+
+
+/* =========================
+   HEADER ROW
+   ========================= */
+
+.pricing-comparison-row-head {
+    border-bottom: 1px solid rgba(26, 23, 21, 0.1);
+}
+
+.pricing-comparison-plan-head {
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 22px 20px;
+}
+
+.pricing-comparison-plan-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+
+    color: #1a1715;
+}
+
+.pricing-comparison-plan-price {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+
+    color: #4a4744;
+}
+
+.pricing-comparison-plan-forvaltning {
+    background-color: #E7ECF7;
+}
+
+.pricing-comparison-plan-traditionell {
+    background-color: #E2ECE4;
+}
+
+.pricing-comparison-plan-modern {
+    background-color: #F5EED9;
+}
+
+
+/* =========================
+   KATEGORI-RAD
+   ========================= */
+
+.pricing-comparison-category-row {
+    padding: 12px 20px;
+
+    background-color: #FCE3D6;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+
+    color: #b8460f;
+}
+
+
+/* =========================
+   EXPANDERA-IKON
+   ========================= */
+
+.pricing-comparison-expand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 16px;
+    height: 16px;
+
+    color: rgba(26, 23, 21, 0.4);
+
+    transition: transform 0.25s ease;
+}
+
+.pricing-comparison-row.is-open .pricing-comparison-expand-icon {
+    transform: rotate(180deg);
+}
+
+
+/* =========================
+   IKONER (BOCK/KRYSS)
+   ========================= */
+
+.pricing-comparison-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 6px;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.pricing-comparison-icon-check {
+    background-color: #B8CCBC;
+    color: #2E4A36;
+}
+
+.pricing-comparison-icon-cross {
+    background-color: rgba(26, 23, 21, 0.08);
+    color: #948f8a;
+}
+
+.pricing-comparison-value-text {
+    font-size: 0.85rem;
+    color: #4a4744;
+}
+
+
+/* =========================
+   DETALJ (EXPANDERAD RAD)
+   ========================= */
+
+.pricing-comparison-detail {
+    padding: 0 20px 18px 20px;
+
+    background-color: #fbfaf9;
+}
+
+.pricing-comparison-detail p {
+    margin: 0;
+
+    max-width: 640px;
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+
+    color: #4a4744;
+}
+
+
+/* =========================
+   MOBIL
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .pricing-comparison-section {
+        padding: 30px 24px 70px;
+    }
+
+    .pricing-comparison-header {
+        margin-bottom: 32px;
+    }
+
+    .pricing-comparison-row,
+    .pricing-comparison-row-head {
+        grid-template-columns: 1.6fr repeat(3, 1fr);
+    }
+
+    .pricing-comparison-cell {
+        padding: 14px 8px;
+
+        font-size: 0.8rem;
+    }
+
+    .pricing-comparison-cell-label {
+        padding-left: 16px;
+
+        font-size: 0.8rem;
+    }
+
+    .pricing-comparison-plan-head {
+        padding: 16px 8px;
+    }
+
+    .pricing-comparison-plan-title {
+        font-size: 0.85rem;
+    }
+
+    .pricing-comparison-plan-price {
+        font-size: 0.7rem;
+    }
+
+    .pricing-comparison-category-row {
+        padding: 10px 16px;
+
+        font-size: 0.68rem;
+    }
+
+    .pricing-comparison-detail {
+        padding: 0 16px 16px 16px;
+    }
+}
