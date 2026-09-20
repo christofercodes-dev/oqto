@@ -28,7 +28,7 @@
 .pricing-comparison-header {
     max-width: 700px;
 
-    margin: 0 0 48px;
+    margin: 0 0 56px;
 
     display: flex;
     flex-direction: column;
@@ -58,16 +58,11 @@
 
 
 /* =========================
-   TABLE
+   TABELL (INGEN BOX/RAM RUNT)
    ========================= */
 
 .pricing-comparison-table {
     width: 100%;
-
-    border: 1px solid rgba(26, 23, 21, 0.1);
-    border-radius: 24px;
-
-    overflow: hidden;
 }
 
 .pricing-comparison-row {
@@ -76,15 +71,11 @@
 
     align-items: center;
 
-    border-bottom: 1px solid rgba(26, 23, 21, 0.08);
-}
-
-.pricing-comparison-row:last-child {
-    border-bottom: none;
+    border-bottom: 1px solid rgba(26, 23, 21, 0.07);
 }
 
 .pricing-comparison-cell {
-    padding: 18px 20px;
+    padding: 16px 12px;
 
     display: flex;
     align-items: center;
@@ -99,8 +90,9 @@
 .pricing-comparison-cell-label {
     justify-content: flex-start;
     text-align: left;
+    padding-left: 0;
 
-    gap: 8px;
+    gap: 10px;
 
     font-weight: 500;
 
@@ -108,7 +100,7 @@
     border: none;
 
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #1a1715;
 
     cursor: default;
@@ -118,50 +110,42 @@ button.pricing-comparison-cell-label {
     cursor: pointer;
 }
 
-button.pricing-comparison-cell-label:hover {
+button.pricing-comparison-cell-label:hover .pricing-comparison-expand-icon {
+    border-color: var(--color-accent);
     color: var(--color-accent);
 }
 
 
 /* =========================
-   HEADER ROW
+   HEADER-RAD
    ========================= */
 
 .pricing-comparison-row-head {
-    border-bottom: 1px solid rgba(26, 23, 21, 0.1);
+    border-bottom: 1px solid rgba(26, 23, 21, 0.12);
 }
 
 .pricing-comparison-plan-head {
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
 
-    padding: 22px 20px;
+    padding: 0 12px 20px;
+
+    background: none;
 }
 
 .pricing-comparison-plan-title {
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-family: "Geist Mono", monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
 
     color: #1a1715;
 }
 
 .pricing-comparison-plan-price {
-    font-family: "Geist Mono", monospace;
     font-size: 0.8rem;
 
-    color: #4a4744;
-}
-
-.pricing-comparison-plan-forvaltning {
-    background-color: #E7ECF7;
-}
-
-.pricing-comparison-plan-traditionell {
-    background-color: #E2ECE4;
-}
-
-.pricing-comparison-plan-modern {
-    background-color: #F5EED9;
+    color: #77736f;
 }
 
 
@@ -170,16 +154,20 @@ button.pricing-comparison-cell-label:hover {
    ========================= */
 
 .pricing-comparison-category-row {
-    padding: 12px 20px;
+    padding: 40px 12px 14px 0;
 
-    background-color: #FCE3D6;
+    border-bottom: none;
 
     font-family: "Geist Mono", monospace;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
 
-    color: #b8460f;
+    color: var(--color-accent);
+}
+
+.pricing-comparison-category-row:first-of-type {
+    padding-top: 28px;
 }
 
 
@@ -191,17 +179,27 @@ button.pricing-comparison-cell-label:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
 
-    color: rgba(26, 23, 21, 0.4);
+    border-radius: 50%;
+    border: 1px solid rgba(26, 23, 21, 0.25);
 
-    transition: transform 0.25s ease;
+    color: rgba(26, 23, 21, 0.45);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 }
 
 .pricing-comparison-row.is-open .pricing-comparison-expand-icon {
     transform: rotate(180deg);
+
+    border-color: var(--color-accent);
+    color: var(--color-accent);
 }
 
 
@@ -217,7 +215,7 @@ button.pricing-comparison-cell-label:hover {
     width: 22px;
     height: 22px;
 
-    border-radius: 6px;
+    border-radius: 7px;
 
     font-size: 0.8rem;
     font-weight: 700;
@@ -230,8 +228,8 @@ button.pricing-comparison-cell-label:hover {
 }
 
 .pricing-comparison-icon-cross {
-    background-color: rgba(26, 23, 21, 0.08);
-    color: #948f8a;
+    background-color: rgba(26, 23, 21, 0.06);
+    color: #b0aba6;
 }
 
 .pricing-comparison-value-text {
@@ -245,20 +243,34 @@ button.pricing-comparison-cell-label:hover {
    ========================= */
 
 .pricing-comparison-detail {
-    padding: 0 20px 18px 20px;
+    padding: 0 12px 20px 0;
 
-    background-color: #fbfaf9;
+    animation: pricingComparisonOpen 0.25s ease;
 }
 
 .pricing-comparison-detail p {
     margin: 0;
 
-    max-width: 640px;
+    max-width: 560px;
+
+    padding-left: 28px;
 
     font-size: 0.85rem;
     line-height: 1.6;
 
-    color: #4a4744;
+    color: #77736f;
+}
+
+@keyframes pricingComparisonOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
@@ -273,7 +285,7 @@ button.pricing-comparison-cell-label:hover {
     }
 
     .pricing-comparison-header {
-        margin-bottom: 32px;
+        margin-bottom: 36px;
     }
 
     .pricing-comparison-row,
@@ -282,36 +294,34 @@ button.pricing-comparison-cell-label:hover {
     }
 
     .pricing-comparison-cell {
-        padding: 14px 8px;
+        padding: 12px 6px;
 
-        font-size: 0.8rem;
+        font-size: 0.78rem;
     }
 
     .pricing-comparison-cell-label {
-        padding-left: 16px;
-
-        font-size: 0.8rem;
+        font-size: 0.82rem;
     }
 
     .pricing-comparison-plan-head {
-        padding: 16px 8px;
+        padding: 0 6px 16px;
     }
 
     .pricing-comparison-plan-title {
-        font-size: 0.85rem;
+        font-size: 0.78rem;
     }
 
     .pricing-comparison-plan-price {
-        font-size: 0.7rem;
+        font-size: 0.66rem;
     }
 
     .pricing-comparison-category-row {
-        padding: 10px 16px;
+        padding: 32px 6px 12px 0;
 
-        font-size: 0.68rem;
+        font-size: 0.66rem;
     }
 
-    .pricing-comparison-detail {
-        padding: 0 16px 16px 16px;
+    .pricing-comparison-detail p {
+        padding-left: 0;
     }
 }
