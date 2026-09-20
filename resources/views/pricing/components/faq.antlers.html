@@ -61,18 +61,28 @@
                             {{ if highlight_included }}
                                 <div class="pricing-faq-highlight-column">
                                     <span class="pricing-faq-highlight-column-title">Ingår</span>
-                                    <p class="pricing-faq-highlight-column-text">
-                                        {{ highlight_included }}{{ value }}{{ unless last }}, {{ /unless }}{{ /highlight_included }}
-                                    </p>
+                                    <ul class="pricing-faq-highlight-list pricing-faq-highlight-list-included">
+                                        {{ highlight_included }}
+                                            <li>
+                                                <span class="pricing-faq-highlight-icon">✓</span>
+                                                <span>{{ value }}</span>
+                                            </li>
+                                        {{ /highlight_included }}
+                                    </ul>
                                 </div>
                             {{ /if }}
 
                             {{ if highlight_excluded }}
                                 <div class="pricing-faq-highlight-column">
                                     <span class="pricing-faq-highlight-column-title">Ingår inte</span>
-                                    <p class="pricing-faq-highlight-column-text">
-                                        {{ highlight_excluded }}{{ value }}{{ unless last }}, {{ /unless }}{{ /highlight_excluded }}
-                                    </p>
+                                    <ul class="pricing-faq-highlight-list pricing-faq-highlight-list-excluded">
+                                        {{ highlight_excluded }}
+                                            <li>
+                                                <span class="pricing-faq-highlight-icon">×</span>
+                                                <span>{{ value }}</span>
+                                            </li>
+                                        {{ /highlight_excluded }}
+                                    </ul>
                                 </div>
                             {{ /if }}
 

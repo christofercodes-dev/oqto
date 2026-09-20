@@ -244,13 +244,56 @@
     color: #1a1715;
 }
 
-.pricing-faq-highlight-column-text {
+.pricing-faq-highlight-list {
+    list-style: none;
+
     margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pricing-faq-highlight-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
     font-size: 0.85rem;
-    line-height: 1.6;
+    line-height: 1.4;
 
-    color: #4a4744;
+    color: #1a1715;
+}
+
+.pricing-faq-highlight-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.pricing-faq-highlight-list-included .pricing-faq-highlight-icon {
+    background-color: #B8CCBC;
+    color: #2E4A36;
+}
+
+.pricing-faq-highlight-list-excluded li {
+    color: #77736f;
+}
+
+.pricing-faq-highlight-list-excluded .pricing-faq-highlight-icon {
+    background-color: rgba(26, 23, 21, 0.1);
+    color: #77736f;
 }
 
 @media (max-width: 960px) {
