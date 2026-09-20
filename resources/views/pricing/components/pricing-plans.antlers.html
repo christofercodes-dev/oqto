@@ -2,142 +2,36 @@
 
     <div class="container pricing-plans-container">
 
-        <!-- KORT 1 -->
-        <article class="pricing-card pricing-card-1">
+        {{ pricing_plans }}
 
-            {{ if pricing_plans:0:recommended }}
-                <span class="pricing-card-badge">Rekommenderad</span>
-            {{ /if }}
+            <article class="pricing-card pricing-card-{{ plan_title | slugify }}">
 
-            <div class="pricing-card-top">
+                {{ if recommended }}
+                    <span class="pricing-card-badge">Rekommenderad</span>
+                {{ /if }}
 
-                <h3 class="pricing-card-title">
-                    {{ pricing_plans:0:plan_title }}
-                </h3>
+                <div class="pricing-card-top">
 
-                <span class="pricing-card-number">
-                    {{ pricing_plans:0:plan_number }}
-                </span>
+                    <h3 class="pricing-card-title">
+                        {{ plan_title }}
+                    </h3>
 
-            </div>
-
-            <div class="pricing-card-content">
-
-                <p class="pricing-card-description">
-                    {{ pricing_plans:0:description }}
-                </p>
-
-                <ul class="pricing-card-features">
-
-                    {{ pricing_plans:0:features }}
-                        <li>
-                            <span class="feature-dot">✓</span>
-                            <span class="feature-text">{{ label }}</span>
-                            {{ if tooltip }}
-                                <span class="feature-tooltip" tabindex="0">
-                                    <span class="feature-tooltip-icon" aria-hidden="true">i</span>
-                                    <span class="feature-tooltip-bubble" role="tooltip">{{ tooltip }}</span>
-                                </span>
-                            {{ /if }}
-                        </li>
-                    {{ /pricing_plans:0:features }}
-
-                </ul>
-
-            </div>
-            <div class="pricing-not-included">
-<!--                 <p class="pricing-not-included-title">Ingår ej</p>
- -->            
-                <ul class="pricing-not-included-list">
-                    <li>Månadsslut</li>
-                    <li>Automationer (Autopilot)</li>
-                </ul>
-            </div>
-
-            <div class="pricing-card-bottom">
-
-              
-
-                <div class="pricing-card-price">
-
-                    <span class="pricing-price">
-                        {{ pricing_plans:0:monthly_price }}
-                    </span>
-
-
-                    <span class="pricing-price-label">
-                        kr / månad
+                    <span class="pricing-card-number">
+                        {{ plan_number }}
                     </span>
 
                 </div>
 
-                <div class="pricing-card-limit">
-
-                    <span class="pricing-limit-label">
-                        Verifikationsgräns
-                    </span>
-
-                    <span class="pricing-limit-value">
-                        {{ pricing_plans:0:verification_limit }}
-                    </span>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- KORT 2 -->
-        <article class="pricing-card pricing-card-2">
-
-            {{ if pricing_plans:1:recommended }}
-                <span class="pricing-card-badge">Rekommenderad</span>
-            {{ /if }}
-
-            <div class="pricing-card-top">
-
-                <h3 class="pricing-card-title">
-                    {{ pricing_plans:1:plan_title }}
-                </h3>
-
-                <span class="pricing-card-number">
-                    {{ pricing_plans:1:plan_number }}
-                </span>
-
-            </div>
-
-            <div class="pricing-card-content">
-
-                <p class="pricing-card-description">
-                    {{ pricing_plans:1:description }}
-                </p>
-
-                <ul class="pricing-card-features">
-
-                    {{ pricing_plans:1:features }}
-                        <li>
-                            <span class="feature-dot">✓</span>
-                            <span class="feature-text">{{ label }}</span>
-                            {{ if tooltip }}
-                                <span class="feature-tooltip" tabindex="0">
-                                    <span class="feature-tooltip-icon" aria-hidden="true">i</span>
-                                    <span class="feature-tooltip-bubble" role="tooltip">{{ tooltip }}</span>
-                                </span>
-                            {{ /if }}
-                        </li>
-                    {{ /pricing_plans:1:features }}
-
-                </ul>
-
-            </div>
-
-            <div class="pricing-card-bottom">
+                {{ if description }}
+                    <p class="pricing-card-description">
+                        {{ description }}
+                    </p>
+                {{ /if }}
 
                 <div class="pricing-card-price">
 
                     <span class="pricing-price">
-                        {{ pricing_plans:1:monthly_price }}
+                        {{ monthly_price }}
                     </span>
 
                     <span class="pricing-price-label">
@@ -146,22 +40,23 @@
 
                 </div>
 
-                <div class="pricing-card-limit">
+                {{ if highlights }}
+                    <ul class="pricing-card-highlights">
 
-                    <span class="pricing-limit-label">
-                        Verifikationsgräns
-                    </span>
+                        {{ highlights }}
+                            <li>
+                                <span class="pricing-card-highlight-dash" aria-hidden="true">—</span>
+                                <span>{{ value }}</span>
+                            </li>
+                        {{ /highlights }}
 
-                    <span class="pricing-limit-value">
-                        {{ pricing_plans:1:verification_limit }}
-                    </span>
+                    </ul>
+                {{ /if }}
 
-                </div>
+            </article>
 
-            </div>
-
-        </article>
+        {{ /pricing_plans }}
 
     </div>
 
-</section>  
+</section>

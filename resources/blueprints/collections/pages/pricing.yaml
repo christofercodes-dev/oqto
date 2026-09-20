@@ -122,6 +122,12 @@ tabs:
                           field:
                             type: text
                             display: 'verification limit'
+                        -
+                          handle: highlights
+                          field:
+                            type: list
+                            display: highlights
+                            instructions: 'Kort punktlista (3–4 rader) som visas på kortet, t.ex. "1200 verifikat/år".'
       -
         display: 'comparison table'
         fields:
@@ -140,7 +146,19 @@ tabs:
             field:
               type: text
               display: 'comparison förvaltning price'
-              instructions: 'Endast siffror, t.ex. "20". Traditionell och Modern hämtar sitt pris automatiskt från korten ovan.'
+              instructions: 'Endast siffror, t.ex. "20".'
+          -
+            handle: comparison_traditionell_price
+            field:
+              type: text
+              display: 'comparison traditionell price'
+              instructions: 'Endast siffror, t.ex. "125".'
+          -
+            handle: comparison_modern_price
+            field:
+              type: text
+              display: 'comparison modern price'
+              instructions: 'Endast siffror, t.ex. "250".'
           -
             handle: comparison_categories
             field:

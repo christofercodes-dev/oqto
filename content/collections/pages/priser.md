@@ -16,6 +16,18 @@ intro_title: 'Ingen byrålicens, </br>bara olika bolagslägen.'
 intro_body: 'Vi har ingen byrålicens och systemet kostar ingenting för er som redovisningsbyrå. Vi tar betalt per företag och användarna på dessa. Välj mellan Traditionell, Modern eller Förvaltning nedan.'
 pricing_plans:
   -
+    id: MiniPlanEntry0001
+    plan_title: Mini
+    plan_number: '00'
+    description: 'Gratis app-åtkomst för enkla uppgifter.'
+    monthly_price: '0'
+    type: pricing_plan
+    enabled: true
+    highlights:
+      - Skicka in underlag
+      - Aktivera bankkoppling
+      - Ta emot lönebesked
+  -
     id: SOfAiZFnbi7K6ImrmAgJm
     plan_title: Traditionell
     plan_number: '01'
@@ -24,6 +36,11 @@ pricing_plans:
     verification_limit: '1200 st/år'
     type: pricing_plan
     enabled: true
+    highlights:
+      - 'Bokföring, fakturering, lön'
+      - '1200 verifikat/år'
+      - 'Passar bäst kunder med årsbokslut, inte löpande uppföljning'
+      - 'Inget månadsavslut, ingen autopilot'
     features:
       - id: 75gNxYSP
         label: Bokföring
@@ -51,6 +68,11 @@ pricing_plans:
     plan_number: '02'
     recommended: true
     description: 'Standardvalet för i princip alla aktiva bolag.'
+    highlights:
+      - Allt i Traditionell
+      - Fritt antal verifikat
+      - Månadsavslut + autopilot
+      - Ger byrån kickback
     features:
       - id: GudXNrjP
         label: Bokföring
@@ -83,6 +105,8 @@ pricing_plans:
 comparison_small_title: Jämför
 comparison_title: 'Alla bolagslägen sida vid sida.'
 comparison_forvaltning_price: '20'
+comparison_traditionell_price: '125'
+comparison_modern_price: '250'
 comparison_categories:
   -
     id: cmp_cat_bokforing
