@@ -8,25 +8,13 @@ template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789937735
+updated_at: 1789943096
 pricing_button_text: 'Boka demo'
 pricing_button_url: /boka-demo
 intro_small_title: Bolagslägen
 intro_title: 'Ingen byrålicens, </br>bara olika bolagslägen.'
 intro_body: 'Vi har ingen byrålicens och systemet kostar ingenting för er som redovisningsbyrå. Vi tar betalt per företag och användarna på dessa. Välj mellan Traditionell, Modern eller Förvaltning nedan.'
 pricing_plans:
-  -
-    id: MiniPlanEntry0001
-    plan_title: Mini
-    plan_number: '00'
-    description: 'Gratis app-åtkomst för enkla uppgifter.'
-    monthly_price: '0'
-    type: pricing_plan
-    enabled: true
-    highlights:
-      - Skicka in underlag
-      - Aktivera bankkoppling
-      - Ta emot lönebesked
   -
     id: SOfAiZFnbi7K6ImrmAgJm
     plan_title: Traditionell
@@ -62,6 +50,7 @@ pricing_plans:
       - id: 79vZC93V
         label: 'Attest & Betalning'
         tooltip: 'Kräver en användare'
+    recommended: false
   -
     id: eTiJRgHFQetkdFMafsa1S
     plan_title: Modern
@@ -69,10 +58,10 @@ pricing_plans:
     recommended: true
     description: 'Standardvalet för i princip alla aktiva bolag.'
     highlights:
-      - Allt i Traditionell
-      - Fritt antal verifikat
-      - Månadsavslut + autopilot
-      - Ger byrån kickback
+      - 'Allt i Traditionell'
+      - 'Fritt antal verifikat'
+      - 'Månadsavslut + autopilot'
+      - 'Ger byrån kickback'
     features:
       - id: GudXNrjP
         label: Bokföring
@@ -221,13 +210,14 @@ comparison_categories:
       - id: cmp_row_transaktioner
         label: Transaktioner
         detail: 'En bundle på 10 st per bolag och månad ingår i månadspriset. Skicka e-faktura 3 kr/st, ta emot e-faktura 3 kr/st, dokumenttolkning 3 kr/st.'
-        forvaltning_value: '—'
+        forvaltning_value: —
         traditionell_value: '10 st/mån'
         modern_value: '10 st/mån'
         type: row
         enabled: true
 pricing_faq:
-  - id: xgzvthM_wYrukerIZTeKq
+  -
+    id: xgzvthM_wYrukerIZTeKq
     question: 'Har ni något för vilande eller holdingbolag?'
     answer: |-
       Absolut!
@@ -255,7 +245,7 @@ pricing_faq:
     type: faq
     enabled: true
 users_small_title: Användarnivåer
-users_title: "Tre nivåer för kunden.\LOch alltid gratis för revisorn."
+users_title: "Fyra nivåer för kunden.\LOch alltid gratis för revisorn."
 users_text: 'Byrån avgör vilka nivåer varje kund får tillgång till. Enkel och tydligt både för dig och dina kunder.'
 user_levels:
   - id: mN1_MiniUserLevel001
