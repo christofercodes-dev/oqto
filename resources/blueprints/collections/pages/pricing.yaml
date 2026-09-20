@@ -142,6 +142,41 @@ tabs:
                             type: markdown
                             display: answer
                             instructions: 'Stöder länkar, t.ex. [priser](/priser).'
+                        -
+                          handle: highlight_plan_title
+                          field:
+                            type: text
+                            display: 'highlight plan title'
+                            instructions: 'Valfritt. Visar ett prisblock under svaret, t.ex. "Förvaltning". Lämna tomt för att inte visa något prisblock.'
+                        -
+                          handle: highlight_plan_description
+                          field:
+                            type: textarea
+                            display: 'highlight plan description'
+                        -
+                          handle: highlight_monthly_price
+                          field:
+                            type: text
+                            display: 'highlight monthly price'
+                            instructions: 'Endast siffror, t.ex. "20". "kr/mån" läggs till automatiskt.'
+                        -
+                          handle: highlight_verification_limit
+                          field:
+                            type: text
+                            display: 'highlight verification limit'
+                            instructions: 'T.ex. "50 st/år".'
+                        -
+                          handle: highlight_included
+                          field:
+                            type: list
+                            display: 'highlight included'
+                            instructions: 'En rad per funktion som ingår, t.ex. "Bokföring".'
+                        -
+                          handle: highlight_excluded
+                          field:
+                            type: list
+                            display: 'highlight excluded'
+                            instructions: 'En rad per funktion som inte ingår.'
       -
         display: 'user levels'
         fields:

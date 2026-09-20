@@ -19,7 +19,67 @@
                 </summary>
 
                 <div class="pricing-faq-answer">
+
                     {{ answer }}
+
+                    {{ if highlight_plan_title }}
+
+                        <div class="pricing-faq-highlight">
+
+                            <div class="pricing-faq-highlight-intro">
+
+                                <h3 class="pricing-faq-highlight-title">
+                                    {{ highlight_plan_title }}
+                                </h3>
+
+                                {{ if highlight_plan_description }}
+                                    <p class="pricing-faq-highlight-description">
+                                        {{ highlight_plan_description }}
+                                    </p>
+                                {{ /if }}
+
+                            </div>
+
+                            {{ if highlight_monthly_price }}
+                                <div class="pricing-faq-highlight-price">
+
+                                    <div class="pricing-faq-highlight-price-value">
+                                        <span class="pricing-faq-highlight-price-number">{{ highlight_monthly_price }} kr</span>
+                                        <span class="pricing-faq-highlight-price-label">/mån</span>
+                                    </div>
+
+                                    {{ if highlight_verification_limit }}
+                                        <div class="pricing-faq-highlight-limit">
+                                            <span class="pricing-faq-highlight-limit-label">Verifikationsgräns</span>
+                                            <span class="pricing-faq-highlight-limit-value">{{ highlight_verification_limit }}</span>
+                                        </div>
+                                    {{ /if }}
+
+                                </div>
+                            {{ /if }}
+
+                            {{ if highlight_included }}
+                                <div class="pricing-faq-highlight-column">
+                                    <span class="pricing-faq-highlight-column-title">Ingår</span>
+                                    <p class="pricing-faq-highlight-column-text">
+                                        {{ highlight_included }}{{ value }}{{ unless last }}, {{ /unless }}{{ /highlight_included }}
+                                    </p>
+                                </div>
+                            {{ /if }}
+
+                            {{ if highlight_excluded }}
+                                <div class="pricing-faq-highlight-column">
+                                    <span class="pricing-faq-highlight-column-title">Ingår inte</span>
+                                    <p class="pricing-faq-highlight-column-text">
+                                        {{ highlight_excluded }}{{ value }}{{ unless last }}, {{ /unless }}{{ /highlight_excluded }}
+                                    </p>
+                                </div>
+                            {{ /if }}
+
+                        </div>
+
+                    {{ /if }}
+
                 </div>
 
             </details>

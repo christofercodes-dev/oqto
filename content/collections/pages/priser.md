@@ -8,7 +8,7 @@ template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789593100
+updated_at: 1789937735
 pricing_button_text: 'Boka demo'
 pricing_button_url: /boka-demo
 intro_small_title: Bolagslägen
@@ -41,6 +41,7 @@ pricing_plans:
         label: 'Bank & Skatt'
       - id: qhURE0mO
         label: Lön
+        tooltip: 'Lönespecifikation 20kr/st'
       - id: 79vZC93V
         label: 'Attest & Betalning'
         tooltip: 'Kräver en användare'
@@ -66,6 +67,7 @@ pricing_plans:
         label: 'Bank & Skatt'
       - id: Qb0FKvIE
         label: Lön
+        tooltip: 'Lönespecifikation 20kr/st'
       - id: zZefki5p
         label: 'Attest & Betalning'
         tooltip: 'Kräver en användare'
@@ -80,7 +82,29 @@ pricing_plans:
 pricing_faq:
   - id: xgzvthM_wYrukerIZTeKq
     question: 'Har ni något för vilande eller holdingbolag?'
-    answer: 'Ja. Oqto passar även för vilande bolag och holdingbolag. Vi har lösningar som gör det enkelt att hålla bolagets ekonomi och administration på en rimlig nivå även när verksamheten är begränsad.'
+    answer: |-
+      Absolut!
+      För bolag där varken Traditionell eller Modern passar har vi även det som vi kallar Förvaltning
+    highlight_plan_title: Förvaltning
+    highlight_plan_description: 'För bolag där varken Traditionell eller Modern passar — typiskt holding, vilande eller inaktiva bolag. Byrån hanterar allt själv, kunden har ingen åtkomst.'
+    highlight_monthly_price: '20'
+    highlight_verification_limit: '50 st/år'
+    highlight_included:
+      - Bokföring
+      - Försäljning
+      - Inköp
+      - Integrationer
+    highlight_excluded:
+      - Anläggningsregister
+      - Periodisering
+      - Avtalsfakturering
+      - 'Bank & Skatt'
+      - Lön
+      - Månadsavslut
+      - 'Attest & Betalning'
+      - Automationer
+      - Bankkoppling
+      - Kickback
     type: faq
     enabled: true
 users_small_title: Användarnivåer
