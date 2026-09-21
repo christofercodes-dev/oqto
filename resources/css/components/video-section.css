@@ -66,14 +66,31 @@
   }
   
   .video-title {
+    --reveal: 0;
+
     font-size: clamp(3rem, 5vw, 4.5rem);
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.03em;
-    color: #1a1715;
     margin: 0;
     max-width: 630px;
 
+    color: #1a1715;
+  }
+
+  .video-title .reveal-word {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  /* Varje bokstav byter individuellt från ljus till mörk i takt med
+     scrollposition - inte en gemensam gradient över hela stycket. */
+  .video-title .reveal-char {
+    color: color-mix(
+        in srgb,
+        #1a1715 calc(clamp(0, (var(--reveal, 0) - (var(--i) / var(--total))) * var(--total) * 6, 1) * 100%),
+        rgba(26, 23, 21, 0.22)
+    );
   }
   
   .video-right {

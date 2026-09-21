@@ -49,3 +49,77 @@
     </div>
 
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const title = document.querySelector(".video-title");
+
+        if (!title) return;
+
+        // Dela upp titeln i enskilda bokstäver (ord för ord, så att
+        // radbrytning fungerar som vanligt) - varje bokstav får ett eget
+        // index att styra sin egen färgövergång med, via --reveal på titeln.
+        const lines = title.innerHTML.split(/<br\s*\/?>/i);
+        let index = 0;
+
+        const lineMarkup = lines.map((line) => {
+
+            const words = line.trim().split(/\s+/).filter(Boolean);
+
+            return words.map((word) => {
+
+                const chars = word.split("").map((char) => {
+                    const span = `<span class="reveal-char" style="--i:${index}">${char}</span>`;
+                    index++;
+                    return span;
+                }).join("");
+
+                return `<span class="reveal-word">${chars}</span>`;
+
+            }).join(" ");
+
+        });
+
+        title.innerHTML = lineMarkup.join("<br>");
+        title.style.setProperty("--total", index);
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            title.style.setProperty("--reveal", 1);
+            return;
+        }
+
+        let ticking = false;
+
+        const updateReveal = () => {
+
+            const rect = title.getBoundingClientRect();
+            const vh = window.innerHeight;
+
+            // 0 när rubrikens topp precis kommer in nedifrån,
+            // 1 när den nått en bekväm läsposition högre upp.
+            const startY = vh * 0.92;
+            const endY = vh * 0.4;
+
+            const progress = Math.min(
+                Math.max((startY - rect.top) / (startY - endY), 0),
+                1
+            );
+
+            title.style.setProperty("--reveal", progress);
+
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateReveal);
+                ticking = true;
+            }
+        };
+
+        updateReveal();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+    });
+</script>
