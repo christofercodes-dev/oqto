@@ -108,13 +108,17 @@
 
       let ticking = false;
 
+      // Hur många pixlar man behöver scrolla för att bytet ska vara klart -
+      // korn distans så det känns snabbt och tydligt, oavsett hur hög
+      // hero-sektionen är.
+      const SWAP_SCROLL_DISTANCE = 220;
+
       const updateSwap = () => {
 
         const rect = heroSection.getBoundingClientRect();
-        const heroHeight = rect.height || 1;
+        const scrolled = Math.max(-rect.top, 0);
 
-        // 0 när heron precis börjar rulla ur vy, 1 när den är helt förbi.
-        const progress = Math.min(Math.max(-rect.top / heroHeight, 0), 1);
+        const progress = Math.min(scrolled / SWAP_SCROLL_DISTANCE, 1);
 
         wordSwap.style.setProperty("--swap-progress", progress);
 

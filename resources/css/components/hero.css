@@ -82,7 +82,12 @@
   }
 
   .hero-word-text {
+    display: inline-block;
+
     opacity: calc(1 - var(--swap-progress));
+    transform:
+      rotate(calc(var(--swap-progress) * -55deg))
+      scale(calc(1 - var(--swap-progress) * 0.4));
   }
 
   .hero-word-symbol {
@@ -96,6 +101,9 @@
     color: #2E251F;
 
     opacity: var(--swap-progress);
+    transform:
+      rotate(calc((1 - var(--swap-progress)) * 55deg))
+      scale(calc(0.6 + var(--swap-progress) * 0.4));
   }
 
   .hero-word-symbol svg {
