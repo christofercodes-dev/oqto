@@ -197,9 +197,9 @@ tabs:
                                       -
                                         handle: detail
                                         field:
-                                          type: textarea
+                                          type: markdown
                                           display: detail
-                                          instructions: 'Valfritt. Om ifyllt visas ett expandera-alternativ på raden istället för en tooltip.'
+                                          instructions: 'Valfritt. Om ifyllt visas ett expandera-alternativ på raden istället för en tooltip. Stöder markdown, t.ex. **fet text** och [länkar](/priser).'
                                       -
                                         handle: forvaltning_value
                                         field:

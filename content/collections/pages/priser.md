@@ -8,7 +8,7 @@ template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789943096
+updated_at: 1789976096
 pricing_button_text: 'Boka demo'
 pricing_button_url: /boka-demo
 intro_small_title: Bolagslägen
@@ -44,6 +44,7 @@ pricing_plans:
         label: Avtalsfakturering
       - id: aTIJms0D
         label: 'Bank & Skatt'
+        tooltip: '1 bankkonto ingår i priset. Fler konton kostar *30 kr/konto/månad*, samma villkor oavsett bolagsläge.'
       - id: qhURE0mO
         label: Lön
         tooltip: 'Lönespecifikation 20kr/st'
@@ -77,6 +78,7 @@ pricing_plans:
         label: Avtalsfakturering
       - id: x76qHdWU
         label: 'Bank & Skatt'
+        tooltip: '1 bankkonto ingår i priset. Fler konton kostar 30 kr/konto/månad, samma villkor oavsett bolagsläge.'
       - id: Qb0FKvIE
         label: Lön
         tooltip: 'Lönespecifikation 20kr/st'
@@ -158,6 +160,7 @@ comparison_categories:
         modern_value: check
         type: row
         enabled: true
+        detail: '1 bankkonto ingår i priset. Fler konton kostar **30 kr/konto/månad**, samma villkor oavsett bolagsläge.'
       - id: cmp_row_lon
         label: Lön
         detail: 'Lönespecifikation 20 kr/st.'
