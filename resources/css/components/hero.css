@@ -5,9 +5,9 @@
    .hero-section {
     min-height: 80vh;
     background: linear-gradient(180deg, #8bc1ff 0%, #f5f9fd 100%);
-    background-size: 100% 160%;
-    background-position: 0% 0%;
-    animation: heroGradientDrift 22s ease-in-out infinite alternate;
+    background-size: 180% 220%;
+    background-position: 20% 0%;
+    animation: heroGradientDrift 16s ease-in-out infinite alternate;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,11 +19,11 @@
 
   @keyframes heroGradientDrift {
     from {
-      background-position: 0% 0%;
+      background-position: 20% 0%;
     }
 
     to {
-      background-position: 0% 100%;
+      background-position: 80% 100%;
     }
   }
 
