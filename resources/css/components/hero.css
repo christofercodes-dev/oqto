@@ -5,6 +5,9 @@
    .hero-section {
     min-height: 80vh;
     background: linear-gradient(180deg, #8bc1ff 0%, #f5f9fd 100%);
+    background-size: 100% 160%;
+    background-position: 0% 0%;
+    animation: heroGradientDrift 22s ease-in-out infinite alternate;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -13,7 +16,17 @@
     font-family: "neue-haas-grotesk-text", sans-serif;
     position: relative;
   }
-  
+
+  @keyframes heroGradientDrift {
+    from {
+      background-position: 0% 0%;
+    }
+
+    to {
+      background-position: 0% 100%;
+    }
+  }
+
   .hero-container {
     padding-top: 100px;
     max-width: 1300px;
@@ -672,5 +685,18 @@
     width: 39px;
     height: 39px;
     flex-basis: 39px;
+  }
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-section {
+    animation: none;
+    background-position: 0% 0%;
   }
 }
