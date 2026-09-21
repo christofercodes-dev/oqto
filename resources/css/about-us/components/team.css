@@ -16,6 +16,7 @@
 }
 
 .team-small-title {
+    font-family: "Geist Mono", monospace;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -91,6 +92,7 @@
 .team-role {
     margin: 0 0 7px;
 
+    font-family: "Geist Mono", monospace;
     font-size: 0.7rem;
     font-weight: 700;
     line-height: 1.4;

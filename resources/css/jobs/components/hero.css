@@ -47,6 +47,7 @@ JOBS INTRO
     }
     
     .jobs-intro-small-title {
+    font-family: "Geist Mono", monospace;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.1em;
