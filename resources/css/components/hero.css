@@ -71,32 +71,37 @@
 
 
   /* ==================================================
-     "ÅTTA" -> OÄNDLIGHETSTECKEN
+     "ÅTTA" -> OÄNDLIGHETSTECKEN (CROSS-FADE)
      ================================================== */
 
-  .hero-infinity {
-    --infinity-rotate: 90deg;
+  .hero-word-swap {
+    --swap-progress: 0;
 
+    position: relative;
     display: inline-block;
+  }
 
-    width: 0.85em;
-    height: 0.42em;
+  .hero-word-text {
+    opacity: calc(1 - var(--swap-progress));
+  }
 
-    margin-left: 0.12em;
-    vertical-align: 0.1em;
+  .hero-word-symbol {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     color: #2E251F;
 
-    transform: rotate(var(--infinity-rotate));
-    transform-origin: center;
-
-    will-change: transform;
+    opacity: var(--swap-progress);
   }
 
-  .hero-infinity svg {
+  .hero-word-symbol svg {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 0.42em;
   }
 
   .hero-right {
