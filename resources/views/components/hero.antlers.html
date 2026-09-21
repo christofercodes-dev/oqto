@@ -7,7 +7,18 @@
         <div class="hero-left">
           <h1 class="hero-title">
             {{ title_row_1 }}
-            {{ title_row_2 }}
+            {{ title_row_2 }}<span class="hero-infinity" aria-hidden="true">
+              <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M25,25 C25,11 39,11 50,25 C61,39 75,39 75,25 C75,11 61,11 50,25 C39,39 25,39 25,25 Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
           </h1>
 
           <p class="hero-text">
@@ -80,3 +91,46 @@
     </div>
 
   </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const heroSection = document.querySelector(".hero-section");
+      const infinityIcon = document.querySelector(".hero-infinity");
+
+      if (!heroSection || !infinityIcon) return;
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      let ticking = false;
+
+      const updateRotation = () => {
+
+        const rect = heroSection.getBoundingClientRect();
+        const heroHeight = rect.height || 1;
+
+        // 0 när heron precis börjar rulla ur vy, 1 när den är helt förbi.
+        const progress = Math.min(Math.max(-rect.top / heroHeight, 0), 1);
+
+        // 90deg ("8") -> 0deg (liggande oändlighetstecken).
+        const angle = 90 - progress * 90;
+
+        infinityIcon.style.setProperty("--infinity-rotate", `${angle}deg`);
+
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateRotation);
+          ticking = true;
+        }
+      };
+
+      updateRotation();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+    });
+  </script>

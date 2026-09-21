@@ -69,6 +69,36 @@
     color: #2E251F;
   }
 
+
+  /* ==================================================
+     "ÅTTA" -> OÄNDLIGHETSTECKEN
+     ================================================== */
+
+  .hero-infinity {
+    --infinity-rotate: 90deg;
+
+    display: inline-block;
+
+    width: 0.85em;
+    height: 0.42em;
+
+    margin-left: 0.12em;
+    vertical-align: 0.1em;
+
+    color: #2E251F;
+
+    transform: rotate(var(--infinity-rotate));
+    transform-origin: center;
+
+    will-change: transform;
+  }
+
+  .hero-infinity svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   .hero-right {
     flex: 0.9;
     max-width: 480px;
