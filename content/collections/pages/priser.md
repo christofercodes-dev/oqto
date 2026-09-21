@@ -8,7 +8,7 @@ template: pricing
 users:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789976096
+updated_at: 1789980572
 pricing_button_text: 'Boka demo'
 pricing_button_url: /boka-demo
 intro_small_title: Bolagslägen
@@ -160,10 +160,10 @@ comparison_categories:
         modern_value: check
         type: row
         enabled: true
-        detail: '1 bankkonto ingår i priset. Fler konton kostar **30 kr/konto/månad**, samma villkor oavsett bolagsläge.'
+        detail: '1 bankkonto ingår i priset. Fler konton kostar 30 kr/konto/månad, samma villkor oavsett bolagsläge.'
       - id: cmp_row_lon
         label: Lön
-        detail: 'Lönespecifikation 20 kr/st.'
+        detail: 'Lönespecifikation kostar 20 kr/st och ingår inte i månadspriset.'
         forvaltning_value: cross
         traditionell_value: check
         modern_value: check
@@ -177,7 +177,7 @@ comparison_categories:
     rows:
       - id: cmp_row_attest
         label: 'Attest & Betalning'
-        detail: 'Kräver en användare.'
+        detail: 'Modul för slutkunden att signera betalningar och attestera leverantörsfakturor.'
         forvaltning_value: cross
         traditionell_value: check
         modern_value: check
@@ -212,7 +212,7 @@ comparison_categories:
         enabled: true
       - id: cmp_row_transaktioner
         label: Transaktioner
-        detail: 'En bundle på 10 st per bolag och månad ingår i månadspriset. Skicka e-faktura 3 kr/st, ta emot e-faktura 3 kr/st, dokumenttolkning 3 kr/st.'
+        detail: '10 transaktioner/bolag/månad ingår: skicka e-faktura, ta emot e-faktura, dokumenttolkning. Därefter **3 kr/st** per typ.'
         forvaltning_value: —
         traditionell_value: '10 st/mån'
         modern_value: '10 st/mån'
