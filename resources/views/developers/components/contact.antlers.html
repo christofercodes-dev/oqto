@@ -1,0 +1,168 @@
+<section class="oqto-contact-section">
+
+    <div class="oqto-contact-container">
+
+        <!-- VÄNSTER -->
+        <div class="oqto-contact-content">
+
+            {{ if developers_contact_small_title }}
+                <span class="oqto-contact-subtitle">
+                    {{ developers_contact_small_title }}
+                </span>
+            {{ /if }}
+
+            <h2 class="oqto-contact-title">
+                {{ developers_contact_title }}
+            </h2>
+
+            {{ if developers_contact_body }}
+                <p class="oqto-contact-body">
+                    {{ developers_contact_body }}
+                </p>
+            {{ /if }}
+
+            <div class="oqto-contact-details">
+
+                {{ if developers_contact_email }}
+                    <a
+                        href="mailto:{{ developers_contact_email }}"
+                        class="oqto-contact-detail"
+                    >
+                        <span class="oqto-contact-detail-label">
+                            E-post
+                        </span>
+
+                        <span class="oqto-contact-detail-value">
+                            {{ developers_contact_email }}
+                        </span>
+                    </a>
+                {{ /if }}
+
+            </div>
+
+        </div>
+
+
+        <!-- HÖGER / FORMULÄR -->
+        <div class="oqto-contact-form">
+
+            {{ form:developers_contact }}
+
+                {{ if success }}
+
+                    <p class="oqto-contact-success">
+                        Tack för ditt meddelande! Vi återkommer så snart vi kan.
+                    </p>
+
+                {{ else }}
+
+                    <div class="oqto-contact-honeypot" aria-hidden="true">
+                        <label for="developers-contact-honeypot">Lämna detta fält tomt</label>
+                        <input type="text" id="developers-contact-honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    {{ if errors }}
+                        <ul class="oqto-contact-errors">
+                            {{ errors }}
+                                <li>{{ value }}</li>
+                            {{ /errors }}
+                        </ul>
+                    {{ /if }}
+
+                    <div class="oqto-contact-form-row">
+
+                        <div class="oqto-contact-field">
+
+                            <label for="developers-contact-name">
+                                Namn
+                            </label>
+
+                            <input
+                                type="text"
+                                id="developers-contact-name"
+                                name="name"
+                                placeholder="Ditt namn"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="oqto-contact-field">
+
+                            <label for="developers-contact-email-field">
+                                E-post
+                            </label>
+
+                            <input
+                                type="email"
+                                id="developers-contact-email-field"
+                                name="email"
+                                placeholder="din@email.se"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="oqto-contact-field">
+
+                        <label for="developers-contact-company">
+                            Företag
+                        </label>
+
+                        <input
+                            type="text"
+                            id="developers-contact-company"
+                            name="company"
+                            placeholder="Företagsnamn"
+                        >
+
+                    </div>
+
+
+                    <div class="oqto-contact-field">
+
+                        <label for="developers-contact-message">
+                            Meddelande
+                        </label>
+
+                        <textarea
+                            id="developers-contact-message"
+                            name="message"
+                            rows="5"
+                            placeholder="Berätta om vad du bygger..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="oqto-contact-btn"
+                    >
+
+                        <span class="oqto-contact-btn-text">
+                            Skicka meddelande
+                        </span>
+
+                        <span
+                            class="oqto-contact-btn-arrow"
+                            aria-hidden="true"
+                        >
+                            →
+                        </span>
+
+                    </button>
+
+                {{ /if }}
+
+            {{ /form:developers_contact }}
+
+        </div>
+
+    </div>
+
+</section>

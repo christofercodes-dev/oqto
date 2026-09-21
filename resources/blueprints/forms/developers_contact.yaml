@@ -1,0 +1,30 @@
+title: 'Utvecklarkontakt'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: name
+            field:
+              type: text
+              display: Namn
+              validate: required
+          -
+            handle: email
+            field:
+              type: text
+              input_type: email
+              display: 'E-post'
+              validate: 'required|email'
+          -
+            handle: company
+            field:
+              type: text
+              display: 'Företag'
+          -
+            handle: message
+            field:
+              type: textarea
+              display: Meddelande

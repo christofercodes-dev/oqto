@@ -40,6 +40,7 @@ return [
             'job_application' => env('ZAPIER_JOB_APPLICATION_WEBHOOK_URL'),
             'boka_demo' => env('ZAPIER_BOKA_DEMO_WEBHOOK_URL'),
             'contact' => env('ZAPIER_CONTACT_WEBHOOK_URL'),
+            'developers_contact' => env('ZAPIER_DEVELOPERS_CONTACT_WEBHOOK_URL'),
         ],
     ],
 

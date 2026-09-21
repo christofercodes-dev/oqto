@@ -50,6 +50,29 @@ tabs:
             field:
               type: link
               display: 'developers button url'
+      -
+        display: 'developers contact'
+        fields:
+          -
+            handle: developers_contact_small_title
+            field:
+              type: text
+              display: 'developers contact small title'
+          -
+            handle: developers_contact_title
+            field:
+              type: text
+              display: 'developers contact title'
+          -
+            handle: developers_contact_body
+            field:
+              type: textarea
+              display: 'developers contact body'
+          -
+            handle: developers_contact_email
+            field:
+              type: text
+              display: 'developers contact email'
   sidebar:
     display: Sidebar
     sections:
