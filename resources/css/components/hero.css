@@ -3,7 +3,7 @@
    ================================================== */
 
    .hero-section {
-    min-height: 80vh;
+    min-height: 65vh;
     background: linear-gradient(180deg, #8bc1ff 0%, #f5f9fd 100%);
     background-size: 180% 220%;
     background-position: 20% 0%;
@@ -11,10 +11,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 100px 40px 0;
+    padding: 70px 40px 0;
     box-sizing: border-box;
     font-family: "neue-haas-grotesk-text", sans-serif;
     position: relative;
+
+    /* Dashboard-mockupen går ända ut till skärmens högerkant, och
+       telefonen hänger en bit utanför den igen - detta håller den
+       overhangen från att skapa en horisontell scrollbar. */
+    overflow-x: hidden;
   }
 
   @keyframes heroGradientDrift {
@@ -28,7 +33,7 @@
   }
 
   .hero-container {
-    padding-top: 100px;
+    padding-top: 50px;
     max-width: 1300px;
     width: 100%;
     margin: 0 auto;
@@ -48,12 +53,14 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 80px;
+    gap: 60px;
   }
-  
+
   .hero-left {
-    flex: 1.1;
-    min-width: 0;
+    flex: 1;
+    /* Garanterar plats för "Din högra hand." på en rad, oavsett hur
+       mycket hero-right väger upp i flex-fördelningen. */
+    min-width: 540px;
 
     display: flex;
     flex-direction: column;
@@ -62,11 +69,19 @@
 
   .hero-title {
     margin: 0;
-    font-size: clamp(4rem, 7vw, 6.5rem);
+    font-size: clamp(3rem, 5vw, 5rem);
     font-weight: 400;
     line-height: 1.02;
     letter-spacing: -0.04em;
     color: #2E251F;
+  }
+
+  .hero-coins {
+    width: 110px;
+    height: auto;
+    margin-top: 12px;
+    filter: blur(3px);
+    transform: translateY(calc(var(--parallax-y, 0) * 1px));
   }
 
 
@@ -113,10 +128,19 @@
   }
 
   .hero-right {
-    flex: 0.9;
-    max-width: 480px;
+    flex: 1.3;
+    max-width: 780px;
     color: #2E251F;
     font-weight: 400;
+  }
+
+  /* Låter mockupen gå ända ut till skärmens högerkant i stället för
+     att stanna vid hero-containerns/sektionens marginal - bara på
+     bredder där hero-content faktiskt ligger i rad (se tablet/mobil). */
+  @media (min-width: 1025px) {
+    .hero-right {
+      margin-right: calc(-40px - max(0px, (100vw - 80px - 1300px) / 2));
+    }
   }
 
   .hero-text {
@@ -128,32 +152,45 @@
 
 
   /* ==================================================
-     BILD/ILLUSTRATION - PLATSHÅLLARE
+     BILD/ILLUSTRATION - SKÄRMDUMP + TELEFON-MOCKUP
      ================================================== */
 
-  .hero-illustration-placeholder {
+  .hero-screenshot {
+    position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    border: 2px dashed rgba(46, 37, 31, 0.25);
-    border-radius: 24px;
-
-    color: rgba(46, 37, 31, 0.45);
-
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-align: center;
-
-    box-sizing: border-box;
   }
-  
-  
+
+  .hero-screenshot-frame {
+    width: 100%;
+  }
+
+  .hero-screenshot-dashboard {
+    display: block;
+
+    /* Lite större än sin ram och förankrad i vänsterkanten, så att
+       högerkanten hamnar utanför synligt område (hero-section klipper
+       den med overflow-x: hidden) i stället för att krympas in. */
+    width: 116%;
+    max-width: none;
+    height: auto;
+
+    transform: translateY(calc(var(--parallax-y, 0) * 1px));
+  }
+
+  /* Telefon-mockupen hänger över dashboardens nedre högra hörn,
+     precis som i den godkända skissen. */
+  .hero-screenshot-phone {
+    position: absolute;
+    right: 10%;
+    bottom: -8%;
+
+    width: 26%;
+    height: auto;
+
+    transform: translateY(calc(var(--parallax-y, 0) * 1px));
+  }
+
+
   /* ==================================================
      HERO WIDGET
      ================================================== */
@@ -161,7 +198,7 @@
   .hero-widget {
     width: 100%;
     max-width: 1280px;
-    margin: 70px auto 0;
+    margin: 40px auto 0;
     position: relative;
     z-index: 2;
   }
@@ -179,7 +216,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    margin-top: 40px;
+    margin-top: 24px;
   }
   
   .hero-action-card {
@@ -409,6 +446,7 @@
 
   .hero-left {
     width: 100%;
+    min-width: 0;
   }
 
   .hero-title {
@@ -500,6 +538,7 @@
 
     .hero-left {
       width: 100%;
+      min-width: 0;
     }
 
     .hero-title {

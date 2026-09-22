@@ -13,16 +13,33 @@
           <p class="hero-text">
             {{ content | nl2br }}
           </p>
+
+          <img
+            class="hero-coins"
+            src="/images/hero/coins.svg"
+            alt=""
+            aria-hidden="true"
+          >
         </div>
 
         <div class="hero-right">
-          <div class="hero-illustration-placeholder" aria-hidden="true">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M21 15L16 10L5 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Bild / illustration</span>
+          <div class="hero-screenshot">
+            <div class="hero-screenshot-frame">
+              <img
+                class="hero-screenshot-dashboard"
+                src="/images/hero/dashboard-screenshot.webp"
+                alt="Skärmdump av Oqtos ekonomisystem"
+                width="3160"
+                height="1849"
+              >
+            </div>
+            <img
+              class="hero-screenshot-phone"
+              src="/images/hero/phone-mockup.webp"
+              alt="Oqtos app för betalningar i mobilen"
+              width="1460"
+              height="3120"
+            >
           </div>
         </div>
 
@@ -84,23 +101,39 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
 
-      const heroTitle = document.querySelector(".hero-title");
       const heroSection = document.querySelector(".hero-section");
 
-      if (!heroTitle || !heroSection) return;
+      if (!heroSection) return;
 
-      const infinitySvg = '<svg viewBox="23.25 9.25 53.5 31.5" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M25,25 C25,11 39,11 50,25 C61,39 75,39 75,25 C75,11 61,11 50,25 C39,39 25,39 25,25 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      const heroTitle = heroSection.querySelector(".hero-title");
 
-      // Byter ut ordet "åtta" mot en wrapper med både texten och
-      // oändlighetssymbolen överlappande, redo att tonas mellan varandra.
-      heroTitle.innerHTML = heroTitle.innerHTML.replace(
-        "åtta",
-        '<span class="hero-word-swap"><span class="hero-word-text">åtta</span><span class="hero-word-symbol" aria-hidden="true">' + infinitySvg + '</span></span>'
-      );
+      let wordSwap = null;
 
-      const wordSwap = heroTitle.querySelector(".hero-word-swap");
+      if (heroTitle) {
+        const infinitySvg = '<svg viewBox="23.25 9.25 53.5 31.5" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M25,25 C25,11 39,11 50,25 C61,39 75,39 75,25 C75,11 61,11 50,25 C39,39 25,39 25,25 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-      if (!wordSwap) return;
+        // Byter ut ordet "åtta" mot en wrapper med både texten och
+        // oändlighetssymbolen överlappande, redo att tonas mellan varandra.
+        heroTitle.innerHTML = heroTitle.innerHTML.replace(
+          "åtta",
+          '<span class="hero-word-swap"><span class="hero-word-text">åtta</span><span class="hero-word-symbol" aria-hidden="true">' + infinitySvg + '</span></span>'
+        );
+
+        wordSwap = heroTitle.querySelector(".hero-word-swap");
+      }
+
+      // De tre assetsen i hero-högerspalten rör sig i olika takt när man
+      // scrollar - dashboarden svagast (längst bak), telefonen och myntet
+      // snabbast (längst fram) - för att skapa ett djup mellan lagren.
+      // Dashboarden är begränsad (maxOffset) så förskjutningen aldrig
+      // sträcker sig utanför bildens beskärningsmarginal.
+      const PARALLAX_ITEMS = [
+        { el: heroSection.querySelector(".hero-screenshot-dashboard"), factor: 0.05, maxOffset: 20 },
+        { el: heroSection.querySelector(".hero-screenshot-phone"), factor: 0.12, maxOffset: Infinity },
+        { el: heroSection.querySelector(".hero-coins"), factor: 0.2, maxOffset: Infinity },
+      ].filter((item) => item.el);
+
+      if (!wordSwap && PARALLAX_ITEMS.length === 0) return;
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         return;
@@ -108,31 +141,37 @@
 
       let ticking = false;
 
-      // Hur många pixlar man behöver scrolla för att bytet ska vara klart -
-      // korn distans så det känns snabbt och tydligt, oavsett hur hög
-      // hero-sektionen är.
+      // Hur många pixlar man behöver scrolla för att ord-bytet ska vara
+      // klart - kort distans så det känns snabbt och tydligt, oavsett
+      // hur hög hero-sektionen är.
       const SWAP_SCROLL_DISTANCE = 220;
 
-      const updateSwap = () => {
+      const update = () => {
 
         const rect = heroSection.getBoundingClientRect();
         const scrolled = Math.max(-rect.top, 0);
 
-        const progress = Math.min(scrolled / SWAP_SCROLL_DISTANCE, 1);
+        if (wordSwap) {
+          const progress = Math.min(scrolled / SWAP_SCROLL_DISTANCE, 1);
+          wordSwap.style.setProperty("--swap-progress", progress);
+        }
 
-        wordSwap.style.setProperty("--swap-progress", progress);
+        PARALLAX_ITEMS.forEach(({ el, factor, maxOffset }) => {
+          const offset = Math.min(scrolled * factor, maxOffset);
+          el.style.setProperty("--parallax-y", (-offset).toFixed(2));
+        });
 
         ticking = false;
       };
 
       const onScroll = () => {
         if (!ticking) {
-          window.requestAnimationFrame(updateSwap);
+          window.requestAnimationFrame(update);
           ticking = true;
         }
       };
 
-      updateSwap();
+      update();
       window.addEventListener("scroll", onScroll, { passive: true });
 
     });

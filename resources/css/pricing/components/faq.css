@@ -31,7 +31,12 @@
 .pricing-faq-item {
     width: 100%;
 
-    border-radius: 50px;
+    /* En pill-formad radie (t.ex. 50px) ser bara rund ut i det låga
+       hopfällda läget - på den mycket högre utfällda höjden syns bara
+       ett litet hörn av samma radie, vilket ser ut som en ändring. En
+       måttligare, höjdoberoende radie håller känslan likadan i båda
+       lägena. */
+    border-radius: 28px;
 
     background-color: #FCE3D6;
 
