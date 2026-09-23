@@ -5,7 +5,7 @@ title: 'Om Oqto'
 seo_title: 'Om oss'
 seo_description: 'Oqto byggs av ekonomer, rådgivare och utvecklare från JWK och Reda – för att lösa problem vi själva stötte på i vardagen. Läs mer om teamet.'
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1790076303
+updated_at: 1790108263
 template: about
 author:
   - 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
@@ -30,6 +30,7 @@ about_team:
   - 51a18c97-8cad-4363-8776-8ed9c5ecaa15
   - 3ebf0604-6f00-49a7-8a63-ddef40e34001
   - 03f4aba6-c9cb-4924-aea4-addfdece75c3
+  - bb2650bc-1eb5-44a0-8c45-d69a1b1f54dc
   - abc9a252-ea9f-4567-89a2-58be0229d123
 cta_title: |-
   Mer nyfiken på oss på Oqto och vad vi gör?
