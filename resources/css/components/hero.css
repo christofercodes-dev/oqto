@@ -52,7 +52,7 @@
   .hero-content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 60px;
   }
 
@@ -61,6 +61,11 @@
     /* Garanterar plats för "Din högra hand." på en rad, oavsett hur
        mycket hero-right väger upp i flex-fördelningen. */
     min-width: 540px;
+
+    /* Telefon-mockupen hänger en bit under själva dashboard-rutan,
+       så den visuella tyngdpunkten på höger sida ligger lägre än
+       hero-rights egen box. Knuffar ner texten för att matcha det. */
+    margin-top: 40px;
 
     display: flex;
     flex-direction: column;
@@ -191,23 +196,6 @@
   }
 
 
-  /* ==================================================
-     HERO WIDGET
-     ================================================== */
-  
-  .hero-widget {
-    width: 100%;
-    max-width: 1280px;
-    margin: 40px auto 0;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .hero-widget > * {
-    max-width: 100%;
-  }
-  
-  
   /* ==================================================
      ACTION / BUTTON AREA
      ================================================== */
@@ -441,12 +429,14 @@
 
   .hero-content {
     flex-direction: column;
+    align-items: flex-start;
     gap: 30px;
   }
 
   .hero-left {
     width: 100%;
     min-width: 0;
+    margin-top: 0;
   }
 
   .hero-title {
@@ -463,11 +453,6 @@
   .hero-text {
     font-size: 0.95rem;
     line-height: 1.65;
-  }
-
-  .hero-widget {
-    margin-top: 50px;
-    max-width: 100%;
   }
 
   .hero-action-wrapper {
@@ -539,6 +524,7 @@
     .hero-left {
       width: 100%;
       min-width: 0;
+      margin-top: 0;
     }
 
     .hero-title {
@@ -579,19 +565,6 @@
     order: 2;
   }
 
-
-  /* ------------------------------------------
-     WIDGET
-     ------------------------------------------ */
-
-  .hero-widget {
-    width: 100%;
-    max-width: none;
-
-    margin: 42px 0 0;
-
-    order: 3;
-  }
 
 
   /* ------------------------------------------
@@ -747,10 +720,6 @@
 
   .hero-action-wrapper {
     margin-top: 22px;
-  }
-
-  .hero-widget {
-    margin-top: 36px;
   }
 
   .btn-demo {
