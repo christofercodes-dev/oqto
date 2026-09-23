@@ -7,6 +7,9 @@ short_description: 'Smarta företagskort och automatiserad bokföring'
 description: 'Mynt är en plattform för smarta företagskort, utläggshantering och fakturabetalning. Med Mynt får du automatiserad bokföring, kvittomatchning och full koll på företagets utgifter, direkt kopplat till Oqto.'
 developer_name: 'Mynt AB'
 source_created_at: '2026-07-14 12:43'
-avatar:
-  - images/b02df173-058d-41d9-92c2-5c2c99fd22da.png
+avatar: images/b02df173-058d-41d9-92c2-5c2c99fd22da.png
+featured: false
+signup_url: 'https://www.mynt.com/foretagskort/bli-kund?utm_source=oqto&utm_medium=partner&utm_campaign=partner_referrals'
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1790109779
 ---

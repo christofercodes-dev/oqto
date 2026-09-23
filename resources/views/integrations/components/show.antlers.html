@@ -123,11 +123,24 @@
                     Läs mer om {{ title }}.
                 </p>
 
-                {{ if partner_website }}
-                    <a href="{{ partner_website }}" target="_blank" rel="noopener" class="integration-activate-button">
-                        <span>Gå till {{ title }}</span>
-                        <span class="integration-activate-arrow">→</span>
-                    </a>
+                {{ if signup_url || partner_website }}
+                    <div class="integration-show-cta-buttons">
+
+                        {{ if signup_url }}
+                            <a href="{{ signup_url }}" target="_blank" rel="noopener" class="integration-activate-button">
+                                <span>Bli kund hos {{ title }}</span>
+                                <span class="integration-activate-arrow">→</span>
+                            </a>
+                        {{ /if }}
+
+                        {{ if partner_website }}
+                            <a href="{{ partner_website }}" target="_blank" rel="noopener" class="integration-activate-button integration-activate-button-secondary">
+                                <span>Gå till {{ title }}</span>
+                                <span class="integration-activate-arrow">→</span>
+                            </a>
+                        {{ /if }}
+
+                    </div>
                 {{ /if }}
 
             </div>

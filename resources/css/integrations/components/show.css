@@ -330,6 +330,14 @@
     color: #2e251f;
 }
 
+.integration-show-cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 16px;
+}
+
 .integration-activate-button {
     display: inline-flex;
     align-items: center;
@@ -352,11 +360,32 @@
 
     text-decoration: none;
 
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .integration-activate-button:hover {
     background: #ff5500;
+}
+
+/* Sekundär variant - används för "Gå till {namn}" när den visas
+   tillsammans med den primära "Bli kund hos {namn}"-knappen, så de
+   inte tävlar om samma uppmärksamhet. */
+.integration-activate-button-secondary {
+    background: transparent;
+
+    border: 1px solid #e5e2df;
+
+    color: #2e251f;
+}
+
+.integration-activate-button-secondary .integration-activate-arrow {
+    background: rgba(46, 37, 31, 0.08);
+}
+
+.integration-activate-button-secondary:hover {
+    background: transparent;
+    border-color: #ff5500;
+    color: #ff5500;
 }
 
 .integration-activate-arrow {

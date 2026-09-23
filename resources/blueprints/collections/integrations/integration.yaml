@@ -21,6 +21,12 @@ tabs:
               display: 'Populär ⭐'
               instructions: 'Stjärnmärk integrationen som populär. Populära integrationer visas först på /integrationer (redaktionellt fält - påverkas inte av den nattliga importen).'
               default: false
+          -
+            handle: signup_url
+            field:
+              type: text
+              display: 'Bli kund-länk'
+              instructions: 'URL dit knappen "Bli kund hos {namn}" länkar på integrationssidan. Visas bara om ifylld (redaktionellt fält - påverkas inte av den nattliga importen).'
       -
         display: Källdata
         fields:
