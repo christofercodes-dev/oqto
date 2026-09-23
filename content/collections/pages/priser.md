@@ -114,14 +114,21 @@ comparison_categories:
         enabled: true
       - id: cmp_row_forsaljning
         label: Försäljning
-        forvaltning_value: cross
+        forvaltning_value: check
         traditionell_value: check
         modern_value: check
         type: row
         enabled: true
       - id: cmp_row_inkop
         label: Inköp
-        forvaltning_value: cross
+        forvaltning_value: check
+        traditionell_value: check
+        modern_value: check
+        type: row
+        enabled: true
+      - id: cmp_row_integrationer
+        label: Integrationer
+        forvaltning_value: check
         traditionell_value: check
         modern_value: check
         type: row

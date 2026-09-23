@@ -3,11 +3,9 @@
 
     background-color: #ffffff;
 
-    padding: 10px 40px 100px;
+    padding: 100px 40px;
 
     box-sizing: border-box;
-
-
 
     color: #2E251F;
 }
@@ -358,7 +356,7 @@
 @media (max-width: 960px) {
 
     .pricing-faq-section {
-        padding: 30px 24px 70px;
+        padding: 60px 24px 70px;
     }
 
     .pricing-faq-question {
