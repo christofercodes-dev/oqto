@@ -6,27 +6,45 @@
 
             <article class="feature-block{{ if index | mod:2 == 0 }} feature-block-reverse{{ /if }}">
 
-                <div class="feature-block-media">
+                {{ if type == "bild" }}
 
-                    {{ if type == "bild" }}
-
-                        {{ if image }}
-                            {{ image }}
-                                <img src="{{ url | signed_url }}" alt="{{ title }}">
-                            {{ /image }}
-                        {{ else }}
+                    {{ if image }}
+                        {{ image }}
+                            {{# Höjden sätts efter filens egna mått i stället för en fast
+                                bildkvot, så att den inte beskärs av en bredare 4:3-ram.
+                                "image"-fältet tillåter både bilder och korta videoloopar
+                                - avgör med mime_type vilken tagg som ska användas. #}}
+                            <div class="feature-block-media" style="aspect-ratio: {{ width }} / {{ height }};">
+                                {{ if mime_type == "video/mp4" }}
+                                    <video class="feature-block-video" autoplay muted loop playsinline>
+                                        <source src="{{ url }}">
+                                    </video>
+                                {{ else }}
+                                    <img src="{{ url }}" alt="{{ title }}">
+                                {{ /if }}
+                            </div>
+                        {{ /image }}
+                    {{ else }}
+                        <div class="feature-block-media">
                             <div class="feature-block-placeholder"></div>
-                        {{ /if }}
+                        </div>
+                    {{ /if }}
 
-                    {{ elseif type == "video" }}
+                {{ elseif type == "video" }}
 
-                        {{ if video_file }}
-                            {{ video_file }}
+                    {{ if video_file }}
+                        {{ video_file }}
+                            {{# Höjden sätts efter videons egna mått i stället för en fast
+                                bildkvot, så att t.ex. kvadratiska skärminspelningar inte
+                                beskärs av en bredare 4:3-ram. #}}
+                            <div class="feature-block-media" style="aspect-ratio: {{ width }} / {{ height }};">
                                 <video class="feature-block-video" autoplay muted loop playsinline>
-                                    <source src="{{ url | signed_url }}">
+                                    <source src="{{ url }}">
                                 </video>
-                            {{ /video_file }}
-                        {{ elseif embed_code }}
+                            </div>
+                        {{ /video_file }}
+                    {{ elseif embed_code }}
+                        <div class="feature-block-media">
                             <div class="feature-block-embed">
                                 <iframe
                                     src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last | explode('?') | first }}?title=0&byline=0&portrait=0&badge=0&background=1"
@@ -36,13 +54,14 @@
                                     title="{{ title }}"
                                 ></iframe>
                             </div>
-                        {{ else }}
+                        </div>
+                    {{ else }}
+                        <div class="feature-block-media">
                             <div class="feature-block-placeholder"></div>
-                        {{ /if }}
-
+                        </div>
                     {{ /if }}
 
-                </div>
+                {{ /if }}
 
                 <div class="feature-block-content">
 

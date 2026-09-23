@@ -1,4 +1,4 @@
-<section class="video-section">
+<section class="video-section funktioner-sales-video">
 
     <div class="video-container">
 
@@ -43,7 +43,7 @@
             {{ if video_file }}
                 {{ video_file }}
                     <video class="video-element" controls playsinline preload="metadata">
-                        <source src="{{ url | signed_url }}">
+                        <source src="{{ url }}">
                     </video>
                 {{ /video_file }}
             {{ elseif embed_code }}

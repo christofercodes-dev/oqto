@@ -9,16 +9,15 @@
 
     box-sizing: border-box;
 
-    background-color: #ffffff;
+    background-color: #F5F1EB;
 
     color: var(--color-text);
 }
 
 .feature-blocks-container {
-    max-width: 1200px;
-
-    margin: 0 auto;
-
+    /* Ingen egen max-width/margin här - .container sköter redan
+       sidcentreringen (1300px, auto-marginal, sidopadding), så att
+       blocken linjerar i vänsterkant med hero-sektionen ovanför. */
     display: flex;
     flex-direction: column;
 
@@ -57,6 +56,7 @@
     width: 100%;
 
     aspect-ratio: 4 / 3;
+    max-height: 650px;
 
     border-radius: 28px;
 
@@ -72,7 +72,11 @@
 
     display: block;
 
-    object-fit: cover;
+    /* "contain" i stället för "cover" - vissa bilder/videor har en egen
+       höjd (satt inline via aspect-ratio) som är mycket högre än den
+       maxhöjd rutan tillåts få, och då ska hela filen synas oavskuren
+       i stället för att beskäras för att fylla rutan. */
+    object-fit: contain;
 }
 
 .feature-block-embed {
@@ -186,6 +190,27 @@
 
     .feature-block-title {
         margin-bottom: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   SÄLJVIDEO-SEKTIONEN DIREKT EFTER
+   ========================================================= */
+
+/* .video-section delas med startsidan (som har vit bakgrund både
+   före och efter den, så 10px räcker där). Här kommer den direkt
+   efter det beigea funktionsblocket, så den behöver eget luftrum
+   överst för att inte klibba ihop med sektionen ovanför. */
+.video-section.funktioner-sales-video {
+    padding-top: 100px;
+}
+
+@media (max-width: 767px) {
+
+    .video-section.funktioner-sales-video {
+        padding-top: 60px;
     }
 
 }

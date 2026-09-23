@@ -36,8 +36,9 @@ tabs:
           -
             handle: hero_title
             field:
-              type: text
+              type: textarea
               display: 'Rubrik'
+              instructions: 'Radbryt manuellt där du vill att rubriken ska brytas.'
               validate:
                 - required
           -

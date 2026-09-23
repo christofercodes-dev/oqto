@@ -2,22 +2,104 @@
 
     <div class="container funktioner-hero-container">
 
-        {{ if hero_small_title }}
-            <span class="funktioner-hero-eyebrow">
-                {{ hero_small_title }}
-            </span>
-        {{ /if }}
+        <div class="funktioner-hero-text">
 
-        <h1 class="funktioner-hero-title">
-            {{ hero_title | nl2br }}
-        </h1>
+            {{ if hero_small_title }}
+                <span class="funktioner-hero-eyebrow">
+                    {{ hero_small_title }}
+                </span>
+            {{ /if }}
 
-        {{ if hero_body }}
-            <p class="funktioner-hero-body">
-                {{ hero_body }}
-            </p>
-        {{ /if }}
+            <h1 class="funktioner-hero-title">
+                {{ hero_title | nl2br }}
+            </h1>
+
+            {{ if hero_body }}
+                <p class="funktioner-hero-body">
+                    {{ hero_body }}
+                </p>
+            {{ /if }}
+
+        </div>
+
+        <div class="funktioner-hero-image">
+
+            <img
+                class="funktioner-hero-phone"
+                src="/images/funktioner/hero-phone-mockup.webp"
+                alt="Oqtos app, inloggning med BankID"
+                width="1199"
+                height="1501"
+            >
+
+            <img
+                class="funktioner-hero-octopus"
+                src="/images/funktioner/octopus-sticker.svg"
+                alt=""
+                aria-hidden="true"
+            >
+
+            <img
+                class="funktioner-hero-fish"
+                src="/images/funktioner/fish-sticker.svg"
+                alt=""
+                aria-hidden="true"
+            >
+
+        </div>
 
     </div>
 
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const section = document.querySelector(".funktioner-hero-section");
+
+        if (!section) return;
+
+        const octopus = section.querySelector(".funktioner-hero-octopus");
+        const fish = section.querySelector(".funktioner-hero-fish");
+
+        if (!octopus && !fish) return;
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+        }
+
+        let ticking = false;
+
+        // Bläckfisken rör sig vertikalt, fisken horisontellt - båda i
+        // måttlig, begränsad takt så de aldrig driver iväg för långt
+        // från telefonen.
+        const update = () => {
+
+            const rect = section.getBoundingClientRect();
+            const scrolled = Math.max(-rect.top, 0);
+
+            if (octopus) {
+                const offset = Math.min(scrolled * 0.12, 60);
+                octopus.style.setProperty("--sticker-y", offset.toFixed(2));
+            }
+
+            if (fish) {
+                const offset = Math.min(scrolled * 0.1, 50);
+                fish.style.setProperty("--sticker-x", offset.toFixed(2));
+            }
+
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(update);
+                ticking = true;
+            }
+        };
+
+        update();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+    });
+</script>

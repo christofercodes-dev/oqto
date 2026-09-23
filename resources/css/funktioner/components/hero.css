@@ -10,20 +10,72 @@
     box-sizing: border-box;
 
     background: linear-gradient(180deg, #e8f2ff 0%, #ffffff 100%);
-
-    text-align: center;
 }
 
 .funktioner-hero-container {
-    max-width: 780px;
+    /* Ingen egen max-width/margin här - .container sköter redan
+       sidcentreringen (1300px, auto-marginal, sidopadding). Det här
+       lagret vänsterställer bara innehållet inuti den ramen, precis
+       som på övriga sidor. */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    margin: 0 auto;
+    gap: 60px;
+}
 
+.funktioner-hero-text {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 
     gap: 22px;
+}
+
+.funktioner-hero-image {
+    position: relative;
+
+    flex: 0 0 auto;
+
+    width: 100%;
+    max-width: 380px;
+}
+
+.funktioner-hero-phone {
+    position: relative;
+    z-index: 2;
+
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Bläckfisken kikar fram bakom telefonens övre högra hörn. */
+.funktioner-hero-octopus {
+    position: absolute;
+    z-index: 1;
+
+    left: 54%;
+    top: -4%;
+
+    width: 20%;
+    height: auto;
+
+    transform: translateY(calc(var(--sticker-y, 0) * 1px));
+}
+
+/* Fisken flyter fritt vid telefonens nedre vänstra hörn. */
+.funktioner-hero-fish {
+    position: absolute;
+    z-index: 3;
+
+    left: 4%;
+    top: 81%;
+
+    width: 14%;
+    height: auto;
+
+    transform: translateX(calc(var(--sticker-x, 0) * 1px));
 }
 
 .funktioner-hero-eyebrow {
@@ -39,6 +91,8 @@
 
 .funktioner-hero-title {
     margin: 0;
+
+    max-width: 780px;
 
     font-size: clamp(2.8rem, 5vw, 4.6rem);
     font-weight: 400;
@@ -71,6 +125,14 @@
         padding: 150px 32px 80px;
     }
 
+    .funktioner-hero-container {
+        gap: 40px;
+    }
+
+    .funktioner-hero-image {
+        max-width: 300px;
+    }
+
 }
 
 
@@ -85,11 +147,22 @@
     }
 
     .funktioner-hero-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+    }
+
+    .funktioner-hero-text {
         gap: 16px;
     }
 
     .funktioner-hero-body {
         font-size: 0.95rem;
+    }
+
+    .funktioner-hero-image {
+        align-self: center;
+        max-width: 260px;
     }
 
 }
