@@ -80,6 +80,13 @@ tabs:
                         container: assets
                         max_files: 1
                         display: Bild
+                    -
+                      handle: scroll_scrub
+                      field:
+                        type: toggle
+                        display: 'Spela av vid scroll'
+                        instructions: 'Bara relevant om Bild-fältet innehåller en video. I stället för att loopa spelas videon frame för frame i takt med scrollen (och baklänges om man scrollar upp).'
+                        default: false
                 video:
                   display: 'Video'
                   fields:
@@ -109,6 +116,13 @@ tabs:
                         type: text
                         display: 'Vimeo-länk'
                         instructions: 'Valfritt. Används om ingen videofil laddats upp.'
+                    -
+                      handle: scroll_scrub
+                      field:
+                        type: toggle
+                        display: 'Spela av vid scroll'
+                        instructions: 'Bara relevant för uppladdad videofil (inte Vimeo-länk). I stället för att loopa spelas videon frame för frame i takt med scrollen (och baklänges om man scrollar upp).'
+                        default: false
       -
         display: Säljvideo
         fields:

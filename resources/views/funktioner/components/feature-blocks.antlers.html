@@ -16,9 +16,15 @@
                                 - avgör med mime_type vilken tagg som ska användas. #}}
                             <div class="feature-block-media" style="aspect-ratio: {{ width }} / {{ height }};">
                                 {{ if mime_type == "video/mp4" }}
-                                    <video class="feature-block-video" autoplay muted loop playsinline>
-                                        <source src="{{ url }}">
-                                    </video>
+                                    {{ if scroll_scrub }}
+                                        <video class="feature-block-video feature-block-video-scrub" muted playsinline preload="auto" data-scroll-scrub>
+                                            <source src="{{ url }}">
+                                        </video>
+                                    {{ else }}
+                                        <video class="feature-block-video" autoplay muted loop playsinline>
+                                            <source src="{{ url }}">
+                                        </video>
+                                    {{ /if }}
                                 {{ else }}
                                     <img src="{{ url }}" alt="{{ title }}">
                                 {{ /if }}
@@ -38,9 +44,15 @@
                                 bildkvot, så att t.ex. kvadratiska skärminspelningar inte
                                 beskärs av en bredare 4:3-ram. #}}
                             <div class="feature-block-media" style="aspect-ratio: {{ width }} / {{ height }};">
-                                <video class="feature-block-video" autoplay muted loop playsinline>
-                                    <source src="{{ url }}">
-                                </video>
+                                {{ if scroll_scrub }}
+                                    <video class="feature-block-video feature-block-video-scrub" muted playsinline preload="auto" data-scroll-scrub>
+                                        <source src="{{ url }}">
+                                    </video>
+                                {{ else }}
+                                    <video class="feature-block-video" autoplay muted loop playsinline>
+                                        <source src="{{ url }}">
+                                    </video>
+                                {{ /if }}
                             </div>
                         {{ /video_file }}
                     {{ elseif embed_code }}
@@ -84,3 +96,66 @@
     </div>
 
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const videos = document.querySelectorAll(".feature-block-video-scrub");
+
+        if (!videos.length) return;
+
+        videos.forEach((video) => {
+
+            video.pause();
+            video.removeAttribute("controls");
+
+            let ready = false;
+            let ticking = false;
+
+            // Hur stor andel av videons egen genomresa i viewporten
+            // (0 = precis synlig nedtill, 1 = precis försvunnen upptill)
+            // som ska motsvara hela klippet - efter det fryser den på
+            // sista bilden i stället för att fortsätta "ta slut" tidigt.
+            const SCRUB_END_AT = 0.7;
+
+            const updateFrame = () => {
+
+                ticking = false;
+
+                if (!ready || !video.duration) return;
+
+                const rect = video.getBoundingClientRect();
+                const vh = window.innerHeight;
+
+                const traveled = vh - rect.top;
+                const total = vh + rect.height;
+
+                const transitProgress = Math.min(Math.max(traveled / total, 0), 1);
+                const clipProgress = Math.min(transitProgress / SCRUB_END_AT, 1);
+
+                video.currentTime = clipProgress * video.duration;
+            };
+
+            const onScroll = () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateFrame);
+                    ticking = true;
+                }
+            };
+
+            video.addEventListener("loadedmetadata", () => {
+                ready = true;
+                updateFrame();
+            });
+
+            if (video.readyState >= 1) {
+                ready = true;
+                updateFrame();
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+
+        });
+
+    });
+</script>

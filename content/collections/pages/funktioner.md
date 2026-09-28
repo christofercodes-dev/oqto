@@ -29,6 +29,7 @@ feature_blocks:
       Vi höll med och nu kan du fylla på skattekontot automatiskt, helt utan att tänka på det!
     enabled: true
     image: web-anim-2.mp4
+    scroll_scrub: true
   - id: fB3c4d5e6f7g8h9i0j1k2
     type: bild
     title: 'Betala fakturor'
