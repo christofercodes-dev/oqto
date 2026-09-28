@@ -116,7 +116,10 @@
             // (0 = precis synlig nedtill, 1 = precis försvunnen upptill)
             // som ska motsvara hela klippet - efter det fryser den på
             // sista bilden i stället för att fortsätta "ta slut" tidigt.
-            const SCRUB_END_AT = 0.7;
+            // Högt värde = tar längre att spela klart och hinner stå
+            // stilla på sista bilden en stund innan blocket scrollat
+            // ur bild helt.
+            const SCRUB_END_AT = 0.92;
 
             const updateFrame = () => {
 

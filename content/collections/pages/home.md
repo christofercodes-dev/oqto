@@ -18,7 +18,7 @@ text_card_2: 'Få alltid uppdaterad ekonomisk data och tydliga rapporter – fö
 title_card_3: 'Allt i ett system'
 text_card_3: 'Koppla bank, lön och kvittohantering i ett skalbart och enkelt system, byrån har ett fast pris och kunderna väljer själva de funktioner som passar deras verksamhet och behov bäst.'
 small_title: 'Varför Oqto?'
-video_heading: 'Vi har sett vad som fungerar. Och vad om inte gör det.'
+video_heading: 'Vi har sett vad som fungerar. Och vad som inte gör det.'
 video_body: |-
   Så vi tog saken i egna händer och byggde det verktyg vi själva saknade.
 
