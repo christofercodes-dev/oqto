@@ -274,6 +274,19 @@
         max-width: 600px;
         margin: 0 auto;
     }
+
+    /* min-height finns bara för att jämna ut de tre kolumnernas höjd
+       i desktop-gridden - i en enkolumns-stapling skapar den bara
+       tomrum inuti varje kort, vilket gör det otydligt vad footer-
+       texten hör ihop med. */
+    .pricing-included-item-body {
+        min-height: 0;
+    }
+
+    .pricing-included-card-footer {
+        min-height: 0;
+        margin-top: 20px;
+    }
 }
 
 

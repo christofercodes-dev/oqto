@@ -17,7 +17,7 @@ title_card_2: 'Ekonomisk överblick'
 text_card_2: 'Få alltid uppdaterad ekonomisk data och tydliga rapporter – för byrån att ge bättre rådgivning samtidigt som kunden får full insyn och kan fatta snabbare, tryggare beslut.'
 title_card_3: 'Allt i ett system'
 text_card_3: 'Koppla bank, lön och kvittohantering i ett skalbart och enkelt system, byrån har ett fast pris och kunderna väljer själva de funktioner som passar deras verksamhet och behov bäst.'
-small_title: 'Varför Oqto?'
+small_title: 'Oqto på 3 minuter'
 video_heading: 'Vi har sett vad som fungerar. Och vad som inte gör det.'
 video_body: |-
   Så vi tog saken i egna händer och byggde det verktyg vi själva saknade.
