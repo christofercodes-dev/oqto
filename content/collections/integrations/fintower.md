@@ -22,4 +22,17 @@ avatar:
 sni_codes:
   - '69'
   - '70'
+company_employee_ranges:
+  - 10-49
+  - 50-249
+  - 250+
+company_revenue_ranges:
+  - 10-50
+  - 50-250
+  - 250+
+media:
+  - images/2d14d7c3-deec-43ee-acc3-086bffc6d135.png
+  - images/9bea49ba-2b52-464f-bed0-157cb57a72d1.png
+  - images/ee4991bb-9eef-4471-a9a3-f5697f139aac.png
+  - images/ad5fdafc-c099-41d3-bfed-730004fcbe8f.png
 ---

@@ -111,15 +111,17 @@ tabs:
                 - sni_codes
               display: SNI-koder
           -
-            handle: company_employee_range
+            handle: company_employee_ranges
             field:
-              type: text
+              type: list
               display: 'Antal anställda'
+              instructions: 'Vilka storleksintervall (antal anställda) integrationen passar för. Hanteras av den nattliga importen - redigera inte manuellt.'
           -
-            handle: company_revenue_range
+            handle: company_revenue_ranges
             field:
-              type: text
+              type: list
               display: Omsättning
+              instructions: 'Vilka omsättningsintervall integrationen passar för. Hanteras av den nattliga importen - redigera inte manuellt.'
       -
         display: Partner
         fields:

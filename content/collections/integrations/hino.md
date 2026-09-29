@@ -22,4 +22,6 @@ avatar:
   - images/8be3580e-115c-4f8a-9f92-6c1154a93648.png
 sni_codes:
   - '68'
+company_employee_ranges:
+  - 1-9
 ---

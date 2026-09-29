@@ -142,8 +142,15 @@ class IntegrationsImporter
         $entry->set('description', $this->trimmed($item['description'] ?? null));
         $entry->set('reasons', collect($item['reasons'] ?? [])->map(fn ($reason) => $this->trimmed($reason))->filter()->values()->all());
         $entry->set('developer_name', $this->trimmed($item['developerName'] ?? null));
-        $entry->set('company_employee_range', $this->trimmed($item['companyEmployeeRange'] ?? null));
-        $entry->set('company_revenue_range', $this->trimmed($item['companyRevenueRange'] ?? null));
+        // companyEmployeeRange/companyRevenueRange (singular) är kvarlevor
+        // från en äldre versionen av källan och saknas numera i de flesta
+        // poster - companyEmployeeRanges/companyRevenueRanges (plural) är
+        // de faktiska fälten och kan innehålla flera intervall per post.
+        // OBS: ett intervall kan vara den bokstavliga strängen "0", som
+        // annars filtreras bort av ett Collection::filter() utan callback
+        // (PHP ser "0" som falsy) - filtrerar därför explicit på null/"".
+        $entry->set('company_employee_ranges', $this->trimmedList($item['companyEmployeeRanges'] ?? []));
+        $entry->set('company_revenue_ranges', $this->trimmedList($item['companyRevenueRanges'] ?? []));
         $entry->set('partner_email', $this->trimmed($item['partnerEmail'] ?? null));
         $entry->set('partner_phone', $this->trimmed($item['partnerPhone'] ?? null));
         $entry->set('partner_website', $this->trimmed($item['partnerWebsite'] ?? null));
@@ -194,6 +201,19 @@ class IntegrationsImporter
         $trimmed = trim($value);
 
         return $trimmed === '' ? null : $trimmed;
+    }
+
+    /**
+     * @param  array<int, mixed>  $values
+     * @return array<int, string>
+     */
+    protected function trimmedList(array $values): array
+    {
+        return collect($values)
+            ->map(fn ($value) => is_string($value) ? trim($value) : $value)
+            ->filter(fn ($value) => $value !== null && $value !== '')
+            ->values()
+            ->all();
     }
 
     protected function parseDate(?string $value): ?string

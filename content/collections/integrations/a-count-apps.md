@@ -11,4 +11,10 @@ company_revenue_range: 10-50
 source_created_at: '2026-06-26 09:17'
 avatar:
   - images/03136d81-4a9d-46bd-af20-69483d510eca.png
+company_employee_ranges:
+  - 1-9
+company_revenue_ranges:
+  - 10-50
+partner_email: jonas.odklint@a-count.se
+partner_phone: '+46704242393'
 ---

@@ -106,6 +106,25 @@
                     </div>
                 {{ /if }}
 
+                {{ if company_employee_ranges || company_revenue_ranges }}
+                    <div class="integration-show-info-card integration-show-info-card-blue">
+                        <span class="integration-show-info-number">04</span>
+                        <span class="integration-show-info-label">Passar företag med</span>
+
+                        {{ if company_employee_ranges }}
+                            <p class="integration-show-info-price">
+                                {{ company_employee_ranges | join(', ') }} anställda
+                            </p>
+                        {{ /if }}
+
+                        {{ if company_revenue_ranges }}
+                            <p class="integration-show-info-price">
+                                {{ company_revenue_ranges | join(', ') }} i omsättning
+                            </p>
+                        {{ /if }}
+                    </div>
+                {{ /if }}
+
             </div>
 
         {{ /if }}

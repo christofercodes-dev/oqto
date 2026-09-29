@@ -229,6 +229,10 @@
     background: rgba(52, 209, 143, 0.14);
 }
 
+.integration-show-info-card-blue {
+    background: rgba(59, 130, 246, 0.12);
+}
+
 .integration-show-info-number {
     display: block;
 

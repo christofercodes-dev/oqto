@@ -3,7 +3,7 @@ id: 96ea8354-ebaa-48f6-a0f0-a8b0a7af3e7f
 blueprint: integration
 title: Blikk
 external_id: cd9f4a68-97b5-4336-9b8b-b8824811cca7
-short_description: 'Överför kunder, artiklar och fakturor till Oqto'
+short_description: 'Kunder, fakturor, artiklar, projekt, kostn.ställen'
 description: 'Integrationen hämtar automatiskt in kunder, kundfakturor, artiklar, bokföringsprojekt och kostnadsställen från Blikk till Oqto. Överföringen sker löpande i bakgrunden, utan manuell export och utan filhantering.'
 developer_name: Oqto
 source_created_at: '2026-05-25 06:56'

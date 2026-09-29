@@ -21,4 +21,8 @@ avatar:
   - images/dc849837-0b59-4c28-bd33-061e2fc85839.png
 sni_codes:
   - '56'
+company_employee_ranges:
+  - 10-49
+company_revenue_ranges:
+  - 10-50
 ---
