@@ -704,6 +704,32 @@
     transform: translateX(3px);
 }
 
+.job-form-submit:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.job-form-submit.is-loading .job-form-arrow {
+    display: inline-block;
+
+    width: 14px;
+    height: 14px;
+
+    color: transparent;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+
+    animation: job-form-spin 0.6s linear infinite;
+}
+
+@keyframes job-form-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 /* =========================================================
    NOTE

@@ -88,77 +88,81 @@
                 <p class="boka-demo-step-body">{{ boka_demo_alt2_body }}</p>
             {{ /if }}
 
-            {{ form:boka_demo }}
+            {{ form:boka_demo class="boka-demo-contact-form" }}
 
-                {{ if error }}
-                    <p class="boka-demo-error">{{ error }}</p>
-                {{ /if }}
+                <div data-role="alt2-form-body">
 
-                {{ if success }}
-
-                    <p class="boka-demo-success">Tack! Vi hör av oss inom kort.</p>
-
-                {{ else }}
-
-                    <div class="boka-demo-honeypot" aria-hidden="true">
-                        <label for="boka-demo-honeypot">Lämna detta fält tomt</label>
-                        <input type="text" id="boka-demo-honeypot" name="honeypot" tabindex="-1" autocomplete="off">
-                    </div>
-
-                    {{ if errors }}
-                        <ul class="boka-demo-errors">
-                            {{ errors }}
-                                <li>{{ value }}</li>
-                            {{ /errors }}
-                        </ul>
+                    {{ if error }}
+                        <p class="boka-demo-error">{{ error }}</p>
                     {{ /if }}
 
-                    <input type="hidden" name="org_number" data-role="alt2-org-number">
+                    {{ if success }}
 
-                    <div class="boka-demo-form-row">
+                        <p class="boka-demo-success">Tack! Vi hör av oss inom kort.</p>
 
-                        <div class="boka-demo-field">
-                            <label for="alt2_first_name">Förnamn</label>
-                            <input type="text" id="alt2_first_name" name="first_name" placeholder="Förnamn" required>
+                    {{ else }}
+
+                        <div class="boka-demo-honeypot" aria-hidden="true">
+                            <label for="boka-demo-honeypot">Lämna detta fält tomt</label>
+                            <input type="text" id="boka-demo-honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        {{ if errors }}
+                            <ul class="boka-demo-errors" data-role="alt2-errors">
+                                {{ errors }}
+                                    <li>{{ value }}</li>
+                                {{ /errors }}
+                            </ul>
+                        {{ /if }}
+
+                        <input type="hidden" name="org_number" data-role="alt2-org-number">
+
+                        <div class="boka-demo-form-row">
+
+                            <div class="boka-demo-field">
+                                <label for="alt2_first_name">Förnamn</label>
+                                <input type="text" id="alt2_first_name" name="first_name" placeholder="Förnamn" required>
+                            </div>
+
+                            <div class="boka-demo-field">
+                                <label for="alt2_last_name">Efternamn</label>
+                                <input type="text" id="alt2_last_name" name="last_name" placeholder="Efternamn" required>
+                            </div>
+
+                        </div>
+
+                        <div class="boka-demo-form-row">
+
+                            <div class="boka-demo-field">
+                                <label for="alt2_email">E-post</label>
+                                <input type="email" id="alt2_email" name="email" placeholder="din@email.se" required>
+                            </div>
+
+                            <div class="boka-demo-field">
+                                <label for="alt2_phone">Telefon</label>
+                                <input type="tel" id="alt2_phone" name="phone" placeholder="Telefonnummer">
+                            </div>
+
                         </div>
 
                         <div class="boka-demo-field">
-                            <label for="alt2_last_name">Efternamn</label>
-                            <input type="text" id="alt2_last_name" name="last_name" placeholder="Efternamn" required>
-                        </div>
-
-                    </div>
-
-                    <div class="boka-demo-form-row">
-
-                        <div class="boka-demo-field">
-                            <label for="alt2_email">E-post</label>
-                            <input type="email" id="alt2_email" name="email" placeholder="din@email.se" required>
+                            <label for="alt2_company">Företag</label>
+                            <input type="text" id="alt2_company" name="company" placeholder="Företagsnamn" data-role="alt2-company-name">
                         </div>
 
                         <div class="boka-demo-field">
-                            <label for="alt2_phone">Telefon</label>
-                            <input type="tel" id="alt2_phone" name="phone" placeholder="Telefonnummer">
+                            <label for="alt2_message">Meddelande</label>
+                            <textarea id="alt2_message" name="message" rows="4" placeholder="Berätta gärna lite om vad ni behöver hjälp med..."></textarea>
                         </div>
 
-                    </div>
+                        <button type="submit" class="boka-demo-btn">
+                            <span>Skicka</span>
+                            <span class="boka-demo-btn-arrow" aria-hidden="true">→</span>
+                        </button>
 
-                    <div class="boka-demo-field">
-                        <label for="alt2_company">Företag</label>
-                        <input type="text" id="alt2_company" name="company" placeholder="Företagsnamn" data-role="alt2-company-name">
-                    </div>
+                    {{ /if }}
 
-                    <div class="boka-demo-field">
-                        <label for="alt2_message">Meddelande</label>
-                        <textarea id="alt2_message" name="message" rows="4" placeholder="Berätta gärna lite om vad ni behöver hjälp med..."></textarea>
-                    </div>
-
-                    <button type="submit" class="boka-demo-btn">
-                        <span>Skicka</span>
-                        <span class="boka-demo-btn-arrow" aria-hidden="true">→</span>
-                    </button>
-
-                {{ /if }}
+                </div>
 
             {{ /form:boka_demo }}
 

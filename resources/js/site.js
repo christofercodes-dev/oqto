@@ -418,6 +418,119 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
         }
+
+        const contactForm =
+            bokaDemoSection.querySelector('.boka-demo-contact-form');
+
+        if (contactForm) {
+
+            contactForm.addEventListener('submit', async (event) => {
+
+                event.preventDefault();
+
+                const submitButton =
+                    contactForm.querySelector('.boka-demo-btn');
+
+                const formBody =
+                    contactForm.querySelector('[data-role="alt2-form-body"]');
+
+                const existingErrors =
+                    contactForm.querySelector('[data-role="alt2-errors"]');
+
+                if (existingErrors) {
+                    existingErrors.remove();
+                }
+
+                submitButton.disabled = true;
+                submitButton.classList.add('is-loading');
+
+                const showErrors = (messages) => {
+
+                    const list = document.createElement('ul');
+                    list.className = 'boka-demo-errors';
+                    list.dataset.role = 'alt2-errors';
+
+                    messages.forEach((message) => {
+                        const item = document.createElement('li');
+                        item.textContent = message;
+                        list.appendChild(item);
+                    });
+
+                    formBody.prepend(list);
+                };
+
+                try {
+
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: new FormData(contactForm),
+                        headers: { Accept: 'application/json' },
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        showErrors(
+                            data.error
+                                ? Object.values(data.error)
+                                : ['Något gick fel. Försök igen.']
+                        );
+
+                        return;
+                    }
+
+                    // Byter ut fälten mot samma success-markup som
+                    // Statamics form-tagg själv hade renderat vid en
+                    // vanlig sidladdning - så wizard-steget (som JS
+                    // redan navigerat till) inte nollställs av en
+                    // full omladdning.
+                    formBody.innerHTML = '<p class="boka-demo-success">Tack! Vi hör av oss inom kort.</p>';
+
+                } catch (err) {
+
+                    showErrors(['Något gick fel. Försök igen.']);
+
+                } finally {
+
+                    if (contactForm.contains(submitButton)) {
+                        submitButton.disabled = false;
+                        submitButton.classList.remove('is-loading');
+                    }
+
+                }
+
+            });
+
+        }
+    }
+
+
+    /* ==================================================
+       JOBBANSÖKAN — LADDNINGSFEEDBACK
+       ================================================== */
+
+    const jobApplicationForm =
+        document.querySelector('.job-application-form');
+
+    if (jobApplicationForm) {
+
+        jobApplicationForm.addEventListener('submit', () => {
+
+            const submitButton =
+                jobApplicationForm.querySelector('.job-form-submit');
+
+            if (!submitButton) {
+                return;
+            }
+
+            // Vanligt formulärskick (inte AJAX) - sidan navigerar bort
+            // strax efter, men knappen ska ändå visa att den tryckts
+            // in medan svaret väntas in.
+            submitButton.disabled = true;
+            submitButton.classList.add('is-loading');
+
+        });
+
     }
 
 
