@@ -26,15 +26,15 @@ class SendFormSubmissionToZapier
             return;
         }
 
-        $payload = array_merge(
-            [
-                'form' => $handle,
-                'submitted_at' => $event->submission->date()->toIso8601String(),
-            ],
-            $event->submission->data()->all()
-        );
-
         try {
+            $payload = array_merge(
+                [
+                    'form' => $handle,
+                    'submitted_at' => $event->submission->date()->toIso8601String(),
+                ],
+                $event->submission->data()->all()
+            );
+
             Http::timeout(10)->post($webhookUrl, $payload)->throw();
         } catch (Throwable $e) {
             Log::warning("Kunde inte skicka \"{$handle}\"-inskick till Zapier: ".$e->getMessage());
