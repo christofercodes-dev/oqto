@@ -221,7 +221,9 @@
 
                 <div class="integration-show-gallery">
                     {{ media }}
-                        <img src="{{ id | signed_url }}" alt="{{ title }}">
+                        <button type="button" class="integration-show-gallery-item" data-lightbox-trigger data-lightbox-src="{{ id | signed_url }}">
+                            <img src="{{ id | signed_url }}" alt="{{ title }}">
+                        </button>
                     {{ /media }}
                 </div>
 
@@ -231,4 +233,50 @@
 
     </div>
 
+    <div class="integration-lightbox" data-lightbox>
+        <button type="button" class="integration-lightbox-close" data-lightbox-close aria-label="Stäng">&times;</button>
+        <img class="integration-lightbox-image" src="" alt="">
+    </div>
+
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const lightbox = document.querySelector("[data-lightbox]");
+
+        if (!lightbox) return;
+
+        const lightboxImage = lightbox.querySelector(".integration-lightbox-image");
+
+        const openLightbox = (src, alt) => {
+            lightboxImage.src = src;
+            lightboxImage.alt = alt;
+            lightbox.classList.add("is-active");
+            document.body.classList.add("integration-lightbox-open");
+        };
+
+        const closeLightbox = () => {
+            lightbox.classList.remove("is-active");
+            document.body.classList.remove("integration-lightbox-open");
+            lightboxImage.src = "";
+        };
+
+        document.querySelectorAll("[data-lightbox-trigger]").forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+                openLightbox(trigger.dataset.lightboxSrc, trigger.querySelector("img")?.alt ?? "");
+            });
+        });
+
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox || event.target.closest("[data-lightbox-close]")) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeLightbox();
+        });
+
+    });
+</script>
