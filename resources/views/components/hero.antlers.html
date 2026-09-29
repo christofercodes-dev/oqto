@@ -13,13 +13,6 @@
           <p class="hero-text">
             {{ content | nl2br }}
           </p>
-
-          <img
-            class="hero-coins"
-            src="/images/hero/coins.svg"
-            alt=""
-            aria-hidden="true"
-          >
         </div>
 
         <div class="hero-right">
@@ -122,7 +115,6 @@
       const PARALLAX_ITEMS = [
         { el: heroSection.querySelector(".hero-screenshot-dashboard"), factor: 0.05, maxOffset: 20 },
         { el: heroSection.querySelector(".hero-screenshot-phone"), factor: 0.12, maxOffset: Infinity },
-        { el: heroSection.querySelector(".hero-coins"), factor: 0.2, maxOffset: Infinity },
       ].filter((item) => item.el);
 
       if (!wordSwap && PARALLAX_ITEMS.length === 0) return;

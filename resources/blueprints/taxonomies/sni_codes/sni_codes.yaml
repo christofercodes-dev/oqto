@@ -9,9 +9,17 @@ tabs:
             handle: title
             field:
               type: text
+              display: Kod
+              instructions: 'SNI-koden, t.ex. "69". Hanteras av den nattliga importen - redigera inte manuellt.'
               required: true
               validate:
                 - required
+          -
+            handle: description
+            field:
+              type: text
+              display: Beskrivning
+              instructions: 'Klartextnamnet för koden, t.ex. "Juridisk och ekonomisk konsultverksamhet". Visas i stället för koden på integrationssidorna. Hanteras av den nattliga importen.'
   sidebar:
     display: Sidebar
     sections:

@@ -81,13 +81,6 @@
     color: #2E251F;
   }
 
-  .hero-coins {
-    width: 110px;
-    height: auto;
-    margin-top: 12px;
-    filter: blur(3px);
-    transform: translateY(calc(var(--parallax-y, 0) * 1px));
-  }
 
 
   /* ==================================================

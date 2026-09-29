@@ -160,13 +160,14 @@ class IntegrationsImporter
         $entry->set('media', array_values(array_filter($item['mediaImageKeys'] ?? [])));
 
         // Källdatan representerar varje SNI-kod som ett objekt
-        // {"code": "...", "name": "..."} - inte en ren sträng. Vi bryr oss
-        // bara om koden, för att matcha hur befintliga sni_codes-termer
-        // redan är namngivna (title = koden, t.ex. "69").
+        // {"code": "...", "name": "..."} - koden blir termens titel (för
+        // att matcha hur befintliga sni_codes-termer redan är namngivna,
+        // t.ex. "69"), och namnet sparas som "description" så klartexten
+        // kan visas i stället för koden på integrationssidorna.
         $sniCodes = collect($item['sniCodes'] ?? [])
-            ->map(fn ($code) => is_array($code) ? ($code['code'] ?? null) : $code)
-            ->filter()
-            ->map(fn (string $code) => $this->firstOrCreateTerm('sni_codes', $code))
+            ->map(fn ($code) => is_array($code) ? $code : ['code' => $code, 'name' => null])
+            ->filter(fn ($code) => filled($code['code'] ?? null))
+            ->map(fn (array $code) => $this->firstOrCreateTerm('sni_codes', $code['code'], $code['name'] ?? null))
             ->values()
             ->all();
 
@@ -208,7 +209,7 @@ class IntegrationsImporter
         }
     }
 
-    protected function firstOrCreateTerm(string $taxonomy, string $value): string
+    protected function firstOrCreateTerm(string $taxonomy, string $value, ?string $description = null): string
     {
         $slug = Str::slug($value);
 
@@ -217,11 +218,26 @@ class IntegrationsImporter
             ->where('slug', $slug)
             ->first();
 
-        if (! $term) {
+        $isNew = ! $term;
+
+        if ($isNew) {
             $term = Term::make()
                 ->taxonomy($taxonomy)
                 ->slug($slug)
                 ->data(['title' => $value]);
+        }
+
+        $description = $this->trimmed($description);
+
+        // Sparar bara om det är en ny term eller beskrivningen faktiskt
+        // ändrats - undviker onödiga skrivningar varje natt när inget
+        // nytt tillkommit, men läker ändå igen äldre termer som saknar
+        // beskrivning så fort källan väl skickar en.
+        if ($isNew || ($description && $term->get('description') !== $description)) {
+
+            if ($description) {
+                $term->set('description', $description);
+            }
 
             $term->save();
         }
