@@ -3,9 +3,9 @@ id: f24a574d-4bd1-4a87-929b-e94103abb590
 blueprint: open_position
 title: 'Är du något helt annat – men ändå rätt?'
 locations:
-  - 2
-  - 4
-  - 5
+  - Kristianstad
+  - Stockholm
+  - Växjö
 employment_type: Heltid
 job_experiences:
   - junior-senior

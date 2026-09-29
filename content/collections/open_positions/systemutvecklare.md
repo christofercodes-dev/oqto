@@ -3,9 +3,9 @@ id: cfa6e150-9d54-4e82-aeea-2eda213ff712
 blueprint: open_position
 title: Systemutvecklare
 locations:
-  - 2
-  - 5
-  - 4
+  - Kristianstad
+  - Växjö
+  - Stockholm
 employment_type: Heltid
 job_experiences:
   - programmering

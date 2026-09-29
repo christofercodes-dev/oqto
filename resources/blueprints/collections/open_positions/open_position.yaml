@@ -20,20 +20,13 @@ tabs:
               instructions: 'Visas under titeln tillsammans med anställningsform, t.ex. "Kristianstad / Växjö / Stockholm".'
               multiple: true
               options:
-                - key: 1
-                  value: Göteborg
-                - key: 2
-                  value: Kristianstad
-                - key: 3
-                  value: Malmö
-                - key: 4
-                  value: Stockholm
-                - key: 5
-                  value: Växjö
-                - key: 6
-                  value: Distans
-                - key: 7
-                  value: Hybrid
+                - Göteborg
+                - Kristianstad
+                - Malmö
+                - Stockholm
+                - Växjö
+                - Distans
+                - Hybrid
           -
             handle: employment_type
             field:
