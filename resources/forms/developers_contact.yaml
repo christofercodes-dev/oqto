@@ -1,3 +1,8 @@
 title: 'Utvecklarkontakt'
 honeypot: honeypot
 store: true
+email:
+  -
+    to: api@oqto.se
+    from: '{{ name }} <{{ email }}>'
+    subject: 'Ny utvecklarkontakt från {{ name }}'

@@ -1,4 +1,7 @@
 .faq-hero-section {
+    position: relative;
+    overflow: hidden;
+
     width: 100%;
     min-height: 620px;
     box-sizing: border-box;
@@ -230,9 +233,10 @@
 
     .faq-eyes {
         right: -8%;
-        top: 58%;
+        top: auto;
+        bottom: 40px;
 
-        transform: translateY(-50%);
+        transform: none;
 
         opacity: 0.9;
     }
@@ -257,11 +261,15 @@
 @media (max-width: 767px) {
 
     .faq-hero-section {
-        min-height: 340px;
+        min-height: 0;
 
-        padding: 120px 18px 70px;
+        padding: 120px 18px 150px;
 
         align-items: flex-start;
+    }
+
+    .faq-eyes {
+        bottom: 24px;
     }
 
     .faq-hero-container {
@@ -331,9 +339,9 @@
 @media (max-width: 380px) {
 
     .faq-hero-section {
-        min-height: 500px;
+        min-height: 0;
 
-        padding: 110px 16px 60px;
+        padding: 110px 16px 140px;
     }
 
     .faq-hero-content {
@@ -351,7 +359,7 @@
 
     .faq-eyes {
         right: -15px;
-        bottom: -25px;
+        bottom: 24px;
     }
 
     .faq-eye {

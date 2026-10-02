@@ -5,7 +5,7 @@
    .pricing-plans-section {
     width: 100%;
     background-color: #ffffff;
-    padding: 100px 40px 100px;
+    padding: 100px 40px 32px;
     box-sizing: border-box;
     color: #2E251F;
 }
@@ -195,7 +195,7 @@
 @media (max-width: 960px) {
 
     .pricing-plans-section {
-        padding: 20px 24px 70px;
+        padding: 20px 24px 24px;
     }
 
     .pricing-card-badge {

@@ -214,7 +214,28 @@
     }
 
     .review-slide {
-        padding: 40px 24px 100px 24px;
+        padding: 36px 24px 100px 24px;
+
+        align-items: flex-start;
+    }
+
+    .reviews-card-content {
+        gap: 24px;
+    }
+
+    .reviews-quote {
+        font-size: clamp(1.2rem, 4.6vw, 1.6rem);
+        line-height: 1.35;
+    }
+
+    .reviews-author {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .author-title::before {
+        content: none;
     }
 
 }

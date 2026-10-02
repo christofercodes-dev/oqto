@@ -309,38 +309,51 @@ button.pricing-comparison-cell-label:hover .pricing-comparison-expand-icon {
 @media (max-width: 900px) {
 
     .pricing-comparison-section {
-        padding: 30px 24px 70px;
+        padding: 30px 20px 70px;
+    }
+
+    .pricing-comparison-container {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .pricing-comparison-header {
         margin-bottom: 36px;
     }
 
+    /* Varje rad är ett eget grid - fr-kolumner får aldrig bli smalare än
+       innehållets minsta bredd, så långa ord flyttade kolumnerna olika
+       i varje rad. Fast bredd på plan-kolumnerna håller dem i linje. */
     .pricing-comparison-row,
     .pricing-comparison-row-head {
-        grid-template-columns: 1.6fr repeat(3, 1fr);
+        grid-template-columns: minmax(0, 1fr) repeat(3, 74px);
     }
 
     .pricing-comparison-cell {
-        padding: 12px 6px;
+        padding: 12px 2px;
 
         font-size: 0.78rem;
     }
 
     .pricing-comparison-cell-label {
-        font-size: 0.82rem;
+        padding-right: 4px;
+
+        font-size: 0.76rem;
+
+        overflow-wrap: break-word;
     }
 
     .pricing-comparison-plan-head {
-        padding: 0 6px 16px;
+        padding: 0 2px 16px;
     }
 
     .pricing-comparison-plan-title {
-        font-size: 0.78rem;
+        font-size: 0.62rem;
+        letter-spacing: -0.02em;
     }
 
     .pricing-comparison-plan-price {
-        font-size: 0.66rem;
+        font-size: 0.62rem;
     }
 
     .pricing-comparison-category-row {
@@ -352,5 +365,17 @@ button.pricing-comparison-cell-label:hover .pricing-comparison-expand-icon {
     .pricing-comparison-detail {
         margin: 6px 0 16px;
         padding: 14px 16px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .pricing-comparison-row,
+    .pricing-comparison-row-head {
+        grid-template-columns: minmax(0, 1fr) repeat(3, 66px);
+    }
+
+    .pricing-comparison-plan-title {
+        font-size: 0.56rem;
     }
 }

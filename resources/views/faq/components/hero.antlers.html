@@ -43,7 +43,49 @@
         const eyes = document.querySelectorAll(".faq-eye");
     
         if (!eyes.length) return;
-    
+
+        // Touch-enheter saknar cursor - där tittar pupillerna i
+        // scrollriktningen i stället (neråt vid scroll ned, uppåt vid
+        // scroll upp) och glider tillbaka till mitten när det stannar.
+        if (window.matchMedia("(hover: none)").matches) {
+
+            const pupils = document.querySelectorAll(".faq-pupil");
+
+            const MAX_TRAVEL = 22;
+            const IDLE_MS = 350;
+
+            let lastScrollY = window.scrollY;
+            let idleTimer = null;
+
+            pupils.forEach((pupil) => {
+                pupil.style.transition = "transform 0.3s ease-out";
+            });
+
+            const lookAt = (y) => {
+                pupils.forEach((pupil) => {
+                    pupil.style.transform =
+                        `translate(-50%, calc(-50% + ${y}px))`;
+                });
+            };
+
+            window.addEventListener("scroll", () => {
+
+                const delta = window.scrollY - lastScrollY;
+
+                lastScrollY = window.scrollY;
+
+                if (Math.abs(delta) < 2) return;
+
+                lookAt(delta > 0 ? MAX_TRAVEL : -MAX_TRAVEL);
+
+                clearTimeout(idleTimer);
+                idleTimer = setTimeout(() => lookAt(0), IDLE_MS);
+
+            }, { passive: true });
+
+            return;
+        }
+
         document.addEventListener("mousemove", (event) => {
     
             eyes.forEach((eye) => {
