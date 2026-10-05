@@ -53,7 +53,12 @@ class IntegrationsImporter
     protected array $errors = [];
 
     /**
-     * @return array{summary: array<string, int>, errors: array<int, string>}
+     * @var array<int, string>
+     */
+    protected array $createdTitles = [];
+
+    /**
+     * @return array{summary: array<string, int>, errors: array<int, string>, created_titles: array<int, string>}
      */
     public function run(string $jsonPath): array
     {
@@ -63,6 +68,7 @@ class IntegrationsImporter
             return [
                 'summary' => $this->summary,
                 'errors' => ['Ingen ny export sedan senaste körningen (generatedAt oförändrat) - hoppar över.'],
+                'created_titles' => [],
             ];
         }
 
@@ -102,6 +108,7 @@ class IntegrationsImporter
         return [
             'summary' => $this->summary,
             'errors' => $this->errors,
+            'created_titles' => $this->createdTitles,
         ];
     }
 
@@ -184,6 +191,10 @@ class IntegrationsImporter
         $entry->save();
 
         $this->summary[$isNew ? 'created' : 'updated']++;
+
+        if ($isNew) {
+            $this->createdTitles[] = (string) $entry->get('title');
+        }
     }
 
     /**

@@ -42,6 +42,13 @@ class ImportIntegrations extends Command
         $this->info($message);
         Log::info('Integrations-import: '.$message);
 
+        if ($result['created_titles'] !== []) {
+            $created = 'Nya integrationer: '.implode(', ', $result['created_titles']);
+
+            $this->info($created);
+            Log::info('Integrations-import: '.$created);
+        }
+
         foreach ($result['errors'] as $error) {
             $this->warn($error);
             Log::warning('Integrations-import: '.$error);
