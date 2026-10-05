@@ -39,17 +39,61 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-    
+
         const eyes = document.querySelectorAll(".faq-eye");
-    
+
         if (!eyes.length) return;
 
-        // Touch-enheter saknar cursor - där tittar pupillerna i
-        // scrollriktningen i stället (neråt vid scroll ned, uppåt vid
-        // scroll upp) och glider tillbaka till mitten när det stannar.
-        if (window.matchMedia("(hover: none)").matches) {
+        const pupils = document.querySelectorAll(".faq-pupil");
 
-            const pupils = document.querySelectorAll(".faq-pupil");
+        // Riktig mus: pupillerna följer muspekaren. Så fort en mus rört
+        // sig har den företräde, även på hybridenheter.
+        let mouseInUse = false;
+
+        document.addEventListener("pointermove", (event) => {
+
+            if (event.pointerType !== "mouse") return;
+
+            mouseInUse = true;
+
+            eyes.forEach((eye) => {
+
+                const pupil = eye.querySelector(".faq-pupil");
+
+                pupil.style.transition = "";
+
+                const rect = eye.getBoundingClientRect();
+
+                const eyeCenterX = rect.left + rect.width / 2;
+                const eyeCenterY = rect.top + rect.height / 2;
+
+                const angle = Math.atan2(
+                    event.clientY - eyeCenterY,
+                    event.clientX - eyeCenterX
+                );
+
+                const distance = Math.min(
+                    35,
+                    Math.hypot(
+                        event.clientX - eyeCenterX,
+                        event.clientY - eyeCenterY
+                    ) / 5
+                );
+
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+
+                pupil.style.transform =
+                    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+
+            });
+
+        });
+
+        // Ren touch-enhet utan cursor: pupillerna tittar i scrollriktningen
+        // (neråt vid scroll ned, uppåt vid scroll upp) och glider tillbaka
+        // till mitten när det stannar.
+        if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
 
             const MAX_TRAVEL = 22;
             const IDLE_MS = 350;
@@ -57,12 +101,9 @@
             let lastScrollY = window.scrollY;
             let idleTimer = null;
 
-            pupils.forEach((pupil) => {
-                pupil.style.transition = "transform 0.3s ease-out";
-            });
-
             const lookAt = (y) => {
                 pupils.forEach((pupil) => {
+                    pupil.style.transition = "transform 0.3s ease-out";
                     pupil.style.transform =
                         `translate(-50%, calc(-50% + ${y}px))`;
                 });
@@ -74,7 +115,7 @@
 
                 lastScrollY = window.scrollY;
 
-                if (Math.abs(delta) < 2) return;
+                if (mouseInUse || Math.abs(delta) < 2) return;
 
                 lookAt(delta > 0 ? MAX_TRAVEL : -MAX_TRAVEL);
 
@@ -83,42 +124,7 @@
 
             }, { passive: true });
 
-            return;
         }
 
-        document.addEventListener("mousemove", (event) => {
-    
-            eyes.forEach((eye) => {
-    
-                const pupil = eye.querySelector(".faq-pupil");
-    
-                const rect = eye.getBoundingClientRect();
-    
-                const eyeCenterX = rect.left + rect.width / 2;
-                const eyeCenterY = rect.top + rect.height / 2;
-    
-                const angle = Math.atan2(
-                    event.clientY - eyeCenterY,
-                    event.clientX - eyeCenterX
-                );
-    
-                const distance = Math.min(
-                    35,
-                    Math.hypot(
-                        event.clientX - eyeCenterX,
-                        event.clientY - eyeCenterY
-                    ) / 5
-                );
-    
-                const x = Math.cos(angle) * distance;
-                const y = Math.sin(angle) * distance;
-    
-                pupil.style.transform =
-                    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-    
-            });
-    
-        });
-    
     });
-    </script>
+</script>
