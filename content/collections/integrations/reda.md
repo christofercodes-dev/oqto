@@ -20,4 +20,10 @@ updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
 updated_at: 1789495160
 media:
   - images/d5e6ef27-62e7-428c-a7b9-6a4873362fe0.png
+company_employee_ranges:
+  - 50-249
+  - 10-49
+  - 1-9
+sni_codes:
+  - branschoberoende
 ---
