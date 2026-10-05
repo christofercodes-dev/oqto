@@ -231,7 +231,14 @@ class IntegrationsImporter
 
     protected function firstOrCreateTerm(string $taxonomy, string $value, ?string $description = null): string
     {
-        $slug = Str::slug($value);
+        // Vissa koder går inte att göra till en slug (t.ex. "*" =
+        // "Branschoberoende") - en tom slug ger en term utan id som kraschar
+        // Stache, så då används beskrivningen i stället.
+        $slug = Str::slug($value) ?: Str::slug((string) $description);
+
+        if ($slug === '') {
+            throw new RuntimeException("Kan inte skapa term i \"{$taxonomy}\" för värdet \"{$value}\" - tom slug.");
+        }
 
         $term = Term::query()
             ->where('taxonomy', $taxonomy)
