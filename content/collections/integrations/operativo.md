@@ -18,11 +18,13 @@ partner_website: 'https://operativo.se'
 partner_about: 'Operativo är ett svenskt personalsystem för restauranger, hotel, och caféer. Schema, tidrapportering, stämpelterminal, lön, semester och bordsbokning på ett och samma ställe, med svenska kollektivavtal och lagkrav inbyggda.'
 source_created_at: '2026-09-09 13:40'
 avatar:
-  - images/dc849837-0b59-4c28-bd33-061e2fc85839.png
+  - images/400ae1cd-b0f2-456a-bb4f-d1a0d347d85f.png
 sni_codes:
   - '56'
 company_employee_ranges:
   - 10-49
 company_revenue_ranges:
   - 10-50
+partner_email: a.malesija@operativo.se
+partner_phone: '0764350424'
 ---
