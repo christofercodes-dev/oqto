@@ -6,3 +6,5 @@ preferences:
   collections:
     integrations:
       view: list
+    reviews:
+      view: list
