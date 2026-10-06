@@ -3,6 +3,47 @@
     <head>
         <meta charset="utf-8">
         {{ cookie_consent:defaults }}
+        <script>
+            // Cookie-addonet (v1.3.1) skickar sitt consent-update som en vanlig
+            // array, vilket GTM/gtag ignorerar - Googles samtyckesstatus
+            // stannar då på "denied" trots godkännande. gtag kräver ett
+            // arguments-objekt, så uppdateringen skickas om här på rätt sätt,
+            // både för återvändande besökare (före GTM laddas) och vid nya val.
+            (function () {
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+
+                var signalsByGroup = {
+                    necessary: ['security_storage'],
+                    analytics: ['analytics_storage'],
+                    marketing: ['ad_storage', 'ad_user_data', 'ad_personalization']
+                };
+
+                function update(groups) {
+                    var signals = {};
+
+                    Object.keys(signalsByGroup).forEach(function (group) {
+                        signalsByGroup[group].forEach(function (key) {
+                            signals[key] = groups.indexOf(group) !== -1 ? 'granted' : 'denied';
+                        });
+                    });
+
+                    gtag('consent', 'update', signals);
+                }
+
+                try {
+                    var stored = JSON.parse(localStorage.getItem('cookie_consent'));
+
+                    if (stored && stored.version === {{ config:cookie-consent:version }} && Array.isArray(stored.groups)) {
+                        update(stored.groups);
+                    }
+                } catch (e) {}
+
+                window.addEventListener('cookieconsent:change', function (event) {
+                    update(event.detail.groups);
+                });
+            })();
+        </script>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
