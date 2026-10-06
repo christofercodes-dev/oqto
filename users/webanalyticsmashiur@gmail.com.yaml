@@ -2,3 +2,7 @@ name: Mashiur
 super: true
 id: 3ebe6103-b870-47a4-9472-658f4d0ed270
 password_hash: $2y$12$VmamaugOYAeoA1M823xTzediFZD7IGEsznhZ7hLEkKvGSsUgyosY2
+preferences:
+  collections:
+    integrations:
+      view: list
