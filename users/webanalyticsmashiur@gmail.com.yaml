@@ -12,3 +12,5 @@ preferences:
       view: list
     pages:
       view: tree
+    team:
+      view: list
