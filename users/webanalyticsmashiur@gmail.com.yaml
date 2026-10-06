@@ -10,3 +10,5 @@ preferences:
       view: list
     open_positions:
       view: list
+    pages:
+      view: tree
