@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "138b1b5198042f8dbd2392b984410288",
+    "content-hash": "ab11b22f689d0964dc4e29e5652f820f",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -950,6 +950,60 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
+        },
+        {
+            "name": "estouai/cookie-consent",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/estou-ai/cookie-consent.git",
+                "reference": "c99fd4c7f55dee1b39ae3da0a365094518b8b441"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/estou-ai/cookie-consent/zipball/c99fd4c7f55dee1b39ae3da0a365094518b8b441",
+                "reference": "c99fd4c7f55dee1b39ae3da0a365094518b8b441",
+                "shasum": ""
+            },
+            "require": {
+                "statamic/cms": "^6.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.32",
+                "orchestra/testbench": "^10.8",
+                "pestphp/pest": "^4.7",
+                "pestphp/pest-plugin-laravel": "^4.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Estouai\\CookieConsent\\ServiceProvider"
+                    ]
+                },
+                "statamic": {
+                    "name": "Cookie Consent",
+                    "editions": [
+                        "free",
+                        "pro"
+                    ],
+                    "description": "RGPD/GDPR-first cookie consent banner with consent logging, content gating, and Consent Mode integration"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Estouai\\CookieConsent\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "support": {
+                "issues": "https://github.com/estou-ai/cookie-consent/issues",
+                "source": "https://github.com/estou-ai/cookie-consent/tree/v1.3.1"
+            },
+            "time": "2026-09-14T15:50:00+00:00"
         },
         {
             "name": "fruitcake/php-cors",

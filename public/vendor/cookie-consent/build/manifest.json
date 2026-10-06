@@ -1,0 +1,14 @@
+{
+  "resources/js/addon.js": {
+    "file": "assets/addon-B1Dn9aDq.js",
+    "name": "addon",
+    "src": "resources/js/addon.js",
+    "isEntry": true
+  },
+  "resources/js/cp.js": {
+    "file": "assets/cp-S2i_KmTE.js",
+    "name": "cp",
+    "src": "resources/js/cp.js",
+    "isEntry": true
+  }
+}
