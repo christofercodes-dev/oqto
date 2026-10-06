@@ -4,5 +4,5 @@ store: true
 email:
   -
     to: api@oqto.se
-    from: '{{ name }} <{{ email }}>'
+    reply_to: '{{ name }} <{{ email }}>'
     subject: 'Ny utvecklarkontakt från {{ name }}'

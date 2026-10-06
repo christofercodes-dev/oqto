@@ -1,6 +1,168 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==================================================
+       KONVERTERINGSSPÅRNING (GTM dataLayer)
+       ================================================== */
+
+    const sha256 = async (value) => {
+
+        if (!value || !window.crypto?.subtle) {
+            return undefined;
+        }
+
+        const digest = await window.crypto.subtle.digest(
+            'SHA-256',
+            new TextEncoder().encode(value)
+        );
+
+        return [...new Uint8Array(digest)]
+            .map((byte) => byte.toString(16).padStart(2, '0'))
+            .join('');
+    };
+
+    // E.164 (t.ex. +46701234567) - annars matchar inte hasharna hos
+    // annonsplattformarna.
+    const normalizePhone = (value) => {
+
+        const cleaned = String(value || '').replace(/[^\d+]/g, '');
+
+        if (!cleaned) {
+            return '';
+        }
+
+        if (cleaned.startsWith('+')) {
+            return `+${cleaned.slice(1).replace(/\D/g, '')}`;
+        }
+
+        if (cleaned.startsWith('00')) {
+            return `+${cleaned.slice(2)}`;
+        }
+
+        if (cleaned.startsWith('0')) {
+            return `+46${cleaned.slice(1)}`;
+        }
+
+        return cleaned.startsWith('46') ? `+${cleaned}` : `+46${cleaned}`;
+    };
+
+    const hasMarketingConsent = () => {
+
+        try {
+            const stored = JSON.parse(localStorage.getItem('cookie_consent'));
+
+            return Array.isArray(stored?.groups)
+                && stored.groups.includes('marketing');
+        } catch (e) {
+            return false;
+        }
+    };
+
+    // Skickar ett event till GTM. Personuppgifter (hashade med SHA-256)
+    // följer bara med om besökaren godkänt marknadsföringscookies.
+    const trackFormSuccess = async (eventName, formName, fields = null) => {
+
+        const payload = { event: eventName, form_name: formName };
+
+        if (fields && hasMarketingConsent()) {
+
+            let { firstName, lastName } = fields;
+
+            if (!firstName && fields.name) {
+                const [first, ...rest] = fields.name.trim().split(/\s+/);
+
+                firstName = first;
+                lastName = rest.join(' ');
+            }
+
+            const entries = {
+                email: (fields.email || '').trim().toLowerCase(),
+                phone: normalizePhone(fields.phone),
+                firstName: (firstName || '').trim().toLowerCase(),
+                lastName: (lastName || '').trim().toLowerCase(),
+            };
+
+            const userData = {};
+
+            for (const [key, value] of Object.entries(entries)) {
+                const hashed = await sha256(value);
+
+                if (hashed) {
+                    userData[key] = hashed;
+                }
+            }
+
+            if (Object.keys(userData).length) {
+                payload.user_data = userData;
+            }
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
+    };
+
+    // Formulär som laddar om sidan vid inskick renderar en dold markör när
+    // Statamic rapporterar "success" - eventet skickas när sidan laddats.
+    // Väntar in cookie-addonet så samtyckesläget hunnit uppdateras först.
+    const trackingMarkers = document.querySelectorAll('[data-track-form]');
+    const FIELDS_KEY = 'oqto_track_fields';
+
+    // Kontaktformulären laddar om sidan, så fälten sparas tillfälligt i
+    // fliken (sessionStorage, inte i HTML) och läses av markören efteråt.
+    document
+        .querySelectorAll('form[action*="/!/forms/contact"], form[action*="/!/forms/developers_contact"]')
+        .forEach((form) => {
+            form.addEventListener('submit', () => {
+                try {
+                    sessionStorage.setItem(FIELDS_KEY, JSON.stringify({
+                        name: form.elements.name?.value || '',
+                        email: form.elements.email?.value || '',
+                    }));
+                } catch (e) {
+                    // sessionStorage kan vara blockerat - eventet skickas då utan användardata.
+                }
+            });
+        });
+
+    if (trackingMarkers.length) {
+
+        let waited = 0;
+
+        const sendMarkerEvents = () => {
+
+            if (!window.CookieConsent && waited < 3000) {
+                waited += 100;
+                setTimeout(sendMarkerEvents, 100);
+
+                return;
+            }
+
+            let storedFields = null;
+
+            try {
+                storedFields = JSON.parse(sessionStorage.getItem(FIELDS_KEY));
+                sessionStorage.removeItem(FIELDS_KEY);
+            } catch (e) {
+                storedFields = null;
+            }
+
+            trackingMarkers.forEach((marker) => {
+
+                const isContactForm =
+                    marker.dataset.trackForm === 'contact_submission';
+
+                trackFormSuccess(
+                    marker.dataset.trackForm,
+                    marker.dataset.formName,
+                    isContactForm && storedFields?.email ? storedFields : null
+                );
+            });
+        };
+
+        sendMarkerEvents();
+    }
+
+
+    /* ==================================================
        REVIEWS
        ================================================== */
 
@@ -345,6 +507,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 calLink: embedElement.dataset.calLink,
             });
 
+            window.Cal.ns.demo('on', {
+                action: 'bookingSuccessful',
+                callback: () => {
+                    trackFormSuccess('book_demo', 'cal_booking');
+                },
+            });
+
             window.Cal.ns.demo('ui', {
                 hideEventTypeDetails: false,
                 layout: 'month_view',
@@ -461,9 +630,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 try {
 
+                    const formData = new FormData(contactForm);
+
                     const response = await fetch(contactForm.action, {
                         method: 'POST',
-                        body: new FormData(contactForm),
+                        body: formData,
                         headers: { Accept: 'application/json' },
                     });
 
@@ -478,6 +649,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         return;
                     }
+
+                    trackFormSuccess('book_demo', 'boka_demo', {
+                        firstName: formData.get('first_name'),
+                        lastName: formData.get('last_name'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                    });
 
                     // Byter ut fälten mot samma success-markup som
                     // Statamics form-tagg själv hade renderat vid en
