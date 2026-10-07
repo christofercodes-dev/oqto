@@ -49,84 +49,68 @@
 
         <div class="integrations-toolbar">
 
-            <div class="integrations-filter-wrapper" data-dropdown>
+            <!-- BRANSCH (flerval) -->
+            <div class="integrations-filter-wrapper" data-dropdown data-filter-group="industry" data-default-label="Bransch">
 
-                <button
-                    type="button"
-                    class="integrations-filter-trigger"
-                    aria-expanded="false"
-                    aria-controls="integration-filter-menu"
-                >
+                <button type="button" class="integrations-filter-trigger" aria-expanded="false" aria-controls="integration-industry-menu">
                     <span class="integrations-filter-trigger-left">
-
-                        <!-- FILTER IKON -->
-                        <svg
-                            class="integrations-filter-icon"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true"
-                        >
-                            <path
-                                d="M4 7H20M7 12H17M10 17H14"
-                                stroke="currentColor"
-                                stroke-width="1.7"
-                                stroke-linecap="round"
-                            />
-                        </svg>
-
-                        <span>Filter</span>
-
+                        <span data-label>Bransch</span>
                     </span>
-
-                    <svg
-                        class="integrations-filter-chevron"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                    >
-                        <path
-                            d="M6 9L12 15L18 9"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                    </svg>
+                    <svg class="integrations-filter-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
                 </button>
 
-
-                <div
-                    id="integration-filter-menu"
-                    class="integrations-filter-menu"
-                    hidden
-                >
-
-                    <button
-                        type="button"
-                        class="integrations-filter-option is-active"
-                        data-filter="all"
-                    >
-                        Alla integrationer
-                    </button>
-
-                    {{ integrations:developers }}
-                        <button
-                            type="button"
-                            class="integrations-filter-option"
-                            data-filter="{{ slug }}"
-                        >
-                            {{ name }}
-                        </button>
-                    {{ /integrations:developers }}
-
+                <div id="integration-industry-menu" class="integrations-filter-menu integrations-filter-menu-checks" hidden>
+                    {{ integrations:industries }}
+                        <label class="integrations-filter-check">
+                            <input type="checkbox" value="{{ slug }}">
+                            <span>{{ name }}</span>
+                        </label>
+                    {{ /integrations:industries }}
                 </div>
+            </div>
 
+
+            <!-- OMSÄTTNING (ett val) -->
+            <div class="integrations-filter-wrapper" data-dropdown data-filter-group="revenue" data-default-label="Omsättning">
+
+                <button type="button" class="integrations-filter-trigger" aria-expanded="false" aria-controls="integration-revenue-menu">
+                    <span class="integrations-filter-trigger-left">
+                        <span data-label>Omsättning</span>
+                    </span>
+                    <svg class="integrations-filter-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </button>
+
+                <div id="integration-revenue-menu" class="integrations-filter-menu" hidden>
+                    <button type="button" class="integrations-filter-option is-active" data-value="" data-default="true">
+                        Alla omsättningar
+                    </button>
+                    {{ integrations:revenues }}
+                        <button type="button" class="integrations-filter-option" data-value="{{ value }}">
+                            {{ label }}
+                        </button>
+                    {{ /integrations:revenues }}
+                </div>
+            </div>
+
+
+            <!-- FÖRETAGSSTORLEK (flerval) -->
+            <div class="integrations-filter-wrapper" data-dropdown data-filter-group="employees" data-default-label="Företagsstorlek">
+
+                <button type="button" class="integrations-filter-trigger" aria-expanded="false" aria-controls="integration-size-menu">
+                    <span class="integrations-filter-trigger-left">
+                        <span data-label>Företagsstorlek</span>
+                    </span>
+                    <svg class="integrations-filter-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </button>
+
+                <div id="integration-size-menu" class="integrations-filter-menu integrations-filter-menu-checks" hidden>
+                    {{ integrations:employee_sizes }}
+                        <label class="integrations-filter-check">
+                            <input type="checkbox" value="{{ value }}">
+                            <span>{{ label }}</span>
+                        </label>
+                    {{ /integrations:employee_sizes }}
+                </div>
             </div>
 
 
@@ -225,9 +209,13 @@
 
             </div>
 
+            <button type="button" class="integrations-filter-clear" id="integration-filter-clear" hidden>
+                Rensa filter
+            </button>
+
         </div>
 
-            <p class="integrations-count">
+            <p class="integrations-count" id="integration-count">
                 {{ collection:integrations as="all_integrations" }}
                     Alla integrationer | {{ all_integrations | count }} st
                 {{ /collection:integrations }}
@@ -243,7 +231,9 @@
 
                 <article
                     class="integration-card{{ if featured }} integration-card-featured{{ /if }}"
-                    data-category="{{ developer_name | slugify }}"
+                    data-sni="{{ if sni_codes }}{{ sni_codes }}{{ slug }} {{ /sni_codes }}{{ /if }}"
+                    data-employees="{{ if company_employee_ranges }}{{ company_employee_ranges }}{{ value }} {{ /company_employee_ranges }}{{ /if }}"
+                    data-revenue="{{ if company_revenue_ranges }}{{ company_revenue_ranges }}{{ value }} {{ /company_revenue_ranges }}{{ /if }}"
                     data-title="{{ title }}"
                     data-created="{{ source_created_at format='U' }}"
                     data-featured="{{ if featured }}1{{ else }}0{{ /if }}"
@@ -347,6 +337,11 @@
 
         </div>
 
+        <p class="integrations-empty" id="integration-empty" hidden>
+            Inga integrationer matchar dina filter.
+            <button type="button" class="integrations-filter-clear" data-clear-filters>Rensa filter</button>
+        </p>
+
     </div>
 </section>
 
@@ -443,21 +438,69 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /*
-     * Filtrera + sök kort (kombineras: ett kort måste matcha bådadera)
+     * Filtrera + sök kort. ELLER inom ett flervalsfilter, OCH mellan filtren
+     * och sökningen. Är ett filter valt döljs integrationer som saknar
+     * uppgiften helt. SNI-koden "*" (Branschoberoende) matchar alla branscher.
      */
-    let currentFilter = 'all';
+    const ALL_INDUSTRIES = 'branschoberoende';
+
+    const filters = {
+        industry: new Set(),
+        employees: new Set(),
+        revenue: '',
+    };
+
     let currentSearch = '';
+
+    const countEl = document.getElementById('integration-count');
+    const emptyEl = document.getElementById('integration-empty');
+    const clearButtons = document.querySelectorAll('#integration-filter-clear, [data-clear-filters]');
+    const originalCount = countEl ? countEl.textContent.trim() : '';
+    const cards = Array.from(grid.querySelectorAll('.integration-card'));
+
+    const tokens = function (value) {
+        return (value || '').split(/\s+/).filter(Boolean);
+    };
+
+    const matchesAny = function (selected, cardTokens) {
+        if (!selected.size) return true;
+
+        return cardTokens.some(function (token) {
+            return selected.has(token);
+        });
+    };
+
+    function cardMatches(card) {
+
+        const sni = tokens(card.dataset.sni);
+        const employees = tokens(card.dataset.employees);
+        const revenue = tokens(card.dataset.revenue);
+
+        const matchesIndustry = sni.includes(ALL_INDUSTRIES) || matchesAny(filters.industry, sni);
+        const matchesEmployees = matchesAny(filters.employees, employees);
+        const matchesRevenue = !filters.revenue || revenue.includes(filters.revenue);
+
+        const matchesSearch = !currentSearch
+            || (card.dataset.search || '').toLowerCase().includes(currentSearch);
+
+        return matchesIndustry && matchesEmployees && matchesRevenue && matchesSearch;
+    }
+
+    function hasActiveFilters() {
+        return filters.industry.size > 0
+            || filters.employees.size > 0
+            || filters.revenue !== '';
+    }
 
     function applyVisibility() {
 
-        grid.querySelectorAll('.integration-card').forEach(function (card) {
+        let visible = 0;
 
-            const matchesFilter = currentFilter === 'all' || card.dataset.category === currentFilter;
+        cards.forEach(function (card) {
 
-            const matchesSearch = !currentSearch
-                || (card.dataset.search || '').toLowerCase().includes(currentSearch);
+            if (cardMatches(card)) {
 
-            if (matchesFilter && matchesSearch) {
+                visible++;
 
                 card.style.display = '';
 
@@ -470,30 +513,84 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.classList.add('is-filtered-out');
 
                 setTimeout(function () {
-                    card.style.display = 'none';
+                    if (card.classList.contains('is-filtered-out')) {
+                        card.style.display = 'none';
+                    }
                 }, 180);
 
             }
 
         });
 
+        if (countEl) {
+            countEl.textContent = (hasActiveFilters() || currentSearch)
+                ? visible + ' av ' + cards.length + ' integrationer'
+                : originalCount;
+        }
+
+        if (emptyEl) emptyEl.hidden = visible > 0;
+
+        clearButtons.forEach(function (button) {
+            if (button.id === 'integration-filter-clear') {
+                button.hidden = !hasActiveFilters();
+            }
+        });
+
     }
 
-    const filterMenu = document.getElementById('integration-filter-menu');
+    function updateTriggerLabel(dropdown, label, count) {
 
-    if (filterMenu) {
+        const trigger = dropdown.querySelector('.integrations-filter-trigger');
+        const text = trigger.querySelector('[data-label]');
 
-        filterMenu.querySelectorAll('.integrations-filter-option').forEach(function (option) {
+        text.textContent = count ? label + ' · ' + count : label;
 
-            if (option.dataset.filter === 'all') {
-                option.dataset.default = 'true';
-            }
+        trigger.classList.toggle('has-selection', count > 0);
+    }
+
+    /* Flervalsfilter (bransch, företagsstorlek): kryssrutor */
+    document.querySelectorAll('[data-dropdown][data-filter-group]').forEach(function (dropdown) {
+
+        const group = dropdown.dataset.filterGroup;
+
+        if (group === 'revenue') return;
+
+        dropdown.querySelectorAll('input[type="checkbox"]').forEach(function (box) {
+
+            box.addEventListener('change', function () {
+
+                if (box.checked) {
+                    filters[group].add(box.value);
+                } else {
+                    filters[group].delete(box.value);
+                }
+
+                updateTriggerLabel(dropdown, dropdown.dataset.defaultLabel, filters[group].size);
+
+                applyVisibility();
+
+            });
+
+        });
+
+    });
+
+    /* Envalsfilter (omsättning) */
+    const revenueDropdown = document.querySelector('[data-filter-group="revenue"]');
+
+    if (revenueDropdown) {
+
+        revenueDropdown.querySelectorAll('.integrations-filter-option').forEach(function (option) {
 
             option.addEventListener('click', function () {
 
-                activateOption(option, 'Filter');
+                activateOption(option, revenueDropdown.dataset.defaultLabel);
 
-                currentFilter = option.dataset.filter;
+                filters.revenue = option.dataset.value;
+
+                revenueDropdown
+                    .querySelector('.integrations-filter-trigger')
+                    .classList.toggle('has-selection', filters.revenue !== '');
 
                 applyVisibility();
 
@@ -502,6 +599,37 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     }
+
+    /* Rensa alla filter (sökningen behålls) */
+    clearButtons.forEach(function (button) {
+
+        button.addEventListener('click', function () {
+
+            filters.industry.clear();
+            filters.employees.clear();
+            filters.revenue = '';
+
+            document.querySelectorAll('[data-filter-group] input[type="checkbox"]').forEach(function (box) {
+                box.checked = false;
+            });
+
+            document.querySelectorAll('[data-dropdown][data-filter-group]').forEach(function (dropdown) {
+
+                if (dropdown.dataset.filterGroup === 'revenue') {
+                    const reset = dropdown.querySelector('.integrations-filter-option[data-default="true"]');
+                    if (reset) activateOption(reset, dropdown.dataset.defaultLabel);
+                    dropdown.querySelector('.integrations-filter-trigger').classList.remove('has-selection');
+                } else {
+                    updateTriggerLabel(dropdown, dropdown.dataset.defaultLabel, 0);
+                }
+
+            });
+
+            applyVisibility();
+
+        });
+
+    });
 
 
     /*

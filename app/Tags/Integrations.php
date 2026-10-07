@@ -2,41 +2,82 @@
 
 namespace App\Tags;
 
-use Illuminate\Support\Str;
 use Statamic\Facades\Entry;
+use Statamic\Facades\Term;
 use Statamic\Tags\Tags;
 
 /**
- * Hjälptaggar för /integrationer-sidan. "developer_name" är det enda fält
- * som är konsekvent ifyllt över hela den S3-importerade integrations-
- * collectionen (till skillnad från t.ex. sni_codes, som bara finns på ett
- * fåtal poster) - det används därför som filter. Statamics inbyggda taggar
- * har inget bra sätt att räkna fram unika värden för ett vanligt textfält
- * (till skillnad från en taxonomy), därför den egna taggen.
+ * Hjälptaggar för filtren på /integrationer-sidan. Alternativen räknas
+ * fram ur de importerade integrationerna så att nya branscher eller
+ * intervall från källan dyker upp i filtren utan att mallen ändras.
  */
 class Integrations extends Tags
 {
     protected static $handle = 'integrations';
 
     /**
-     * {{ integrations:developers }} {{ name }} ({{ slug }}) {{ /integrations:developers }}
-     * Unika utvecklarnamn, sorterade i bokstavsordning, med tillhörande
-     * slug att använda som filter-nyckel (matchar :signed_url-modiferns
-     * slugify av samma fält på varje kort).
+     * Termen för "gäller alla branscher" (SNI-koden "*" i källdatan) - ska
+     * inte vara ett eget filterval, utan matchar alla valda branscher.
      */
-    public function developers()
+    protected const ALL_INDUSTRIES_SLUG = 'branschoberoende';
+
+    /**
+     * {{ integrations:industries }} {{ name }} ({{ slug }}) {{ /integrations:industries }}
+     * Branscher (SNI) med klartext från källan, i bokstavsordning.
+     */
+    public function industries()
+    {
+        return Term::query()
+            ->where('taxonomy', 'sni_codes')
+            ->get()
+            ->reject(fn ($term) => $term->slug() === self::ALL_INDUSTRIES_SLUG)
+            ->map(fn ($term) => [
+                'name' => (string) ($term->get('description') ?: $term->get('title')),
+                'slug' => $term->slug(),
+            ])
+            ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)
+            ->values();
+    }
+
+    /**
+     * {{ integrations:employee_sizes }} {{ label }} ({{ value }}) {{ /integrations:employee_sizes }}
+     */
+    public function employeeSizes()
+    {
+        return $this->ranges('company_employee_ranges')->map(fn ($value) => [
+            'value' => $value,
+            'label' => $value === '0'
+                ? 'Inga anställda'
+                : str_replace('-', '–', $value).' anställda',
+        ]);
+    }
+
+    /**
+     * {{ integrations:revenues }} {{ label }} ({{ value }}) {{ /integrations:revenues }}
+     * Omsättningsintervallen anges i miljoner kronor (Mkr).
+     */
+    public function revenues()
+    {
+        return $this->ranges('company_revenue_ranges')->map(fn ($value) => [
+            'value' => $value,
+            'label' => str_replace('-', '–', $value).' Mkr',
+        ]);
+    }
+
+    /**
+     * Unika intervall för ett fält, sorterade efter nedre gränsen
+     * (0-1, 1-3, 3-10 ... 250+).
+     */
+    protected function ranges(string $field)
     {
         return Entry::query()
             ->where('collection', 'integrations')
             ->get()
-            ->map(fn ($entry) => trim((string) $entry->get('developer_name')))
-            ->filter()
+            ->flatMap(fn ($entry) => (array) $entry->get($field))
+            ->map(fn ($value) => trim((string) $value))
+            ->filter(fn ($value) => $value !== '')
             ->unique()
-            ->sort()
-            ->values()
-            ->map(fn ($name) => [
-                'name' => $name,
-                'slug' => Str::slug($name),
-            ]);
+            ->sortBy(fn ($value) => (int) $value)
+            ->values();
     }
 }

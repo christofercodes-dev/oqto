@@ -271,6 +271,103 @@
 }
 
 
+/* Filter med valda värden */
+
+.integrations-filter-trigger.has-selection {
+    border-color: var(--color-text);
+
+    background-color: #f1efed;
+}
+
+
+/* Flervalsmeny med kryssrutor */
+
+.integrations-filter-menu-checks {
+    min-width: 280px;
+    max-width: 380px;
+    max-height: 320px;
+
+    overflow-y: auto;
+}
+
+.integrations-filter-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    font-size: 0.85rem;
+    line-height: 1.35;
+
+    color: var(--color-text);
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.integrations-filter-check:hover {
+    background-color: #f5f3f1;
+}
+
+.integrations-filter-check input {
+    flex-shrink: 0;
+
+    width: 16px;
+    height: 16px;
+
+    margin-top: 2px;
+
+    accent-color: #ff5500;
+
+    cursor: pointer;
+}
+
+
+/* Rensa filter */
+
+.integrations-filter-clear {
+    align-self: center;
+
+    padding: 8px 4px;
+
+    border: 0;
+
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    color: var(--color-text);
+
+    cursor: pointer;
+}
+
+.integrations-filter-clear:hover {
+    color: #ff5500;
+}
+
+
+/* Inga träffar */
+
+.integrations-empty {
+    margin: 24px 0 0;
+    padding: 32px 0;
+
+    text-align: center;
+
+    font-size: 0.95rem;
+
+    color: rgba(46, 37, 31, 0.7);
+}
+
+
 /* =========================================
    GRID
    ========================================= */
