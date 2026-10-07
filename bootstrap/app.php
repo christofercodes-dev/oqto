@@ -12,7 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Endpointen bara loggar ett bolagsnamn och är rate-limitad; sidan
+        // kan vara cachad utan CSRF-token.
+        $middleware->preventRequestForgery(except: ['boka-demo/log']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

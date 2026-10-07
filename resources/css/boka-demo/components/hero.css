@@ -176,6 +176,131 @@
 }
 
 
+/* Fälten i kontaktformuläret ligger i en inre wrapper (så att den kan bytas
+   ut mot "Tack!" utan sidladdning) - den behöver samma radavstånd. */
+
+.boka-demo-form-body {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.boka-demo-form-body .boka-demo-btn {
+    margin-top: 8px;
+}
+
+/* Ja/Nej-växel (default Nej) */
+
+.boka-demo-toggle {
+    position: relative;
+
+    align-self: flex-start;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    font-size: 0.9rem;
+    line-height: 1.4;
+
+    color: #4a4744;
+
+    cursor: pointer;
+}
+
+.boka-demo-toggle-input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    margin: 0;
+
+    opacity: 0;
+}
+
+.boka-demo-toggle-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+.boka-demo-toggle-state {
+    min-width: 2ch;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: right;
+
+    color: #5f5a56;
+}
+
+.boka-demo-toggle-state-on {
+    display: none;
+}
+
+.boka-demo-toggle-input:checked ~ .boka-demo-toggle-control .boka-demo-toggle-state-off {
+    display: none;
+}
+
+.boka-demo-toggle-input:checked ~ .boka-demo-toggle-control .boka-demo-toggle-state-on {
+    display: inline;
+}
+
+.boka-demo-toggle-track {
+    position: relative;
+
+    width: 44px;
+    height: 26px;
+
+    border-radius: 999px;
+
+    background-color: #d9d5d1;
+
+    transition: background-color 0.2s ease;
+}
+
+.boka-demo-toggle-track::after {
+    content: "";
+
+    position: absolute;
+    top: 3px;
+    left: 3px;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background-color: #ffffff;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+    transition: transform 0.2s ease;
+}
+
+.boka-demo-toggle-input:checked ~ .boka-demo-toggle-control .boka-demo-toggle-track {
+    background-color: #f35d08;
+}
+
+.boka-demo-toggle-input:checked ~ .boka-demo-toggle-control .boka-demo-toggle-track::after {
+    transform: translateX(18px);
+}
+
+.boka-demo-toggle-input:focus-visible ~ .boka-demo-toggle-control .boka-demo-toggle-track {
+    outline: 2px solid #1a1715;
+    outline-offset: 2px;
+}
+
+.boka-demo-form-body .boka-demo-errors {
+    margin: 0;
+}
+
+
 .boka-demo-form-row {
     display: grid;
 
@@ -410,15 +535,10 @@
 
 /* Alternativ 1 (Cal.com) får ta hela containerns bredd, i linje med
    t.ex. blocken på FAQ-sidan, eftersom kalendern behöver mer utrymme. */
-.boka-demo-card[data-step="alternative-1"] {
-    max-width: 100%;
-}
-
-
-/* Kontaktformuläret (alternativ 2) breddas lite jämfört med sökrutan,
-   så fältraderna (namn/e-post, telefon/företag) får mer plats. */
+/* Båda stegen (Cal.com-bokning och kontaktformulär) är fullbredd. */
+.boka-demo-card[data-step="alternative-1"],
 .boka-demo-card[data-step="alternative-2"] {
-    max-width: 760px;
+    max-width: 100%;
 }
 
 

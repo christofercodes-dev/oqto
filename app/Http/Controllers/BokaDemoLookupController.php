@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Bolagsverket\BolagsverketClient;
 use App\Services\Bolagsverket\SniAlternativeResolver;
+use App\Services\BokaDemo\LeadLogger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -11,11 +12,16 @@ use Throwable;
 
 class BokaDemoLookupController extends Controller
 {
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(Request $request, LeadLogger $logger): JsonResponse
     {
         $validated = $request->validate([
             'org_number' => ['required', 'string', 'regex:/^\d{6}-?\d{4}$/'],
+            'utm_source' => ['nullable', 'string', 'max:100'],
+            'utm_medium' => ['nullable', 'string', 'max:100'],
+            'utm_campaign' => ['nullable', 'string', 'max:100'],
         ]);
+
+        $utm = $request->only(['utm_source', 'utm_medium', 'utm_campaign']);
 
         $orgNumber = str_replace('-', '', $validated['org_number']);
 
@@ -30,6 +36,8 @@ class BokaDemoLookupController extends Controller
         if (! config('bolagsverket.client_id') || ! config('bolagsverket.client_secret')) {
             // API-uppgifter saknas ännu (registrering hos Bolagsverket pågår) -
             // faller tillbaka på det generella kontaktformuläret.
+            $logger->log('org_number', $formattedOrgNumber, null, 2, (string) $request->ip(), $utm);
+
             return response()->json([
                 'alternative' => 2,
                 'org_number' => $formattedOrgNumber,
@@ -63,6 +71,8 @@ class BokaDemoLookupController extends Controller
             // kontaktformuläret istället för att blockera besökaren.
             $alternative = 2;
         }
+
+        $logger->log('org_number', $formattedOrgNumber, $companyName, $alternative, (string) $request->ip(), $utm);
 
         return response()->json([
             'alternative' => $alternative,

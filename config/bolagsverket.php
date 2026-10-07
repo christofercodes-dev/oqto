@@ -52,4 +52,27 @@ return [
         '702',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Ord i bolagsnamn som ger Alternativ 1 (Cal.com-bokning)
+    |--------------------------------------------------------------------------
+    |
+    | Skriver besökaren ett bolagsnamn i stället för ett organisationsnummer
+    | finns ingen SNI-kod att slå upp. Innehåller namnet något av dessa ord
+    | (ordstammar, gemener, utan å/ä/ö) visas alternativ 1 på samma sätt som
+    | för en matchande SNI-kod. 'redovis' träffar t.ex. Redovisning,
+    | Redovisningsbyrå och Redovisare.
+    |
+    */
+
+    'name_keywords_alternative_1' => [
+        'redovis',
+        'revis',
+        'bokfor',
+        'ekonomibyra',
+        'ekonomikonsult',
+        'ekonomitjanst',
+        'skatteradgiv',
+    ],
+
 ];

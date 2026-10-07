@@ -1,4 +1,4 @@
-<section class="boka-demo-section" data-lookup-url="/boka-demo/lookup">
+<section class="boka-demo-section" data-lookup-url="/boka-demo/lookup" data-log-url="/boka-demo/log" data-name-keywords="{{ config:bolagsverket:name_keywords_alternative_1 | join(',') }}">
     <div class="boka-demo-container">
 
         <div class="boka-demo-hero-row">
@@ -90,7 +90,7 @@
 
             {{ form:boka_demo class="boka-demo-contact-form" }}
 
-                <div data-role="alt2-form-body">
+                <div class="boka-demo-form-body" data-role="alt2-form-body">
 
                     {{ if error }}
                         <p class="boka-demo-error">{{ error }}</p>
@@ -154,6 +154,17 @@
                             <label for="alt2_message">Meddelande</label>
                             <textarea id="alt2_message" name="message" rows="4" placeholder="Berätta gärna lite om vad ni behöver hjälp med..."></textarea>
                         </div>
+
+                        <label class="boka-demo-toggle">
+                            <input type="hidden" name="is_agency" value="0">
+                            <input type="checkbox" class="boka-demo-toggle-input" name="is_agency" value="1" role="switch">
+                            <span class="boka-demo-toggle-label">Jag jobbar på en redovisningsbyrå</span>
+                            <span class="boka-demo-toggle-control" aria-hidden="true">
+                                <span class="boka-demo-toggle-state boka-demo-toggle-state-off">Nej</span>
+                                <span class="boka-demo-toggle-state boka-demo-toggle-state-on">Ja</span>
+                                <span class="boka-demo-toggle-track"></span>
+                            </span>
+                        </label>
 
                         <button type="submit" class="boka-demo-btn">
                             <span>Skicka</span>

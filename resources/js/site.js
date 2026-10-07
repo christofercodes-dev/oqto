@@ -397,6 +397,56 @@ document.addEventListener('DOMContentLoaded', () => {
         const lookupButtonText =
             bokaDemoSection.querySelector('[data-role="lookup-button-text"]');
 
+        const logUrl = bokaDemoSection.dataset.logUrl;
+
+        // Kampanjparametrar sparas första gången de syns, så de följer med
+        // även om besökaren landat på en annan sida innan /boka-demo.
+        const getUtm = () => {
+
+            const keys = ['utm_source', 'utm_medium', 'utm_campaign'];
+            const found = {};
+
+            try {
+                const params = new URLSearchParams(window.location.search);
+
+                keys.forEach((key) => {
+                    if (params.get(key)) {
+                        found[key] = params.get(key);
+                    }
+                });
+
+                if (Object.keys(found).length) {
+                    sessionStorage.setItem('oqto_utm', JSON.stringify(found));
+
+                    return found;
+                }
+
+                return JSON.parse(sessionStorage.getItem('oqto_utm')) || {};
+            } catch (e) {
+                return found;
+            }
+        };
+
+        // Bolagsnamn som innehåller ett av dessa ord (t.ex. "redovis")
+        // behandlas som en byrå och får Cal.com-bokningen, på samma sätt
+        // som en matchande SNI-kod. Orden ligger i config/bolagsverket.php.
+        const nameKeywords = (bokaDemoSection.dataset.nameKeywords || '')
+            .split(',')
+            .map((word) => word.trim())
+            .filter(Boolean);
+
+        const normalizeName = (value) =>
+            value
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase();
+
+        const nameLooksLikeAccountingFirm = (name) => {
+            const normalized = normalizeName(name);
+
+            return nameKeywords.some((word) => normalized.includes(word));
+        };
+
         const looksLikeOrgNumberInput = (value) =>
             /^[\d\s-]*$/.test(value);
 
@@ -440,6 +490,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!step) {
                 return;
             }
+
+            // Räknar hur många som kommer förbi första steget (utan namn).
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'book_demo_lookup',
+                lookup_step: data.alternative === 1 ? 'cal' : 'form',
+            });
 
             [steps[1], steps[2]].forEach((otherStep) => {
                 if (otherStep && otherStep !== step) {
@@ -537,13 +594,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (!isCompleteOrgNumber(inputValue)) {
-                    // Ser inte ut som ett org.nummer - tolka som bolagsnamn
-                    // och gå direkt till det generella formuläret.
+                    // Ser inte ut som ett org.nummer - tolka som bolagsnamn.
+                    // Namn som tyder på en byrå får bokningen, övriga det
+                    // generella formuläret.
+                    const nameAlternative = nameLooksLikeAccountingFirm(inputValue) ? 1 : 2;
+
                     showStep({
-                        alternative: 2,
+                        alternative: nameAlternative,
                         org_number: null,
                         company_name: inputValue,
                     });
+
+                    if (logUrl) {
+                        fetch(logUrl, {
+                            method: 'POST',
+                            keepalive: true,
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Accept: 'application/json',
+                            },
+                            body: JSON.stringify({
+                                name: inputValue,
+                                alternative: nameAlternative,
+                                ...getUtm(),
+                            }),
+                        }).catch(() => {
+                            // Loggningen får aldrig störa besökaren.
+                        });
+                    }
 
                     return;
                 }
@@ -555,8 +633,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 try {
 
+                    const lookupParams = new URLSearchParams({
+                        org_number: orgNumber,
+                        ...getUtm(),
+                    });
+
                     const response = await fetch(
-                        `${lookupUrl}?org_number=${encodeURIComponent(orgNumber)}`,
+                        `${lookupUrl}?${lookupParams.toString()}`,
                         { headers: { Accept: 'application/json' } }
                     );
 

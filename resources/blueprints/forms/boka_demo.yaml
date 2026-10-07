@@ -44,3 +44,9 @@ tabs:
             field:
               type: textarea
               display: Meddelande
+          -
+            handle: is_agency
+            field:
+              type: toggle
+              display: 'Företräder en byrå'
+              instructions: 'Ikryssad av besökare som inte identifierades som byrå men själva uppger att de är en redovisnings- eller revisionsbyrå.'
