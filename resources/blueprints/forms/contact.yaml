@@ -28,3 +28,39 @@ tabs:
             field:
               type: textarea
               display: Meddelande
+          -
+            handle: utm_source
+            field:
+              type: text
+              display: 'UTM Source'
+              instructions: 'Fylls i automatiskt från besökarens första kampanjlänk. Redigera inte.'
+          -
+            handle: utm_medium
+            field:
+              type: text
+              display: 'UTM Medium'
+          -
+            handle: utm_campaign
+            field:
+              type: text
+              display: 'UTM Campaign'
+          -
+            handle: utm_content
+            field:
+              type: text
+              display: 'UTM Content'
+          -
+            handle: utm_term
+            field:
+              type: text
+              display: 'UTM Term'
+          -
+            handle: gclid
+            field:
+              type: text
+              display: 'Google Click ID (gclid)'
+          -
+            handle: landing_page
+            field:
+              type: text
+              display: 'Landningssida'

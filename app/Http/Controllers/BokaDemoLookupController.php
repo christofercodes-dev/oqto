@@ -19,9 +19,11 @@ class BokaDemoLookupController extends Controller
             'utm_source' => ['nullable', 'string', 'max:100'],
             'utm_medium' => ['nullable', 'string', 'max:100'],
             'utm_campaign' => ['nullable', 'string', 'max:100'],
+            'utm_content' => ['nullable', 'string', 'max:100'],
+            'utm_term' => ['nullable', 'string', 'max:100'],
         ]);
 
-        $utm = $request->only(['utm_source', 'utm_medium', 'utm_campaign']);
+        $utm = $request->only(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']);
 
         $orgNumber = str_replace('-', '', $validated['org_number']);
 

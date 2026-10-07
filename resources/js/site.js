@@ -57,6 +57,97 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    /* ==================================================
+       KAMPANJ-ATTRIBUTION (UTM)
+       ================================================== */
+
+    const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    const ATTRIBUTION_KEY = 'oqto_attribution';
+
+    const readAttribution = () => {
+        try {
+            return JSON.parse(sessionStorage.getItem(ATTRIBUTION_KEY)) || {};
+        } catch (e) {
+            return {};
+        }
+    };
+
+    // Sparas i fliken (sessionStorage) från första sidan besökaren landar
+    // på, så kampanjen följer med till formulär och loggar även efter att
+    // hen klickat vidare. Nya UTM-parametrar ersätter de gamla (senaste
+    // klick vinner). Googles klick-id (gclid) är en annonsidentifierare och
+    // sparas därför bara om besökaren godkänt marknadsföringscookies.
+    const captureAttribution = () => {
+
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const stored = readAttribution();
+            let changed = false;
+
+            if (UTM_KEYS.some((key) => params.get(key))) {
+                UTM_KEYS.forEach((key) => delete stored[key]);
+
+                UTM_KEYS.forEach((key) => {
+                    if (params.get(key)) {
+                        stored[key] = params.get(key).slice(0, 100);
+                    }
+                });
+
+                changed = true;
+            }
+
+            if (params.get('gclid') && hasMarketingConsent() && stored.gclid !== params.get('gclid')) {
+                stored.gclid = params.get('gclid').slice(0, 200);
+                changed = true;
+            }
+
+            if (!stored.landing_page) {
+                stored.landing_page = window.location.pathname;
+                changed = true;
+            }
+
+            if (changed) {
+                sessionStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(stored));
+            }
+        } catch (e) {
+            // sessionStorage kan vara blockerat - då följer inget med.
+        }
+    };
+
+    // Lägger de sparade värdena som dolda fält i alla Statamic-formulär, så
+    // de följer med inskicket (och vidare till Zapier).
+    const fillAttributionFields = () => {
+
+        const stored = readAttribution();
+
+        document.querySelectorAll('form[action*="/!/forms/"]').forEach((form) => {
+
+            Object.entries(stored).forEach(([name, value]) => {
+
+                let input = form.querySelector(`input[type="hidden"][name="${name}"]`);
+
+                if (!input) {
+                    input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    form.appendChild(input);
+                }
+
+                input.value = value;
+            });
+        });
+    };
+
+    captureAttribution();
+    fillAttributionFields();
+
+    // Godkänner besökaren marknadsföring efter att ha landat via en
+    // annonslänk kan gclid först då sparas.
+    window.addEventListener('cookieconsent:change', () => {
+        captureAttribution();
+        fillAttributionFields();
+    });
+
     // Skickar ett event till GTM. Personuppgifter (hashade med SHA-256)
     // följer bara med om besökaren godkänt marknadsföringscookies.
     const trackFormSuccess = async (eventName, formName, fields = null) => {
@@ -399,32 +490,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const logUrl = bokaDemoSection.dataset.logUrl;
 
-        // Kampanjparametrar sparas första gången de syns, så de följer med
-        // även om besökaren landat på en annan sida innan /boka-demo.
+        // Kampanjparametrarna samlas in på varje sida (se KAMPANJ-ATTRIBUTION
+        // ovan), så de finns kvar även om besökaren landat på en annan sida.
         const getUtm = () => {
+            const stored = readAttribution();
 
-            const keys = ['utm_source', 'utm_medium', 'utm_campaign'];
-            const found = {};
-
-            try {
-                const params = new URLSearchParams(window.location.search);
-
-                keys.forEach((key) => {
-                    if (params.get(key)) {
-                        found[key] = params.get(key);
-                    }
-                });
-
-                if (Object.keys(found).length) {
-                    sessionStorage.setItem('oqto_utm', JSON.stringify(found));
-
-                    return found;
-                }
-
-                return JSON.parse(sessionStorage.getItem('oqto_utm')) || {};
-            } catch (e) {
-                return found;
-            }
+            return Object.fromEntries(
+                UTM_KEYS
+                    .filter((key) => stored[key])
+                    .map((key) => [key, stored[key]])
+            );
         };
 
         // Bolagsnamn som innehåller ett av dessa ord (t.ex. "redovis")
