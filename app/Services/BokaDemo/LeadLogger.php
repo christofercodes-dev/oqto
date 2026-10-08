@@ -87,6 +87,8 @@ class LeadLogger
             'utm_campaign' => $utm['utm_campaign'] ?? null,
             'utm_content' => $utm['utm_content'] ?? null,
             'utm_term' => $utm['utm_term'] ?? null,
+            'gclid' => $utm['gclid'] ?? null,
+            'landing_page' => $utm['landing_page'] ?? null,
         ];
 
         // Vanligt anrop med kort timeout, utan defer/afterResponse: ett

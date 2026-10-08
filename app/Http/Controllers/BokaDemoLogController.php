@@ -22,6 +22,8 @@ class BokaDemoLogController extends Controller
             'utm_campaign' => ['nullable', 'string', 'max:100'],
             'utm_content' => ['nullable', 'string', 'max:100'],
             'utm_term' => ['nullable', 'string', 'max:100'],
+            'gclid' => ['nullable', 'string', 'max:200'],
+            'landing_page' => ['nullable', 'string', 'max:200'],
         ]);
 
         $logger->log(
@@ -30,7 +32,7 @@ class BokaDemoLogController extends Controller
             trim($validated['name']),
             (int) $validated['alternative'],
             (string) $request->ip(),
-            $request->only(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']),
+            $request->only(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'landing_page']),
         );
 
         return response()->noContent();

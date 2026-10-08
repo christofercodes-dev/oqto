@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const stored = readAttribution();
 
             return Object.fromEntries(
-                UTM_KEYS
+                [...UTM_KEYS, 'gclid', 'landing_page']
                     .filter((key) => stored[key])
                     .map((key) => [key, stored[key]])
             );
