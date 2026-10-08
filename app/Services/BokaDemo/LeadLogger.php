@@ -27,6 +27,28 @@ class LeadLogger
         string $ip,
         array $utm = [],
     ): void {
+        // Loggningen är en bisak och får aldrig få besökarens uppslag att
+        // misslyckas - vilket fel som än uppstår här (cache, webhook,
+        // konfiguration) ska uppslaget ändå svara som vanligt.
+        try {
+            $this->send($inputType, $orgNumber, $companyName, $alternative, $ip, $utm);
+        } catch (Throwable $e) {
+            Log::warning('Kunde inte logga boka-demo-lead: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * @param  'org_number'|'company_name'  $inputType
+     * @param  array<string, mixed>  $utm
+     */
+    protected function send(
+        string $inputType,
+        ?string $orgNumber,
+        ?string $companyName,
+        int $alternative,
+        string $ip,
+        array $utm = [],
+    ): void {
         $webhookUrl = config('services.zapier.webhooks.boka_demo_lookup');
 
         if (! $webhookUrl) {
@@ -67,15 +89,10 @@ class LeadLogger
             'utm_term' => $utm['utm_term'] ?? null,
         ];
 
-        // Skickas efter att svaret gått till besökaren, så en seg webhook
-        // aldrig fördröjer sidan.
-        defer(function () use ($webhookUrl, $payload) {
-            try {
-                Http::timeout(10)->post($webhookUrl, $payload)->throw();
-            } catch (Throwable $e) {
-                Log::warning('Kunde inte skicka boka-demo-lead till Zapier: '.$e->getMessage());
-            }
-        });
+        // Vanligt anrop med kort timeout, utan defer/afterResponse: ett
+        // långsamt eller trasigt Zapier kostar som mest några sekunder och
+        // fångas av try/catch i log().
+        Http::connectTimeout(2)->timeout(3)->post($webhookUrl, $payload)->throw();
     }
 
     protected function isPersonalIdentityNumber(string $orgNumber): bool

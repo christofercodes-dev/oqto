@@ -26,6 +26,8 @@ class BolagsverketClient
     {
         $response = Http::withToken($this->getAccessToken())
             ->acceptJson()
+            ->connectTimeout(4)
+            ->timeout(6)
             ->post("{$this->baseUri}/organisationer", [
                 'identitetsbeteckning' => $organisationNumber,
             ]);
@@ -53,7 +55,9 @@ class BolagsverketClient
         $cacheKey = 'bolagsverket.access_token.'.md5($this->clientId.$this->scope);
 
         return Cache::remember($cacheKey, now()->addMinutes(50), function () {
-            $response = Http::asForm()->post($this->tokenUri, [
+            // Korta timeouts: ett långsamt Bolagsverket ska ge formulär-
+            // alternativet, inte hänga tills PHP/nginx avbryter med 502.
+            $response = Http::asForm()->connectTimeout(4)->timeout(6)->post($this->tokenUri, [
                 'grant_type' => 'client_credentials',
                 'client_id' => $this->clientId,
                 'client_secret' => $this->clientSecret,

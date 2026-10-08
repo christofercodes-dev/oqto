@@ -81,6 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const params = new URLSearchParams(window.location.search);
+
+            // En felbyggd annonslänk kan lägga parametrarna efter ett "#"
+            // (t.ex. "…&gclid=X#?utm_source=google"). Då hamnar de i
+            // fragmentet och inte i frågesträngen, så de läses härifrån.
+            const fragment = window.location.hash.replace(/^#\??/, '');
+
+            if (fragment.includes('=')) {
+                new URLSearchParams(fragment).forEach((value, key) => {
+                    if (!params.has(key)) {
+                        params.set(key, value);
+                    }
+                });
+            }
+
             const stored = readAttribution();
             let changed = false;
 
