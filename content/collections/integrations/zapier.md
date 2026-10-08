@@ -1,6 +1,5 @@
 ---
 id: 8c19bf76-1fc2-4364-8fd5-63c2344ced5e
-published: false
 blueprint: integration
 title: Zapier
 external_id: 0f0000e5-7f03-476a-ae1f-bb61e4ae7ac8
