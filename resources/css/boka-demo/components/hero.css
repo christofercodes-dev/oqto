@@ -593,3 +593,147 @@
     }
 
 }
+
+
+/* ==================================================
+   TACK-RUTA (efter inskickat kontaktformulär)
+   ================================================== */
+
+/* När formuläret är skickat ersätter tack-rutan hela steget - hälsning,
+   rubrik och ingress döljs. En ny sökning tar bort klassen igen. */
+.boka-demo-card.is-submitted .boka-demo-greeting,
+.boka-demo-card.is-submitted .boka-demo-step-title,
+.boka-demo-card.is-submitted .boka-demo-step-body {
+    display: none;
+}
+
+.boka-demo-thanks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 16px 0 24px;
+
+    text-align: center;
+}
+
+.boka-demo-thanks-lottie {
+    width: min(100%, 420px);
+    aspect-ratio: 16 / 9;
+
+    margin: -24px auto -16px;
+
+    pointer-events: none;
+}
+
+.boka-demo-thanks-lottie svg {
+    width: 100%;
+    height: 100%;
+}
+
+.boka-demo-thanks-title {
+    margin: 0 0 10px;
+
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+
+    color: #1a1715;
+
+    animation: boka-demo-thanks-rise 0.5s ease-out 0.15s both;
+
+    text-wrap: balance;
+}
+
+.boka-demo-thanks-text {
+    max-width: 440px;
+
+    margin: 0 0 18px;
+
+    font-size: 1rem;
+    line-height: 1.6;
+
+    color: #4a4744;
+
+    animation: boka-demo-thanks-rise 0.5s ease-out 0.3s both;
+
+    text-wrap: balance;
+}
+
+.boka-demo-thanks-hint {
+    max-width: 440px;
+
+    margin: 0;
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+
+    color: #77716d;
+
+    animation: boka-demo-thanks-rise 0.5s ease-out 0.45s both;
+
+    text-wrap: balance;
+}
+
+.boka-demo-thanks-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Desktop: animationen till vänster och texten till höger, så rutan blir
+   lägre. På mobil ligger de under varandra. */
+@media (min-width: 768px) {
+
+    .boka-demo-thanks {
+        flex-direction: row;
+        align-items: center;
+        gap: 36px;
+
+        padding: 8px 0;
+
+        text-align: left;
+    }
+
+    .boka-demo-thanks-lottie {
+        flex: 0 0 260px;
+
+        width: 260px;
+        height: 190px;
+        aspect-ratio: auto;
+
+        margin: 0;
+    }
+
+    .boka-demo-thanks-body {
+        flex: 1;
+
+        align-items: flex-start;
+    }
+}
+
+@keyframes boka-demo-thanks-rise {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .boka-demo-thanks-title,
+    .boka-demo-thanks-text,
+    .boka-demo-thanks-hint {
+        animation: none;
+    }
+
+    .boka-demo-thanks-lottie {
+        display: none;
+    }
+}

@@ -570,6 +570,33 @@ document.addEventListener('DOMContentLoaded', () => {
             2: bokaDemoSection.querySelector('[data-step="alternative-2"]'),
         };
 
+        // Kontaktformulärets ursprungliga fält sparas så att steget kan
+        // återställas helt när besökaren gör en ny sökning efter ett inskick.
+        const contactBodyOriginal = (() => {
+            const body = steps[2]
+                ? steps[2].querySelector('[data-role="alt2-form-body"]')
+                : null;
+
+            return body ? body.innerHTML : null;
+        })();
+
+        function resetContactStep() {
+
+            const card = steps[2];
+
+            if (!card || !card.classList.contains('is-submitted')) {
+                return;
+            }
+
+            const body = card.querySelector('[data-role="alt2-form-body"]');
+
+            if (body && contactBodyOriginal !== null) {
+                body.innerHTML = contactBodyOriginal;
+            }
+
+            card.classList.remove('is-submitted');
+        }
+
         let calEmbedInitialized = false;
 
         function showStep(data) {
@@ -586,6 +613,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 event: 'book_demo_lookup',
                 lookup_step: data.alternative === 1 ? 'cal' : 'form',
             });
+
+            // En ny sökning startar om flödet - ett tidigare skickat
+            // formulär ska inte ligga kvar som tack-ruta.
+            resetContactStep();
 
             [steps[1], steps[2]].forEach((otherStep) => {
                 if (otherStep && otherStep !== step) {
@@ -834,7 +865,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     // vanlig sidladdning - så wizard-steget (som JS
                     // redan navigerat till) inte nollställs av en
                     // full omladdning.
-                    formBody.innerHTML = '<p class="boka-demo-success">Tack! Vi hör av oss inom kort.</p>';
+                    const thanks = steps[2].querySelector('[data-role="thanks-template"]');
+
+                    if (thanks) {
+
+                        formBody.replaceChildren(thanks.content.cloneNode(true));
+
+                        const firstName = String(formData.get('first_name') || '').trim();
+                        const thanksTitle = formBody.querySelector('[data-role="thanks-title"]');
+
+                        if (thanksTitle && firstName) {
+                            thanksTitle.textContent = `Tack, ${firstName}!`;
+                        }
+
+                        steps[2].classList.add('is-submitted');
+
+                        startLottie(formBody.querySelectorAll('[data-lottie-src]'));
+
+                    } else {
+                        formBody.innerHTML = '<p class="boka-demo-success">Tack! Vi hör av oss inom kort.</p>';
+                    }
 
                 } catch (err) {
 
@@ -888,27 +938,39 @@ document.addEventListener('DOMContentLoaded', () => {
        LOTTIE-ANIMATIONER
        ================================================== */
 
-    const lottieElements =
-        document.querySelectorAll('[data-lottie-src]');
+    // Startar Lottie-animationer i givna element. data-lottie-loop="false"
+    // spelar animationen en gång. Används även för element som skapas efter
+    // sidladdningen (t.ex. tack-rutan på /boka-demo).
+    function startLottie(elements) {
 
-    if (lottieElements.length) {
+        const targets = Array.from(elements);
+
+        if (!targets.length) {
+            return;
+        }
 
         import('lottie-web').then(({ default: lottie }) => {
 
-            lottieElements.forEach((el) => {
+            targets.forEach((el) => {
 
-                lottie.loadAnimation({
+                el.lottie = lottie.loadAnimation({
                     container: el,
                     renderer: 'svg',
-                    loop: true,
+                    loop: el.dataset.lottieLoop !== 'false',
                     autoplay: true,
                     path: el.dataset.lottieSrc,
+                    // data-lottie-fit="cover" fyller rutan och beskär kanterna
+                    // (för 16:9-animationer i en mer kvadratisk ruta).
+                    rendererSettings: el.dataset.lottieFit === 'cover'
+                        ? { preserveAspectRatio: 'xMidYMid slice' }
+                        : undefined,
                 });
 
             });
 
         });
-
     }
+
+    startLottie(document.querySelectorAll('[data-lottie-src]'));
 
 });
