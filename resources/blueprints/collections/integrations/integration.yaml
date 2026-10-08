@@ -43,6 +43,13 @@ tabs:
               type: text
               display: 'Utvecklarnamn'
           -
+            handle: unpublished_by_import
+            field:
+              type: toggle
+              display: 'Avpublicerad av importen'
+              instructions: 'Sätts av den nattliga importen när integrationen saknas i källan, så att den publiceras igen om den dyker upp. Manuellt avpublicerade integrationer påverkas inte - de förblir avpublicerade.'
+              read_only: true
+          -
             handle: source_created_at
             field:
               type: date

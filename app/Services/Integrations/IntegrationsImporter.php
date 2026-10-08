@@ -187,7 +187,8 @@ class IntegrationsImporter
 
         $entry->set('sni_codes', $sniCodes);
 
-        $entry->published(true);
+        $this->applyPublishedState($entry, $isNew);
+
         $entry->save();
 
         $this->summary[$isNew ? 'created' : 'updated']++;
@@ -298,6 +299,34 @@ class IntegrationsImporter
     }
 
     /**
+     * Manuella val vinner över importen: en integration som någon avpublicerat
+     * i CP:n ska förbli avpublicerad även om den finns kvar i källan. Nya
+     * poster publiceras, och en post publiceras bara om igen om det var
+     * importen själv som avpublicerade den (flaggan unpublished_by_import,
+     * satt när den saknades i källan) och den nu finns där igen.
+     */
+    protected function applyPublishedState(EntryContract $entry, bool $isNew): void
+    {
+        if ($isNew) {
+            $entry->published(true);
+
+            return;
+        }
+
+        if ($entry->published()) {
+            // Någon har publicerat den igen - flaggan är inaktuell.
+            $entry->remove('unpublished_by_import');
+
+            return;
+        }
+
+        if ($entry->get('unpublished_by_import')) {
+            $entry->published(true);
+            $entry->remove('unpublished_by_import');
+        }
+    }
+
+    /**
      * @param  \Illuminate\Support\Collection<string, EntryContract>  $existingEntries
      * @param  array<int, string>  $seenExternalIds
      */
@@ -310,6 +339,7 @@ class IntegrationsImporter
                     return;
                 }
 
+                $entry->set('unpublished_by_import', true);
                 $entry->published(false);
                 $entry->save();
 
