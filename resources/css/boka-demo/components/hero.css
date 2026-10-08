@@ -3,6 +3,9 @@
    ================================================== */
 
 .boka-demo-section {
+    position: relative;
+    overflow: hidden;
+
     width: 100%;
     min-height: 760px;
     padding: 140px 40px;
@@ -24,6 +27,9 @@
 
 
 .boka-demo-container {
+    position: relative;
+    z-index: 1;
+
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
@@ -32,6 +38,93 @@
     flex-direction: column;
 
     gap: 48px;
+}
+
+
+/* ==================================================
+   DEKORATION (pixelbubblor + tentakel)
+   Ligger bakom innehållet (container har z-index 1), så sökrutan
+   täcker tentakeln som i designen.
+   ================================================== */
+
+.boka-demo-deco {
+    position: absolute;
+    z-index: 0;
+
+    height: auto;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.boka-demo-deco-bubbles {
+    top: 119px;
+    left: 4vw;
+
+    width: clamp(64px, 7.4vw, 120px);
+}
+
+.boka-demo-deco-tentacle {
+    top: 140px;
+    right: 0;
+
+    width: clamp(180px, 18.6vw, 300px);
+}
+
+/* Mjukt flytande rörelse - olika tempo och fördröjning så de inte
+   rör sig i takt. */
+.boka-demo-deco-bubbles {
+    animation: boka-demo-float-bubbles 7s ease-in-out infinite;
+}
+
+.boka-demo-deco-tentacle {
+    transform-origin: 100% 100%;
+
+    animation: boka-demo-float-tentacle 9s ease-in-out -3s infinite;
+}
+
+@keyframes boka-demo-float-bubbles {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate3d(3px, -12px, 0) rotate(3deg);
+    }
+}
+
+@keyframes boka-demo-float-tentacle {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate3d(-4px, 8px, 0) rotate(-1.6deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .boka-demo-deco-bubbles,
+    .boka-demo-deco-tentacle {
+        animation: none;
+    }
+}
+
+@media (max-width: 899px) {
+
+    .boka-demo-deco-tentacle {
+        display: none;
+    }
+
+    .boka-demo-deco-bubbles {
+        top: 96px;
+        left: 14px;
+
+        width: 56px;
+    }
 }
 
 
