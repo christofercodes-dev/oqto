@@ -13,7 +13,7 @@
     justify-content: space-between;
     padding: 70px 40px 0;
     box-sizing: border-box;
-    font-family: "neue-haas-grotesk-text", sans-serif;
+    font-family: var(--font-sans);
     position: relative;
 
     /* Dashboard-mockupen går ända ut till skärmens högerkant, och

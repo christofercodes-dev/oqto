@@ -5,7 +5,7 @@
   color: #fff;
   padding: 80px 40px 36px;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
 
   /* Isolera footern från global CSS */
   line-height: normal;

@@ -13,7 +13,7 @@
     background: #dceefa;
     color: #1a1715;
 
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-sans);
 }
 
 .developers-hero-section *,

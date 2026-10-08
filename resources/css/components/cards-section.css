@@ -7,7 +7,7 @@
 
     box-sizing: border-box;
 
-    font-family:"Inter",sans-serif;
+    font-family: var(--font-sans);
 
     color: #1a1715;
 }
