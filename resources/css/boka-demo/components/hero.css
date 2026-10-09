@@ -648,6 +648,11 @@
 
 /* Alternativ 1 (Cal.com) får ta hela containerns bredd, i linje med
    t.ex. blocken på FAQ-sidan, eftersom kalendern behöver mer utrymme. */
+/* Stegen scrollas fram efter Fortsätt - lämna plats för den fasta menyn. */
+.boka-demo-card[data-step] {
+    scroll-margin-top: 110px;
+}
+
 /* Båda stegen (Cal.com-bokning och kontaktformulär) är fullbredd. */
 .boka-demo-card[data-step="alternative-1"],
 .boka-demo-card[data-step="alternative-2"] {

@@ -674,6 +674,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 initCalEmbed(step.querySelector('.boka-demo-cal-embed'), data.email);
                 calEmbedInitialized = true;
             }
+
+            scrollToStep(step);
+        }
+
+        // Scrollar ner till det nya steget (formulär eller bokning) så att
+        // besökaren ser det direkt, särskilt på mobil där det annars hamnar
+        // utanför bild. Hoppar över scrollen om steget redan syns bra.
+        // scroll-margin-top i CSS tar hänsyn till den fasta menyn.
+        function scrollToStep(step) {
+
+            window.requestAnimationFrame(() => {
+
+                const rect = step.getBoundingClientRect();
+
+                const alreadyInView =
+                    rect.top >= 0
+                    && rect.top < window.innerHeight * 0.45
+                    && rect.bottom <= window.innerHeight;
+
+                if (alreadyInView) {
+                    return;
+                }
+
+                const reduceMotion =
+                    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                step.scrollIntoView({
+                    behavior: reduceMotion ? 'auto' : 'smooth',
+                    block: 'start',
+                });
+            });
         }
 
         function initCalEmbed(embedElement, email) {
