@@ -269,6 +269,23 @@
 }
 
 
+.boka-demo-lookup-note {
+    margin: 0;
+
+    font-size: 0.78rem;
+    line-height: 1.5;
+
+    color: #77716d;
+}
+
+.boka-demo-lookup-note a {
+    color: inherit;
+
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+
 /* Fälten i kontaktformuläret ligger i en inre wrapper (så att den kan bytas
    ut mot "Tack!" utan sidladdning) - den behöver samma radavstånd. */
 

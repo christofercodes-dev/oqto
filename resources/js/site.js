@@ -499,6 +499,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const lookupError =
             bokaDemoSection.querySelector('[data-role="lookup-error"]');
 
+        const lookupEmailInput =
+            bokaDemoSection.querySelector('#lookup_email');
+
+        const isValidEmail = (value) =>
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
         const lookupButtonText =
             bokaDemoSection.querySelector('[data-role="lookup-button-text"]');
 
@@ -649,6 +655,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     orgNumberField.value = data.org_number || '';
                 }
 
+                const emailField = step.querySelector('#alt2_email');
+
+                if (emailField && data.email) {
+                    emailField.value = data.email;
+                }
+
                 const companyField =
                     step.querySelector('[data-role="alt2-company-name"]');
 
@@ -659,12 +671,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (data.alternative === 1 && !calEmbedInitialized) {
-                initCalEmbed(step.querySelector('.boka-demo-cal-embed'));
+                initCalEmbed(step.querySelector('.boka-demo-cal-embed'), data.email);
                 calEmbedInitialized = true;
             }
         }
 
-        function initCalEmbed(embedElement) {
+        function initCalEmbed(embedElement, email) {
 
             if (!embedElement || !window.Cal) {
                 return;
@@ -680,6 +692,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 config: {
                     layout: 'month_view',
                     useSlotsViewOnSmallScreen: 'true',
+                    // Förifyller e-posten i bokningsformuläret.
+                    ...(email ? { email } : {}),
                 },
                 calLink: embedElement.dataset.calLink,
             });
@@ -713,6 +727,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
+                const email = lookupEmailInput.value.trim();
+
+                if (!isValidEmail(email)) {
+                    lookupError.textContent = 'Ange en giltig e-postadress.';
+                    lookupError.hidden = false;
+                    lookupEmailInput.focus();
+                    return;
+                }
+
                 if (!isCompleteOrgNumber(inputValue)) {
                     // Ser inte ut som ett org.nummer - tolka som bolagsnamn.
                     // Namn som tyder på en byrå får bokningen, övriga det
@@ -723,6 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         alternative: nameAlternative,
                         org_number: null,
                         company_name: inputValue,
+                        email,
                     });
 
                     if (logUrl) {
@@ -736,6 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             body: JSON.stringify({
                                 name: inputValue,
                                 alternative: nameAlternative,
+                                email,
                                 ...getUtm(),
                             }),
                         }).catch(() => {
@@ -753,15 +778,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 try {
 
-                    const lookupParams = new URLSearchParams({
-                        org_number: orgNumber,
-                        ...getUtm(),
+                    // POST så att e-postadressen inte hamnar i URL:en.
+                    const response = await fetch(lookupUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                        },
+                        body: JSON.stringify({
+                            org_number: orgNumber,
+                            email,
+                            ...getUtm(),
+                        }),
                     });
-
-                    const response = await fetch(
-                        `${lookupUrl}?${lookupParams.toString()}`,
-                        { headers: { Accept: 'application/json' } }
-                    );
 
                     const data = await response.json();
 
@@ -771,7 +800,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         );
                     }
 
-                    showStep(data);
+                    showStep({ ...data, email });
 
                 } catch (err) {
 

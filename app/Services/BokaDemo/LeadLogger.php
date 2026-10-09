@@ -26,12 +26,13 @@ class LeadLogger
         int $alternative,
         string $ip,
         array $utm = [],
+        ?string $email = null,
     ): void {
         // Loggningen är en bisak och får aldrig få besökarens uppslag att
         // misslyckas - vilket fel som än uppstår här (cache, webhook,
         // konfiguration) ska uppslaget ändå svara som vanligt.
         try {
-            $this->send($inputType, $orgNumber, $companyName, $alternative, $ip, $utm);
+            $this->send($inputType, $orgNumber, $companyName, $alternative, $ip, $utm, $email);
         } catch (Throwable $e) {
             Log::warning('Kunde inte logga boka-demo-lead: '.$e->getMessage());
         }
@@ -48,6 +49,7 @@ class LeadLogger
         int $alternative,
         string $ip,
         array $utm = [],
+        ?string $email = null,
     ): void {
         $webhookUrl = config('services.zapier.webhooks.boka_demo_lookup');
 
@@ -80,6 +82,7 @@ class LeadLogger
             'submitted_at' => now()->toIso8601String(),
             'input_type' => $inputType,
             'org_number' => $orgNumber,
+            'email' => $email,
             'company_name' => $companyName,
             'step' => $alternative === 1 ? 'cal' : 'formular',
             'utm_source' => $utm['utm_source'] ?? null,

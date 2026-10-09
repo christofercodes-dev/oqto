@@ -17,6 +17,7 @@ class BokaDemoLogController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:120'],
             'alternative' => ['required', 'integer', 'in:1,2'],
+            'email' => ['required', 'email', 'max:190'],
             'utm_source' => ['nullable', 'string', 'max:100'],
             'utm_medium' => ['nullable', 'string', 'max:100'],
             'utm_campaign' => ['nullable', 'string', 'max:100'],
@@ -33,6 +34,7 @@ class BokaDemoLogController extends Controller
             (int) $validated['alternative'],
             (string) $request->ip(),
             $request->only(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'landing_page']),
+            $validated['email'],
         );
 
         return response()->noContent();

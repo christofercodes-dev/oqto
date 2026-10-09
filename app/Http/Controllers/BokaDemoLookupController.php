@@ -16,6 +16,7 @@ class BokaDemoLookupController extends Controller
     {
         $validated = $request->validate([
             'org_number' => ['required', 'string', 'regex:/^\d{6}-?\d{4}$/'],
+            'email' => ['required', 'email', 'max:190'],
             'utm_source' => ['nullable', 'string', 'max:100'],
             'utm_medium' => ['nullable', 'string', 'max:100'],
             'utm_campaign' => ['nullable', 'string', 'max:100'],
@@ -40,7 +41,7 @@ class BokaDemoLookupController extends Controller
         if (! config('bolagsverket.client_id') || ! config('bolagsverket.client_secret')) {
             // API-uppgifter saknas ännu (registrering hos Bolagsverket pågår) -
             // faller tillbaka på det generella kontaktformuläret.
-            $logger->log('org_number', $formattedOrgNumber, null, 2, (string) $request->ip(), $utm);
+            $logger->log('org_number', $formattedOrgNumber, null, 2, (string) $request->ip(), $utm, $validated['email']);
 
             return response()->json([
                 'alternative' => 2,
@@ -76,7 +77,7 @@ class BokaDemoLookupController extends Controller
             $alternative = 2;
         }
 
-        $logger->log('org_number', $formattedOrgNumber, $companyName, $alternative, (string) $request->ip(), $utm);
+        $logger->log('org_number', $formattedOrgNumber, $companyName, $alternative, (string) $request->ip(), $utm, $validated['email']);
 
         return response()->json([
             'alternative' => $alternative,
