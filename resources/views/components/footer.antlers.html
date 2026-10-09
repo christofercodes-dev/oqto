@@ -17,17 +17,12 @@
       <!-- Navigering (speglar samma nav:main-struktur som headern) -->
       <div class="footer-nav">
         <span class="footer-heading">Navigering</span>
-        <ul class="footer-links">
+        <ul class="footer-links footer-links-nav">
           {{ nav:main }}
             {{ if children }}
-              <li class="footer-nav-group">
-                <span class="footer-nav-group-title">{{ title }}</span>
-                <ul class="footer-nav-subgroup">
-                  {{ children }}
-                    <li><a href="{{ url }}">{{ title }}</a></li>
-                  {{ /children }}
-                </ul>
-              </li>
+              {{ children }}
+                <li><a href="{{ url }}">{{ title }}</a></li>
+              {{ /children }}
             {{ else }}
               <li><a href="{{ url }}">{{ title }}</a></li>
             {{ /if }}
