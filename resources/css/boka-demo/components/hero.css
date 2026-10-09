@@ -269,17 +269,20 @@
 }
 
 
-.boka-demo-lookup-note {
-    margin: 0;
+.boka-demo-lookup-policy {
+    align-self: flex-end;
 
-    font-size: 0.78rem;
-    line-height: 1.5;
+    font-size: 0.75rem;
 
     color: #77716d;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
 }
 
-.boka-demo-lookup-note a {
-    color: inherit;
+.boka-demo-lookup-policy:hover {
+    color: #4a4744;
 
     text-decoration: underline;
     text-underline-offset: 2px;
