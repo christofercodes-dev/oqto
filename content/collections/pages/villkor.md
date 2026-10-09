@@ -291,27 +291,70 @@ privacy_content: |
 
   Vi samlar in information från dig när du beställer vår tjänst genom vår hemsida eller kontaktar oss. Denna information inkluderar det du lämnar vid tillfället, som t.ex. namn, företagsnamn, org.nr/personnummer, telefon, e-post eller liknande.
 
+  När du besöker vår webbplats samlar vi dessutom in:
+
+  - **Boka demo:** När du skriver in ett organisationsnummer eller bolagsnamn och din e-postadress på sidan Boka demo och klickar på Fortsätt sparar vi uppgifterna, även om du inte slutför bokningen eller skickar in formuläret. Vi sparar också tidpunkt, vilket steg som visades för dig och, om det finns, vilken kampanj och landningssida du kom från. Organisationsnummer som är personnummer (enskilda firmor) sparas inte. Om du anger ett organisationsnummer slår vi upp bolagsnamnet hos Bolagsverket.
+  - **Formulär:** Uppgifter du fyller i när du kontaktar oss via formulär på webbplatsen, till exempel namn, e-post, telefon, företag och meddelande.
+  - **Kampanj- och besöksdata:** Vilken annons eller kampanj du kom från (så kallade UTM-parametrar), vilken sida du landade på och, om du godkänt marknadsföringscookies, Googles klick-id.
+  - **Ditt val om cookies:** Vi sparar vilket val du gjort tillsammans med tidpunkt, en förkortad och krypterad (hashad) IP-adress och information om din webbläsare, som bevis på att samtycke inhämtats.
+
   ### 2. Varför samlar vi in denna information?
 
   För att kunna administrera och hantera beställningar samt bibehålla kundrelationen.
 
   Kontaktuppgifter används för att kunna behandla dina beställningar samt i bokföringssyfte. Vi behandlar även faktureringsinformation i enlighet med vad gällande lagstiftning kräver, till exempel för bokföringsändamål. Denna information sparas så länge lagen kräver.
 
+  För dig som besöker vår webbplats använder vi uppgifterna för att:
+
+  - kontakta dig och följa upp din förfrågan eller ditt intresse för en demo. Rättslig grund är att behandlingen behövs för att svara på din förfrågan och vårt berättigade intresse av att följa upp intresset för vår tjänst.
+  - förstå hur webbplatsen används och hur vår marknadsföring fungerar. Detta sker bara om du godkänt cookies för statistik respektive marknadsföring (samtycke).
+  - mäta vilka annonser som leder till förfrågningar. Har du godkänt marknadsföringscookies kan vi, när du skickar in en förfrågan, skicka din e-postadress, ditt telefonnummer och ditt namn i krypterad (hashad) form till Google och Meta så att de kan koppla förfrågan till rätt annons. Utan ditt samtycke skickas inga personuppgifter dit.
+
   ### 3. Hur hanterar vi dina uppgifter?
 
-  Vi lämnar aldrig dina uppgifter vidare till tredje part. Undantaget är betrodd tredje part (personuppgiftsbiträden eller underbiträden) som är nödvändiga för vår hemsida och tjänsten, till exempel tjänster för fakturagenerering.
+  Vi säljer aldrig dina uppgifter. Vi lämnar dem endast vidare till betrodda tredje parter (personuppgiftsbiträden eller underbiträden) som är nödvändiga för vår hemsida och tjänsten, till exempel tjänster för fakturagenerering.
+
+  För webbplatsen använder vi bland annat följande leverantörer:
+
+  - **Zapier:** vidarebefordrar och lagrar uppgifter från formulär och förfrågningar, till exempel i ett kalkylark hos Google.
+  - **Google:** Google Sheets, Tag Manager, Analytics och Ads.
+  - **Meta:** mätning av annonser.
+  - **Postmark:** e-postutskick.
+  - **Cal.com:** tidsbokning av demo. Din e-postadress fylls i åt dig i bokningen.
+  - **Bolagsverket:** där vi slår upp ett organisationsnummer som du anger. Uppgifterna är offentliga.
+
+  Flera av leverantörerna finns i USA. Uppgifter förs bara över till land utanför EU/EES med stöd av skyddsåtgärder enligt GDPR, till exempel EU–US Data Privacy Framework eller EU-kommissionens standardavtalsklausuler.
 
   ### 4. Informationsskydd
 
   De datorer/servrar som används för att lagra all personlig information lagras i en säker miljö.
 
-  ### 5. Dina rättigheter
+  ### 5. Hur länge sparar vi uppgifterna?
+
+  Uppgifter om kunder sparas så länge avtalet gäller och därefter så länge lagen kräver, till exempel för bokföring.
+
+  Uppgifter från dig som skickat en förfrågan eller angett din e-postadress på sidan Boka demo men inte blivit kund sparas i högst 12 månader. Ditt val om cookies och beviset för det sparas i 12 månader.
+
+  ### 6. Cookies och liknande tekniker
+
+  Vi använder cookies och liknande tekniker, som webbläsarens lokala lagring. Nödvändiga sparar bara ditt cookieval. Cookies för statistik och marknadsföring används först när du har godkänt dem. Du kan ändra ditt val när som helst med Cookie-knappen längst ned till vänster på webbplatsen.
+
+  - **Nödvändiga:** `cookie_consent` sparar ditt val i 12 månader.
+  - **Under besöket:** Uppgifter om kampanjen du kom från och landningssidan sparas i webbläsarens sessionslagring och tas bort när du stänger fliken.
+  - **Statistik (kräver samtycke):** Google Analytics, till exempel `_ga` och `_ga_*`, sparas i upp till 13 månader.
+  - **Marknadsföring (kräver samtycke):** Googles och Metas annonsmätning, till exempel `_gcl_*` och `_fbp`.
+
+  ### 7. Dina rättigheter
 
   Som kund har du rätt att kontakta oss och få ut information om vilka personuppgifter vi behandlar om dig, samt möjlighet att uppdatera eller få dessa raderade. Du har även rätt till dataportabilitet samt begränsning av behandling av personuppgifter om du anser att uppgifterna är felaktiga eller har begärt rättelse. Du har även rätt att göra invändningar mot behandling av personuppgifter som baseras på vårt legitima intresse. Vi upphör då att behandla personuppgifterna, såvida det inte föreligger ett legitimt skäl som går före dina rättigheter.
 
-  ### 6. E-postutskick
+  Du kan när som helst återkalla ett samtycke du lämnat, och du har rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY). Kontakta oss på info@oqto.se för att utöva dina rättigheter.
+
+  ### 8. E-postutskick
 
   Vi använder endast den e-postadress du angivit när du köpte tjänsten för att skicka orderbekräftelser eller andra meddelanden gällande den aktuella ordern.
+
+  Har du angett din e-postadress på sidan Boka demo eller i ett formulär använder vi den för att kontakta dig om din förfrågan.
 developer_title: Utvecklaravtal
 developer_content: |
   Version 1.0 | Januari 2026
