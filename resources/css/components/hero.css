@@ -75,7 +75,7 @@
   .hero-title {
     margin: 0;
     font-size: clamp(3rem, 5vw, 5rem);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.02;
     letter-spacing: -0.04em;
     color: #2E251F;

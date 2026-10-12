@@ -173,7 +173,7 @@
 
     font-size: clamp(2.6rem, 5.5vw, 4.2rem);
 
-    font-weight: 400;
+    font-weight: 500;
 
     line-height: 1;
     letter-spacing: -0.05em;
@@ -753,7 +753,7 @@
     margin: 0 0 10px;
 
     font-size: clamp(1.6rem, 3vw, 2.1rem);
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.02em;
     line-height: 1.15;
 

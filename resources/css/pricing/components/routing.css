@@ -28,7 +28,7 @@
     margin: 0;
     max-width: 800px;
     font-size: clamp(3rem, 5vw, 4rem);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 70px;
     letter-spacing: -2.5%;
     color: #2E251F;
@@ -196,7 +196,7 @@
     max-width: 100%;
 
     font-size: clamp(1.2rem, 3vw, 1.3rem);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.15;
     letter-spacing: -0.02em;
 
