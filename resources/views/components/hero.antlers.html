@@ -6,8 +6,8 @@
 
         <div class="hero-left">
           <h1 class="hero-title">
-            {{ title_row_1 }}
-            {{ title_row_2 }}
+            <span class="hero-title-row">{{ title_row_1 }}</span>
+            <span class="hero-title-row">{{ title_row_2 }}</span>
           </h1>
 
           <p class="hero-text">
@@ -127,8 +127,12 @@
 
       // Hur många pixlar man behöver scrolla för att ord-bytet ska vara
       // klart - kort distans så det känns snabbt och tydligt, oavsett
-      // hur hög hero-sektionen är.
-      const SWAP_SCROLL_DISTANCE = 220;
+      // hur hög hero-sektionen är. På mobil ligger rubriken högt upp och
+      // scrollar snabbt ut ur bild, så där måste bytet vara klart ännu
+      // tidigare för att hinna synas.
+      const SWAP_SCROLL_DISTANCE_DESKTOP = 130;
+      const SWAP_SCROLL_DISTANCE_MOBILE = 60;
+      const mobileQuery = window.matchMedia("(max-width: 960px)");
 
       const update = () => {
 
@@ -136,7 +140,8 @@
         const scrolled = Math.max(-rect.top, 0);
 
         if (wordSwap) {
-          const progress = Math.min(scrolled / SWAP_SCROLL_DISTANCE, 1);
+          const distance = mobileQuery.matches ? SWAP_SCROLL_DISTANCE_MOBILE : SWAP_SCROLL_DISTANCE_DESKTOP;
+          const progress = Math.min(scrolled / distance, 1);
           wordSwap.style.setProperty("--swap-progress", progress);
         }
 

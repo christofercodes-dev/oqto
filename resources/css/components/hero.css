@@ -81,6 +81,12 @@
     color: #2E251F;
   }
 
+  /* Varje titelrad är ett eget block så att radbrytningen alltid sker
+     mellan raderna ("Gånger åtta." hamnar alltid på rad två). */
+  .hero-title-row {
+    display: block;
+  }
+
 
 
   /* ==================================================
