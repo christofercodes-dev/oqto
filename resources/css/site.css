@@ -1,11 +1,42 @@
-@import url("https://use.typekit.net/uwn4tkk.css");
 @import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap");
+
+@font-face {
+    font-family: "Sandor";
+    src: url("/fonts/sandor/Sandor-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Sandor";
+    src: url("/fonts/sandor/Sandor-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Sandor";
+    src: url("/fonts/sandor/Sandor-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Sandor";
+    src: url("/fonts/sandor/Sandor-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
 
 
    :root {
-    /* Sajtens brödtext- och rubrikfont (Typekit). Alla sektioner läser denna
-       variabel - byt font på ett enda ställe (och i @theme längst ned). */
-    --font-sans: "neue-haas-grotesk-text", sans-serif;
+    /* Sajtens brödtext- och rubrikfont. Alla sektioner läser denna variabel -
+       byt font på ett enda ställe (och i @theme längst ned). */
+    --font-sans: "Sandor", system-ui, sans-serif;
 
     --page-padding: 40px;
     --content-width: 1300px;
@@ -204,7 +235,7 @@
 @source "../../content";
 
 @theme {
-  --font-sans: "neue-haas-grotesk-text", sans-serif;
+  --font-sans: "Sandor", system-ui, sans-serif;
 }
 
 
