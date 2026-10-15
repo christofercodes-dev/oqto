@@ -13,3 +13,9 @@ Artisan::command('inspire', function () {
 // Kräver att serverns cron kör "php artisan schedule:run" varje minut
 // (på Forge: sitans "Scheduler"-inställning måste vara påslagen).
 Schedule::command('integrations:import')->dailyAt('03:00');
+
+// Håller hjälpcentret (/support) färskt även om en webhook skulle missas.
+Schedule::command('intercom:sync-help-center')
+    ->everyThirtyMinutes()
+    ->withoutOverlapping()
+    ->when(fn () => filled(config('services.intercom.token')));

@@ -12,9 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // Endpointen bara loggar ett bolagsnamn och är rate-limitad; sidan
-        // kan vara cachad utan CSRF-token.
-        $middleware->preventRequestForgery(except: ['boka-demo/log', 'boka-demo/lookup']);
+        // boka-demo: endpointen bara loggar ett bolagsnamn och är rate-limitad;
+        // sidan kan vara cachad utan CSRF-token. webhooks/intercom: anropet
+        // kommer från Intercom och verifieras med HMAC-signatur i stället.
+        $middleware->preventRequestForgery(except: ['boka-demo/log', 'boka-demo/lookup', 'webhooks/intercom']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

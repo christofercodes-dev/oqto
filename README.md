@@ -77,6 +77,52 @@ I produktion körs kommandot automatiskt varje natt kl 03:00 via
 "Scheduler"-inställning).
 
 
+## Supportsidor (status, kontakt och guider från Intercom)
+
+`/support` är sajtens supportsida: den visar om appen är uppe (driftstatus),
+vägar till kontakt om något strular och guiderna för att flytta till Oqto.
+Guiderna ligger under `/support/{kategori}` och `/support/{kategori}/{artikel}`
+och hämtas från Intercoms API (cachas) - inget innehåll skrivs till `content/`
+eller git. `/support/status` leder vidare (301) till `/support`.
+
+**Driftstatus.** Servern kontrollerar `STATUS_APP_URL` (standard
+`https://app.oqto.se`), och sidans skript hämtar resultatet från
+`/support/status/check` var 30:e sekund. Svar under 500 = uppe, långsammare än
+`STATUS_SLOW_MS` = trögt, 5xx/timeout = störning. Resultatet cachas
+`STATUS_CACHE_SECONDS` (20 s). Det är en kontroll av att appen svarar, inte av
+att varje funktion fungerar.
+
+**Miljövariabler** (bara i `.env` på servern, aldrig i git):
+
+| Variabel | Vad |
+| --- | --- |
+| `INTERCOM_ACCESS_TOKEN` | Access token (Intercom > Developer Hub > appen > Authentication) |
+| `INTERCOM_CLIENT_SECRET` | Client secret (appen > Basic information), verifierar webhooken |
+| `INTERCOM_API_URL` | `https://api.intercom.io` (EU: `https://api.eu.intercom.io`) |
+| `INTERCOM_LOCALE` | Föredraget språk för översättningar, standard `sv` |
+| `INTERCOM_CACHE_TTL` | Cachetid i sekunder, standard 3600 |
+| `INTERCOM_COLLECTION_IDS` | Bara artiklar i dessa samlingar (kommaseparerade id:n), t.ex. `1445236` för "Flytta till Oqto". Tomt = alla |
+| `INTERCOM_FEATURED_ARTICLE_IDS` | De guider som visas bredvid varandra på `/support` (artikel-id, i ordning). Tomt = de två första i flytt-kategorin |
+| `STATUS_APP_URL` / `STATUS_TIMEOUT` / `STATUS_SLOW_MS` / `STATUS_CACHE_SECONDS` | Driftstatusens adress, timeout (5), gräns för "trögt" i ms (3000) och cache (20) |
+
+**Hur det hänger ihop**
+
+- `App\Services\Intercom\HelpCenter` hämtar samlingar och publicerade artiklar,
+  gör om dem till kategorier (översta samlingen) med sektioner (underliggande
+  samling), rensar artikel-HTML och cachar resultatet. Misslyckas en hämtning
+  används senaste lyckade kopian.
+- `php artisan intercom:sync-help-center` hämtar om manuellt. Schemaläggaren kör
+  det var 30:e minut (kräver `schedule:run` på servern, se ovan) så länge
+  `INTERCOM_ACCESS_TOKEN` finns.
+- `POST /webhooks/intercom` tar emot Intercoms webhooks. Anropet verifieras med
+  headern `X-Hub-Signature` (HMAC-SHA1 av body med client secret). Giltiga anrop
+  läser om hjälpcentret (högst en gång per 30 sekunder); `ping` bekräftas bara.
+  Registrera `https://oqto.se/webhooks/intercom` under Developer Hub > appen >
+  Webhooks, och välj bara de händelser ni behöver - varje händelse kan utlösa en
+  omhämtning.
+- Utseendet ligger i `resources/views/support/` och `resources/css/support/`.
+  Tester: `php artisan test tests/Feature/IntercomHelpCenterTest.php`.
+
 ## Learning Statamic
 
 Statamic has extensive [documentation][docs]. We dedicate a significant amount of time and energy every day to improving them, so if something is unclear, feel free to open issues for anything you find confusing or incomplete. We are happy to consider anything you feel will make the docs and CMS better.

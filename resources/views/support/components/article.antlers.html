@@ -1,0 +1,254 @@
+<section class="support-hero support-hero-compact">
+
+    <div class="container support-hero-container">
+
+        <nav class="support-breadcrumbs" aria-label="Brödsmulor">
+            <a href="/support">Support</a>
+            <span aria-hidden="true">/</span>
+            <a href="/support/{{ category:slug }}">{{ category:title }}</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{{ article:title }}</span>
+        </nav>
+
+        <h1 class="support-title support-title-article">{{ article:title }}</h1>
+
+        {{ if article:description }}
+            <p class="support-intro">{{ article:description }}</p>
+        {{ /if }}
+
+        {{ if article:updated_at }}
+            <p class="support-meta">Uppdaterad {{ article:updated_at | format('Y-m-d') }}</p>
+        {{ /if }}
+
+        {{ partial:support/components/hero-buttons }}
+
+    </div>
+
+</section>
+
+<section class="support-article-section">
+
+    <div class="container support-article-layout">
+
+        <article class="support-article-body">
+            {{ article:body | raw }}
+        </article>
+
+        <div class="support-aside">
+
+        <div class="support-demo-card">
+            <span class="support-demo-card-eyebrow">Vill du ha hjälp?</span>
+            <p class="support-demo-card-text">Boka en demo så går vi igenom hur Oqto fungerar och vad som gäller för er.</p>
+            <a href="/boka-demo" class="support-button support-button-light">
+                <span>Boka demo</span>
+                <span aria-hidden="true">→</span>
+            </a>
+        </div>
+
+        <aside class="support-sidebar" aria-label="Fler artiklar i {{ category:title }}">
+
+            <h2 class="support-sidebar-title">I kategorin {{ category:title }}</h2>
+
+            <ul class="support-sidebar-list">
+                {{ siblings }}
+                    <li>
+                        <a href="{{ url }}"{{ if id == article:id }} class="is-current" aria-current="page"{{ /if }}>{{ title }}</a>
+                    </li>
+                {{ /siblings }}
+            </ul>
+
+            <a href="/support" class="support-sidebar-back">← Alla ämnen</a>
+
+        </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        // Steg i artikeln blir en checklista: numrerade listor (klicka på steget
+        // eller numret) och fällbara steg (<details>, klicka på bocken). Det man
+        // bockat av sparas i webbläsaren per artikel och lista, så att man hittar
+        // tillbaka efter en paus. Utan JavaScript fungerar allt som vanligt.
+        const body = document.querySelector(".support-article-body");
+
+        if (!body) return;
+
+        const CHECK = '<svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5l2.8 2.8L11 4.5"/></svg>';
+
+        const read = (key) => {
+            try {
+                const value = JSON.parse(localStorage.getItem(key) || "[]");
+                return Array.isArray(value) ? value : [];
+            } catch (e) {
+                return [];
+            }
+        };
+
+        const write = (key, value) => {
+            try {
+                if (value.length) {
+                    localStorage.setItem(key, JSON.stringify(value));
+                } else {
+                    localStorage.removeItem(key);
+                }
+            } catch (e) {}
+        };
+
+        /**
+         * @param key       nyckel i localStorage
+         * @param items     elementen som kan klarmarkeras (li eller details)
+         * @param before    elementet som framstegsraden placeras före
+         * @param hostFor   ger det element markeringsknappen läggs först i
+         * @param onChange  anropas när ett steg bockas av/på (index, klart)
+         */
+        const makeChecklist = (key, items, before, hostFor, onChange) => {
+
+            const done = new Set(read(key));
+
+            const progress = document.createElement("div");
+            progress.className = "support-steps-progress";
+            progress.innerHTML =
+                '<span class="support-steps-count" aria-live="polite"></span>' +
+                '<span class="support-steps-bar" aria-hidden="true"><span class="support-steps-bar-fill"></span></span>' +
+                '<button type="button" class="support-steps-reset">Nollställ</button>';
+
+            before.before(progress);
+
+            const count = progress.querySelector(".support-steps-count");
+            const fill = progress.querySelector(".support-steps-bar-fill");
+            const reset = progress.querySelector(".support-steps-reset");
+
+            const render = () => {
+
+                items.forEach((item, index) => {
+                    const isDone = done.has(index);
+                    const marker = item.querySelector(".support-step-marker");
+
+                    item.classList.toggle("is-done", isDone);
+                    marker.setAttribute("aria-pressed", String(isDone));
+                    marker.innerHTML = isDone ? CHECK : String(index + 1);
+                });
+
+                const total = items.length;
+                const finished = done.size;
+
+                count.textContent = finished === total ? "Alla steg klara" : finished + " av " + total + " klara";
+                fill.style.width = (finished / total * 100) + "%";
+                reset.hidden = finished === 0;
+
+                write(key, [...done].sort((a, b) => a - b));
+            };
+
+            const toggle = (index) => {
+                const nowDone = !done.has(index);
+
+                if (nowDone) {
+                    done.add(index);
+                } else {
+                    done.delete(index);
+                }
+
+                render();
+
+                if (onChange) onChange(index, nowDone, done);
+            };
+
+            items.forEach((item, index) => {
+
+                const marker = document.createElement("button");
+                marker.type = "button";
+                marker.className = "support-step-marker";
+                marker.setAttribute("aria-label", "Klarmarkera steg " + (index + 1));
+                hostFor(item).prepend(marker);
+
+                marker.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    toggle(index);
+                });
+            });
+
+            reset.addEventListener("click", () => {
+                done.clear();
+                render();
+            });
+
+            render();
+
+            return { toggle, done };
+        };
+
+        // ---- Numrerade listor: klick var som helst på steget bockar av det.
+        body.querySelectorAll("ol").forEach((list, listIndex) => {
+
+            // Bara översta nivåns listor med minst två steg.
+            if (list.closest("li")) return;
+
+            const items = [...list.children].filter((el) => el.tagName === "LI");
+
+            if (items.length < 2) return;
+
+            list.classList.add("support-steps");
+
+            const { toggle } = makeChecklist(
+                "oqto-support-steps:" + location.pathname + ":" + listIndex,
+                items,
+                list,
+                (item) => item,
+            );
+
+            items.forEach((item, index) => {
+                item.addEventListener("click", (event) => {
+                    if (event.target.closest("a, button")) return;
+                    if (window.getSelection && String(window.getSelection())) return;
+
+                    toggle(index);
+                });
+            });
+        });
+
+        // ---- Fällbara steg (<details>) som ligger efter varandra: bocken i
+        // raden klarmarkerar steget, fäller ihop det och öppnar nästa ej klara.
+        const groups = [];
+        let current = [];
+
+        [...body.children].forEach((el) => {
+            if (el.tagName === "DETAILS") {
+                current.push(el);
+            } else if (current.length) {
+                groups.push(current);
+                current = [];
+            }
+        });
+
+        if (current.length) groups.push(current);
+
+        groups.forEach((items, groupIndex) => {
+
+            if (items.length < 2) return;
+
+            items.forEach((item) => item.classList.add("support-step-details"));
+
+            makeChecklist(
+                "oqto-support-steps:" + location.pathname + ":d" + groupIndex,
+                items,
+                items[0],
+                (item) => item.querySelector("summary"),
+                (index, nowDone, done) => {
+                    if (!nowDone) return;
+
+                    items[index].open = false;
+
+                    const next = items.findIndex((el, i) => i > index && !done.has(i));
+
+                    if (next !== -1) items[next].open = true;
+                },
+            );
+        });
+    });
+</script>

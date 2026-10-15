@@ -1,0 +1,1347 @@
+/* =========================================================
+   SUPPORT (HJÄLPCENTER) - startsida, kategori och artikel
+   ========================================================= */
+
+/* ---------- Hero ---------- */
+
+.support-hero {
+    width: 100%;
+
+    padding: 160px 40px 70px;
+
+    box-sizing: border-box;
+
+    /* Samma ljusblå gradient som hero på /funktioner. */
+    background: linear-gradient(180deg, #e8f2ff 0%, #ffffff 100%);
+    color: var(--color-text);
+}
+
+.support-hero-compact {
+    padding-bottom: 56px;
+}
+
+/* Hero i två kolumner: text + knappar till vänster, bild till höger. */
+.support-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+    gap: 64px;
+    align-items: center;
+}
+
+.support-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.support-hero-visual {
+    position: relative;
+
+    /* Egen stapling, så att bläckfiskens z-index -1 hamnar bakom skärmbilden
+       men framför hero-bakgrunden. */
+    isolation: isolate;
+
+    padding-bottom: 12px;
+}
+
+.support-hero-visual-frame {
+    overflow: hidden;
+
+    border: 1px solid #cfdcee;
+    border-radius: 22px;
+
+    background-color: #ffffff;
+    box-shadow: 0 24px 60px rgba(30, 70, 130, 0.18);
+}
+
+.support-hero-visual-frame img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+/* Bläckfisken kikar fram bakom skärmbildens övre högra hörn, fisken
+   simmar vid det nedre vänstra - samma figurer som på /funktioner. */
+.support-hero-octopus {
+    position: absolute;
+    z-index: -1;
+
+    top: -9%;
+    right: 6%;
+
+    width: 17%;
+    height: auto;
+}
+
+.support-hero-fish {
+    position: absolute;
+    z-index: 2;
+
+    left: -4%;
+    bottom: -6%;
+
+    width: 12%;
+    height: auto;
+}
+
+.support-eyebrow {
+    display: inline-block;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.support-title {
+    margin: 14px 0 0;
+
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+.support-title-article {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.support-intro {
+    max-width: 640px;
+    margin: 18px 0 0;
+
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #55504c;
+}
+
+.support-meta {
+    margin: 16px 0 0;
+
+    font-size: 0.85rem;
+    color: #7a746f;
+}
+
+
+/* ---------- Brödsmulor ---------- */
+
+.support-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 28px;
+
+    font-size: 0.9rem;
+    color: #7a746f;
+}
+
+.support-breadcrumbs a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: #bdd0ea;
+    text-underline-offset: 3px;
+
+    transition: text-decoration-color 0.15s ease;
+}
+
+.support-breadcrumbs a:hover {
+    text-decoration-color: var(--color-accent);
+}
+
+
+/* ---------- Sektioner ---------- */
+
+.support-categories-section {
+    width: 100%;
+
+    padding: 70px 40px 40px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+    color: var(--color-text);
+}
+
+.support-section-title {
+    margin: 0 0 28px;
+
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+
+/* ---------- Artikelkort (kategorisidan) ---------- */
+
+.support-article-group + .support-article-group {
+    margin-top: 48px;
+}
+
+.support-group-title {
+    font-size: 1.3rem;
+}
+
+.support-article-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.support-article-card {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    padding: 22px 52px 22px 22px;
+
+    border: 1px solid #dbe7f6;
+    border-radius: 20px;
+
+    background-color: #ffffff;
+    color: inherit;
+    text-decoration: none;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.support-article-card-icon {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 12px;
+
+    background-color: #fdebe0;
+    color: var(--color-accent);
+}
+
+.support-article-card-text {
+    min-width: 0;
+}
+
+.support-article-card:hover,
+.support-article-card:focus-visible {
+    outline: none;
+
+    transform: translateY(-2px);
+
+    border-color: #c5d8f0;
+    box-shadow: 0 12px 30px rgba(30, 70, 130, 0.11);
+}
+
+.support-article-card-title {
+    margin: 0;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.support-article-card-description {
+    margin: 8px 0 0;
+
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: #55504c;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.support-article-card-arrow {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    color: var(--color-accent);
+    transition: transform 0.2s ease;
+}
+
+.support-article-card:hover .support-article-card-arrow {
+    transform: translateX(4px);
+}
+
+
+/* ---------- Artikel ---------- */
+
+.support-article-section {
+    width: 100%;
+
+    padding: 60px 40px 40px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+    color: var(--color-text);
+}
+
+.support-article-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 72px;
+    align-items: start;
+}
+
+.support-article-body {
+    max-width: 760px;
+
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #3a332d;
+
+    overflow-wrap: anywhere;
+}
+
+.support-article-body > :first-child {
+    margin-top: 0;
+}
+
+.support-article-body h1,
+.support-article-body h2,
+.support-article-body h3,
+.support-article-body h4 {
+    margin: 2.2em 0 0.6em;
+
+    color: var(--color-text);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+
+.support-article-body h1,
+.support-article-body h2 {
+    font-size: 1.7rem;
+}
+
+.support-article-body h3 {
+    font-size: 1.3rem;
+}
+
+.support-article-body h4 {
+    font-size: 1.1rem;
+}
+
+/* Intercom lägger ofta <b> inuti rubriker - de ska ha rubrikens vikt, inte 700. */
+.support-article-body h1 b,
+.support-article-body h2 b,
+.support-article-body h3 b,
+.support-article-body h4 b,
+.support-article-body h1 strong,
+.support-article-body h2 strong,
+.support-article-body h3 strong,
+.support-article-body h4 strong {
+    font-weight: inherit;
+}
+
+/* Fetstil i löptext: 600 passar sajtens övriga betoning bättre än 700. */
+.support-article-body b,
+.support-article-body strong {
+    font-weight: 600;
+}
+
+.support-article-body p,
+.support-article-body ul,
+.support-article-body ol,
+.support-article-body table,
+.support-article-body blockquote,
+.support-article-body pre {
+    margin: 0 0 1.2em;
+}
+
+.support-article-body ul,
+.support-article-body ol {
+    padding-left: 1.4em;
+}
+
+/* Sajtens grundstil nollställer listor - artikeltexten behöver dem. */
+.support-article-body ul {
+    list-style: disc;
+}
+
+.support-article-body ol {
+    list-style: decimal;
+}
+
+.support-article-body li {
+    margin-bottom: 0.4em;
+}
+
+/* Intercom lägger varje listpunkt i ett <p> - det ska inte ge extra luft. */
+.support-article-body li > p {
+    margin: 0;
+}
+
+.support-article-body li::marker {
+    color: var(--color-accent);
+}
+
+.support-article-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.support-article-body a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.support-article-body img {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+    margin: 1.6em 0;
+
+    border: 1px solid #dbe7f6;
+    border-radius: 14px;
+}
+
+.support-article-body hr {
+    margin: 2.4em 0;
+
+    border: 0;
+    border-top: 1px solid #dbe7f6;
+}
+
+.support-article-body blockquote,
+.support-article-body .intercom-interblocks-callout {
+    margin: 1.6em 0;
+    padding: 16px 20px;
+
+    border-left: 4px solid var(--color-accent);
+    border-radius: 4px 14px 14px 4px;
+
+    background-color: #fdf1e9;
+}
+
+.support-article-body blockquote > :last-child,
+.support-article-body .intercom-interblocks-callout > :last-child {
+    margin-bottom: 0;
+}
+
+.support-article-body code {
+    padding: 2px 6px;
+
+    border-radius: 6px;
+
+    background-color: #eef5ff;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.9em;
+}
+
+.support-article-body pre {
+    padding: 16px 20px;
+
+    border-radius: 14px;
+
+    background-color: #1a1715;
+    color: #eef5ff;
+
+    overflow-x: auto;
+}
+
+.support-article-body pre code {
+    padding: 0;
+
+    background: none;
+}
+
+.support-article-body table {
+    display: block;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-collapse: collapse;
+}
+
+.support-article-body th,
+.support-article-body td {
+    padding: 10px 14px;
+
+    border: 1px solid #dbe7f6;
+
+    text-align: left;
+}
+
+.support-article-body th {
+    background-color: #eef5ff;
+    font-weight: 600;
+}
+
+
+/* Ingress: en lång mening som Intercom-texten satt som rubrik (se HelpCenter). */
+.support-article-body .support-lead {
+    margin: 0 0 1.4em;
+
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #3a332d;
+}
+
+/* Fällbara steg (<details>) - Intercom använder dem i t.ex. importguiderna. */
+.support-article-body details {
+    margin: 0 0 12px;
+
+    border: 1px solid #dbe7f6;
+    border-radius: 16px;
+
+    background-color: #f6f9ff;
+}
+
+.support-article-body summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 16px 20px;
+
+    list-style: none;
+    cursor: pointer;
+}
+
+.support-article-body summary::-webkit-details-marker {
+    display: none;
+}
+
+.support-article-body summary::after {
+    content: "";
+
+    flex-shrink: 0;
+
+    width: 10px;
+    height: 10px;
+
+    border-right: 2px solid var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.support-article-body details[open] > summary::after {
+    transform: rotate(-135deg);
+}
+
+.support-article-body summary:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.support-article-body summary > * {
+    margin: 0;
+}
+
+/* Rubriken i ett fällbart steg: lite mindre och med normal bokstavsavstånd,
+   så att den inte blir tyngre än sidans övriga rubriker. */
+.support-article-body summary h2,
+.support-article-body summary h3,
+.support-article-body summary h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.support-article-body details > :not(summary) {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.support-article-body details > .collapsible-section-content {
+    padding: 0 20px 16px;
+    margin: 0;
+}
+
+.support-article-body details > .collapsible-section-content > :last-child {
+    margin-bottom: 0;
+}
+
+
+/* ---------- Sidokolumn: demo-kort + sidomeny ---------- */
+
+.support-aside {
+    position: sticky;
+    top: 110px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.support-demo-card {
+    padding: 24px;
+
+    border-radius: 20px;
+
+    background: linear-gradient(160deg, #ff7a2e 0%, #ff5500 100%);
+    color: #ffffff;
+}
+
+.support-demo-card-eyebrow {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    opacity: 0.85;
+}
+
+.support-demo-card-text {
+    margin: 10px 0 18px;
+
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.support-button.support-button-light {
+    border-color: #ffffff;
+    background-color: #ffffff;
+    color: var(--color-accent);
+}
+
+.support-button.support-button-light:hover {
+    border-color: #ffffff;
+    background-color: #fff3ea;
+}
+
+
+/* ---------- Sidomeny ---------- */
+
+.support-sidebar {
+    padding: 24px;
+
+    border: 1px solid #dbe7f6;
+    border-radius: 20px;
+
+    background-color: #eef5ff;
+}
+
+.support-sidebar-title {
+    margin: 0 0 14px;
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.support-sidebar-list {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.support-sidebar-list li + li {
+    border-top: 1px solid #d6e3f3;
+}
+
+.support-sidebar-list a {
+    display: block;
+
+    padding: 10px 0;
+
+    font-size: 0.92rem;
+    line-height: 1.4;
+    color: #55504c;
+    text-decoration: none;
+
+    transition: color 0.15s ease;
+}
+
+.support-sidebar-list a:hover {
+    color: var(--color-text);
+}
+
+.support-sidebar-list a.is-current {
+    font-weight: 600;
+    color: var(--color-accent);
+}
+
+.support-sidebar-back {
+    display: inline-block;
+
+    margin-top: 16px;
+
+    font-size: 0.9rem;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.support-sidebar-back:hover {
+    color: var(--color-accent);
+}
+
+
+/* ---------- Kontakt-ruta (CTA) ---------- */
+
+.support-cta-section {
+    width: 100%;
+
+    padding: 40px 40px 100px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+}
+
+.support-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    padding: 48px;
+
+    border-radius: 28px;
+
+    background-color: #eef5ff;
+    color: var(--color-text);
+}
+
+.support-cta-title {
+    margin: 10px 0 0;
+
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.support-cta-body {
+    max-width: 480px;
+    margin: 12px 0 0;
+
+    line-height: 1.6;
+    color: #55504c;
+}
+
+.support-cta-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.support-cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.support-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 22px;
+
+    border: 1.5px solid var(--color-text);
+    border-radius: 999px;
+
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.support-button-primary {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+    color: #ffffff;
+}
+
+.support-button-primary:hover {
+    border-color: #e64d00;
+    background-color: #e64d00;
+}
+
+.support-button-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+}
+
+.support-button-secondary:hover {
+    background-color: var(--color-text);
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   TABLET / MOBIL
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .support-hero {
+        padding: 130px 32px 56px;
+    }
+
+    .support-categories-section,
+    .support-article-section {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .support-cta-section {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .support-hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 48px;
+    }
+
+    .support-hero-visual {
+        max-width: 520px;
+    }
+
+    .support-article-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+    }
+
+    .support-aside {
+        position: static;
+        order: 2;
+    }
+
+    .support-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .support-hero {
+        padding: 110px 18px 44px;
+    }
+
+    .support-categories-section,
+    .support-article-section,
+    .support-cta-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .support-categories-section {
+        padding-top: 48px;
+    }
+
+    .support-article-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* Bilden tas bort på mobil så att sidan hålls lätt och snabb. */
+    .support-hero-visual {
+        display: none;
+    }
+
+    .support-hero-actions .support-button {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+    .support-article-card {
+        padding: 18px 44px 18px 18px;
+    }
+
+    .support-cta {
+        padding: 32px 22px;
+    }
+
+    .support-cta-section {
+        padding-bottom: 64px;
+    }
+
+    .support-article-body {
+        font-size: 1rem;
+    }
+
+}
+
+
+/* =========================================================
+   CHECKLISTA: numrerade listor i artiklar (klicka för att klarmarkera)
+   ========================================================= */
+
+.support-article-body ol.support-steps {
+    margin: 0 0 1.6em;
+    padding: 0;
+
+    list-style: none;
+}
+
+.support-steps-progress {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin: 0 0 14px;
+
+    font-size: 0.9rem;
+    color: #55504c;
+}
+
+.support-steps-count {
+    flex-shrink: 0;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.support-steps-bar {
+    flex: 1;
+
+    height: 6px;
+
+    border-radius: 999px;
+
+    background-color: #dbe7f6;
+
+    overflow: hidden;
+}
+
+.support-steps-bar-fill {
+    display: block;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background-color: var(--color-accent);
+
+    transition: width 0.3s ease;
+}
+
+.support-steps-reset {
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: 0;
+    background: none;
+
+    font: inherit;
+    font-size: 0.85rem;
+    color: #7a746f;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    cursor: pointer;
+}
+
+.support-steps-reset[hidden] {
+    display: none;
+}
+
+.support-steps-reset:hover {
+    color: var(--color-text);
+}
+
+.support-article-body ol.support-steps > li {
+    position: relative;
+
+    margin: 0 0 10px;
+    padding: 14px 18px 14px 62px;
+
+    border: 1px solid #dbe7f6;
+    border-radius: 16px;
+
+    background-color: #ffffff;
+
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.support-article-body ol.support-steps > li:hover {
+    border-color: #c5d8f0;
+    background-color: #f6f9ff;
+}
+
+.support-article-body ol.support-steps > li::marker {
+    content: none;
+}
+
+.support-step-marker {
+    position: absolute;
+    top: 13px;
+    left: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    padding: 0;
+
+    border: 1.5px solid #c5d8f0;
+    border-radius: 50%;
+
+    background-color: #ffffff;
+    color: var(--color-text);
+
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.support-step-marker:hover {
+    border-color: var(--color-accent);
+}
+
+.support-step-marker:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.support-article-body ol.support-steps > li.is-done {
+    border-color: #dbe7f6;
+    background-color: #f6f9ff;
+}
+
+.support-article-body ol.support-steps > li.is-done > :not(.support-step-marker) {
+    opacity: 0.55;
+}
+
+.support-article-body ol.support-steps > li.is-done .support-step-marker {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+    color: #ffffff;
+}
+
+/* Underliggande punkter i ett steg ligger kvar inuti kortet. */
+.support-article-body ol.support-steps > li ul {
+    margin: 0.6em 0 0;
+}
+
+@media (max-width: 767px) {
+
+    .support-article-body ol.support-steps > li {
+        padding: 12px 14px 12px 54px;
+    }
+
+    .support-step-marker {
+        top: 11px;
+        left: 12px;
+    }
+
+}
+
+
+/* ---------- Checklista på fällbara steg ---------- */
+
+.support-article-body details.support-step-details > summary {
+    justify-content: flex-start;
+}
+
+.support-article-body details.support-step-details > summary > h2,
+.support-article-body details.support-step-details > summary > h3,
+.support-article-body details.support-step-details > summary > h4 {
+    flex: 1;
+}
+
+/* Markeringsknappen ligger i flödet (inte absolutpositionerad) i en summary. */
+.support-article-body details.support-step-details .support-step-marker {
+    position: static;
+
+    flex-shrink: 0;
+}
+
+.support-article-body details.support-step-details.is-done > summary > :not(.support-step-marker) {
+    opacity: 0.55;
+}
+
+.support-article-body details.support-step-details.is-done .support-step-marker {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+    color: #ffffff;
+}
+
+.support-article-body details.support-step-details.is-done {
+    background-color: #f6f9ff;
+}
+
+
+/* =========================================================
+   DRIFTSTATUS (/support/status)
+   ========================================================= */
+
+.support-status-section {
+    /* Ankarlänken /support#driftstatus ska inte hamna under den fasta navbaren. */
+    scroll-margin-top: 110px;
+
+    width: 100%;
+
+    padding: 24px 40px 20px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+    color: var(--color-text);
+}
+
+.support-status-card {
+    --status-color: #9a948e;
+    --status-bg: #f3f1ef;
+
+    padding: 32px;
+
+    border: 1px solid #dbe7f6;
+    border-radius: 24px;
+
+    background-color: #ffffff;
+    box-shadow: 0 14px 40px rgba(30, 70, 130, 0.08);
+}
+
+.support-status-card[data-state="operational"] {
+    --status-color: #1f9d55;
+    --status-bg: #e6f6ed;
+}
+
+.support-status-card[data-state="degraded"] {
+    --status-color: #d98200;
+    --status-bg: #fff1d9;
+}
+
+.support-status-card[data-state="down"] {
+    --status-color: #d93025;
+    --status-bg: #fde8e6;
+}
+
+.support-status-main {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.support-status-main > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.support-status-dot {
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background-color: var(--status-color);
+    box-shadow: 0 0 0 8px var(--status-bg);
+
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.support-status-card[data-state="checking"] .support-status-dot {
+    animation: supportStatusPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes supportStatusPulse {
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.support-status-label {
+    margin: 0;
+
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.support-status-text {
+    margin: 6px 0 0;
+
+    line-height: 1.5;
+    color: #55504c;
+}
+
+.support-status-refresh {
+    flex-shrink: 0;
+
+    background-color: transparent;
+
+    font: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.support-status-refresh:disabled {
+    opacity: 0.5;
+    cursor: progress;
+}
+
+.support-status-meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+
+    margin: 28px 0 0;
+    padding-top: 24px;
+
+    border-top: 1px solid #dbe7f6;
+}
+
+.support-status-meta dt {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7a746f;
+}
+
+.support-status-meta dd {
+    margin: 6px 0 0;
+
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.support-status-note {
+    max-width: 720px;
+    margin: 16px 4px 0;
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #7a746f;
+}
+
+.support-status-help {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+
+    margin-top: 32px;
+    padding: 32px;
+
+    border: 1.5px solid transparent;
+    border-radius: 24px;
+
+    background-color: #eef5ff;
+
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.support-status-help.is-problem {
+    border-color: var(--color-accent);
+    background-color: #fff3ea;
+}
+
+.support-status-help-title {
+    margin: 0;
+
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.support-status-help-text {
+    max-width: 560px;
+    margin: 8px 0 0;
+
+    line-height: 1.6;
+    color: #55504c;
+}
+
+.support-status-move {
+    padding-top: 60px;
+}
+
+.support-status-move-intro {
+    max-width: 640px;
+    margin: -12px 0 28px;
+
+    line-height: 1.6;
+    color: #55504c;
+}
+
+.support-status-move-actions {
+    margin-top: 24px;
+}
+
+@media (max-width: 1024px) {
+
+    .support-status-section {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .support-status-help {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .support-status-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .support-status-card,
+    .support-status-help {
+        padding: 22px;
+    }
+
+    .support-status-main {
+        flex-wrap: wrap;
+    }
+
+    .support-status-main > div {
+        flex: 1 1 calc(100% - 50px);
+    }
+
+    .support-status-refresh {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .support-status-meta {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+}

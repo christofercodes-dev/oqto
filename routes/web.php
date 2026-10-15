@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BokaDemoLogController;
 use App\Http\Controllers\BokaDemoLookupController;
+use App\Http\Controllers\IntercomWebhookController;
+use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
 // POST (inte GET) eftersom e-postadressen inte ska hamna i URL:en och därmed
@@ -13,3 +15,22 @@ Route::post('/boka-demo/lookup', BokaDemoLookupController::class)
 Route::post('/boka-demo/log', BokaDemoLogController::class)
     ->middleware('throttle:30,1')
     ->name('boka-demo.log');
+
+// Intercom skickar webhooks hit; anropet verifieras med signaturen i
+// controllern (inte CSRF), se bootstrap/app.php.
+Route::post('/webhooks/intercom', IntercomWebhookController::class)
+    ->middleware('throttle:120,1')
+    ->name('webhooks.intercom');
+
+// Hjälpcentret - artiklarna kommer från Intercom (se App\Services\Intercom\HelpCenter).
+Route::get('/support', [SupportController::class, 'index'])->name('support.index');
+
+// Statusen visas på /support. /support/status leder vidare dit, och check-
+// endpointen ger JSON åt sidans skript. Måste ligga före {category}-rutterna nedan.
+Route::get('/support/status', [SupportController::class, 'status'])->name('support.status');
+Route::get('/support/status/check', [SupportController::class, 'statusCheck'])
+    ->middleware('throttle:60,1')
+    ->name('support.status.check');
+
+Route::get('/support/{category}', [SupportController::class, 'category'])->name('support.category');
+Route::get('/support/{category}/{article}', [SupportController::class, 'article'])->name('support.article');

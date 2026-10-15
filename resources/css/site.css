@@ -227,6 +227,8 @@
 @import "./funktioner/components/payment-demo.css";
 @import "./funktioner/components/all-features.css";
 
+@import "./support/support.css";
+
 @import "./villkor/components/hero.css";
 @import "./villkor/components/content.css";
 

@@ -1,0 +1,37 @@
+<section class="support-hero support-hero-compact">
+
+    <div class="container support-hero-container support-hero-grid">
+
+        <div class="support-hero-text">
+
+            <nav class="support-breadcrumbs" aria-label="Brödsmulor">
+                <a href="/support">Support</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">{{ category:title }}</span>
+            </nav>
+
+            <h1 class="support-title">{{ category:title }}</h1>
+
+            {{ if category:description }}
+                <p class="support-intro">{{ category:description }}</p>
+            {{ /if }}
+
+            {{ partial:support/components/hero-buttons }}
+
+        </div>
+
+        {{ partial:support/components/hero-visual }}
+
+    </div>
+
+</section>
+
+<section class="support-categories-section">
+
+    <div class="container">
+
+        {{ partial:support/components/article-grid :sections="category:sections" }}
+
+    </div>
+
+</section>
