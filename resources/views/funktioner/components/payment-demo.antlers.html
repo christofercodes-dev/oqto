@@ -1,0 +1,247 @@
+{{# Interaktiv demo av signeringsuppdraget för betalningar. Allt är dummydata:
+    beloppen anges i ören i data-amount och totalsumman räknas om i
+    skriptet längst ned varje gång en rad bockas i eller ur. #}}
+<div class="payment-demo" data-payment-demo>
+
+    <div class="payment-demo-header">
+
+        <div class="payment-demo-heading">
+            <div class="payment-demo-title">
+                <svg class="payment-demo-title-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 20h18"/>
+                    <path d="M4 16c2.5 0 3.5-9 6-10.5 1.4-.8 2 .3 1.4 2.3C10.6 10.4 8.8 15 11 15c2 0 2.2-3 4-3 1.2 0 .6 2.2 2.5 2.2.8 0 1.4-.4 2-1"/>
+                </svg>
+                <span>Signeringsuppdrag</span>
+            </div>
+            <p class="payment-demo-meta">
+                <span data-pd-count>5 betalningar</span>
+                <span class="payment-demo-meta-sep" aria-hidden="true"> · </span>
+                <span>Förberett av Anna Andersson</span>
+            </p>
+        </div>
+
+        <div class="payment-demo-total">
+            <span class="payment-demo-total-label">Totalt belopp</span>
+            <span class="payment-demo-total-amount" data-pd-total aria-live="polite">33&nbsp;787,50 SEK</span>
+        </div>
+
+    </div>
+
+    <div class="payment-demo-account">
+        <span class="payment-demo-account-label">Valt bankkonto</span>
+        <div class="payment-demo-account-card">
+            <span class="payment-demo-account-logo" aria-hidden="true">B</span>
+            <span class="payment-demo-account-info">
+                <span class="payment-demo-account-name">Företagskonto</span>
+                <span class="payment-demo-account-iban">SE12 3456 7890 1234 5678 9012</span>
+            </span>
+            <span class="payment-demo-account-available">
+                <span class="payment-demo-account-available-label">Tillgängligt</span>
+                <span class="payment-demo-account-available-amount">394&nbsp;376,00 SEK</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="payment-demo-bar">
+
+        <button type="button" class="payment-demo-toggle" data-pd-toggle aria-expanded="true">
+            <svg class="payment-demo-chevron" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 8l5 5 5-5"/>
+            </svg>
+            <span>Visa betalningar</span>
+        </button>
+
+        <button type="button" class="payment-demo-sign" data-pd-sign>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 20h18"/>
+                <path d="M4 16c2.5 0 3.5-9 6-10.5 1.4-.8 2 .3 1.4 2.3C10.6 10.4 8.8 15 11 15c2 0 2.2-3 4-3 1.2 0 .6 2.2 2.5 2.2.8 0 1.4-.4 2-1"/>
+            </svg>
+            <span>Signera med BankID</span>
+        </button>
+
+    </div>
+
+    <div class="payment-demo-table-wrap" data-pd-panel>
+        <table class="payment-demo-table">
+            <thead>
+                <tr>
+                    <th class="payment-demo-check-cell">
+                        <input type="checkbox" class="payment-demo-check" data-pd-all checked aria-label="Markera alla betalningar">
+                    </th>
+                    <th>Mottagare</th>
+                    <th>Källa</th>
+                    <th class="payment-demo-date">Betalningsdatum</th>
+                    <th class="payment-demo-amount">Belopp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-pd-row data-amount="1425000">
+                    <td class="payment-demo-check-cell"><input type="checkbox" class="payment-demo-check" data-pd-check checked aria-label="Löneutbetalning"></td>
+                    <td>Löneutbetalning</td>
+                    <td><span class="payment-demo-chip payment-demo-chip-blue">Lön <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></span></td>
+                    <td class="payment-demo-date">2026-10-23</td>
+                    <td class="payment-demo-amount">14&nbsp;250,00 SEK</td>
+                </tr>
+                <tr data-pd-row data-amount="248750">
+                    <td class="payment-demo-check-cell"><input type="checkbox" class="payment-demo-check" data-pd-check checked aria-label="Kontorsbolaget AB"></td>
+                    <td>Kontorsbolaget AB</td>
+                    <td><span class="payment-demo-chip">Faktura 74 <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></span></td>
+                    <td class="payment-demo-date">2026-10-21</td>
+                    <td class="payment-demo-amount">2&nbsp;487,50 SEK</td>
+                </tr>
+                <tr data-pd-row data-amount="562500">
+                    <td class="payment-demo-check-cell"><input type="checkbox" class="payment-demo-check" data-pd-check checked aria-label="Skattekonto"></td>
+                    <td>Skattekonto</td>
+                    <td><span class="payment-demo-source-none">–</span></td>
+                    <td class="payment-demo-date">2026-10-15</td>
+                    <td class="payment-demo-amount">5&nbsp;625,00 SEK</td>
+                </tr>
+                <tr data-pd-row data-amount="167500">
+                    <td class="payment-demo-check-cell"><input type="checkbox" class="payment-demo-check" data-pd-check checked aria-label="Rent &amp; Fint AB"></td>
+                    <td>Rent &amp; Fint AB</td>
+                    <td><span class="payment-demo-chip">Faktura 78 <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></span></td>
+                    <td class="payment-demo-date">2026-10-14</td>
+                    <td class="payment-demo-amount">1&nbsp;675,00 SEK</td>
+                </tr>
+                <tr data-pd-row data-amount="975000">
+                    <td class="payment-demo-check-cell"><input type="checkbox" class="payment-demo-check" data-pd-check checked aria-label="Fastighets AB Exempel"></td>
+                    <td>Fastighets AB</td>
+                    <td><span class="payment-demo-chip">Faktura 73 <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></span></td>
+                    <td class="payment-demo-date">2026-10-13</td>
+                    <td class="payment-demo-amount">9&nbsp;750,00 SEK</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<dialog class="payment-modal" data-pd-modal aria-labelledby="payment-modal-title">
+    <div class="payment-modal-card">
+
+        <button type="button" class="payment-modal-close" data-pd-modal-close aria-label="Stäng">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <path d="M5 5l10 10M15 5L5 15"/>
+            </svg>
+        </button>
+
+        <span class="payment-modal-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 20h18"/>
+                <path d="M4 16c2.5 0 3.5-9 6-10.5 1.4-.8 2 .3 1.4 2.3C10.6 10.4 8.8 15 11 15c2 0 2.2-3 4-3 1.2 0 .6 2.2 2.5 2.2.8 0 1.4-.4 2-1"/>
+            </svg>
+        </span>
+
+        <span class="payment-modal-eyebrow">Signering</span>
+
+        <h2 class="payment-modal-title" id="payment-modal-title">Det här är en demo</h2>
+
+        <p class="payment-modal-text">
+            Så här ser ett signeringsuppdrag ut i Oqto. Vill du se hur det fungerar på riktigt?
+            Boka en demo så visar vi dig.
+        </p>
+
+        <p class="payment-modal-note" data-pd-modal-summary></p>
+
+        <a href="/boka-demo" class="payment-modal-button">
+            <span>Boka demo</span>
+            <span aria-hidden="true">→</span>
+        </a>
+
+    </div>
+</dialog>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const formatAmount = (ore) => {
+            const kronor = Math.floor(ore / 100);
+            const rest = String(ore % 100).padStart(2, "0");
+
+            return kronor.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + "," + rest + " SEK";
+        };
+
+        document.querySelectorAll("[data-payment-demo]").forEach((demo) => {
+
+            const rows = [...demo.querySelectorAll("[data-pd-row]")];
+            const checks = rows.map((row) => row.querySelector("[data-pd-check]"));
+            const allCheck = demo.querySelector("[data-pd-all]");
+            const totalEl = demo.querySelector("[data-pd-total]");
+            const countEl = demo.querySelector("[data-pd-count]");
+            const signButton = demo.querySelector("[data-pd-sign]");
+            const toggle = demo.querySelector("[data-pd-toggle]");
+            const panel = demo.querySelector("[data-pd-panel]");
+
+            const update = () => {
+
+                let total = 0;
+                let selected = 0;
+
+                rows.forEach((row, i) => {
+                    const on = checks[i].checked;
+
+                    row.classList.toggle("is-unselected", !on);
+
+                    if (on) {
+                        total += parseInt(row.dataset.amount, 10);
+                        selected++;
+                    }
+                });
+
+                totalEl.textContent = formatAmount(total);
+                countEl.textContent = selected + (selected === 1 ? " betalning" : " betalningar");
+
+                allCheck.checked = selected === rows.length;
+                allCheck.indeterminate = selected > 0 && selected < rows.length;
+
+                signButton.disabled = selected === 0;
+            };
+
+            rows.forEach((row, i) => {
+                row.addEventListener("click", (event) => {
+                    if (event.target === checks[i]) return;
+
+                    checks[i].checked = !checks[i].checked;
+                    update();
+                });
+
+                checks[i].addEventListener("change", update);
+            });
+
+            allCheck.addEventListener("change", () => {
+                checks.forEach((check) => { check.checked = allCheck.checked; });
+                update();
+            });
+
+            const modal = demo.parentElement.querySelector("[data-pd-modal]");
+
+            if (modal) {
+                const summary = modal.querySelector("[data-pd-modal-summary]");
+
+                signButton.addEventListener("click", () => {
+                    const count = countEl.textContent;
+
+                    summary.textContent = "Du skulle nu signera " + count + " på " + totalEl.textContent + " med BankID.";
+                    modal.showModal();
+                });
+
+                // Klick utanför kortet (på backdropen) stänger popupen.
+                modal.addEventListener("click", (event) => {
+                    if (event.target === modal) modal.close();
+                });
+
+                modal.querySelector("[data-pd-modal-close]").addEventListener("click", () => modal.close());
+            }
+
+            toggle.addEventListener("click", () => {
+                const open = toggle.getAttribute("aria-expanded") !== "true";
+
+                toggle.setAttribute("aria-expanded", String(open));
+                panel.hidden = !open;
+            });
+
+            update();
+        });
+
+    });
+</script>

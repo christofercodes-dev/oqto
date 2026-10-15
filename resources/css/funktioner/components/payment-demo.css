@@ -1,0 +1,813 @@
+/* =========================================================
+   FUNKTIONER - INTERAKTIV BETALNINGSDEMO (SIGNERINGSUPPDRAG)
+   ========================================================= */
+
+/* Mediarutan runt demon: fri höjd i stället för den fasta bildkvoten. */
+.feature-block-media.feature-block-media-demo {
+    aspect-ratio: auto;
+    max-height: none;
+
+    display: flex;
+    align-items: center;
+
+    padding: 28px;
+
+    /* Datumkolumnen styrs av rutans egen bredd (se @container nedan). */
+    container-type: inline-size;
+}
+
+.payment-demo {
+    width: 100%;
+
+    background-color: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 1px 2px rgba(46, 37, 31, 0.06), 0 12px 32px rgba(46, 37, 31, 0.08);
+
+    overflow: hidden;
+
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+
+/* ---------- Textsidan: punktlista och banketiketter (rubrik och text följer övriga block) ---------- */
+
+.feature-block-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    margin: 28px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.feature-block-bullets li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    font-weight: 600;
+    color: var(--color-text-light);
+}
+
+.feature-block-bullet-icon {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background-color: #fdebe0;
+    color: var(--color-accent);
+}
+
+.feature-block-banks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 28px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.feature-block-banks li {
+    padding: 8px 20px;
+
+    border: 1.5px solid var(--color-text);
+    border-radius: 999px;
+
+    background-color: transparent;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+
+/* ---------- Rubrik + totalsumma ---------- */
+
+.payment-demo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+
+    padding: 24px 24px 18px;
+}
+
+.payment-demo-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.payment-demo-title-icon {
+    flex-shrink: 0;
+}
+
+.payment-demo-meta {
+    margin: 8px 0 0;
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #7a746f;
+}
+
+.payment-demo-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+
+    text-align: right;
+}
+
+.payment-demo-total-label {
+    font-size: 0.8rem;
+    color: #55504c;
+}
+
+.payment-demo-total-amount {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ---------- Bankkonto ---------- */
+
+.payment-demo-account {
+    padding: 0 24px 20px;
+}
+
+.payment-demo-account-label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 0.85rem;
+}
+
+.payment-demo-account-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 12px 16px;
+
+    border: 1px solid #ebe7e2;
+    border-radius: 10px;
+}
+
+.payment-demo-account-logo {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #ff8a4c 0%, #ff5500 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.payment-demo-account-info,
+.payment-demo-account-available {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.payment-demo-account-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.payment-demo-account-name {
+    font-weight: 500;
+}
+
+.payment-demo-account-iban {
+    font-size: 0.78rem;
+    color: #7a746f;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.payment-demo-account-available {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.payment-demo-account-available-label {
+    font-size: 0.75rem;
+    color: #7a746f;
+}
+
+.payment-demo-account-available-amount {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* ---------- Verktygsrad: visa/dölj + signera ---------- */
+
+.payment-demo-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 24px;
+
+    background-color: #faf9f7;
+    border-top: 1px solid #ebe7e2;
+}
+
+.payment-demo-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 6px 0;
+
+    border: 0;
+    background: none;
+
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.payment-demo-chevron {
+    transition: transform 0.2s ease;
+}
+
+.payment-demo-toggle[aria-expanded="false"] .payment-demo-chevron {
+    transform: rotate(-90deg);
+}
+
+.payment-demo-sign {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background-color: var(--color-accent);
+    color: #ffffff;
+
+    font: inherit;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.payment-demo-sign:hover:not(:disabled) {
+    background-color: #e64d00;
+}
+
+.payment-demo-sign:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+/* ---------- Tabell ---------- */
+
+.payment-demo-table-wrap[hidden] {
+    display: none;
+}
+
+.payment-demo-table-wrap {
+    overflow-x: auto;
+}
+
+.payment-demo-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-variant-numeric: tabular-nums;
+}
+
+.payment-demo-table th,
+.payment-demo-table td {
+    padding: 11px 12px;
+
+    text-align: left;
+    vertical-align: middle;
+
+    border-top: 1px solid #ebe7e2;
+}
+
+.payment-demo-table th {
+    background-color: #faf9f7;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #7a746f;
+    white-space: nowrap;
+}
+
+.payment-demo-table td {
+    transition: opacity 0.15s ease;
+}
+
+.payment-demo-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.payment-demo-table tbody tr:hover {
+    background-color: #faf7f3;
+}
+
+.payment-demo-table tbody tr.is-unselected td:not(.payment-demo-check-cell) {
+    opacity: 0.45;
+}
+
+.payment-demo-table .payment-demo-amount {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.payment-demo-table th.payment-demo-amount {
+    padding-right: 24px;
+}
+
+.payment-demo-table td.payment-demo-amount {
+    padding-right: 24px;
+}
+
+.payment-demo-table .payment-demo-date {
+    white-space: nowrap;
+}
+
+.payment-demo-table .payment-demo-check-cell {
+    width: 1%;
+    padding-left: 24px;
+    padding-right: 4px;
+}
+
+
+/* ---------- Kryssrutor ---------- */
+
+.payment-demo-check {
+    appearance: none;
+    -webkit-appearance: none;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0;
+
+    border: 1.5px solid #c9c2bb;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px;
+
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.payment-demo-check:checked {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7.5l2.8 2.8L11 4.5'/%3E%3C/svg%3E");
+}
+
+.payment-demo-check:indeterminate {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M3.5 7h7'/%3E%3C/svg%3E");
+}
+
+.payment-demo-check:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+
+/* ---------- Källa-etiketter ---------- */
+
+.payment-demo-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 3px 10px;
+
+    border: 1px solid #f6c9b6;
+    border-radius: 999px;
+
+    background-color: #fdeae2;
+    color: #b8431c;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.payment-demo-chip-blue {
+    border-color: #c5d6ff;
+    background-color: #e6eeff;
+    color: #2a5bd7;
+}
+
+.payment-demo-source-none {
+    color: #9a948e;
+}
+
+
+/* =========================================================
+   TABLET / MOBIL
+   ========================================================= */
+
+/* På surfplatta staplas blocket så att demon får hela bredden. */
+@media (max-width: 1024px) {
+
+    .feature-block:has(.feature-block-media-demo) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .feature-block:has(.feature-block-media-demo) .feature-block-media,
+    .feature-block:has(.feature-block-media-demo) .feature-block-content {
+        order: initial;
+    }
+
+}
+
+@container (max-width: 520px) {
+
+    .payment-demo-table th,
+    .payment-demo-table td {
+        padding: 10px 8px;
+    }
+
+    .payment-demo-table .payment-demo-check-cell {
+        padding-left: 16px;
+    }
+
+    .payment-demo-table th.payment-demo-amount,
+    .payment-demo-table td.payment-demo-amount {
+        padding-right: 16px;
+    }
+
+}
+
+@container (max-width: 460px) {
+
+    .payment-demo-table thead th:nth-child(3),
+    .payment-demo-table tbody td:nth-child(3) {
+        display: none;
+    }
+
+}
+
+@container (max-width: 420px) {
+
+    /* Kontokortet: tillgängligt belopp hamnar på egen rad under kontonamnet. */
+    .payment-demo-account-card {
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+
+    .payment-demo-account-available {
+        flex: 1 1 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        padding-top: 10px;
+
+        border-top: 1px solid #ebe7e2;
+        text-align: left;
+    }
+
+    .payment-demo-account-available-label {
+        display: inline;
+    }
+
+    /* Verktygsraden: signera-knappen får egen rad över hela bredden. */
+    .payment-demo-bar {
+        flex-wrap: wrap;
+    }
+
+    .payment-demo-toggle {
+        white-space: nowrap;
+    }
+
+    .payment-demo-sign {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+}
+
+@container (max-width: 340px) {
+
+    .payment-demo-table {
+        font-size: 0.8rem;
+    }
+
+    .payment-demo-table th,
+    .payment-demo-table td {
+        padding: 9px 5px;
+        overflow-wrap: anywhere;
+    }
+
+    .payment-demo-table .payment-demo-check-cell {
+        padding-left: 12px;
+    }
+
+    .payment-demo-table th.payment-demo-amount,
+    .payment-demo-table td.payment-demo-amount {
+        padding-right: 12px;
+    }
+
+}
+
+@container (max-width: 650px) {
+
+    .payment-demo-table .payment-demo-date {
+        display: none;
+    }
+
+}
+
+@media (max-width: 640px) {
+
+    .feature-block-media.feature-block-media-demo {
+        padding: 14px;
+    }
+
+    .payment-demo-header {
+        flex-direction: column;
+        gap: 14px;
+
+        padding: 18px 16px 14px;
+    }
+
+    .payment-demo-total {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .payment-demo-account {
+        padding: 0 16px 16px;
+    }
+
+    .payment-demo-bar {
+        padding: 10px 16px;
+    }
+
+    .payment-demo-table th,
+    .payment-demo-table td {
+        padding: 10px 8px;
+    }
+
+    .payment-demo-table .payment-demo-check-cell {
+        padding-left: 16px;
+    }
+
+    .payment-demo-table th.payment-demo-amount,
+    .payment-demo-table td.payment-demo-amount {
+        padding-right: 16px;
+    }
+
+}
+
+@media (max-width: 420px) {
+
+    .feature-block-media.feature-block-media-demo {
+        padding: 6px;
+    }
+
+    .payment-demo-sign span {
+        font-size: 0.85rem;
+    }
+
+}
+
+
+/* =========================================================
+   POPUP: "DET HÄR ÄR EN DEMO" (öppnas av Signera med BankID)
+   ========================================================= */
+
+/* Bakgrunden låses medan popupen är öppen (även när Esc stänger den). */
+html:has(.payment-modal[open]) {
+    overflow: hidden;
+}
+
+.payment-modal {
+    width: calc(100% - 32px);
+    max-width: 440px;
+
+    margin: auto;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--color-text);
+    font-family: var(--font-sans);
+}
+
+.payment-modal::backdrop {
+    background-color: rgba(46, 37, 31, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+.payment-modal[open] {
+    animation: paymentModalIn 0.22s ease-out;
+}
+
+.payment-modal[open]::backdrop {
+    animation: paymentModalFade 0.22s ease-out;
+}
+
+@keyframes paymentModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+}
+
+@keyframes paymentModalFade {
+    from {
+        opacity: 0;
+    }
+}
+
+.payment-modal-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 36px 32px 32px;
+
+    border-radius: 24px;
+    background-color: #ffffff;
+    box-shadow: 0 24px 64px rgba(46, 37, 31, 0.28);
+}
+
+.payment-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background-color: #f3f1ef;
+    color: var(--color-text);
+
+    cursor: pointer;
+
+    transition: background-color 0.15s ease;
+}
+
+.payment-modal-close:hover {
+    background-color: #e8e4df;
+}
+
+.payment-modal-close:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.payment-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 18px;
+
+    background-color: #fdebe0;
+    color: var(--color-accent);
+}
+
+.payment-modal-eyebrow {
+    margin-top: 22px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.payment-modal-title {
+    margin: 8px 0 0;
+
+    font-size: 1.9rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.payment-modal-text {
+    margin: 14px 0 0;
+
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #55504c;
+}
+
+.payment-modal-note {
+    width: 100%;
+    margin: 22px 0 0;
+    padding: 14px 16px;
+
+    border-left: 4px solid var(--color-accent);
+    border-radius: 4px 10px 10px 4px;
+
+    background-color: #fdf1e9;
+
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.payment-modal-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px 20px;
+
+    border-radius: 12px;
+
+    background-color: var(--color-accent);
+    color: #ffffff;
+
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: background-color 0.15s ease;
+}
+
+.payment-modal-button:hover {
+    background-color: #e64d00;
+}
+
+@media (max-width: 480px) {
+
+    .payment-modal-card {
+        padding: 32px 22px 24px;
+    }
+
+    .payment-modal-title {
+        font-size: 1.6rem;
+    }
+
+}

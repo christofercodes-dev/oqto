@@ -1,0 +1,74 @@
+{{ if feature_groups }}
+<section class="all-features-section">
+
+    <div class="container all-features-container">
+
+        <h2 class="all-features-title">{{ all_features_title ?? 'Alla funktioner' }}</h2>
+
+        <div class="all-features-list">
+
+            {{ feature_groups }}
+
+                <details class="all-features-group">
+
+                    <summary class="all-features-summary">
+
+                        <span class="all-features-group-icon" aria-hidden="true">
+                            <svg viewBox="0 0 20 20" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                {{ if icon == "inbox" }}
+                                            <path d="M3 12.5l2-7h10l2 7v4H3z"/><path d="M3 12.5h4l1 2h4l1-2h4"/>
+                                        {{ elseif icon == "book" }}
+                                            <path d="M10 5c-1.5-1-3.5-1.5-6-1.5v11c2.5 0 4.5.5 6 1.5 1.5-1 3.5-1.5 6-1.5v-11c-2.5 0-4.5.5-6 1.5z"/><path d="M10 5v10.5"/>
+                                        {{ elseif icon == "invoice" }}
+                                            <path d="M5 2.5h10v15l-2.5-1.5L10 17.5 7.5 16 5 17.5z"/><path d="M8 7h4M8 10.5h4"/>
+                                        {{ elseif icon == "cart" }}
+                                            <path d="M2.5 3.5h2l2 9h8l1.5-6.5H5.5"/><circle cx="8" cy="16" r="1"/><circle cx="14" cy="16" r="1"/>
+                                        {{ elseif icon == "bank" }}
+                                            <path d="M3 8l7-4 7 4"/><path d="M4.5 8.5v6.5M8 8.5v6.5M12 8.5v6.5M15.5 8.5v6.5M3 16.5h14"/>
+                                        {{ elseif icon == "user" }}
+                                            <circle cx="8" cy="6.5" r="3"/><path d="M2.5 17c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M15.5 5.5v4M13.5 7.5h4"/>
+                                        {{ elseif icon == "sparkle" }}
+                                            <path d="M10 2.5c.6 3.9 2.1 5.4 6 6-3.9.6-5.4 2.1-6 6-.6-3.9-2.1-5.4-6-6 3.9-.6 5.4-2.1 6-6z"/>
+                                        {{ /if }}
+                            </svg>
+                        </span>
+
+                        <span class="all-features-group-text">
+                            <span class="all-features-group-title">{{ title }}</span>
+                            {{ if subtitle }}
+                                <span class="all-features-group-subtitle">{{ subtitle }}</span>
+                            {{ /if }}
+                        </span>
+
+                        <span class="all-features-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l5 5 5-5"/></svg>
+                        </span>
+
+                    </summary>
+
+                    <ul class="all-features-items">
+                        {{ items }}
+                            <li class="all-features-item">
+                                <span class="all-features-check" aria-hidden="true">
+                                    <svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5l2.8 2.8L11 4.5"/></svg>
+                                </span>
+                                <div>
+                                    <h4 class="all-features-item-title">{{ title }}</h4>
+                                    {{ if text }}
+                                        <p class="all-features-item-text">{{ text }}</p>
+                                    {{ /if }}
+                                </div>
+                            </li>
+                        {{ /items }}
+                    </ul>
+
+                </details>
+
+            {{ /feature_groups }}
+
+        </div>
+
+    </div>
+
+</section>
+{{ /if }}

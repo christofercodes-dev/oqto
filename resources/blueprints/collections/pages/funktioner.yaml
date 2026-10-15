@@ -87,6 +87,35 @@ tabs:
                         display: 'Spela av vid scroll'
                         instructions: 'Bara relevant om Bild-fältet innehåller en video. I stället för att loopa spelas videon frame för frame i takt med scrollen (och baklänges om man scrollar upp).'
                         default: false
+                betalningsdemo:
+                  display: 'Betalningsdemo'
+                  instructions: 'Visar den interaktiva demon av signeringsuppdraget (dummydata) i stället för en bild.'
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: textarea
+                        display: Titel
+                        instructions: 'Radbryt manuellt där du vill att rubriken ska brytas.'
+                        validate:
+                          - required
+                    -
+                      handle: text
+                      field:
+                        type: textarea
+                        display: Text
+                    -
+                      handle: bullets
+                      field:
+                        type: list
+                        display: 'Punkter'
+                        instructions: 'Visas som en bockad lista under texten.'
+                    -
+                      handle: banks
+                      field:
+                        type: list
+                        display: 'Banker'
+                        instructions: 'Visas som små etiketter under punkterna.'
                 video:
                   display: 'Video'
                   fields:
@@ -117,48 +146,90 @@ tabs:
                         display: 'Vimeo-länk'
                         instructions: 'Valfritt. Används om ingen videofil laddats upp.'
                     -
+                      handle: embed_controls
+                      field:
+                        type: toggle
+                        display: 'Visa videospelare'
+                        instructions: 'Av: videon loopar tyst i bakgrunden. På: en spelare med stor play-knapp, kontroller och ljud (gäller både videofil och Vimeo-länk).'
+                        default: false
+                    -
                       handle: scroll_scrub
                       field:
                         type: toggle
                         display: 'Spela av vid scroll'
                         instructions: 'Bara relevant för uppladdad videofil (inte Vimeo-länk). I stället för att loopa spelas videon frame för frame i takt med scrollen (och baklänges om man scrollar upp).'
                         default: false
+                    -
+                      handle: bullets
+                      field:
+                        type: list
+                        display: 'Punkter'
+                        instructions: 'Valfritt. Visas som en bockad lista under texten.'
       -
-        display: Säljvideo
+        display: 'Alla funktioner'
         fields:
           -
-            handle: small_title
-            field:
-              type: text
-              display: 'Liten förtext'
-          -
-            handle: video_subtitle
-            field:
-              type: text
-              display: Undertext
-          -
-            handle: video_heading
+            handle: all_features_title
             field:
               type: text
               display: Rubrik
+              default: 'Alla funktioner'
           -
-            handle: video_body
+            handle: feature_groups
             field:
-              type: textarea
-              display: Text
-          -
-            handle: video_file
-            field:
-              type: assets
-              container: assets
-              max_files: 1
-              display: 'Videofil'
-          -
-            handle: embed_code
-            field:
-              type: text
-              display: 'Vimeo-länk'
-              instructions: 'T.ex. https://vimeo.com/123456789. Används om ingen videofil laddats upp.'
+              type: replicator
+              display: 'Funktionsgrupper'
+              instructions: 'Visas som en lång lista längst ner på sidan. Varje grupp är en ihopfällbar rad.'
+              collapse: true
+              button_label: 'Lägg till grupp'
+              sets:
+                group:
+                  display: Grupp
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: Titel
+                        validate:
+                          - required
+                    -
+                      handle: subtitle
+                      field:
+                        type: text
+                        display: Undertext
+                    -
+                      handle: icon
+                      field:
+                        type: select
+                        display: Ikon
+                        default: inbox
+                        options:
+                          inbox: Inkorg
+                          book: Bok
+                          invoice: Faktura
+                          cart: Varukorg
+                          bank: Bank
+                          user: Person
+                          sparkle: Gnista
+                    -
+                      handle: items
+                      field:
+                        type: grid
+                        display: Funktioner
+                        mode: stacked
+                        add_row: 'Lägg till funktion'
+                        fields:
+                          -
+                            handle: title
+                            field:
+                              type: text
+                              display: Titel
+                          -
+                            handle: text
+                            field:
+                              type: textarea
+                              display: Text
   sidebar:
     display: Sidebar
     sections:

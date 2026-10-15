@@ -1,0 +1,213 @@
+/* =========================================================
+   FUNKTIONER - ALLA FUNKTIONER (LÅNG LISTA MED ACCORDION PER GRUPP)
+   ========================================================= */
+
+.all-features-section {
+    width: 100%;
+
+    padding: 60px 40px 100px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    color: var(--color-text);
+}
+
+.all-features-title {
+    margin: 0 0 32px;
+
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.all-features-list {
+    border-bottom: 1px solid #ece6dd;
+}
+
+
+/* ---------- En grupp = en accordion-rad ---------- */
+
+.all-features-group {
+    border-top: 1px solid #ece6dd;
+}
+
+.all-features-summary {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 22px 0;
+
+    list-style: none;
+    cursor: pointer;
+}
+
+.all-features-summary::-webkit-details-marker {
+    display: none;
+}
+
+.all-features-summary:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.all-features-group-icon {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 14px;
+
+    background-color: #fdebe0;
+    color: var(--color-accent);
+}
+
+.all-features-group-text {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+}
+
+.all-features-group-title {
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.all-features-group-subtitle {
+    font-size: 0.92rem;
+    color: #7a746f;
+}
+
+.all-features-chevron {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #e0d9cf;
+    border-radius: 50%;
+
+    transition: background-color 0.15s ease, transform 0.2s ease;
+}
+
+.all-features-summary:hover .all-features-chevron {
+    background-color: #f5f1eb;
+}
+
+.all-features-group[open] .all-features-chevron {
+    transform: rotate(180deg);
+}
+
+
+/* ---------- Funktionerna i gruppen ---------- */
+
+.all-features-items {
+    margin: 0;
+    padding: 0 0 18px 70px;
+
+    list-style: none;
+}
+
+.all-features-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    padding: 16px 0;
+
+    border-top: 1px solid #f0ebe3;
+}
+
+.all-features-item:first-child {
+    border-top: 0;
+    padding-top: 4px;
+}
+
+.all-features-check {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 26px;
+    height: 26px;
+    margin-top: 1px;
+
+    border-radius: 50%;
+
+    background-color: #fdebe0;
+    color: var(--color-accent);
+}
+
+.all-features-item-title {
+    margin: 0;
+
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text-light);
+}
+
+.all-features-item-text {
+    margin: 4px 0 0;
+    max-width: 720px;
+
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #55504c;
+}
+
+
+/* =========================================================
+   TABLET / MOBIL
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .all-features-section {
+        padding: 50px 32px 70px;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .all-features-section {
+        padding: 40px 18px 56px;
+    }
+
+    .all-features-summary {
+        gap: 14px;
+        padding: 18px 0;
+    }
+
+    .all-features-group-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Funktionerna går i full bredd under raden i stället för att dras in. */
+    .all-features-items {
+        padding-left: 0;
+    }
+
+}

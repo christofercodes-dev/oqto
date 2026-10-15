@@ -4,7 +4,7 @@
 
         {{ feature_blocks }}
 
-            <article class="feature-block{{ if index | mod:2 == 0 }} feature-block-reverse{{ /if }}">
+            <article class="feature-block{{ if index | mod:2 == 0 }} feature-block-reverse{{ /if }}{{ if type == "betalningsdemo" }} feature-block-demo{{ /if }}">
 
                 {{ if type == "bild" }}
 
@@ -43,8 +43,17 @@
                             {{# Höjden sätts efter videons egna mått i stället för en fast
                                 bildkvot, så att t.ex. kvadratiska skärminspelningar inte
                                 beskärs av en bredare 4:3-ram. #}}
-                            <div class="feature-block-media" style="aspect-ratio: {{ width }} / {{ height }};">
-                                {{ if scroll_scrub }}
+                            <div class="feature-block-media{{ if embed_controls }} feature-block-player{{ /if }}" style="aspect-ratio: {{ width }} / {{ height }};"{{ if embed_controls }} data-video-player{{ /if }}>
+                                {{ if embed_controls }}
+                                    {{# Spelare med stor play-knapp. Stillbilden är en jpg med samma namn som
+                                        videon + "-poster" (t.ex. film.mp4 -> film-poster.jpg) i samma mapp. #}}
+                                    <video class="feature-block-video" playsinline preload="metadata" poster="{{ url | replace('.mp4', '-poster.jpg') }}" data-player-video>
+                                        <source src="{{ url }}">
+                                    </video>
+                                    <button type="button" class="feature-block-play" data-player-button aria-label="Spela upp: {{ title }}">
+                                        <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z" fill="currentColor"/></svg>
+                                    </button>
+                                {{ elseif scroll_scrub }}
                                     <video class="feature-block-video feature-block-video-scrub" muted playsinline preload="auto" data-scroll-scrub>
                                         <source src="{{ url }}">
                                     </video>
@@ -56,13 +65,16 @@
                             </div>
                         {{ /video_file }}
                     {{ elseif embed_code }}
-                        <div class="feature-block-media">
+                        {{# Utan embed_controls loopar videon tyst i bakgrunden; med embed_controls
+                            visas Vimeos vanliga spelare (16:9, play-knapp, ljud, utan spårning). #}}
+                        <div class="feature-block-media"{{ if embed_controls }} style="aspect-ratio: 16 / 9;"{{ /if }}>
                             <div class="feature-block-embed">
                                 <iframe
-                                    src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last | explode('?') | first }}?title=0&byline=0&portrait=0&badge=0&background=1"
+                                    src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last | explode('?') | first }}?title=0&byline=0&portrait=0&badge=0{{ if embed_controls }}&dnt=1{{ else }}&background=1{{ /if }}"
                                     frameborder="0"
-                                    allow="autoplay; fullscreen"
+                                    allow="autoplay; fullscreen; picture-in-picture"
                                     allowfullscreen
+                                    loading="lazy"
                                     title="{{ title }}"
                                 ></iframe>
                             </div>
@@ -73,18 +85,46 @@
                         </div>
                     {{ /if }}
 
+                {{ elseif type == "betalningsdemo" }}
+
+                    {{# Interaktiv demo av signeringsuppdraget (dummydata) i stället för en bild. #}}
+                    <div class="feature-block-media feature-block-media-demo">
+                        {{ partial:funktioner/components/payment-demo }}
+                    </div>
+
                 {{ /if }}
 
                 <div class="feature-block-content">
 
                     <h3 class="feature-block-title">
-                        {{ title }}
+                        {{ if type == "betalningsdemo" }}{{ title | nl2br }}{{ else }}{{ title }}{{ /if }}
                     </h3>
 
                     {{ if text }}
                         <p class="feature-block-text">
                             {{ text }}
                         </p>
+                    {{ /if }}
+
+                    {{ if bullets }}
+                        <ul class="feature-block-bullets">
+                            {{ bullets }}
+                                <li>
+                                    <span class="feature-block-bullet-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5l2.8 2.8L11 4.5"/></svg>
+                                    </span>
+                                    <span>{{ value }}</span>
+                                </li>
+                            {{ /bullets }}
+                        </ul>
+                    {{ /if }}
+
+                    {{ if banks }}
+                        <ul class="feature-block-banks">
+                            {{ banks }}
+                                <li>{{ value }}</li>
+                            {{ /banks }}
+                        </ul>
                     {{ /if }}
 
                 </div>
@@ -99,6 +139,34 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+
+        // Spelare med stor play-knapp: knappen (eller klick på videon) startar
+        // uppspelningen, därefter tar webbläsarens egna kontroller över. Knappen
+        // och den orange glasytan visas bara före start och när videon är slut -
+        // pausar man mitt i för att studera en detalj ska bilden vara orörd.
+        document.querySelectorAll("[data-video-player]").forEach((player) => {
+
+            const video = player.querySelector("[data-player-video]");
+            const button = player.querySelector("[data-player-button]");
+
+            const setIdle = (idle) => player.classList.toggle("is-idle", idle);
+
+            setIdle(true);
+
+            const start = () => {
+                video.controls = true;
+                video.play();
+            };
+
+            button.addEventListener("click", start);
+
+            video.addEventListener("click", () => {
+                if (!video.controls) start();
+            });
+
+            video.addEventListener("play", () => setIdle(false));
+            video.addEventListener("ended", () => setIdle(true));
+        });
 
         const videos = document.querySelectorAll(".feature-block-video-scrub");
 
