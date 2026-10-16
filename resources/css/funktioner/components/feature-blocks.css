@@ -104,16 +104,48 @@
 }
 
 
-/* Videospelare med stor play-knapp (visas över videon före start och när den är slut). */
+/* Videospelare med play-knapp. Tillstånd styrs av data-state (se skriptet):
+   idle (före start / efter slut), playing och paused. */
 .feature-block-player {
     position: relative;
     background-color: #1a1715;
 }
 
-/* Orange "liquid glass" över videon före start och när den är slut: frostat glas med
-   orange färgton, en mjuk ljusreflex uppe till vänster och en tunn ljus kant.
-   Gör också att den vita knappen syns mot en ljus första bild. */
-.feature-block-player::after {
+/* Med animation: ljus bakgrund, animationen ligger som förhandsvisning och
+   filmen tar över när man klickar. */
+.feature-block-player.has-preview {
+    background-color: #f3f1ef;
+}
+
+.feature-block-preview {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.feature-block-player.has-preview[data-state="idle"] .feature-block-video {
+    visibility: hidden;
+}
+
+.feature-block-player.has-preview:not([data-state="idle"]) .feature-block-preview {
+    display: none;
+}
+
+.feature-block-player.has-preview[data-state="idle"] .feature-block-video,
+.feature-block-player.has-preview[data-state="idle"]::after {
+    pointer-events: none;
+}
+
+/* Orange "liquid glass" över filmens stillbild före start (bara när det inte
+   finns någon animation att visa): frostat glas med orange färgton, en mjuk
+   ljusreflex uppe till vänster och en tunn ljus kant. */
+.feature-block-player:not(.has-preview)::after {
     content: "";
 
     position: absolute;
@@ -137,10 +169,12 @@
     transition: opacity 0.25s ease;
 }
 
-.feature-block-player.is-idle::after {
+.feature-block-player:not(.has-preview)[data-state="idle"]::after {
     opacity: 1;
 }
 
+/* Före start (idle) är knappen en CTA-pill: "Starta filmen om ...". När filmen
+   startats blir den en rund play-/pausknapp (se data-state nedan). */
 .feature-block-play {
     z-index: 1;
 
@@ -151,18 +185,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 
-    width: 84px;
-    height: 84px;
-    padding: 0;
+    max-width: calc(100% - 28px);
+    padding: 14px 24px 14px 18px;
 
     border: 0;
-    border-radius: 50%;
+    border-radius: 999px;
 
-    background-color: #ffffff;
-    color: var(--color-accent);
+    background-color: var(--color-accent);
+    color: #ffffff;
 
     box-shadow: 0 8px 28px rgba(26, 23, 21, 0.28);
+
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
 
     transform: translate(-50%, -50%);
 
@@ -171,12 +211,88 @@
     opacity: 0;
     visibility: hidden;
 
-    transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease, background-color 0.2s ease;
 }
 
-.feature-block-player.is-idle .feature-block-play {
+/* Utan animation ligger knappen på det orange glaset - då är den vit. */
+.feature-block-player:not(.has-preview) .feature-block-play {
+    background-color: #ffffff;
+    color: var(--color-text);
+}
+
+.feature-block-player:not(.has-preview) .feature-block-play-icon {
+    color: var(--color-accent);
+}
+
+.feature-block-play-icon,
+.feature-block-pause-icon {
+    flex-shrink: 0;
+
+    width: 22px;
+    height: 22px;
+}
+
+.feature-block-pause-icon {
+    display: none;
+}
+
+/* Före start/efter slut: CTA-knappen syns. */
+.feature-block-player[data-state="idle"] .feature-block-play {
     opacity: 1;
     visibility: visible;
+}
+
+/* Pausad efter start: rund playknapp som ligger kvar tills man trycker igen. */
+.feature-block-player[data-state="paused"] .feature-block-play {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Spelar: ingen knapp förrän man hovrar (eller tabbar dit) - då visas en pausknapp. */
+.feature-block-player[data-state="playing"]:hover .feature-block-play,
+.feature-block-player[data-state="playing"] .feature-block-play:focus-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.feature-block-player[data-state="playing"] .feature-block-play-icon {
+    display: none;
+}
+
+.feature-block-player[data-state="playing"] .feature-block-pause-icon {
+    display: block;
+}
+
+/* Under uppspelning (spelar/pausad) är knappen en rund, lätt genomskinlig
+   ikonknapp utan text, så att den inte döljer bilden mer än nödvändigt. */
+.feature-block-player[data-state="playing"] .feature-block-play,
+.feature-block-player[data-state="paused"] .feature-block-play {
+    width: 68px;
+    height: 68px;
+    padding: 0;
+
+    border-radius: 50%;
+
+    background-color: rgba(255, 255, 255, 0.92);
+    color: var(--color-accent);
+}
+
+.feature-block-player[data-state="playing"] .feature-block-play-icon,
+.feature-block-player[data-state="paused"] .feature-block-play-icon,
+.feature-block-player[data-state="playing"] .feature-block-pause-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Playtriangelns tyngdpunkt ligger lite till vänster om mitten - en liten
+   förskjutning gör att den ser centrerad ut i cirkeln. */
+.feature-block-player[data-state="paused"] .feature-block-play-icon {
+    transform: translateX(2px);
+}
+
+.feature-block-player[data-state="playing"] .feature-block-play-label,
+.feature-block-player[data-state="paused"] .feature-block-play-label {
+    display: none;
 }
 
 .feature-block-play:hover {
@@ -191,8 +307,16 @@
 @media (max-width: 767px) {
 
     .feature-block-play {
-        width: 68px;
-        height: 68px;
+        padding: 11px 18px 11px 14px;
+
+        font-size: 0.92rem;
+    }
+
+    .feature-block-player[data-state="playing"] .feature-block-play,
+    .feature-block-player[data-state="paused"] .feature-block-play {
+        width: 56px;
+        height: 56px;
+        padding: 0;
     }
 
 }

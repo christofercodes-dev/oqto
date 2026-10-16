@@ -43,15 +43,24 @@
                             {{# Höjden sätts efter videons egna mått i stället för en fast
                                 bildkvot, så att t.ex. kvadratiska skärminspelningar inte
                                 beskärs av en bredare 4:3-ram. #}}
-                            <div class="feature-block-media{{ if embed_controls }} feature-block-player{{ /if }}" style="aspect-ratio: {{ width }} / {{ height }};"{{ if embed_controls }} data-video-player{{ /if }}>
+                            <div class="feature-block-media{{ if embed_controls }} feature-block-player{{ if preview }} has-preview{{ /if }}{{ /if }}" style="aspect-ratio: {{ width }} / {{ height }};"{{ if embed_controls }} data-video-player data-state="idle"{{ /if }}>
                                 {{ if embed_controls }}
-                                    {{# Spelare med stor play-knapp. Stillbilden är en jpg med samma namn som
-                                        videon + "-poster" (t.ex. film.mp4 -> film-poster.jpg) i samma mapp. #}}
+                                    {{# Animationen (fältet "preview") loopar tyst som förhandsvisning; ett klick
+                                        startar filmen. Utan animation visas filmens stillbild i stället. #}}
+                                    {{ preview }}
+                                        <video class="feature-block-preview{{ if scroll_scrub }} feature-block-video-scrub{{ /if }}" muted playsinline{{ if scroll_scrub }} preload="auto" data-scroll-scrub{{ else }} autoplay loop{{ /if }} data-player-preview aria-hidden="true">
+                                            <source src="{{ url }}">
+                                        </video>
+                                    {{ /preview }}
+                                    {{# Stillbilden är en jpg med samma namn som videon + "-poster"
+                                        (t.ex. film.mp4 -> film-poster.jpg) i samma mapp. #}}
                                     <video class="feature-block-video" playsinline preload="metadata" poster="{{ url | replace('.mp4', '-poster.jpg') }}" data-player-video>
                                         <source src="{{ url }}">
                                     </video>
-                                    <button type="button" class="feature-block-play" data-player-button aria-label="Spela upp: {{ title }}">
-                                        <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z" fill="currentColor"/></svg>
+                                    <button type="button" class="feature-block-play" data-player-button aria-label="{{ if film_subject }}Starta filmen om {{ film_subject }}{{ else }}Starta filmen{{ /if }}">
+                                        <svg class="feature-block-play-icon" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z" fill="currentColor"/></svg>
+                                        <svg class="feature-block-pause-icon" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg>
+                                        <span class="feature-block-play-label">{{ if film_subject }}Starta filmen om {{ film_subject }}{{ else }}Starta filmen{{ /if }}</span>
                                     </button>
                                 {{ elseif scroll_scrub }}
                                     <video class="feature-block-video feature-block-video-scrub" muted playsinline preload="auto" data-scroll-scrub>
@@ -122,7 +131,16 @@
                     {{ if banks }}
                         <ul class="feature-block-banks">
                             {{ banks }}
-                                <li>{{ value }}</li>
+                                {{# App-ikon i en mörk, rundad ruta. Saknas ikonen visas namnet som text. #}}
+                                <li class="feature-block-bank">
+                                    {{ if logo }}
+                                        {{ logo }}
+                                            <img src="{{ url }}" alt="{{ name }}" width="72" height="72" loading="lazy">
+                                        {{ /logo }}
+                                    {{ else }}
+                                        <span class="feature-block-bank-fallback">{{ name }}</span>
+                                    {{ /if }}
+                                </li>
                             {{ /banks }}
                         </ul>
                     {{ /if }}
@@ -140,32 +158,69 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
 
-        // Spelare med stor play-knapp: knappen (eller klick på videon) startar
-        // uppspelningen, därefter tar webbläsarens egna kontroller över. Knappen
-        // och den orange glasytan visas bara före start och när videon är slut -
-        // pausar man mitt i för att studera en detalj ska bilden vara orörd.
+        // Spelare med play-knapp. Tillstånd (data-state):
+        //   idle    - före start och när filmen är slut: animationen (eller stillbilden)
+        //             visas med en CTA-knapp ("Starta filmen om ..."). Klick startar filmen.
+        //   playing - filmen spelas. Hovrar man över bilden visas en pausknapp.
+        //   paused  - filmen är pausad efter att ha startats: en rund playknapp
+        //             visas tills man trycker igen.
+        // Webbläsarens egna kontroller (tidslinje, ljud, helskärm) tar över efter start.
         document.querySelectorAll("[data-video-player]").forEach((player) => {
 
             const video = player.querySelector("[data-player-video]");
             const button = player.querySelector("[data-player-button]");
+            const preview = player.querySelector("[data-player-preview]");
+            const startLabel = button.getAttribute("aria-label");
 
-            const setIdle = (idle) => player.classList.toggle("is-idle", idle);
+            // Animationen som loopar (inte scroll-styrd) pausas när filmen tar över.
+            const loopingPreview = preview && preview.hasAttribute("loop");
 
-            setIdle(true);
+            const setState = (state) => {
+
+                player.dataset.state = state;
+
+                button.setAttribute(
+                    "aria-label",
+                    state === "idle" ? startLabel : (state === "playing" ? "Pausa filmen" : "Spela upp filmen"),
+                );
+
+                if (loopingPreview) {
+                    if (state === "idle") {
+                        preview.play().catch(() => {});
+                    } else {
+                        preview.pause();
+                    }
+                }
+            };
 
             const start = () => {
                 video.controls = true;
                 video.play();
             };
 
-            button.addEventListener("click", start);
+            button.addEventListener("click", () => {
+                if (player.dataset.state === "playing") {
+                    video.pause();
+                } else {
+                    start();
+                }
+            });
 
             video.addEventListener("click", () => {
                 if (!video.controls) start();
             });
 
-            video.addEventListener("play", () => setIdle(false));
-            video.addEventListener("ended", () => setIdle(true));
+            video.addEventListener("play", () => setState("playing"));
+
+            video.addEventListener("pause", () => {
+                if (!video.ended) setState("paused");
+            });
+
+            video.addEventListener("ended", () => {
+                video.controls = false;
+                video.currentTime = 0;
+                setState("idle");
+            });
         });
 
         const videos = document.querySelectorAll(".feature-block-video-scrub");

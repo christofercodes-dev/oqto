@@ -113,9 +113,27 @@ tabs:
                     -
                       handle: banks
                       field:
-                        type: list
+                        type: grid
                         display: 'Banker'
-                        instructions: 'Visas som små etiketter under punkterna.'
+                        instructions: 'Visas som ett rutnät av app-ikoner under punkterna. Namnet används som alternativtext. Saknas ikon visas namnet som text.'
+                        add_row: 'Lägg till bank'
+                        mode: stacked
+                        fields:
+                          -
+                            handle: name
+                            field:
+                              type: text
+                              display: Namn
+                              validate:
+                                - required
+                          -
+                            handle: logo
+                            field:
+                              type: assets
+                              container: assets
+                              max_files: 1
+                              display: 'App-ikon'
+                              instructions: 'Kvadratisk bild (helst 512 x 512 px). Hörnen rundas av sajten.'
                 video:
                   display: 'Video'
                   fields:
@@ -140,6 +158,20 @@ tabs:
                         display: 'Videofil'
                         instructions: 'Ladda upp en videofil, eller ange en Vimeo-länk nedan istället.'
                     -
+                      handle: film_subject
+                      field:
+                        type: text
+                        display: 'Ämne för filmknappen'
+                        instructions: 'Visas i knappen före start: "Starta filmen om ...", t.ex. "Autopilot" eller "månadsavslutet". Tomt = bara "Starta filmen".'
+                    -
+                      handle: preview
+                      field:
+                        type: assets
+                        container: assets
+                        max_files: 1
+                        display: 'Animation (förhandsvisning)'
+                        instructions: 'Valfritt. En kort tyst animation som loopar i blocket tills man klickar på den - då startar filmen ovan. Bara när "Visa videospelare" är på.'
+                    -
                       handle: embed_code
                       field:
                         type: text
@@ -157,7 +189,7 @@ tabs:
                       field:
                         type: toggle
                         display: 'Spela av vid scroll'
-                        instructions: 'Bara relevant för uppladdad videofil (inte Vimeo-länk). I stället för att loopa spelas videon frame för frame i takt med scrollen (och baklänges om man scrollar upp).'
+                        instructions: 'Spelar animationen (förhandsvisningen, annars videofilen) frame för frame i takt med scrollen i stället för att loopa. Bara för uppladdade filer, inte Vimeo-länk.'
                         default: false
                     -
                       handle: bullets

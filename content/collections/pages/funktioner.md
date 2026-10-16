@@ -11,14 +11,19 @@ hero_title: |-
   på ett ställe.
 hero_body: 'Från fakturering till bokföring och rapporter. Tillsammans med byråer har vi utvecklat funktionerna som gör Oqto till ett komplett ekonomisystem.'
 feature_blocks:
-  - id: fB2b3c4d5e6f7g8h9i0j1
+  -
+    id: fB2b3c4d5e6f7g8h9i0j1
     type: video
     title: 'Automatisera med Autopilot'
     text: 'Har du återkommande händelser som du gärna skulle vilja automatisera bort? Vi hade sagt åt dig att sätta dig ner och ta en kopp kaffe under tiden vi löser det… men du kommer inte hinna dricka upp innan det är klart! Hos oss är det automationerna som gör alla repetitiva uppgifter så att du kan fokusera på det du gör bäst.'
     video_file: autopilot-instruktion.mp4
+    film_subject: Autopilot
+    preview: autopilot_v1.mp4
     embed_controls: true
     enabled: true
-  - id: fB1a2c3d4e5f6g7h8i9j0
+    scroll_scrub: false
+  -
+    id: fB1a2c3d4e5f6g7h8i9j0
     type: video
     title: 'Fyll på skattekontot'
     text: |-
@@ -26,8 +31,12 @@ feature_blocks:
       Vi höll med och nu kan du fylla på skattekontot automatiskt, helt utan att tänka på det!
     enabled: true
     video_file: skattekonto-instruktion.mp4
+    film_subject: 'automatisk påfyllning av skattekontot'
+    preview: web-anim-2.mp4
+    scroll_scrub: true
     embed_controls: true
-  - id: fB3c4d5e6f7g8h9i0j1k2
+  -
+    id: fB3c4d5e6f7g8h9i0j1k2
     type: betalningsdemo
     title: |-
       Sömlös koppling
@@ -39,14 +48,27 @@ feature_blocks:
       - 'Signera med BankID i webben eller appen'
       - 'Notis via app och mejl till den som ska signera'
     banks:
-      - Handelsbanken
-      - SEB
-      - Swedbank
-      - Sparbanken
-      - Nordea
-      - Länsförsäkringar
+      -
+        name: Swedbank
+        logo: banks/swedbank.jpg
+      -
+        name: SEB
+        logo: banks/seb.jpg
+      -
+        name: Handelsbanken
+        logo: banks/handelsbanken.jpg
+      -
+        name: Nordea
+        logo: banks/nordea.jpg
+      -
+        name: Länsförsäkringar
+        logo: banks/lansforsakringar.jpg
+      -
+        name: Sparbankerna
+        logo: banks/sparbankerna.jpg
     enabled: true
-  - id: FlWizXXH1HZPMqSWJawtP
+  -
+    id: FlWizXXH1HZPMqSWJawtP
     title: Månadsavslut
     text: 'Släpp Excelmallen och olika arbetssätt. Med Oqtos månadsavslut jobbar alla på byrån på samma sätt, från avstämning till rapport, i ett och samma flöde.'
     bullets:
@@ -54,15 +76,19 @@ feature_blocks:
       - 'Gör momsredovisningen i samma flöde'
       - 'Återrapportera till kunden direkt'
     video_file: manadsavslut-instruktion.mp4
+    film_subject: månadsavslutet
+    preview: web-anim-3.mp4
     embed_controls: true
     type: video
     enabled: true
+    scroll_scrub: false
 all_features_title: 'Alla funktioner'
 feature_groups:
-  - id: fg1aB0cD0eF0gH
+  -
+    id: fg1aB0cD0eF0gH
     type: group
     icon: inbox
-    title: 'Inkorg'
+    title: Inkorg
     subtitle: 'Alla underlag på ett ställe'
     items:
       -
@@ -70,88 +96,92 @@ feature_groups:
         title: 'Inkorg med automatisk tolkning'
         text: 'Ta emot fakturor och kvitton som läses av automatiskt. Importera även SIE-filer direkt i inkorgen.'
     enabled: true
-  - id: fg2aB1cD1eF1gH
+  -
+    id: fg2aB1cD1eF1gH
     type: group
     icon: book
-    title: 'Bokföring'
+    title: Bokföring
     subtitle: 'Löpande redovisning, moms och bokslut'
     items:
       -
         id: it10
-        title: 'Månadsavslut'
+        title: Månadsavslut
         text: 'Komplett månadsbokslut i ett flöde. Stäm av bank, skatt, reskontror, avskrivningar och periodiseringar, och gör momsredovisningen.'
       -
         id: it11
-        title: 'Momsrapporter'
+        title: Momsrapporter
         text: 'Ta fram momsrapporten och skicka in den direkt till Skatteverket'
       -
         id: it12
-        title: 'Periodisering'
+        title: Periodisering
         text: 'Fördela kostnader och intäkter över tid. Bokförs automatiskt med Autopilot.'
       -
         id: it13
-        title: 'Konteringsmallar'
+        title: Konteringsmallar
         text: 'Återanvänd konteringar som återkommer'
       -
         id: it14
-        title: 'Anläggningsregister'
+        title: Anläggningsregister
         text: 'Registrera inventarier. Avskrivningarna bokförs automatiskt med Autopilot.'
       -
         id: it15
-        title: 'Likviditetsprognos'
+        title: Likviditetsprognos
         text: 'Se hur kassan utvecklas framåt'
       -
         id: it16
         title: 'Projekt och kostnadsställen'
         text: 'Följ upp per projekt, avdelning eller verksamhet'
     enabled: true
-  - id: fg3aB2cD2eF2gH
+  -
+    id: fg3aB2cD2eF2gH
     type: group
     icon: invoice
-    title: 'Fakturering'
+    title: Fakturering
     subtitle: 'Kundfakturor från utskick till betalning'
     items:
       -
         id: it20
-        title: 'Fakturering'
+        title: Fakturering
         text: 'Skapa, skicka och följ upp kundfakturor'
       -
         id: it21
-        title: 'E-faktura'
+        title: E-faktura
         text: 'Skicka kundfakturor som e-faktura'
       -
         id: it22
-        title: 'Avtalsfakturering'
+        title: Avtalsfakturering
         text: 'Återkommande fakturor som skickas automatiskt'
       -
         id: it23
-        title: 'Påminnelser'
+        title: Påminnelser
         text: 'Påminn om obetalda fakturor'
       -
         id: it24
         title: 'ROT, RUT och grön teknik'
         text: 'Fakturera med avdrag, begär utbetalning och läs in Skatteverkets beslut'
     enabled: true
-  - id: fg4aB3cD3eF3gH
+  -
+    id: fg4aB3cD3eF3gH
     type: group
     icon: cart
-    title: 'Inköp'
+    title: Inköp
     subtitle: 'Leverantörsfakturor och kostnader'
     items:
       -
         id: it30
-        title: 'Leverantörsfakturor'
+        title: Leverantörsfakturor
         text: 'Registrera och bokför'
       -
         id: it31
-        title: 'E-faktura'
+        title: E-faktura
         text: 'Ta emot leverantörsfakturor som e-faktura'
       -
         id: it32
-        title: 'Attest'
+        title: Attest
         text: 'Godkänn leverantörsfakturor innan de bokförs och betalas'
     enabled: true
-  - id: fg5aB4cD4eF4gH
+  -
+    id: fg5aB4cD4eF4gH
     type: group
     icon: bank
     title: 'Bank, betalningar och skatt'
@@ -159,30 +189,31 @@ feature_groups:
     items:
       -
         id: it40
-        title: 'Bankintegration'
+        title: Bankintegration
         text: 'Banktransaktioner hämtas i realtid via Open Banking'
       -
         id: it41
-        title: 'Skattekonto'
+        title: Skattekonto
         text: 'Saldo och händelser hämtas automatiskt från Skatteverket, och kontot kan fyllas på automatiskt'
       -
         id: it42
-        title: 'Betalningar'
+        title: Betalningar
         text: 'Skapa betaluppdrag för fakturor, löner och skatt.'
       -
         id: it43
         title: 'Signering av betalningar med BankID'
         text: 'Godkänn betalningar i webben eller appen. Du lämnar aldrig Oqto och behöver inte logga in i banken.'
     enabled: true
-  - id: fg6aB5cD5eF5gH
+  -
+    id: fg6aB5cD5eF5gH
     type: group
     icon: user
-    title: 'Lön'
+    title: Lön
     subtitle: 'Lön, arbetsgivardeklaration och utdelning'
     items:
       -
         id: it50
-        title: 'Lönekörning'
+        title: Lönekörning
         text: 'Lägg upp anställda, skapa lönekörningar och betala ut lön. Utlägg registreras och ersätts i samma flöde.'
       -
         id: it51
@@ -190,10 +221,11 @@ feature_groups:
         text: 'Ta fram AGI och skicka in den direkt till Skatteverket'
       -
         id: it52
-        title: 'Utdelning'
+        title: Utdelning
         text: 'Hantera utdelning till ägarna'
     enabled: true
-  - id: fg7aB6cD6eF6gH
+  -
+    id: fg7aB6cD6eF6gH
     type: group
     icon: sparkle
     title: 'Autopilot och automationer'
@@ -210,5 +242,5 @@ feature_groups:
     enabled: true
 author: 4dcd5e55-456c-4762-8d2f-b2b41cf595f2
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1790125172
+updated_at: 1792134818
 ---

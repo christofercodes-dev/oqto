@@ -68,28 +68,53 @@
     color: var(--color-accent);
 }
 
+/* Banker: rutnät av app-ikoner, direkt på sidans bakgrund (utan rubrik). */
 .feature-block-banks {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 
-    margin: 28px 0 0;
+    margin: 24px 0 0;
     padding: 0;
 
     list-style: none;
 }
 
-.feature-block-banks li {
-    padding: 8px 20px;
+.feature-block-bank {
+    flex: 0 0 auto;
+
+    width: 40px;
+    height: 40px;
+}
+
+.feature-block-bank img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    /* Samma rundning som en app-ikon. */
+    border-radius: 22.5%;
+
+    box-shadow: 0 3px 8px rgba(46, 37, 31, 0.18);
+}
+
+.feature-block-bank-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    padding: 8px;
 
     border: 1.5px solid var(--color-text);
-    border-radius: 999px;
-
-    background-color: transparent;
+    border-radius: 22.5%;
 
     font-family: "Geist Mono", monospace;
-    font-size: 0.9rem;
+    font-size: 0.5rem;
     font-weight: 500;
+    text-align: center;
     color: var(--color-text);
 }
 
