@@ -128,7 +128,8 @@
                         </ul>
                     {{ /if }}
 
-                    {{ if banks }}
+                    {{# Bankikonerna visas bara när "Visa banker" är på (kräver bankernas tillstånd). #}}
+                    {{ if banks && show_banks }}
                         <ul class="feature-block-banks">
                             {{ banks }}
                                 {{# App-ikon i en mörk, rundad ruta. Saknas ikonen visas namnet som text. #}}

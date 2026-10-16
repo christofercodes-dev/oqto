@@ -1285,6 +1285,9 @@
 }
 
 .support-status-move {
+    /* Ankarlänken /support#flytta ska inte hamna under den fasta navbaren. */
+    scroll-margin-top: 90px;
+
     padding-top: 60px;
 }
 

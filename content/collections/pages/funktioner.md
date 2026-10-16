@@ -47,6 +47,7 @@ feature_blocks:
       - 'Betala fakturor, löner och skatt direkt i Oqto'
       - 'Signera med BankID i webben eller appen'
       - 'Notis via app och mejl till den som ska signera'
+    show_banks: false
     banks:
       -
         name: Swedbank
@@ -83,6 +84,19 @@ feature_blocks:
     enabled: true
     scroll_scrub: false
 all_features_title: 'Alla funktioner'
+bottom_cards:
+  -
+    title: Integrationer
+    text: 'Se alla integrationer på integrationssidan'
+    url: /integrationer
+  -
+    title: 'Byter du från ett annat system?'
+    text: 'Så flyttar du till Oqto'
+    url: /support/flytta-till-oqto
+bottom_button_text: 'Boka en demo'
+bottom_button_url: /boka-demo
+bottom_note: 'Saknar du något? Hör av dig så berättar vi vad som är på väg.'
+bottom_note_url: /kontakt
 feature_groups:
   -
     id: fg1aB0cD0eF0gH

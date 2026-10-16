@@ -111,6 +111,13 @@ tabs:
                         display: 'Punkter'
                         instructions: 'Visas som en bockad lista under texten.'
                     -
+                      handle: show_banks
+                      field:
+                        type: toggle
+                        display: 'Visa banker'
+                        instructions: 'Slå på först när ni har bankernas tillstånd att visa deras logotyper/app-ikoner (Swedbank vill godkänna användningen: contentstudio@swedbank.se).'
+                        default: false
+                    -
                       handle: banks
                       field:
                         type: grid
@@ -262,6 +269,61 @@ tabs:
                             field:
                               type: textarea
                               display: Text
+      -
+        display: 'Avslutande länkar'
+        fields:
+          -
+            handle: bottom_cards
+            field:
+              type: grid
+              display: 'Länkkort'
+              instructions: 'Visas som kort längst ner på sidan, t.ex. "Integrationer" och "Byter du från ett annat system?".'
+              add_row: 'Lägg till kort'
+              mode: stacked
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: Rubrik
+                    validate:
+                      - required
+                -
+                  handle: text
+                  field:
+                    type: text
+                    display: Text
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: Länk
+                    instructions: 'T.ex. /integrationer eller /support. Lägg en bit efter # för att hoppa till en del av sidan.'
+                    validate:
+                      - required
+          -
+            handle: bottom_button_text
+            field:
+              type: text
+              display: 'Knapptext'
+              default: 'Boka en demo'
+          -
+            handle: bottom_button_url
+            field:
+              type: text
+              display: 'Knappens länk'
+              default: /boka-demo
+          -
+            handle: bottom_note
+            field:
+              type: text
+              display: 'Text bredvid knappen'
+          -
+            handle: bottom_note_url
+            field:
+              type: text
+              display: 'Länk för texten bredvid knappen'
+              instructions: 'Valfritt, t.ex. /kontakt.'
   sidebar:
     display: Sidebar
     sections:

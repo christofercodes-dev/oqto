@@ -1,0 +1,53 @@
+{{ if bottom_cards }}
+<section class="bottom-links-section">
+
+    <div class="container bottom-links-container">
+
+        <div class="bottom-links-cards">
+
+            {{ bottom_cards }}
+
+                <a href="{{ url }}" class="bottom-links-card">
+
+                    <span class="bottom-links-card-text">
+                        <span class="bottom-links-card-title">{{ title }}</span>
+
+                        {{ if text }}
+                            <span class="bottom-links-card-description">{{ text }}</span>
+                        {{ /if }}
+                    </span>
+
+                    <svg class="bottom-links-card-arrow" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 12h15M13 6l6 6-6 6"/>
+                    </svg>
+
+                </a>
+
+            {{ /bottom_cards }}
+
+        </div>
+
+        {{ if bottom_button_text || bottom_note }}
+            <div class="bottom-links-action">
+
+                {{ if bottom_button_text }}
+                    <a href="{{ bottom_button_url ?? '/boka-demo' }}" class="bottom-links-button">
+                        {{ bottom_button_text }}
+                    </a>
+                {{ /if }}
+
+                {{ if bottom_note }}
+                    {{ if bottom_note_url }}
+                        <a href="{{ bottom_note_url }}" class="bottom-links-note bottom-links-note-link">{{ bottom_note }}</a>
+                    {{ else }}
+                        <p class="bottom-links-note">{{ bottom_note }}</p>
+                    {{ /if }}
+                {{ /if }}
+
+            </div>
+        {{ /if }}
+
+    </div>
+
+</section>
+{{ /if }}
