@@ -128,22 +128,27 @@
                         </ul>
                     {{ /if }}
 
-                    {{# Bankikonerna visas bara när "Visa banker" är på (kräver bankernas tillstånd). #}}
-                    {{ if banks && show_banks }}
-                        <ul class="feature-block-banks">
-                            {{ banks }}
-                                {{# App-ikon i en mörk, rundad ruta. Saknas ikonen visas namnet som text. #}}
-                                <li class="feature-block-bank">
-                                    {{ if logo }}
-                                        {{ logo }}
-                                            <img src="{{ url }}" alt="{{ name }}" width="72" height="72" loading="lazy">
-                                        {{ /logo }}
-                                    {{ else }}
-                                        <span class="feature-block-bank-fallback">{{ name }}</span>
-                                    {{ /if }}
-                                </li>
-                            {{ /banks }}
-                        </ul>
+                    {{# Bankikonerna visas bara när "Visa banker" är på (kräver bankernas tillstånd).
+                        Villkoren är NÄSTLADE med flit: Antlers kortsluter inte "&&", så "banks" skulle
+                        annars läsas även när de är dolda - och en sida med gammalt innehållsformat
+                        (textlista i stället för rader) ger då ett 500-fel. #}}
+                    {{ if show_banks }}
+                        {{ if banks }}
+                            <ul class="feature-block-banks">
+                                {{ banks }}
+                                    {{# App-ikon i en rund ruta. Saknas ikonen visas namnet som text. #}}
+                                    <li class="feature-block-bank">
+                                        {{ if logo }}
+                                            {{ logo }}
+                                                <img src="{{ url }}" alt="{{ name }}" width="72" height="72" loading="lazy">
+                                            {{ /logo }}
+                                        {{ else }}
+                                            <span class="feature-block-bank-fallback">{{ name }}</span>
+                                        {{ /if }}
+                                    </li>
+                                {{ /banks }}
+                            </ul>
+                        {{ /if }}
                     {{ /if }}
 
                 </div>
