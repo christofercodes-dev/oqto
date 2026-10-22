@@ -8,8 +8,12 @@ tabs:
           -
             handle: attending
             field:
-              type: text
-              display: 'Kan delta (yes/no)'
+              type: select
+              display: Svar
+              listable: true
+              options:
+                yes: Kommer
+                no: 'Kommer inte'
               validate:
                 - 'required'
                 - 'in:yes,no'
@@ -19,6 +23,7 @@ tabs:
             field:
               type: text
               display: 'Önskad information (om nej)'
+              listable: hidden
               validate:
                 - 'nullable'
                 - 'required_if:attending,no'
@@ -27,8 +32,12 @@ tabs:
           -
             handle: joins_dinner
             field:
-              type: text
-              display: 'Middag (yes/no)'
+              type: select
+              display: 'Middag'
+              listable: hidden
+              options:
+                yes: Ja
+                no: Nej
               validate:
                 - 'nullable'
                 - 'required_if:attending,yes'
@@ -37,8 +46,12 @@ tabs:
           -
             handle: needs_accommodation
             field:
-              type: text
-              display: 'Hjälp med boende (yes/no)'
+              type: select
+              display: 'Hjälp med boende'
+              listable: hidden
+              options:
+                yes: Ja
+                no: Nej
               validate:
                 - 'nullable'
                 - 'required_if:attending,yes'
@@ -47,8 +60,12 @@ tabs:
           -
             handle: separate_rooms
             field:
-              type: text
-              display: 'Separata rum (yes/no)'
+              type: select
+              display: 'Separata rum'
+              listable: hidden
+              options:
+                yes: Ja
+                no: Nej
               validate:
                 - 'nullable'
                 - 'in:yes,no'
@@ -56,8 +73,12 @@ tabs:
           -
             handle: share_consent
             field:
-              type: text
-              display: 'Får dela deltagande (yes/no)'
+              type: select
+              display: 'Får dela deltagande'
+              listable: hidden
+              options:
+                yes: Ja
+                no: Nej
               validate:
                 - 'nullable'
                 - 'required_if:attending,yes'
@@ -67,7 +88,8 @@ tabs:
             handle: company
             field:
               type: text
-              display: 'Företag / organisation'
+              display: 'Företag'
+              listable: true
               validate:
                 - 'nullable'
                 - 'max:150'
@@ -76,7 +98,8 @@ tabs:
             handle: attendee1_name
             field:
               type: text
-              display: 'Deltagare 1, namn'
+              display: 'Namn'
+              listable: true
               validate:
                 - 'required'
                 - 'max:100'
@@ -85,7 +108,8 @@ tabs:
             handle: attendee1_email
             field:
               type: text
-              display: 'Deltagare 1, e-post'
+              display: 'E-post'
+              listable: true
               validate:
                 - 'required'
                 - 'email'
@@ -96,7 +120,8 @@ tabs:
             handle: attendee1_phone
             field:
               type: text
-              display: 'Deltagare 1, telefon'
+              display: 'Telefon'
+              listable: hidden
               validate:
                 - 'nullable'
                 - 'max:30'
@@ -105,7 +130,8 @@ tabs:
             handle: attendee1_allergies
             field:
               type: text
-              display: 'Deltagare 1, allergier'
+              display: 'Allergier / specialkost'
+              listable: hidden
               validate:
                 - 'nullable'
                 - 'max:300'
@@ -115,6 +141,7 @@ tabs:
             field:
               type: text
               display: 'Deltagare 2, namn'
+              listable: hidden
               validate:
                 - 'nullable'
                 - 'required_with:attendee2_email'
@@ -125,6 +152,7 @@ tabs:
             field:
               type: text
               display: 'Deltagare 2, e-post'
+              listable: hidden
               validate:
                 - 'nullable'
                 - 'required_with:attendee2_name'
@@ -138,6 +166,7 @@ tabs:
             field:
               type: text
               display: 'Deltagare 2, telefon'
+              listable: hidden
               validate:
                 - 'nullable'
                 - 'max:30'
@@ -147,6 +176,7 @@ tabs:
             field:
               type: text
               display: 'Deltagare 2, allergier'
+              listable: hidden
               validate:
                 - 'nullable'
                 - 'max:300'
@@ -156,6 +186,7 @@ tabs:
             field:
               type: textarea
               display: 'Övrigt meddelande'
+              listable: hidden
               validate:
                 - 'nullable'
                 - 'max:1000'
