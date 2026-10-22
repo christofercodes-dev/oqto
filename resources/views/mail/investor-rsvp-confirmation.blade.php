@@ -33,7 +33,7 @@
             </td></tr>
 
             {{-- Orange hero --}}
-            <tr><td style="background:#ed6e36;border-radius:20px 20px 0 0;padding:44px 40px 48px;">
+            <tr><td style="background:#ff6319;border-radius:20px 20px 0 0;padding:44px 40px 48px;">
                 <p style="margin:0 0 18px;font-family:{!! $mono !!};font-size:14px;color:#3a2a20;">
                     Investerarträff{{ $dateShort ? ' · '.$dateShort : '' }}
                 </p>
