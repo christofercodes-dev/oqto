@@ -232,6 +232,8 @@
 
 @import "./investor/investor.css";
 
+@import "./errors/not-found.css";
+
 @import "./villkor/components/hero.css";
 @import "./villkor/components/content.css";
 

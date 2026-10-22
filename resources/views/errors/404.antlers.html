@@ -1,1 +1,39 @@
-<p>404 Page not found.</p>
+{{ partial:components/navbar }}
+
+<main class="not-found">
+
+    <div class="not-found-container">
+
+        <div
+            class="not-found-lottie"
+            data-lottie-src="/lottie/dead.json"
+            data-lottie-loop="false"
+            data-lottie-fit="cover"
+            aria-hidden="true"
+        ></div>
+
+        <span class="not-found-eyebrow">404 · Sidan hittades inte</span>
+
+        <h1 class="not-found-title">Den här sidan har gått under</h1>
+
+        <p class="not-found-text">
+            Länken är trasig eller så har sidan flyttats. Ingen fara, härifrån hittar du rätt igen.
+        </p>
+
+        <a href="/" class="oqto-contact-btn not-found-button">
+            <span class="oqto-contact-btn-text">Till startsidan</span>
+            <span class="oqto-contact-btn-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <nav class="not-found-links" aria-label="Populära sidor">
+            <a href="/funktioner">Funktioner</a>
+            <a href="/priser">Priser</a>
+            <a href="/support">Support</a>
+            <a href="/kontakt">Kontakt</a>
+        </nav>
+
+    </div>
+
+</main>
+
+{{ partial:components/footer }}
