@@ -230,6 +230,8 @@
 
 @import "./support/support.css";
 
+@import "./investor/investor.css";
+
 @import "./villkor/components/hero.css";
 @import "./villkor/components/content.css";
 

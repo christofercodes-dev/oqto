@@ -15,6 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         // boka-demo: endpointen bara loggar ett bolagsnamn och är rate-limitad;
         // sidan kan vara cachad utan CSRF-token. webhooks/intercom: anropet
         // kommer från Intercom och verifieras med HMAC-signatur i stället.
+        $middleware->web(append: [\App\Http\Middleware\NoIndexPaths::class]);
+
         $middleware->preventRequestForgery(except: ['boka-demo/log', 'boka-demo/lookup', 'webhooks/intercom']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

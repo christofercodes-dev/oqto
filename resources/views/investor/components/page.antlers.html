@@ -1,0 +1,496 @@
+<main class="investor-page">
+
+    <header class="investor-hero">
+
+        <div class="investor-container">
+
+            <div class="investor-brand">
+                <img class="investor-logo" src="/favicon.svg" alt="Oqto" width="56" height="56">
+                {{ if investor_eyebrow }}
+                    <p class="investor-eyebrow">{{ investor_eyebrow }}</p>
+                {{ /if }}
+            </div>
+
+            <h1 class="investor-title">{{ investor_title ?? title }}</h1>
+
+            {{ if investor_date }}
+                <p class="investor-date">{{ investor_date }}</p>
+            {{ /if }}
+
+            {{ if investor_address }}
+                <p class="investor-address">
+                    {{ if investor_map_url }}
+                        <a href="{{ investor_map_url }}" target="_blank" rel="noopener noreferrer">{{ investor_address }}</a>
+                    {{ else }}
+                        {{ investor_address }}
+                    {{ /if }}
+                </p>
+            {{ /if }}
+
+            {{ if investor_agenda }}
+                <p class="investor-agenda-label">Agenda</p>
+
+                <div class="investor-agenda">
+                    {{ investor_agenda }}
+                        <div class="investor-agenda-item">
+                            <p class="investor-agenda-time">{{ time }}</p>
+                            <p class="investor-agenda-title">{{ title }}</p>
+                        </div>
+                    {{ /investor_agenda }}
+                </div>
+            {{ /if }}
+
+        </div>
+
+    </header>
+
+    <section
+        class="investor-section"
+        data-investor
+        data-event-title="{{ event_title ?? title }}"
+        data-event-details="{{ event_details }}"
+        data-event-start="{{ event_start }}"
+        data-event-end="{{ event_end }}"
+        data-event-location="{{ investor_address }}"
+        data-event-date="{{ investor_date }}"
+        data-event-address="{{ investor_address }}"
+    >
+
+        <div class="investor-container">
+
+            {{ form:investor_rsvp class="investor-form" }}
+
+                <div data-investor-form-body>
+
+                    <h2 class="investor-heading">Anmäl ditt intresse</h2>
+
+                    <div class="investor-honeypot" aria-hidden="true">
+                        <label for="investor-honeypot">Lämna detta fält tomt</label>
+                        <input type="text" id="investor-honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    {{# ---- Fråga 1: kan ni delta? ---- #}}
+                    <div class="investor-question" data-question="attending">
+                        <p class="investor-question-label">Kan ni delta den {{ investor_date_short }}?</p>
+                        <div class="investor-pills" role="group" aria-label="Kan ni delta?">
+                            <button type="button" class="investor-pill" data-value="yes" aria-pressed="false">Ja</button>
+                            <button type="button" class="investor-pill" data-value="no" aria-pressed="false">Nej</button>
+                        </div>
+                        <input type="hidden" name="attending" value="">
+                    </div>
+
+                    {{# ---- Om nej: hur vill ni få information? ---- #}}
+                    <div class="investor-question" data-question="info_preference" data-show="no" hidden>
+                        <p class="investor-question-label">Hur vill ni hellre få information?</p>
+                        <div class="investor-pills investor-pills-wrap" role="group" aria-label="Hur vill ni få information?">
+                            <button type="button" class="investor-pill" data-value="Informationsmaterial via e-post" aria-pressed="false">Informationsmaterial via e-post</button>
+                            <button type="button" class="investor-pill" data-value="Telefonsamtal" aria-pressed="false">Telefonsamtal</button>
+                            <button type="button" class="investor-pill" data-value="Separat möte" aria-pressed="false">Separat möte</button>
+                            <button type="button" class="investor-pill" data-value="Digitalt möte" aria-pressed="false">Digitalt möte</button>
+                        </div>
+                        <input type="hidden" name="info_preference" value="">
+                    </div>
+
+                    {{# ---- Om ja: följdfrågor ---- #}}
+                    <div class="investor-question" data-question="joins_dinner" data-show="yes" hidden>
+                        <p class="investor-question-label">Vill ni följa med på middagen på kvällen?</p>
+                        <div class="investor-pills" role="group" aria-label="Middag">
+                            <button type="button" class="investor-pill" data-value="yes" aria-pressed="false">Ja</button>
+                            <button type="button" class="investor-pill" data-value="no" aria-pressed="false">Nej</button>
+                        </div>
+                        <input type="hidden" name="joins_dinner" value="">
+                    </div>
+
+                    <div class="investor-question" data-question="needs_accommodation" data-show="yes" hidden>
+                        <p class="investor-question-label">Önskar ni hjälp att boka boende {{ investor_stay_dates ?? '25–26 november' }}?</p>
+                        <div class="investor-pills" role="group" aria-label="Boende">
+                            <button type="button" class="investor-pill" data-value="yes" aria-pressed="false">Ja</button>
+                            <button type="button" class="investor-pill" data-value="no" aria-pressed="false">Nej</button>
+                        </div>
+                        <input type="hidden" name="needs_accommodation" value="">
+                    </div>
+
+                    <div class="investor-question" data-question="share_consent" data-show="yes" hidden>
+                        <p class="investor-question-label">Är det ok att vi delar ert deltagande med andra deltagare?</p>
+                        <div class="investor-pills" role="group" aria-label="Dela deltagande">
+                            <button type="button" class="investor-pill" data-value="yes" aria-pressed="false">Ja</button>
+                            <button type="button" class="investor-pill" data-value="no" aria-pressed="false">Nej</button>
+                        </div>
+                        <input type="hidden" name="share_consent" value="">
+                    </div>
+
+                    {{# ---- Kontaktuppgifter (visas när man svarat ja eller nej) ---- #}}
+                    <div class="investor-details" data-show="answered" hidden>
+
+                        <div class="oqto-contact-field">
+                            <label for="investor-company">Företag</label>
+                            <input id="investor-company" type="text" name="company" placeholder="Företagsnamn" maxlength="150" autocomplete="organization">
+                        </div>
+
+                        <fieldset class="investor-attendee" data-attendee="1">
+                            <div class="investor-attendee-head">
+                                <legend class="investor-attendee-title" data-attendee-title>Kontaktuppgifter</legend>
+                            </div>
+                            <div class="oqto-contact-field">
+                                <label for="investor-a1-name">Namn *</label>
+                                <input id="investor-a1-name" type="text" name="attendee1_name" placeholder="Namn" maxlength="100" autocomplete="name">
+                            </div>
+                            <div class="oqto-contact-form-row">
+                                <div class="oqto-contact-field">
+                                    <label for="investor-a1-email">E-post *</label>
+                                    <input id="investor-a1-email" type="email" name="attendee1_email" placeholder="namn@email.se" maxlength="255" autocomplete="email">
+                                </div>
+                                <div class="oqto-contact-field">
+                                    <label for="investor-a1-phone">Telefon</label>
+                                    <input id="investor-a1-phone" type="tel" name="attendee1_phone" placeholder="Telefonnummer" maxlength="30" autocomplete="tel">
+                                </div>
+                            </div>
+                            <div class="oqto-contact-field" data-yes-only hidden>
+                                <label for="investor-a1-allergies">Allergier / specialkost</label>
+                                <input id="investor-a1-allergies" type="text" name="attendee1_allergies" placeholder="T.ex. glutenfri eller vegetarisk" maxlength="300">
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="investor-attendee" data-attendee="2" hidden>
+                            <div class="investor-attendee-head">
+                                <legend class="investor-attendee-title">Deltagare 2</legend>
+                                <button type="button" class="investor-link-button" data-remove-attendee>Ta bort</button>
+                            </div>
+                            <div class="oqto-contact-field">
+                                <label for="investor-a2-name">Namn *</label>
+                                <input id="investor-a2-name" type="text" name="attendee2_name" placeholder="Namn" maxlength="100">
+                            </div>
+                            <div class="oqto-contact-form-row">
+                                <div class="oqto-contact-field">
+                                    <label for="investor-a2-email">E-post *</label>
+                                    <input id="investor-a2-email" type="email" name="attendee2_email" placeholder="namn@email.se" maxlength="255">
+                                </div>
+                                <div class="oqto-contact-field">
+                                    <label for="investor-a2-phone">Telefon</label>
+                                    <input id="investor-a2-phone" type="tel" name="attendee2_phone" placeholder="Telefonnummer" maxlength="30">
+                                </div>
+                            </div>
+                            <div class="oqto-contact-field">
+                                <label for="investor-a2-allergies">Allergier / specialkost</label>
+                                <input id="investor-a2-allergies" type="text" name="attendee2_allergies" placeholder="T.ex. glutenfri eller vegetarisk" maxlength="300">
+                            </div>
+                        </fieldset>
+
+                        <button type="button" class="investor-link-button investor-add" data-add-attendee hidden>+ Lägg till ytterligare en deltagare (max 2)</button>
+
+                        <div class="investor-question" data-question="separate_rooms" data-show="separate-rooms" hidden>
+                            <p class="investor-question-label">Önskar ni separata rum?</p>
+                            <div class="investor-pills" role="group" aria-label="Separata rum">
+                                <button type="button" class="investor-pill" data-value="yes" aria-pressed="false">Ja</button>
+                                <button type="button" class="investor-pill" data-value="no" aria-pressed="false">Nej</button>
+                            </div>
+                            <input type="hidden" name="separate_rooms" value="">
+                        </div>
+
+                        <div class="oqto-contact-field">
+                            <label for="investor-message">Övrigt meddelande</label>
+                            <textarea id="investor-message" name="message" rows="4" placeholder="Något mer vi bör veta?" maxlength="1000"></textarea>
+                        </div>
+
+                    </div>
+
+                    <p class="investor-error" data-error role="alert" hidden></p>
+
+                    <button type="submit" class="oqto-contact-btn investor-submit" data-submit>
+                        <span class="oqto-contact-btn-text" data-submit-label>Skicka svar</span>
+                        <span class="oqto-contact-btn-arrow" aria-hidden="true">→</span>
+                    </button>
+
+                </div>
+
+                {{# ---- Bekräftelse ---- #}}
+                <div class="investor-success" data-success hidden>
+
+                    <div data-success-yes hidden>
+                        <img class="investor-celebrate" src="/images/investor/oqto-celebrate.svg" alt="Firande Oqto-bläckfisk" width="192" height="192">
+                        <h2 class="investor-success-title">Vad roligt att du kommer!</h2>
+                        <p class="investor-success-text">
+                            Din anmälan är registrerad. Vi ses den <strong>{{ investor_date }}</strong> på {{ investor_address }}.
+                            Lägg gärna in träffen i din kalender nedan.
+                        </p>
+                        <p class="investor-success-label">Lägg till i din kalender</p>
+                        <div class="investor-calendar">
+                            <a class="investor-pill-link" href="#" target="_blank" rel="noopener noreferrer" data-cal="google">Google Kalender</a>
+                            <a class="investor-pill-link" href="#" target="_blank" rel="noopener noreferrer" data-cal="outlook">Outlook</a>
+                            <a class="investor-pill-link" href="#" download="oqto-investerartraff.ics" data-cal="ics">Apple / annan (.ics)</a>
+                        </div>
+                    </div>
+
+                    <div data-success-no hidden>
+                        <h2 class="investor-success-title">Tack för ditt svar</h2>
+                        <p class="investor-success-text">Vi har tagit emot ditt svar och återkommer med information på det sätt du önskat.</p>
+                    </div>
+
+                </div>
+
+            {{ /form:investor_rsvp }}
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const root = document.querySelector("[data-investor]");
+
+        if (!root) return;
+
+        const form = root.querySelector("form");
+
+        if (!form) return;
+
+        form.noValidate = true;
+
+        const q = (selector) => form.querySelector(selector);
+        const qa = (selector) => [...form.querySelectorAll(selector)];
+
+        const body = q("[data-investor-form-body]");
+        const successBox = q("[data-success]");
+        const errorEl = q("[data-error]");
+        const submitBtn = q("[data-submit]");
+        const submitLabel = q("[data-submit-label]");
+        const addBtn = q("[data-add-attendee]");
+        const removeBtn = q("[data-remove-attendee]");
+        const second = q('[data-attendee="2"]');
+        const secondInputs = [...second.querySelectorAll("input")];
+
+        const value = (name) => (q('input[name="' + name + '"]') || {}).value || "";
+        const setValue = (name, val) => { q('input[name="' + name + '"]').value = val; };
+
+        const secondVisible = () => !second.hidden;
+
+        // Visar/döljer delar av formuläret utifrån svaren hittills.
+        const update = () => {
+
+            const attending = value("attending");
+            const yes = attending === "yes";
+            const no = attending === "no";
+            const answered = yes || no;
+            const separateRooms = yes && value("needs_accommodation") === "yes" && secondVisible();
+
+            qa("[data-show]").forEach((el) => {
+                const rule = el.dataset.show;
+                const show = rule === "yes" ? yes
+                    : rule === "no" ? no
+                    : rule === "answered" ? answered
+                    : rule === "separate-rooms" ? separateRooms
+                    : false;
+
+                el.hidden = !show;
+            });
+
+            // Allergier och deltagare 2 gäller bara dem som kommer.
+            qa("[data-yes-only]").forEach((el) => { el.hidden = !yes; });
+
+            addBtn.hidden = !(yes && !secondVisible());
+
+            q("[data-attendee-title]").textContent = yes ? "Deltagare 1" : "Kontaktuppgifter";
+
+            if (!yes && secondVisible()) {
+                second.hidden = true;
+                secondInputs.forEach((input) => { input.value = ""; });
+            }
+
+            submitLabel.textContent = yes ? "Skicka anmälan" : "Skicka svar";
+        };
+
+        // Pill-knappar (Ja/Nej och informationsval) sätter värdet i ett dolt fält.
+        qa(".investor-question").forEach((question) => {
+
+            const name = question.dataset.question;
+
+            question.querySelectorAll(".investor-pill").forEach((pill) => {
+                pill.addEventListener("click", () => {
+
+                    setValue(name, pill.dataset.value);
+
+                    question.querySelectorAll(".investor-pill").forEach((p) => {
+                        const on = p === pill;
+
+                        p.classList.toggle("is-selected", on);
+                        p.setAttribute("aria-pressed", String(on));
+                    });
+
+                    // Byter man till "nej" glöms svar som bara hör till "ja".
+                    if (name === "attending" && pill.dataset.value === "no") {
+                        ["joins_dinner", "needs_accommodation", "separate_rooms", "share_consent"].forEach((field) => clearQuestion(field));
+                    }
+
+                    if (name === "attending" && pill.dataset.value === "yes") {
+                        clearQuestion("info_preference");
+                    }
+
+                    if (name === "needs_accommodation" && pill.dataset.value !== "yes") {
+                        clearQuestion("separate_rooms");
+                    }
+
+                    update();
+                });
+            });
+        });
+
+        function clearQuestion(name) {
+            const question = q('[data-question="' + name + '"]');
+
+            setValue(name, "");
+
+            question.querySelectorAll(".investor-pill").forEach((p) => {
+                p.classList.remove("is-selected");
+                p.setAttribute("aria-pressed", "false");
+            });
+        }
+
+        addBtn.addEventListener("click", () => {
+            second.hidden = false;
+            update();
+            second.querySelector("input").focus();
+        });
+
+        removeBtn.addEventListener("click", () => {
+            second.hidden = true;
+            secondInputs.forEach((input) => { input.value = ""; });
+            clearQuestion("separate_rooms");
+            update();
+        });
+
+        const showError = (message) => {
+            errorEl.textContent = message;
+            errorEl.hidden = false;
+        };
+
+        const validEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        // Samma kontroller och texter som i den ursprungliga anmälningssidan.
+        const validate = () => {
+
+            const attending = value("attending");
+
+            if (!attending) return "Ange om ni kan delta.";
+
+            const attendees = attending === "yes" && secondVisible() ? [1, 2] : [1];
+
+            for (const n of attendees) {
+                if (!value("attendee" + n + "_name").trim()) return "Ange namn";
+                if (!validEmail(value("attendee" + n + "_email").trim())) return "Ogiltig e-post";
+            }
+
+            if (attending === "yes") {
+                if (!value("joins_dinner") || !value("needs_accommodation")) return "Svara på frågorna om middag och boende.";
+
+                if (value("needs_accommodation") === "yes" && attendees.length > 1 && !value("separate_rooms")) {
+                    return "Ange om ni önskar separata rum.";
+                }
+
+                if (!value("share_consent")) return "Ange om vi får dela ert deltagande med andra.";
+            } else if (!value("info_preference")) {
+                return "Välj hur ni vill få information.";
+            }
+
+            return null;
+        };
+
+        // Kalenderlänkar för bekräftelsen (Google, Outlook och en .ics-fil).
+        const buildCalendar = () => {
+
+            const d = root.dataset;
+            const start = d.eventStart;
+            const end = d.eventEnd;
+
+            if (!start || !end) {
+                form.querySelector(".investor-calendar").hidden = true;
+                form.querySelector(".investor-success-label").hidden = true;
+                return;
+            }
+
+            const iso = (s) => s.slice(0, 4) + "-" + s.slice(4, 6) + "-" + s.slice(6, 8) + "T" + s.slice(9, 11) + ":" + s.slice(11, 13) + ":00Z";
+            const enc = encodeURIComponent;
+
+            q('[data-cal="google"]').href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + enc(d.eventTitle)
+                + "&dates=" + start + "/" + end + "&details=" + enc(d.eventDetails) + "&location=" + enc(d.eventLocation);
+
+            q('[data-cal="outlook"]').href = "https://outlook.office.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=" + enc(d.eventTitle)
+                + "&startdt=" + iso(start) + "&enddt=" + iso(end) + "&location=" + enc(d.eventLocation) + "&body=" + enc(d.eventDetails);
+
+            const ics = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "PRODID:-//Oqto//Investerartraff//SV",
+                "BEGIN:VEVENT",
+                "UID:" + start + "@oqto.se",
+                "DTSTAMP:" + start,
+                "DTSTART:" + start,
+                "DTEND:" + end,
+                "SUMMARY:" + d.eventTitle,
+                "DESCRIPTION:" + (d.eventDetails || "").replace(/\n/g, "\\n"),
+                "LOCATION:" + (d.eventLocation || "").replace(/,/g, "\\,"),
+                "END:VEVENT",
+                "END:VCALENDAR",
+            ].join("\r\n");
+
+            q('[data-cal="ics"]').href = "data:text/calendar;charset=utf-8," + enc(ics);
+        };
+
+        form.addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+            errorEl.hidden = true;
+
+            const problem = validate();
+
+            if (problem) {
+                showError(problem);
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitLabel.textContent = "Skickar…";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { Accept: "application/json", "X-Requested-With": "XMLHttpRequest" },
+                });
+
+                if (!response.ok) {
+                    let message = "Något gick fel, försök igen.";
+
+                    // Statamic svarar 400 (eller 422) med felen i "errors"; första felet visas, t.ex. dubblettkontrollen.
+                    if (response.status === 400 || response.status === 422) {
+                        const data = await response.json().catch(() => null);
+                        const first = data && data.errors ? Object.values(data.errors).flat()[0] : null;
+
+                        if (first) message = first;
+                    }
+
+                    throw new Error(message);
+                }
+
+                const attending = value("attending") === "yes";
+
+                buildCalendar();
+
+                body.hidden = true;
+                q("[data-success-yes]").hidden = !attending;
+                q("[data-success-no]").hidden = attending;
+                successBox.hidden = false;
+                successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+            } catch (error) {
+                showError(error.message || "Något gick fel, försök igen.");
+                submitBtn.disabled = false;
+                update();
+            }
+        });
+
+        update();
+    });
+</script>

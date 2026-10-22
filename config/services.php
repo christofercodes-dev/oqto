@@ -42,6 +42,7 @@ return [
             'contact' => env('ZAPIER_CONTACT_WEBHOOK_URL'),
             'developers_contact' => env('ZAPIER_DEVELOPERS_CONTACT_WEBHOOK_URL'),
             'boka_demo_lookup' => env('ZAPIER_BOKA_DEMO_LOOKUP_WEBHOOK_URL'),
+            'investor_rsvp' => env('ZAPIER_INVESTOR_RSVP_WEBHOOK_URL'),
         ],
     ],
 

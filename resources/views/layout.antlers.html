@@ -49,6 +49,11 @@
             <meta name="description" content="{{ seo_description | sanitize }}">
         {{ /if }}
 
+        {{# Sidor med "Dölj för sökmotorer" påslaget (t.ex. investerarträffen) listas inte av Google m.fl. #}}
+        {{ if noindex }}
+            <meta name="robots" content="noindex, nofollow, noarchive">
+        {{ /if }}
+
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

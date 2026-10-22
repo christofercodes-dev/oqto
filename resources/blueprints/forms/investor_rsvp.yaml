@@ -1,0 +1,162 @@
+title: 'Investerarträff, anmälan'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: attending
+            field:
+              type: text
+              display: 'Kan delta (yes/no)'
+              validate:
+                - 'required'
+                - 'in:yes,no'
+
+          -
+            handle: info_preference
+            field:
+              type: text
+              display: 'Önskad information (om nej)'
+              validate:
+                - 'nullable'
+                - 'required_if:attending,no'
+                - 'in:Informationsmaterial via e-post,Telefonsamtal,Separat möte,Digitalt möte'
+
+          -
+            handle: joins_dinner
+            field:
+              type: text
+              display: 'Middag (yes/no)'
+              validate:
+                - 'nullable'
+                - 'required_if:attending,yes'
+                - 'in:yes,no'
+
+          -
+            handle: needs_accommodation
+            field:
+              type: text
+              display: 'Hjälp med boende (yes/no)'
+              validate:
+                - 'nullable'
+                - 'required_if:attending,yes'
+                - 'in:yes,no'
+
+          -
+            handle: separate_rooms
+            field:
+              type: text
+              display: 'Separata rum (yes/no)'
+              validate:
+                - 'nullable'
+                - 'in:yes,no'
+
+          -
+            handle: share_consent
+            field:
+              type: text
+              display: 'Får dela deltagande (yes/no)'
+              validate:
+                - 'nullable'
+                - 'required_if:attending,yes'
+                - 'in:yes,no'
+
+          -
+            handle: company
+            field:
+              type: text
+              display: 'Företag / organisation'
+              validate:
+                - 'nullable'
+                - 'max:150'
+
+          -
+            handle: attendee1_name
+            field:
+              type: text
+              display: 'Deltagare 1, namn'
+              validate:
+                - 'required'
+                - 'max:100'
+
+          -
+            handle: attendee1_email
+            field:
+              type: text
+              display: 'Deltagare 1, e-post'
+              validate:
+                - 'required'
+                - 'email'
+                - 'max:255'
+                - 'new \App\Rules\UniqueInvestorRsvpEmail'
+
+          -
+            handle: attendee1_phone
+            field:
+              type: text
+              display: 'Deltagare 1, telefon'
+              validate:
+                - 'nullable'
+                - 'max:30'
+
+          -
+            handle: attendee1_allergies
+            field:
+              type: text
+              display: 'Deltagare 1, allergier'
+              validate:
+                - 'nullable'
+                - 'max:300'
+
+          -
+            handle: attendee2_name
+            field:
+              type: text
+              display: 'Deltagare 2, namn'
+              validate:
+                - 'nullable'
+                - 'required_with:attendee2_email'
+                - 'max:100'
+
+          -
+            handle: attendee2_email
+            field:
+              type: text
+              display: 'Deltagare 2, e-post'
+              validate:
+                - 'nullable'
+                - 'required_with:attendee2_name'
+                - 'email'
+                - 'max:255'
+                - 'different:attendee1_email'
+                - 'new \App\Rules\UniqueInvestorRsvpEmail'
+
+          -
+            handle: attendee2_phone
+            field:
+              type: text
+              display: 'Deltagare 2, telefon'
+              validate:
+                - 'nullable'
+                - 'max:30'
+
+          -
+            handle: attendee2_allergies
+            field:
+              type: text
+              display: 'Deltagare 2, allergier'
+              validate:
+                - 'nullable'
+                - 'max:300'
+
+          -
+            handle: message
+            field:
+              type: textarea
+              display: 'Övrigt meddelande'
+              validate:
+                - 'nullable'
+                - 'max:1000'
+
