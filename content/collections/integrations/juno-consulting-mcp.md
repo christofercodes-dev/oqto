@@ -1,5 +1,6 @@
 ---
 id: 1fdf902c-cde5-45c7-b81f-682efc6b82e3
+published: false
 blueprint: integration
 title: 'Juno Consulting – MCP'
 external_id: 027c6152-d20b-4635-ae7d-441e11de8f7d
@@ -22,4 +23,5 @@ price: '199'
 source_created_at: '2026-10-22 20:38'
 avatar:
   - images/b2a98ec6-8551-4b3e-9bf5-6374b5f3bc4f.png
+unpublished_by_import: true
 ---
