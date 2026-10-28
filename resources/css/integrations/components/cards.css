@@ -873,3 +873,40 @@ a.integration-logo:hover {
         height: 34px;
     }
 }
+
+
+/* =========================================
+   BETYG (integrationskort och integrationssida)
+   ========================================= */
+
+.integration-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    color: var(--color-text);
+}
+
+.integration-rating-star {
+    color: var(--color-accent);
+}
+
+.integration-rating-count {
+    color: #7a746f;
+}
+
+.integration-card-rating {
+    margin-top: 8px;
+
+    font-size: 0.72rem;
+}
+
+.integration-show-rating {
+    margin: 14px 0 0;
+
+    font-size: 0.9rem;
+}

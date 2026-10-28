@@ -286,6 +286,14 @@
                                 </span>
                             {{ /if }}
 
+                            {{ if rating_count > 0 }}
+                                <span class="integration-rating integration-card-rating" title="{{ rating_count }} betyg">
+                                    <span class="integration-rating-star" aria-hidden="true">★</span>
+                                    <span class="integration-rating-value">{{ rating_average | format_number(1, ',', '') }}</span>
+                                    <span class="integration-rating-count">({{ rating_count }})</span>
+                                </span>
+                            {{ /if }}
+
                         </div>
 
                     </div>

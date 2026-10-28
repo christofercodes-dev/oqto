@@ -50,6 +50,20 @@ tabs:
               instructions: 'Sätts av den nattliga importen när integrationen saknas i källan, så att den publiceras igen om den dyker upp. Manuellt avpublicerade integrationer påverkas inte - de förblir avpublicerade.'
               read_only: true
           -
+            handle: rating_average
+            field:
+              type: float
+              display: 'Snittbetyg'
+              instructions: 'Snittbetyg (1-5) från källsystemet. Visas på integrationen bara om det finns minst ett betyg. Hanteras av den nattliga importen - redigera inte manuellt.'
+              read_only: true
+          -
+            handle: rating_count
+            field:
+              type: integer
+              display: 'Antal betyg'
+              instructions: 'Antal betyg från källsystemet. Hanteras av den nattliga importen - redigera inte manuellt.'
+              read_only: true
+          -
             handle: source_created_at
             field:
               type: date

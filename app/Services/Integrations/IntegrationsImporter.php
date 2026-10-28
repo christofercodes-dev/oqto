@@ -165,6 +165,8 @@ class IntegrationsImporter
         $entry->set('price', $this->trimmed($item['price'] ?? null));
         $entry->set('source_created_at', $this->parseDate($item['createdAt'] ?? null));
 
+        $this->applyRating($entry, $item['rating'] ?? null);
+
         // avatarKey/mediaImageKeys är redan kompletta sökvägar
         // (t.ex. "images/<guid>.png") relativt disken - används rakt av.
         if ($avatarKey = $item['avatarKey'] ?? null) {
@@ -196,6 +198,30 @@ class IntegrationsImporter
         if ($isNew) {
             $this->createdTitles[] = (string) $entry->get('title');
         }
+    }
+
+    /**
+     * Betyget från källan ("rating": {average, count, countLabel}). Sparas bara
+     * när det finns minst ett betyg med ett giltigt snitt - annars tas fälten
+     * bort, så att inget betyg visas på sajten. Kommentarerna ("reviews") läses
+     * medvetet inte in.
+     *
+     * @param  mixed  $rating
+     */
+    protected function applyRating(EntryContract $entry, $rating): void
+    {
+        $count = is_array($rating) ? (int) ($rating['count'] ?? 0) : 0;
+        $average = is_array($rating) ? ($rating['average'] ?? null) : null;
+
+        if ($count > 0 && is_numeric($average)) {
+            $entry->set('rating_average', round((float) $average, 1));
+            $entry->set('rating_count', $count);
+
+            return;
+        }
+
+        $entry->remove('rating_average');
+        $entry->remove('rating_count');
     }
 
     /**

@@ -34,6 +34,14 @@
                     {{ title }}{{ if developer_name }} &middot; {{ developer_name }}{{ /if }}
                 </p>
 
+                {{ if rating_count > 0 }}
+                    <p class="integration-rating integration-show-rating">
+                        <span class="integration-rating-star" aria-hidden="true">★</span>
+                        <span class="integration-rating-value">{{ rating_average | format_number(1, ',', '') }}</span>
+                        <span class="integration-rating-count">({{ rating_count }} betyg)</span>
+                    </p>
+                {{ /if }}
+
                 {{ if description }}
                     <div class="integration-show-description">
                         {{ description | nl2br }}
