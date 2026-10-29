@@ -4,10 +4,13 @@ namespace App\Services\Integrations;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RuntimeException;
+use Statamic\Assets\AssetContainerContents;
 use Statamic\Entries\Entry as EntryContract;
+use Statamic\Facades\AssetContainer;
 use Statamic\Facades\Entry;
 use Statamic\Facades\Term;
 use Throwable;
@@ -33,6 +36,8 @@ class IntegrationsImporter
     protected const COLLECTION = 'integrations';
 
     protected const DISK = 'integrations_s3';
+
+    protected const ASSET_CONTAINER = 'integrations';
 
     protected const CACHE_KEY = 'integrations_import.last_generated_at';
 
@@ -65,6 +70,9 @@ class IntegrationsImporter
         [$generatedAt, $items] = $this->fetchJson($jsonPath);
 
         if ($generatedAt && $generatedAt === Cache::get(self::CACHE_KEY)) {
+            // Även utan ny export kan bilder ha tillkommit i bucketen.
+            $this->refreshAssetListing();
+
             return [
                 'summary' => $this->summary,
                 'errors' => ['Ingen ny export sedan senaste körningen (generatedAt oförändrat) - hoppar över.'],
@@ -105,6 +113,8 @@ class IntegrationsImporter
             Cache::forever(self::CACHE_KEY, $generatedAt);
         }
 
+        $this->refreshAssetListing();
+
         return [
             'summary' => $this->summary,
             'errors' => $this->errors,
@@ -133,6 +143,42 @@ class IntegrationsImporter
             $decoded['generatedAt'] ?? null,
             $decoded['applications'] ?? [],
         ];
+    }
+
+    /**
+     * Statamic cachar fillistan för asset-containern för alltid (se
+     * AssetContainerContents) och en asset räknas som saknad om filen inte
+     * finns i den listan. Nya bilder som tillkommit i bucketen sedan senaste
+     * deploy (nattens nya integrationer) skulle därför visas som platshållare
+     * tills nästa deploy. Listan byggs därför om här, direkt efter importen.
+     *
+     * Blir den nya listan tom (bucketen otillgänglig - ResilientListingAdapter
+     * sväljer fel) tas den bort igen i stället för att cachas tom för alltid,
+     * så att nästa sidvisning försöker på nytt.
+     */
+    public function refreshAssetListing(): void
+    {
+        try {
+            $container = AssetContainer::find(self::ASSET_CONTAINER);
+
+            if (! $container) {
+                return;
+            }
+
+            $contents = (new AssetContainerContents)->container($container);
+            $store = $contents->cacheStore();
+            $key = 'asset-list-contents-'.$container->handle();
+
+            $store->forget($key);
+
+            if ($contents->all()->isEmpty()) {
+                $store->forget($key);
+
+                Log::warning('Integrations-import: fillistan för asset-containern blev tom, cachen rensades så att den byggs om vid nästa sidvisning.');
+            }
+        } catch (Throwable $e) {
+            Log::warning('Integrations-import: kunde inte bygga om asset-listan: '.$e->getMessage());
+        }
     }
 
     protected function importItem(array $item, ?EntryContract $entry): void
