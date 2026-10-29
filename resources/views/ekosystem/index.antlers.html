@@ -1,0 +1,67 @@
+{{ partial:components/navbar }}
+
+<div class="eco-scope">
+
+    <header class="eco-hero">
+        <div class="container">
+
+            <a href="/integrationer" class="integration-show-back-link">
+                <span aria-hidden="true">←</span>
+                <span>Till alla integrationer</span>
+            </a>
+
+            <span class="eco-eyebrow">Integrationer</span>
+            <h1 class="eco-hero-title">Ekosystem</h1>
+            <p class="eco-hero-text">Integrationerna är bäst tillsammans. Här ser du hur de pratar med varandra och med Oqto, steg för steg.</p>
+
+        </div>
+    </header>
+
+    <section class="eco-section">
+        <div class="container">
+
+            {{ ekosystem:list as="ekosystem" }}
+
+                {{ if ekosystem }}
+
+                    <div class="eco-list">
+
+                        {{ ekosystem }}
+                            <a href="{{ href }}" class="eco-card">
+
+                                <span class="eco-card-chips">
+                                    {{ systems }}
+                                        <span class="eco-chip eco-tone-{{ tone }}">
+                                            <span class="eco-chip-badge">{{ letter }}</span>
+                                            <span>{{ name }}</span>
+                                        </span>
+                                    {{ /systems }}
+                                </span>
+
+                                <span class="eco-card-title">{{ headline }}</span>
+
+                                {{ if short_description }}
+                                    <span class="eco-card-text">{{ short_description }}</span>
+                                {{ /if }}
+
+                                <span class="eco-card-link">{{ title }} <span aria-hidden="true">→</span></span>
+
+                            </a>
+                        {{ /ekosystem }}
+
+                    </div>
+
+                {{ else }}
+
+                    <p class="eco-empty">Ekosystemen publiceras här inom kort.</p>
+
+                {{ /if }}
+
+            {{ /ekosystem:list }}
+
+        </div>
+    </section>
+
+</div>
+
+{{ partial:components/footer }}

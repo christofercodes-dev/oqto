@@ -1,0 +1,32 @@
+{{# Rubriken på listan: byråns egen text på /byra/{byrå}, annars sidans fält. #}}
+<header class="foretagare-hero">
+
+    <div class="foretagare-container">
+
+        {{ if agency }}
+
+            {{ partial:foretagare/components/agency-strip }}
+
+            <h1 class="foretagare-hero-title">{{ agency:intro_title }}</h1>
+
+            {{ if agency:intro_text }}
+                <p class="foretagare-hero-text">{{ agency:intro_text }}</p>
+            {{ /if }}
+
+        {{ else }}
+
+            {{ if hero_small_title }}
+                <span class="foretagare-eyebrow">{{ hero_small_title }}</span>
+            {{ /if }}
+
+            <h1 class="foretagare-hero-title">{{ if hero_title }}{{ hero_title | nl2br }}{{ else }}{{ title }}{{ /if }}</h1>
+
+            {{ if hero_body }}
+                <p class="foretagare-hero-text">{{ hero_body }}</p>
+            {{ /if }}
+
+        {{ /if }}
+
+    </div>
+
+</header>

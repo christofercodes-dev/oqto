@@ -1,0 +1,19 @@
+{{# Byråns logga och kontaktknapp, högst upp i sidans innehåll (under Oqtos vanliga meny). #}}
+{{ if agency }}
+    <div class="foretagare-agency-strip">
+
+        <a href="{{ agency:base }}" class="foretagare-agency-id">
+            <span class="foretagare-agency-label">Din byrå</span>
+            {{ if agency:logo_url }}
+                <img src="{{ agency:logo_url }}" alt="{{ agency:name }}" class="foretagare-agency-logo">
+            {{ else }}
+                <span class="foretagare-agency-name">{{ agency:name }}</span>
+            {{ /if }}
+        </a>
+
+        {{ if agency:cta_url }}
+            <a href="{{ agency:cta_url }}" class="foretagare-button foretagare-button-small">{{ agency:cta_label }}</a>
+        {{ /if }}
+
+    </div>
+{{ /if }}

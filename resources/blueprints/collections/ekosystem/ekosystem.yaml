@@ -1,0 +1,235 @@
+title: Ekosystem
+tabs:
+  main:
+    display: Innehåll
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Namn
+              instructions: 'T.ex. "Hino + Reda + Oqto". Blir också adressen (/integrationer/ekosystem/...).'
+              required: true
+              validate:
+                - required
+          -
+            handle: headline
+            field:
+              type: text
+              display: Rubrik
+              instructions: 'Stor rubrik överst, t.ex. "Tre system. Ett flöde." Lämnas tomt visas namnet.'
+          -
+            handle: short_description
+            field:
+              type: textarea
+              display: Ingress
+              instructions: 'Visas under rubriken och i listan över ekosystem.'
+              rows: 3
+              validate:
+                - required
+      -
+        display: Systemen
+        fields:
+          -
+            handle: systems
+            field:
+              type: grid
+              display: System
+              instructions: 'Alla system som ingår, i den ordning de ska listas. Nyckeln används för att koppla stegen i flödena till rätt system.'
+              add_row: 'Lägg till system'
+              mode: stacked
+              fields:
+                -
+                  handle: key
+                  field:
+                    type: text
+                    display: Nyckel
+                    instructions: 'Kort och utan mellanslag, t.ex. "reda" eller "bank".'
+                    width: 33
+                    validate:
+                      - required
+                -
+                  handle: name
+                  field:
+                    type: text
+                    display: Namn
+                    width: 33
+                    validate:
+                      - required
+                -
+                  handle: role
+                  field:
+                    type: text
+                    display: Roll
+                    instructions: 'T.ex. "Fakturatolkning" eller "Föreningens system".'
+                    width: 33
+                -
+                  handle: tone
+                  field:
+                    type: select
+                    display: Färg
+                    default: gray
+                    width: 33
+                    options:
+                      blue: Blå
+                      yellow: Gul
+                      peach: Persika
+                      green: Grön
+                      purple: Lila
+                      gray: Grå
+                -
+                  handle: integration
+                  field:
+                    type: entries
+                    collections:
+                      - integrations
+                    max_items: 1
+                    create: false
+                    display: Integration
+                    instructions: 'Länkar systemet till dess integrationssida. Lämna tomt för t.ex. banken eller leverantören.'
+                    width: 66
+                -
+                  handle: pos_x
+                  field:
+                    type: integer
+                    display: 'Läge i diagrammet, i sidled'
+                    instructions: '0-100. Lämna tomt för automatisk placering.'
+                    width: 33
+                -
+                  handle: pos_y
+                  field:
+                    type: integer
+                    display: 'Läge i diagrammet, i höjdled'
+                    instructions: '0-100. Lämna tomt för automatisk placering.'
+                    width: 33
+      -
+        display: Flöden
+        fields:
+          -
+            handle: flows
+            field:
+              type: replicator
+              display: Flöden
+              instructions: 'Ett flöde är en följd steg där systemen pratar med varandra. Besökaren växlar mellan flödena på sidan.'
+              add_set_button: 'Lägg till flöde'
+              collapse: true
+              sets:
+                flow:
+                  display: Flöde
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: Namn
+                        instructions: 'T.ex. "Faktura till bokföring".'
+                    -
+                      handle: steps
+                      field:
+                        type: grid
+                        display: Steg
+                        add_row: 'Lägg till steg'
+                        mode: stacked
+                        fields:
+                          -
+                            handle: system
+                            field:
+                              type: text
+                              display: System
+                              instructions: 'Nyckeln på det system som gör steget.'
+                              width: 33
+                          -
+                            handle: with
+                            field:
+                              type: text
+                              display: 'Pratar med'
+                              instructions: 'Nyckeln på systemet det kommunicerar med (valfritt). Ritar ut linjen i diagrammet.'
+                              width: 33
+                          -
+                            handle: title
+                            field:
+                              type: text
+                              display: Rubrik
+                              width: 33
+                          -
+                            handle: short
+                            field:
+                              type: text
+                              display: 'Kort text'
+                              instructions: 'Några ord som visas i tidslinjen, t.ex. "AI-tolkning på radnivå".'
+                          -
+                            handle: text
+                            field:
+                              type: textarea
+                              display: Förklaring
+                              instructions: 'En mening som visas när steget är valt.'
+                              rows: 2
+                          -
+                            handle: log
+                            field:
+                              type: text
+                              display: Rad på fakturakortet
+                              instructions: 'T.ex. "Tolkad och konterad enligt regler".'
+                          -
+                            handle: status
+                            field:
+                              type: text
+                              display: 'Status efter steget'
+                              instructions: 'Visas som etikett på fakturakortet, t.ex. "Attesterad". Sista steget markeras grönt.'
+                              width: 50
+      -
+        display: Fakturan i exemplet
+        fields:
+          -
+            handle: doc_label
+            field:
+              type: text
+              display: Typ
+              instructions: 'T.ex. "Leverantörsfaktura 2026-0418".'
+          -
+            handle: doc_title
+            field:
+              type: text
+              display: Rubrik
+              instructions: 'T.ex. "Fastighetsservice Norr AB".'
+          -
+            handle: doc_subtitle
+            field:
+              type: text
+              display: Underrubrik
+              instructions: 'T.ex. "Brf Linden · Trappstädning oktober".'
+          -
+            handle: doc_amount_label
+            field:
+              type: text
+              display: Beloppstext
+              default: 'Att betala'
+              width: 50
+          -
+            handle: doc_amount
+            field:
+              type: text
+              display: Belopp
+              instructions: 'T.ex. "12 450 kr".'
+              width: 50
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: order
+            field:
+              type: integer
+              display: Sortering
+              instructions: 'Lägre tal visas först i listan.'
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            import: seo

@@ -1,0 +1,148 @@
+title: Funktion
+tabs:
+  main:
+    display: Innehåll
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Namn
+              instructions: 'Funktionens namn, t.ex. "Fakturering". Blir också adressen (/for-foretagare/fakturering).'
+              required: true
+              validate:
+                - required
+          -
+            handle: short_description
+            field:
+              type: textarea
+              display: 'Kort beskrivning'
+              instructions: 'Visas i listan över funktioner och som ingress högst upp på funktionens sida.'
+              rows: 3
+              validate:
+                - required
+          -
+            handle: image
+            field:
+              type: assets
+              container: assets
+              max_files: 1
+              display: Bild
+              instructions: 'Visas i listan och överst på funktionens sida.'
+      -
+        display: 'Vad den gör'
+        fields:
+          -
+            handle: benefits
+            field:
+              type: grid
+              display: 'Vad den gör'
+              instructions: 'En punkt per sak funktionen gör eller en fördel för företagaren. Visas som kort.'
+              add_row: 'Lägg till punkt'
+              mode: stacked
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: Rubrik
+                -
+                  handle: text
+                  field:
+                    type: textarea
+                    display: Text
+                    rows: 3
+      -
+        display: 'Interaktiva demon'
+        fields:
+          -
+            handle: demos
+            field:
+              type: grid
+              display: 'Prova själv'
+              instructions: 'Interaktiva demon med påhittad data. De visas som en steg-för-steg-guide under "Vad den gör", ett steg per demo i den ordning du lägger dem.'
+              add_row: 'Lägg till demo'
+              mode: stacked
+              fields:
+                -
+                  handle: type
+                  field:
+                    type: select
+                    display: Demo
+                    options:
+                      invoice-desktop: 'Skapa faktura (dator)'
+                      invoice-mobile: 'Skapa faktura (mobil)'
+                      reminders: 'Skicka påminnelser'
+                    validate:
+                      - required
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: Rubrik
+                -
+                  handle: text
+                  field:
+                    type: textarea
+                    display: Text
+                    rows: 3
+                -
+                  handle: next_text
+                  field:
+                    type: text
+                    display: 'Text på knappen till nästa steg'
+                    instructions: 'T.ex. "Klicka här för att se hur du kan skicka påminnelser". Lämnas tomt blir den "Nästa: {nästa rubrik}". Används inte på sista steget.'
+      -
+        display: 'Så ser det ut'
+        fields:
+          -
+            handle: screens
+            field:
+              type: grid
+              display: Skärmbilder
+              instructions: 'Bilder som visar hur funktionen ser ut, med en bildtext under varje.'
+              add_row: 'Lägg till bild'
+              mode: stacked
+              fields:
+                -
+                  handle: image
+                  field:
+                    type: assets
+                    container: assets
+                    max_files: 1
+                    display: Bild
+                -
+                  handle: caption
+                  field:
+                    type: text
+                    display: Bildtext
+      -
+        display: 'Mer information'
+        fields:
+          -
+            handle: body
+            field:
+              type: markdown
+              display: Text
+              instructions: 'Valfri längre text som visas under skärmbilderna.'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: order
+            field:
+              type: integer
+              display: Sortering
+              instructions: 'Lägre tal visas först i listan. Funktioner utan tal hamnar sist, i bokstavsordning.'
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            import: seo

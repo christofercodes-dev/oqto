@@ -1,0 +1,47 @@
+<section class="foretagare-section">
+
+    <div class="foretagare-container">
+
+        {{ foretagare:features as="features" }}
+
+            {{ if features }}
+
+                <div class="foretagare-grid">
+
+                    {{ features }}
+
+                        <a href="{{ href }}" class="foretagare-card">
+
+                            {{ if image_url }}
+                                <span class="foretagare-card-media">
+                                    <img src="{{ image_url }}" alt="" loading="lazy">
+                                </span>
+                            {{ /if }}
+
+                            <span class="foretagare-card-body">
+                                <span class="foretagare-card-title">{{ title }}</span>
+
+                                {{ if short_description }}
+                                    <span class="foretagare-card-text">{{ short_description }}</span>
+                                {{ /if }}
+
+                                <span class="foretagare-card-link">Läs mer <span aria-hidden="true">→</span></span>
+                            </span>
+
+                        </a>
+
+                    {{ /features }}
+
+                </div>
+
+            {{ else }}
+
+                <p class="foretagare-empty">{{ empty_text ?? 'Funktionerna publiceras här inom kort.' }}</p>
+
+            {{ /if }}
+
+        {{ /foretagare:features }}
+
+    </div>
+
+</section>

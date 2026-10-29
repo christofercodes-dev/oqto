@@ -234,6 +234,12 @@
 
 @import "./errors/not-found.css";
 
+@import "./foretagare/foretagare.css";
+
+@import "./ekosystem/ekosystem.css";
+
+@import "./demos/demo.css";
+
 @import "./villkor/components/hero.css";
 @import "./villkor/components/content.css";
 

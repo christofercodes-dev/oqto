@@ -91,6 +91,44 @@
     color: #55504c;
 }
 
+
+/* Fakta direkt under namnraden: vanlig text, utan kort. */
+.integration-show-meta-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 40px;
+
+    margin: 20px 0 0;
+}
+
+.integration-show-meta-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    min-width: 0;
+}
+
+.integration-show-meta-fact dt {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    color: #7a746f;
+}
+
+.integration-show-meta-fact dd {
+    margin: 0;
+
+    font-size: 0.95rem;
+    line-height: 1.45;
+
+    color: #2e251f;
+}
+
 .integration-show-description {
     max-width: 560px;
 
@@ -204,17 +242,23 @@
 .integration-show-info-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
 
     gap: 16px;
 
-    margin-top: 64px;
+    margin-top: 56px;
+}
+
+/* Med "Varför" blir fakta en smal kolumn bredvid; utan den ligger de i en rad. */
+.integration-show-info-grid.has-reasons {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
 }
 
 .integration-show-info-card {
     padding: 28px;
 
-    border-radius: 30px;
+    border-radius: 26px;
 }
 
 .integration-show-info-card-orange {
@@ -293,6 +337,46 @@
     font-weight: 500;
 
     text-decoration: underline;
+
+    color: #2e251f;
+}
+
+
+/* Kompakta faktakort: ryms i en rad och växer bara med innehållet. */
+.integration-show-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.integration-show-info-grid.has-reasons .integration-show-facts {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.integration-show-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 16px 20px;
+
+    border-radius: 20px;
+}
+
+.integration-show-fact-label {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    color: #55504c;
+}
+
+.integration-show-fact-value {
+    font-size: 1rem;
+    line-height: 1.45;
 
     color: #2e251f;
 }
@@ -596,8 +680,12 @@ body.integration-lightbox-open {
         max-width: 420px;
     }
 
-    .integration-show-info-grid {
-        grid-template-columns: 1fr;
+    .integration-show-info-grid.has-reasons {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .integration-show-info-grid.has-reasons .integration-show-facts {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .integration-show-cta {
@@ -635,6 +723,10 @@ body.integration-lightbox-open {
         margin-top: 40px;
 
         gap: 12px;
+    }
+
+    .integration-show-info-card {
+        padding: 22px;
     }
 
     .integration-show-cta {

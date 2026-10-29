@@ -1033,4 +1033,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startLottie(document.querySelectorAll('[data-lottie-src]'));
 
+
+    /* ==================================================
+       INTERAKTIVA DEMON (funktionssidorna)
+       ================================================== */
+
+    if (document.querySelector('[data-demo]')) {
+        import('./demos/index.js');
+    }
+
+
+    /* ==================================================
+       EKOSYSTEMET (/integrationer/ekosystem/...)
+       ================================================== */
+
+    document.querySelectorAll('[data-ecosystem]').forEach((root) => {
+        import('./ekosystem.js').then((module) => module.default(root));
+    });
+
 });

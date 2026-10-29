@@ -10,6 +10,9 @@ return [
     'noindex_paths' => [
         'investerartraff',
         'investerartraff/*',
+        // Byråernas sidor är kopior av För företagare med egen profil och ska aldrig indexeras.
+        'byra',
+        'byra/*',
     ],
 
 ];

@@ -1,0 +1,97 @@
+{{ partial:components/navbar }}
+
+<div class="eco-scope">
+
+    <header class="eco-hero">
+        <div class="container">
+
+            <a href="/integrationer/ekosystem" class="integration-show-back-link">
+                <span aria-hidden="true">←</span>
+                <span>Alla ekosystem</span>
+            </a>
+
+            <span class="eco-eyebrow">Ekosystem &middot; {{ title }}</span>
+            <h1 class="eco-hero-title">{{ headline ?? title }}</h1>
+
+            {{ if short_description }}
+                <p class="eco-hero-text">{{ short_description }}</p>
+            {{ /if }}
+
+        </div>
+    </header>
+
+    <section class="eco-stage-section" aria-label="Så pratar systemen med varandra">
+        <div class="container">
+
+            {{# Utan JavaScript syns flödena som listor. Skriptet byter ut dem mot den interaktiva visningen. #}}
+            <div class="eco" data-ecosystem>
+
+                <script type="application/json" data-ecosystem-data>{{ ekosystem:json }}</script>
+
+                <div class="eco-static">
+                    {{ ekosystem:flows as="flows" }}
+                        {{ flows }}
+                            <h2 class="eco-static-title">{{ title }}</h2>
+                            <ol class="eco-static-steps">
+                                {{ steps }}
+                                    <li>
+                                        <strong>{{ title }}</strong>
+                                        <span>{{ system_name }}</span>
+                                        {{ if text }}<p>{{ text }}</p>{{ /if }}
+                                    </li>
+                                {{ /steps }}
+                            </ol>
+                        {{ /flows }}
+                    {{ /ekosystem:flows }}
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="eco-section">
+        <div class="container">
+
+            <h2 class="eco-heading">Systemen i flödet</h2>
+
+            <div class="eco-systems">
+                {{ ekosystem:systems as="systems" }}
+                    {{ systems }}
+                        <div class="eco-system">
+                            <span class="eco-badge eco-tone-{{ tone }}">{{ letter }}</span>
+                            <span class="eco-system-body">
+                                <span class="eco-system-name">{{ name }}</span>
+                                {{ if role }}<span class="eco-system-role">{{ role }}</span>{{ /if }}
+                                {{ if href }}
+                                    <a href="{{ href }}" class="eco-system-link">Läs mer om {{ name }} <span aria-hidden="true">→</span></a>
+                                {{ /if }}
+                            </span>
+                        </div>
+                    {{ /systems }}
+                {{ /ekosystem:systems }}
+            </div>
+
+        </div>
+    </section>
+
+    <section class="eco-section eco-section-cta">
+        <div class="container">
+
+            <div class="eco-cta">
+                <div>
+                    <h2 class="eco-cta-title">Vill du se det här i din egen verksamhet?</h2>
+                    <p class="eco-cta-text">Boka en demo så går vi igenom hur flödet skulle fungera hos er.</p>
+                </div>
+                <a href="/boka-demo" class="integration-activate-button">
+                    <span>Boka demo</span>
+                    <span class="integration-activate-arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+{{ partial:components/footer }}

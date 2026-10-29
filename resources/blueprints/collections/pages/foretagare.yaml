@@ -1,0 +1,66 @@
+title: 'För företagare'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+          -
+            handle: hero_small_title
+            field:
+              type: text
+              display: 'Liten förtext'
+              instructions: 'Visas ovanför rubriken, t.ex. "FÖR FÖRETAGARE".'
+          -
+            handle: hero_title
+            field:
+              type: textarea
+              display: Rubrik
+              instructions: 'Radbryt manuellt där du vill att rubriken ska brytas.'
+              rows: 2
+          -
+            handle: hero_body
+            field:
+              type: textarea
+              display: 'Text under rubriken'
+              rows: 3
+          -
+            handle: empty_text
+            field:
+              type: text
+              display: 'Text när inga funktioner finns'
+              instructions: 'Visas om inga funktioner är publicerade än.'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: parent
+            field:
+              type: entries
+              collections:
+                - pages
+              max_items: 1
+              listable: false
+              localizable: true
+          -
+            import: seo

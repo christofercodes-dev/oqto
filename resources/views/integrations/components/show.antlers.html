@@ -34,6 +34,30 @@
                     {{ title }}{{ if developer_name }} &middot; {{ developer_name }}{{ /if }}
                 </p>
 
+                {{ if company_employee_ranges || company_revenue_ranges || sni_codes }}
+                    <dl class="integration-show-meta-facts">
+
+                        {{ if company_employee_ranges || company_revenue_ranges }}
+                            <div class="integration-show-meta-fact">
+                                <dt>Passar företag med</dt>
+                                <dd>
+                                    {{ if company_employee_ranges }}{{ company_employee_ranges | join(', ') }} anställda{{ /if }}
+                                    {{ if company_employee_ranges && company_revenue_ranges }}<br>{{ /if }}
+                                    {{ if company_revenue_ranges }}{{ company_revenue_ranges | join(', ') }} Mkr i omsättning{{ /if }}
+                                </dd>
+                            </div>
+                        {{ /if }}
+
+                        {{ if sni_codes }}
+                            <div class="integration-show-meta-fact">
+                                <dt>Branscher</dt>
+                                <dd>{{ sni_codes }}{{ description ?? title }}{{ unless last }}, {{ /unless }}{{ /sni_codes }}</dd>
+                            </div>
+                        {{ /if }}
+
+                    </dl>
+                {{ /if }}
+
                 {{ if rating_count > 0 }}
                     <p class="integration-rating integration-show-rating">
                         <span class="integration-rating-star" aria-hidden="true">★</span>
@@ -75,16 +99,15 @@
 
 
         <!-- ==================================================
-             VARFÖR / BRANSCHER / PRIS
+             VARFÖR + PRIS
              ================================================== -->
 
-        {{ if reasons || sni_codes || price }}
+        {{ if reasons || price }}
 
-            <div class="integration-show-info-grid">
+            <div class="integration-show-info-grid{{ if reasons }} has-reasons{{ /if }}">
 
                 {{ if reasons }}
                     <div class="integration-show-info-card integration-show-info-card-orange">
-                        <span class="integration-show-info-number">01</span>
                         <span class="integration-show-info-label">Varför {{ title }}?</span>
                         <ul class="integration-show-info-list">
                             {{ reasons }}
@@ -94,48 +117,21 @@
                     </div>
                 {{ /if }}
 
-                {{ if sni_codes }}
-                    <div class="integration-show-info-card integration-show-info-card-yellow">
-                        <span class="integration-show-info-number">02</span>
-                        <span class="integration-show-info-label">Branscher (SNI)</span>
-                        <ul class="integration-show-info-list">
-                            {{ sni_codes }}
-                                <li>{{ description ?? title }}</li>
-                            {{ /sni_codes }}
-                        </ul>
-                    </div>
-                {{ /if }}
-
                 {{ if price }}
-                    <div class="integration-show-info-card integration-show-info-card-green">
-                        <span class="integration-show-info-number">03</span>
-                        <span class="integration-show-info-label">Pris</span>
-                        <p class="integration-show-info-price">{{ price }}</p>
-                    </div>
-                {{ /if }}
-
-                {{ if company_employee_ranges || company_revenue_ranges }}
-                    <div class="integration-show-info-card integration-show-info-card-blue">
-                        <span class="integration-show-info-number">04</span>
-                        <span class="integration-show-info-label">Passar företag med</span>
-
-                        {{ if company_employee_ranges }}
-                            <p class="integration-show-info-price">
-                                {{ company_employee_ranges | join(', ') }} anställda
-                            </p>
-                        {{ /if }}
-
-                        {{ if company_revenue_ranges }}
-                            <p class="integration-show-info-price">
-                                {{ company_revenue_ranges | join(', ') }} Mkr i omsättning
-                            </p>
-                        {{ /if }}
+                    <div class="integration-show-facts">
+                        <div class="integration-show-fact integration-show-info-card-green">
+                            <span class="integration-show-fact-label">Pris</span>
+                            <span class="integration-show-fact-value">{{ price }}</span>
+                        </div>
                     </div>
                 {{ /if }}
 
             </div>
 
         {{ /if }}
+
+
+        {{ partial:ekosystem/components/teaser :integration_id="id" }}
 
 
         <!-- ==================================================

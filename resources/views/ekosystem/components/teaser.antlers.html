@@ -1,0 +1,12 @@
+{{# Länk till ekosystem. Med integration_id="{id}" visas bara de där integrationen ingår, annars det första. #}}
+{{ ekosystem:list as="ekosystem" :integration="integration_id" limit="1" }}
+    {{ ekosystem }}
+        <a href="{{ href }}" class="eco-teaser">
+            <span class="eco-teaser-body">
+                <span class="eco-teaser-title">{{ if integration_id }}Fungerar tillsammans med andra system{{ else }}Se hur integrationerna jobbar ihop{{ /if }}</span>
+                <span class="eco-teaser-text">{{ title }}: {{ short_description }}</span>
+            </span>
+            <span class="eco-teaser-link">Se ekosystemet <span aria-hidden="true">→</span></span>
+        </a>
+    {{ /ekosystem }}
+{{ /ekosystem:list }}

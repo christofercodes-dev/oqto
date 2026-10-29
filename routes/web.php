@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\BokaDemoLogController;
 use App\Http\Controllers\BokaDemoLookupController;
+use App\Http\Controllers\EcosystemController;
 use App\Http\Controllers\IntercomWebhookController;
 use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +36,12 @@ Route::get('/support/status/check', [SupportController::class, 'statusCheck'])
 
 Route::get('/support/{category}', [SupportController::class, 'category'])->name('support.category');
 Route::get('/support/{category}/{article}', [SupportController::class, 'article'])->name('support.article');
+
+// Byråernas sidor med egen logga och färger. Innehållet hämtas från funktionerna
+// under /for-foretagare (se App\Services\Foretagare\FeatureCatalog).
+Route::get('/byra/{agency}', [AgencyController::class, 'index'])->name('agency.index');
+Route::get('/byra/{agency}/{feature}', [AgencyController::class, 'feature'])->name('agency.feature');
+
+// Ekosystemen visar hur flera integrationer fungerar tillsammans. Posterna
+// själva ligger i samlingen "ekosystem" (/integrationer/ekosystem/{slug}).
+Route::get('/integrationer/ekosystem', [EcosystemController::class, 'index'])->name('ecosystem.index');

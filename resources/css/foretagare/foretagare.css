@@ -1,0 +1,808 @@
+/* =========================================================
+   FÖR FÖRETAGARE OCH BYRÅERNAS SIDOR
+
+   Samma mallar används överallt. Färgerna styrs av --brand (huvudfärg) och
+   --brand-ink (text ovanpå den), som en byrå sätter inline på .foretagare-scope.
+   ========================================================= */
+
+.foretagare-scope {
+    --brand: #ff6319;
+    --brand-ink: #ffffff;
+    --brand-soft: color-mix(in srgb, var(--brand) 11%, #ffffff);
+    --brand-line: color-mix(in srgb, var(--brand) 28%, #ffffff);
+
+    background-color: #ffffff;
+    color: var(--color-text);
+}
+
+.foretagare-container {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding: 0 32px;
+
+    box-sizing: border-box;
+}
+
+
+/* ---------- Hero ---------- */
+
+.foretagare-hero {
+    padding: 190px 0 72px;
+
+    /* Samma ljusblå gradient som supportsidorna; byråer får en ton av sin egen färg. */
+    background: linear-gradient(180deg, #e8f2ff 0%, #ffffff 100%);
+}
+
+.foretagare-scope.is-branded .foretagare-hero {
+    background: linear-gradient(180deg, var(--brand-soft) 0%, #ffffff 100%);
+}
+
+.foretagare-eyebrow {
+    display: block;
+
+    margin-bottom: 22px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+
+    color: var(--brand);
+}
+
+.foretagare-hero-title {
+    max-width: 760px;
+
+    margin: 0;
+
+    font-size: clamp(2.4rem, 5.4vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+}
+
+.foretagare-hero-text {
+    max-width: 600px;
+
+    margin: 22px 0 0;
+
+    font-size: 1.12rem;
+    line-height: 1.65;
+
+    color: #55504c;
+}
+
+.foretagare-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 36px;
+
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+
+    color: #55504c;
+
+    transition: color 0.15s ease;
+}
+
+.foretagare-back:hover {
+    color: var(--brand);
+}
+
+.foretagare-feature-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+
+    align-items: center;
+}
+
+.foretagare-feature-intro.has-image {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.foretagare-feature-intro .foretagare-button {
+    margin-top: 32px;
+}
+
+.foretagare-feature-intro-media img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 20px;
+
+    box-shadow: 0 24px 60px rgba(26, 23, 21, 0.12);
+}
+
+
+/* ---------- Knappar ---------- */
+
+.foretagare-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 52px;
+    padding: 14px 28px;
+
+    box-sizing: border-box;
+
+    border-radius: 999px;
+
+    background-color: var(--brand);
+    color: var(--brand-ink);
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.foretagare-button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(0.92);
+}
+
+.foretagare-button-small {
+    min-height: 42px;
+    padding: 10px 20px;
+
+    font-size: 0.78rem;
+}
+
+
+/* ---------- Sektioner ---------- */
+
+.foretagare-section {
+    padding: 72px 0;
+}
+
+.foretagare-section-tint {
+    background-color: #f7f6f4;
+}
+
+.foretagare-heading {
+    margin: 0 0 36px;
+
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.foretagare-empty {
+    margin: 0;
+
+    color: #55504c;
+}
+
+
+/* ---------- Kort (lista över funktioner) ---------- */
+
+.foretagare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.foretagare-card {
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 1px solid #e5e0db;
+    border-radius: 20px;
+
+    background-color: #ffffff;
+    color: inherit;
+    text-decoration: none;
+
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.foretagare-card:hover {
+    border-color: var(--brand);
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 16px 40px rgba(26, 23, 21, 0.08);
+}
+
+.foretagare-card-media {
+    display: block;
+
+    aspect-ratio: 16 / 10;
+
+    background-color: var(--brand-soft);
+
+    overflow: hidden;
+}
+
+.foretagare-card-media img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.foretagare-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 26px 26px 24px;
+}
+
+.foretagare-card-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.foretagare-card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+
+    color: #55504c;
+}
+
+.foretagare-card-link {
+    margin-top: auto;
+    padding-top: 12px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+
+    color: var(--brand);
+}
+
+
+/* ---------- Vad den gör ---------- */
+
+.foretagare-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.foretagare-benefit {
+    padding: 28px;
+
+    border-radius: 20px;
+
+    background-color: var(--brand-soft);
+}
+
+.foretagare-benefit-number {
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    color: var(--brand);
+}
+
+.foretagare-benefit-title {
+    margin: 0;
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.foretagare-benefit-text {
+    margin: 10px 0 0;
+
+    font-size: 0.97rem;
+    line-height: 1.65;
+
+    color: #4a4744;
+}
+
+
+/* ---------- Interaktiva demon (helbredds-scen med steg-för-steg-guide) ---------- */
+
+.foretagare-stage {
+    --dm-height: clamp(700px, 84vh, 900px);
+
+    position: relative;
+
+    padding: 104px 0 112px;
+
+    background:
+        radial-gradient(ellipse 70% 55% at 50% 0%, color-mix(in srgb, var(--brand) 26%, transparent) 0%, transparent 72%),
+        #14110f;
+
+    color: #ffffff;
+}
+
+.foretagare-stage-inner { position: relative; max-width: 1320px; }
+
+.foretagare-stage-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 36px;
+}
+
+.foretagare-stage-title {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+.foretagare-stage-full {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 11px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.foretagare-stage-full:hover { border-color: var(--brand); background: rgba(255, 255, 255, 0.12); }
+.foretagare-stage-full-close { display: none; }
+.foretagare-stage.is-fullscreen .foretagare-stage-full-open { display: none; }
+.foretagare-stage.is-fullscreen .foretagare-stage-full-close { display: block; }
+
+.foretagare-wiz-steps {
+    display: flex;
+
+    margin: 0 0 40px;
+    padding: 0 0 22px;
+
+    list-style: none;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.foretagare-wiz-item {
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    min-width: 0;
+}
+
+/* Linjen mellan stegen. */
+.foretagare-wiz-item:not(:last-child)::after {
+    content: "";
+
+    flex: 1;
+
+    min-width: 16px;
+    height: 2px;
+    margin: 0 16px;
+
+    border-radius: 1px;
+
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.foretagare-wiz-item:last-child { flex: 0 1 auto; }
+
+.foretagare-wiz-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    min-width: 0;
+    padding: 6px 4px;
+
+    border: 0;
+    background: none;
+
+    text-align: left;
+    cursor: pointer;
+}
+
+.foretagare-wiz-num {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    border-radius: 50%;
+
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.7);
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.foretagare-wiz-label {
+    overflow: hidden;
+
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+
+    color: rgba(255, 255, 255, 0.6);
+    text-overflow: ellipsis;
+}
+
+.foretagare-wiz-step:hover .foretagare-wiz-num { border-color: var(--brand); }
+
+.foretagare-wiz-step.is-done .foretagare-wiz-num,
+.foretagare-wiz-step.is-active .foretagare-wiz-num {
+    border-color: var(--brand);
+
+    background-color: var(--brand);
+    color: var(--brand-ink);
+}
+
+.foretagare-wiz-step.is-done .foretagare-wiz-num { font-size: 0; }
+.foretagare-wiz-step.is-done .foretagare-wiz-num::before { content: "✓"; font-size: 1rem; }
+
+.foretagare-wiz-step.is-active .foretagare-wiz-label,
+.foretagare-wiz-step.is-done .foretagare-wiz-label { color: #ffffff; }
+
+.foretagare-wiz-step.is-active .foretagare-wiz-label { font-weight: 600; }
+
+.foretagare-wiz-step:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 10px; }
+
+.foretagare-wiz-intro {
+    max-width: 720px;
+
+    margin-bottom: 32px;
+}
+
+.foretagare-wiz-eyebrow {
+    display: block;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: var(--brand);
+}
+
+.foretagare-wiz-title {
+    margin: 12px 0 0;
+
+    color: #ffffff;
+
+    font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+}
+
+.foretagare-wiz-text {
+    margin: 14px 0 0;
+
+    font-size: 1.1rem;
+    line-height: 1.65;
+
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.foretagare-wiz-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-top: 40px;
+    padding-top: 28px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.foretagare-wiz-foot .foretagare-wiz-next { margin-left: auto; }
+
+.foretagare-wiz-prev,
+.foretagare-wiz-restart {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 4px;
+
+    border: 0;
+    background: none;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+
+    cursor: pointer;
+}
+
+.foretagare-wiz-prev:hover,
+.foretagare-wiz-restart:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
+
+/* På mörk bakgrund */
+.foretagare-stage .dm-m-caption { color: rgba(255, 255, 255, 0.66); }
+.foretagare-stage .dm-window { border-color: transparent; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); }
+
+/* Helskärm: scenen täcker hela skärmen, med en tätare rubrikdel så att demot får plats. */
+.foretagare-stage.is-fullscreen {
+    --dm-height: max(460px, calc(100vh - 270px));
+
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 22px 0 26px;
+
+    overflow: auto;
+}
+
+.foretagare-stage.is-fullscreen .foretagare-stage-head {
+    position: absolute;
+    top: 0;
+    right: 32px;
+    z-index: 2;
+
+    margin: 0;
+}
+
+.foretagare-stage.is-fullscreen .foretagare-stage-title,
+.foretagare-stage.is-fullscreen .foretagare-wiz-text { display: none; }
+
+.foretagare-stage.is-fullscreen .foretagare-wiz-steps { margin: 0 0 18px; padding: 0 200px 14px 0; }
+
+.foretagare-stage.is-fullscreen .foretagare-wiz-intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 16px;
+
+    max-width: none;
+    margin-bottom: 16px;
+}
+
+.foretagare-stage.is-fullscreen .foretagare-wiz-title { margin: 0; font-size: clamp(1.3rem, 2vw, 1.7rem); }
+.foretagare-stage.is-fullscreen .foretagare-wiz-foot { margin-top: 16px; padding-top: 14px; }
+
+.foretagare-lock { overflow: hidden; }
+
+
+/* ---------- Så ser det ut ---------- */
+
+.foretagare-screens {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+}
+
+.foretagare-screen {
+    margin: 0;
+}
+
+.foretagare-screen img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border: 1px solid #e5e0db;
+    border-radius: 16px;
+
+    background-color: #ffffff;
+}
+
+.foretagare-screen figcaption {
+    margin-top: 12px;
+
+    font-size: 0.92rem;
+    line-height: 1.5;
+
+    color: #55504c;
+}
+
+
+/* ---------- Brödtext (markdown) ---------- */
+
+.foretagare-body {
+    max-width: 720px;
+
+    font-size: 1.05rem;
+    line-height: 1.75;
+
+    color: #4a4744;
+}
+
+.foretagare-body h2,
+.foretagare-body h3 {
+    margin: 2em 0 0.6em;
+
+    color: var(--color-text);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.foretagare-body a {
+    color: var(--brand);
+}
+
+
+/* ---------- Byråns logga och kontaktknapp (överst i innehållet) ---------- */
+
+.foretagare-agency-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 24px;
+
+    margin-bottom: 44px;
+    padding: 14px 18px 14px 22px;
+
+    border: 1px solid var(--brand-line);
+    border-radius: 18px;
+
+    background-color: #ffffff;
+}
+
+.foretagare-agency-id {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 18px;
+
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.foretagare-agency-label {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #7a746f;
+}
+
+.foretagare-agency-logo {
+    display: block;
+
+    width: auto;
+    max-width: 220px;
+    max-height: 40px;
+}
+
+.foretagare-agency-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+/* ---------- Surfplatta och mobil ---------- */
+
+@media (max-width: 1024px) {
+
+    .foretagare-grid,
+    .foretagare-benefits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .foretagare-container {
+        padding: 0 20px;
+    }
+
+    .foretagare-hero {
+        padding: 130px 0 52px;
+    }
+
+    .foretagare-section {
+        padding: 52px 0;
+    }
+
+    .foretagare-feature-intro.has-image,
+    .foretagare-grid,
+    .foretagare-benefits,
+    .foretagare-screens {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .foretagare-feature-intro {
+        gap: 32px;
+    }
+
+    .foretagare-feature-intro .foretagare-button {
+        width: 100%;
+    }
+
+    .foretagare-stage { --dm-height: 700px; padding: 64px 0 72px; }
+    .foretagare-stage-head { margin-bottom: 26px; }
+    .foretagare-stage-full { padding: 9px 14px; }
+
+    .foretagare-wiz-steps { margin-bottom: 28px; padding-bottom: 16px; }
+
+    /* Smal yta: bara siffrorna, och det aktiva stegets rubrik. */
+    .foretagare-wiz-label { display: none; }
+    .foretagare-wiz-step.is-active .foretagare-wiz-label { display: block; max-width: 46vw; font-size: 0.85rem; white-space: nowrap; }
+    .foretagare-wiz-item:not(:last-child)::after { margin: 0 8px; min-width: 8px; }
+    .foretagare-wiz-num { width: 34px; height: 34px; }
+
+    .foretagare-wiz-foot { flex-direction: column-reverse; align-items: stretch; margin-top: 28px; }
+    .foretagare-wiz-foot .foretagare-wiz-next { margin-left: 0; width: 100%; white-space: normal; text-align: left; justify-content: space-between; }
+    .foretagare-wiz-prev, .foretagare-wiz-restart { justify-content: center; }
+
+    .foretagare-stage.is-fullscreen { --dm-height: max(440px, calc(100vh - 300px)); justify-content: flex-start; padding: 16px 0 24px; }
+    .foretagare-stage.is-fullscreen .foretagare-stage-head { position: static; margin-bottom: 14px; justify-content: flex-end; }
+    .foretagare-stage.is-fullscreen .foretagare-wiz-steps { padding-right: 0; }
+
+    .foretagare-agency-strip {
+        margin-bottom: 32px;
+        padding: 14px 16px;
+    }
+
+    .foretagare-agency-strip .foretagare-button {
+        width: 100%;
+    }
+
+    .foretagare-agency-logo {
+        max-width: 170px;
+        max-height: 34px;
+    }
+
+}

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Filesystem\ResilientListingAdapter;
 use App\Modifiers\SignedUrl;
+use App\Tags\Ekosystem;
+use App\Tags\Foretagare;
 use App\Tags\Integrations;
 use Aws\S3\S3Client;
 use Illuminate\Filesystem\AwsS3V3Adapter as LaravelAwsS3V3Adapter;
@@ -31,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
     {
         SignedUrl::register();
         Integrations::register();
+        Foretagare::register();
+        Ekosystem::register();
 
         // Egen disk-driver som slår in adaptern i ResilientListingAdapter,
         // så att en otillgänglig/skrivskyddad/ofullständigt konfigurerad

@@ -1,0 +1,91 @@
+title: Byrå
+tabs:
+  main:
+    display: Byrå
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: 'Byråns namn'
+              instructions: 'T.ex. "Win Win". Adressen blir /byra/win-win.'
+              required: true
+              validate:
+                - required
+          -
+            handle: logo
+            field:
+              type: assets
+              container: assets
+              max_files: 1
+              display: Logotyp
+              instructions: 'Visas överst på byråns sidor. Helst en SVG eller PNG med transparent bakgrund.'
+          -
+            handle: brand_color
+            field:
+              type: color
+              display: Huvudfärg
+              instructions: 'Används för knappar, länkar och accenter på byråns sidor. Textfärgen på knapparna väljs automatiskt så att den går att läsa.'
+              default: '#ff6319'
+              theme: classic
+      -
+        display: Funktioner
+        fields:
+          -
+            handle: features
+            field:
+              type: entries
+              collections:
+                - foretagare_funktioner
+              display: 'Funktioner byrån visar'
+              instructions: 'Välj de funktioner byrån vill lista, i den ordning de ska visas. Lämnas tomt visas alla funktioner. Innehållet hämtas alltid från "För företagare", här väljer du bara vilka som visas.'
+              create: false
+      -
+        display: Texter
+        fields:
+          -
+            handle: intro_title
+            field:
+              type: text
+              display: Rubrik
+              instructions: 'Rubriken på byråns startsida. Lämnas tomt blir den "Funktioner för dig som är kund hos {byrå}".'
+          -
+            handle: intro_text
+            field:
+              type: textarea
+              display: Text
+              instructions: 'Text under rubriken (valfri).'
+              rows: 3
+          -
+            handle: cta_label
+            field:
+              type: text
+              display: 'Knapptext'
+              instructions: 'Text på kontaktknappen, t.ex. "Kontakta oss". Lämnas tomt blir den "Kontakta oss".'
+          -
+            handle: contact_url
+            field:
+              type: text
+              display: 'Länk för kontaktknappen'
+              instructions: 'Webbadress dit knappen leder, t.ex. byråns kontaktsida. Om du lämnar den tom men fyller i e-post nedan blir knappen en e-postlänk.'
+          -
+            handle: contact_email
+            field:
+              type: text
+              display: 'Kontakt, e-post'
+              validate:
+                - nullable
+                - email
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'

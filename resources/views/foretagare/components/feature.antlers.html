@@ -1,0 +1,217 @@
+{{# Funktionens sida. Används både på /for-foretagare/{funktion} och på
+    /byra/{byrå}/{funktion} - med en byrå i kontexten läggs dess profil på. #}}
+<article>
+
+    <header class="foretagare-hero foretagare-feature-hero">
+
+        <div class="foretagare-container">
+
+            {{ partial:foretagare/components/agency-strip }}
+
+            <a href="{{ if agency }}{{ agency:base }}{{ else }}/for-foretagare{{ /if }}" class="foretagare-back">
+                <span aria-hidden="true">←</span>
+                <span>Alla funktioner</span>
+            </a>
+
+            <div class="foretagare-feature-intro{{ if image }} has-image{{ /if }}">
+
+                <div class="foretagare-feature-intro-text">
+
+                    <h1 class="foretagare-hero-title">{{ title }}</h1>
+
+                    {{ if short_description }}
+                        <p class="foretagare-hero-text">{{ short_description }}</p>
+                    {{ /if }}
+
+                    {{# På byråernas sidor finns kontaktknappen redan i byrafältet ovanför. #}}
+                    {{ unless agency }}
+                        <a href="/boka-demo" class="foretagare-button">
+                            <span>Boka demo</span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    {{ /unless }}
+
+                </div>
+
+                {{ if image }}
+                    <div class="foretagare-feature-intro-media">
+                        <img src="{{ image:url }}" alt="{{ title }}">
+                    </div>
+                {{ /if }}
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    {{ if benefits }}
+
+        <section class="foretagare-section">
+
+            <div class="foretagare-container">
+
+                <h2 class="foretagare-heading">Vad den gör</h2>
+
+                <div class="foretagare-benefits">
+                    {{ benefits }}
+                        <div class="foretagare-benefit">
+                            <span class="foretagare-benefit-number">{{ count }}</span>
+                            {{ if title }}<h3 class="foretagare-benefit-title">{{ title }}</h3>{{ /if }}
+                            {{ if text }}<p class="foretagare-benefit-text">{{ text }}</p>{{ /if }}
+                        </div>
+                    {{ /benefits }}
+                </div>
+
+            </div>
+
+        </section>
+
+    {{ /if }}
+
+
+    {{ if demos }}
+
+        <section class="foretagare-stage" id="prova" data-demo-wizard>
+
+            <div class="foretagare-container foretagare-stage-inner">
+
+                <div class="foretagare-stage-head">
+                    <h2 class="foretagare-stage-title">Prova själv</h2>
+                    <button type="button" class="foretagare-stage-full" data-wiz-full aria-pressed="false">
+                        <svg class="foretagare-stage-full-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+                        <svg class="foretagare-stage-full-close" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        <span data-wiz-full-label>Helskärm</span>
+                    </button>
+                </div>
+
+                <div class="foretagare-wiz">
+
+                    <ol class="foretagare-wiz-steps" role="tablist" aria-label="Steg">
+                        {{ demos }}
+                            <li class="foretagare-wiz-item">
+                                <button type="button" role="tab" class="foretagare-wiz-step{{ if first }} is-active{{ /if }}" data-wiz-step="{{ count }}" aria-selected="{{ if first }}true{{ else }}false{{ /if }}">
+                                    <span class="foretagare-wiz-num">{{ count }}</span>
+                                    <span class="foretagare-wiz-label">{{ title }}</span>
+                                </button>
+                            </li>
+                        {{ /demos }}
+                    </ol>
+
+                    {{ demos }}
+                        <div class="foretagare-wiz-panel" role="tabpanel" data-wiz-panel="{{ count }}" data-next="{{ next_text | sanitize }}"{{ unless first }} hidden{{ /unless }}>
+
+                            <div class="foretagare-wiz-intro">
+                                <span class="foretagare-wiz-eyebrow">Steg {{ count }} av {{ total_results }}</span>
+                                {{ if title }}<h3 class="foretagare-wiz-title">{{ title }}</h3>{{ /if }}
+                                {{ if text }}<p class="foretagare-wiz-text">{{ text }}</p>{{ /if }}
+                            </div>
+
+                            <div class="dm-demo" data-demo="{{ type:value }}"></div>
+
+                            <div class="foretagare-wiz-foot">
+                                {{ unless first }}
+                                    <button type="button" class="foretagare-wiz-prev" data-wiz-go="{{ count - 1 }}">
+                                        <span aria-hidden="true">←</span>
+                                        <span>Föregående steg</span>
+                                    </button>
+                                {{ /unless }}
+                                {{ if last }}
+                                    {{ unless first }}
+                                        <button type="button" class="foretagare-wiz-restart" data-wiz-go="1">Börja om från steg 1</button>
+                                    {{ /unless }}
+                                {{ else }}
+                                    <button type="button" class="foretagare-button foretagare-wiz-next" data-wiz-go="{{ count + 1 }}">
+                                        <span data-wiz-next-label>{{ if next_text }}{{ next_text }}{{ else }}Nästa steg{{ /if }}</span>
+                                        <span aria-hidden="true">→</span>
+                                    </button>
+                                {{ /if }}
+                            </div>
+
+                        </div>
+                    {{ /demos }}
+
+                </div>
+
+            </div>
+
+        </section>
+
+    {{ /if }}
+
+
+    {{ if screens }}
+
+        <section class="foretagare-section foretagare-section-tint">
+
+            <div class="foretagare-container">
+
+                <h2 class="foretagare-heading">Så ser det ut</h2>
+
+                <div class="foretagare-screens">
+                    {{ screens }}
+                        {{ if image }}
+                            <figure class="foretagare-screen">
+                                <img src="{{ image:url }}" alt="{{ caption }}" loading="lazy">
+                                {{ if caption }}<figcaption>{{ caption }}</figcaption>{{ /if }}
+                            </figure>
+                        {{ /if }}
+                    {{ /screens }}
+                </div>
+
+            </div>
+
+        </section>
+
+    {{ /if }}
+
+
+    {{ if body }}
+
+        <section class="foretagare-section">
+
+            <div class="foretagare-container">
+
+                <div class="foretagare-body">{{ body }}</div>
+
+            </div>
+
+        </section>
+
+    {{ /if }}
+
+
+    {{ foretagare:features as="more" :exclude="slug" }}
+
+        {{ if more }}
+
+            <section class="foretagare-section foretagare-section-tint">
+
+                <div class="foretagare-container">
+
+                    <h2 class="foretagare-heading">Fler funktioner</h2>
+
+                    <div class="foretagare-grid">
+                        {{ more }}
+                            <a href="{{ href }}" class="foretagare-card">
+                                <span class="foretagare-card-body">
+                                    <span class="foretagare-card-title">{{ title }}</span>
+                                    {{ if short_description }}
+                                        <span class="foretagare-card-text">{{ short_description }}</span>
+                                    {{ /if }}
+                                    <span class="foretagare-card-link">Läs mer <span aria-hidden="true">→</span></span>
+                                </span>
+                            </a>
+                        {{ /more }}
+                    </div>
+
+                </div>
+
+            </section>
+
+        {{ /if }}
+
+    {{ /foretagare:features }}
+
+</article>
