@@ -3,6 +3,11 @@
  * visas i taget; stegindikatorn, "nästa"/"föregående" och adressfältet
  * (#steg-2) hålls i takt. Knappen "Helskärm" lägger guiden över hela skärmen. Alla demon laddas direkt, så att ett demo behåller
  * sitt läge när man går fram och tillbaka.
+ *
+ * Ett demo kan låsa nästa steg tills det är gjort: det sätter data-gate="pending"
+ * på sitt element (och "done" när det är klart) och skickar händelsen dm:gate.
+ * Med dm:next ber demot om att få gå vidare, så att t.ex. en "Klart!"-ruta kan
+ * vara knappen till nästa steg.
  */
 
 export default function initWizard(root) {
@@ -26,9 +31,46 @@ export default function initWizard(root) {
 
     let current = 1;
 
+    const demoOf = (panel) => panel.querySelector('.dm-demo[data-gate]');
+
+    // Det första steget som måste göras klart innan man kommer vidare (1-baserat), annars null.
+    const firstBlocked = () => {
+        const i = panels.findIndex((panel) => demoOf(panel)?.dataset.gate === 'pending');
+
+        return i === -1 ? null : i + 1;
+    };
+
+    // Låsta steg, och knappar som bara fungerar när steget är gjort.
+    const refresh = () => {
+        const blocked = firstBlocked();
+
+        steps.forEach((step, i) => {
+            const locked = blocked !== null && i + 1 > blocked;
+
+            step.classList.toggle('is-locked', locked);
+            step.setAttribute('aria-disabled', locked ? 'true' : 'false');
+            step.title = locked ? 'Gör klart föregående steg först' : '';
+        });
+
+        // På ett steg som låser nästa är demots egen knapp vägen vidare.
+        panels.forEach((panel) => {
+            const gated = !!demoOf(panel);
+            const next = panel.querySelector('.foretagare-wiz-next');
+            const foot = panel.querySelector('.foretagare-wiz-foot');
+
+            if (next) next.hidden = gated;
+            if (foot) foot.hidden = [...foot.children].every((el) => el.hidden);
+        });
+    };
+
     const show = (n, { scroll = false, hash = true } = {}) => {
 
         n = Math.min(Math.max(n, 1), steps.length);
+
+        const blocked = firstBlocked();
+
+        if (blocked !== null && n > blocked) n = blocked;
+
         current = n;
 
         steps.forEach((step, i) => {
@@ -61,9 +103,15 @@ export default function initWizard(root) {
         const step = event.target.closest('[data-wiz-step]');
         const go = event.target.closest('[data-wiz-go]');
 
-        if (step && root.contains(step)) show(Number(step.dataset.wizStep), { scroll: true });
+        if (step && root.contains(step)) {
+            if (step.getAttribute('aria-disabled') !== 'true') show(Number(step.dataset.wizStep), { scroll: true });
+        }
         else if (go && root.contains(go)) show(Number(go.dataset.wizGo), { scroll: true });
     });
+
+    // Demon som låser eller släpper nästa steg, och som ber om att få gå vidare.
+    root.addEventListener('dm:gate', refresh);
+    root.addEventListener('dm:next', () => show(current + 1, { scroll: true }));
 
     // Pilknappar flyttar mellan stegen i stegindikatorn.
     root.addEventListener('keydown', (event) => {
@@ -109,6 +157,8 @@ export default function initWizard(root) {
     });
 
     const fromHash = /^#steg-(\d+)$/.exec(location.hash);
+
+    refresh();
 
     show(fromHash ? Number(fromHash[1]) : 1, { hash: false });
 

@@ -548,6 +548,13 @@
 
 .foretagare-wiz-foot .foretagare-wiz-next { margin-left: auto; }
 
+/* Steg som låses tills föregående är gjort, och knappar som döljs tills dess. */
+.foretagare-wiz-foot [hidden],
+.foretagare-wiz-foot[hidden] { display: none !important; }
+
+.foretagare-wiz-step.is-locked { opacity: 0.45; cursor: not-allowed; }
+.foretagare-wiz-step.is-locked:hover .foretagare-wiz-num { border-color: rgba(255, 255, 255, 0.28); }
+
 .foretagare-wiz-prev,
 .foretagare-wiz-restart {
     display: inline-flex;

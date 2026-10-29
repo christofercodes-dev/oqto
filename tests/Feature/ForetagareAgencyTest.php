@@ -173,7 +173,7 @@ class ForetagareAgencyTest extends TestCase
             ->get('type')
             ->get('options'));
 
-        $this->assertEqualsCanonicalizing(['invoice-desktop', 'invoice-mobile', 'reminders'], $options);
+        $this->assertEqualsCanonicalizing(['invoice-desktop', 'invoice-mobile', 'reminders', 'migration', 'migration-check'], $options);
 
         $loader = file_get_contents(resource_path('js/demos/index.js'));
 
@@ -330,5 +330,46 @@ class ForetagareAgencyTest extends TestCase
         foreach (['red; background:url(x)', '#12345', '"><script>', 'expression(1)', ['#fff']] as $bad) {
             $this->assertSame($catalog->brandStyle(null), $catalog->brandStyle($bad));
         }
+    }
+
+    public function test_move_to_oqto_page_talks_generally_and_has_both_demos(): void
+    {
+        $entry = Entry::query()->where('collection', FeatureCatalog::FEATURES)->where('slug', 'flytta-till-oqto')->first();
+
+        $this->assertNotNull($entry, 'Funktionen "Flytta till Oqto" saknas.');
+
+        // Funktionssidan pratar om "ditt befintliga ekonomisystem", inte om exakta system.
+        $text = json_encode($entry->data()->all(), JSON_UNESCAPED_UNICODE);
+
+        $this->assertStringNotContainsString('Fortnox', $text);
+        $this->assertStringNotContainsString('Spiris', $text);
+        $this->assertEmpty($entry->get('benefits'), 'Sidan ska inte ha rutorna "Vad den gör".');
+        $this->assertSame(['migration', 'migration-check'], array_column($entry->get('demos'), 'type'));
+
+        $this->get($entry->url())
+            ->assertOk()
+            ->assertSee('data-demo="migration"', false)
+            ->assertSee('data-demo="migration-check"', false)
+            ->assertDontSee('Vad den gör', false);
+
+        foreach (['migration', 'migration-check'] as $demo) {
+            $source = file_get_contents(resource_path("js/demos/{$demo}.js"));
+
+            $this->assertStringNotContainsString('Fortnox', $source);
+            $this->assertStringNotContainsString('Spiris', $source);
+        }
+    }
+
+    public function test_wizard_locks_the_next_step_until_the_demo_is_done(): void
+    {
+        $wizard = file_get_contents(resource_path('js/demos/wizard.js'));
+        $demo = file_get_contents(resource_path('js/demos/migration.js'));
+
+        // Guiden lyssnar på demots besked, och demot låser, släpper och ber om att få gå vidare.
+        $this->assertStringContainsString("'dm:gate'", $wizard);
+        $this->assertStringContainsString("'dm:next'", $wizard);
+        $this->assertStringContainsString("setGate('pending')", $demo);
+        $this->assertStringContainsString("setGate('done')", $demo);
+        $this->assertStringContainsString('data-act="next"', $demo);
     }
 }

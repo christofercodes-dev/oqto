@@ -1262,3 +1262,978 @@ input.dm-m-bigfield { height: 54px; padding-top: 0; padding-bottom: 0; }
     .dm-r-upsell, .dm-r-agree { flex-wrap: wrap; }
     .dm-r-section { padding: 18px 14px; }
 }
+
+
+/* =========================================================
+   FLYTTA TILL OQTO (två kolumner) OCH KONTROLLERA EFTER FLYTTEN
+   ========================================================= */
+
+.dm-mg-scroll {
+    flex: 1;
+    min-height: 0;
+
+    overflow: auto;
+
+    background: #f6f6f6;
+}
+
+.dm-mg-page {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 26px 28px 40px;
+}
+
+.dm-mg-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 32px;
+}
+
+.dm-mg-ctl {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dm-mg-ctl .dm-seg.is-locked {
+    opacity: 0.55;
+
+    pointer-events: none;
+}
+
+.dm-mg-note {
+    margin: 0;
+
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #666666;
+}
+
+.dm-mg-warn {
+    margin: -6px 0 0 !important;
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    background: #fff4e5;
+    color: #8a4b00;
+
+    font-size: 13.5px;
+    line-height: 1.45;
+}
+
+/* Brädan: en rad per del, med det tidigare systemet till vänster och Oqto till höger. */
+.dm-mg-board {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dm-mg-heads,
+.dm-mg-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
+    align-items: stretch;
+}
+
+.dm-mg-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 16px;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+    border: 1px solid #e3e3e3;
+}
+
+.dm-mg-head strong {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.dm-mg-head.is-right {
+    border-color: #ffc9ad;
+    background: #fff7f2;
+}
+
+.dm-mg-logo {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+
+    background: #e5e3e0;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.dm-mg-logo.is-generic {
+    color: #666666;
+}
+
+.dm-mg-logo.is-oqto {
+    background: #ffd6c2;
+}
+
+.dm-mg-logo img {
+    display: block;
+
+    width: 62%;
+    height: 62%;
+}
+
+.dm-mg-row {
+    min-height: 58px;
+}
+
+.dm-mg-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-width: 0;
+    padding: 10px 14px;
+
+    border: 1px solid #e3e3e3;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    font: inherit;
+    text-align: left;
+}
+
+.dm-mg-cell.is-button {
+    cursor: pointer;
+
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dm-mg-cell.is-button:hover {
+    border-color: #bdbdbd;
+}
+
+.dm-mg-cell.is-off {
+    background: #f1f1f1;
+    color: #9a9a9a;
+}
+
+.dm-mg-row.is-skipped .dm-mg-cell {
+    opacity: 0.6;
+}
+
+.dm-mg-row.is-running .dm-mg-cell.is-right {
+    border-color: #ffb48a;
+}
+
+.dm-mg-row.is-done .dm-mg-cell.is-right {
+    border-color: #b9dfb9;
+    background: #f6fbf6;
+}
+
+.dm-mg-check {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    border: 1.5px solid #bdbdbd;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #ffffff;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.dm-mg-check.is-on {
+    border-color: #1a1a1a;
+    background: #1a1a1a;
+}
+
+.dm-mg-check.is-fixed.is-on {
+    border-color: #9a9a9a;
+    background: #9a9a9a;
+}
+
+.dm-mg-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+
+    min-width: 0;
+}
+
+.dm-mg-name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.dm-mg-hint {
+    overflow: hidden;
+
+    font-size: 12.5px;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: #888888;
+}
+
+.dm-mg-chip {
+    flex: none;
+
+    padding: 3px 8px;
+
+    border-radius: 6px;
+
+    background: #f0f0f0;
+    color: #666666;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+.dm-mg-chip.is-off {
+    background: #e7e7e7;
+    color: #888888;
+}
+
+.dm-mg-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #c4c4c4;
+
+    transition: color 0.2s ease;
+}
+
+.dm-mg-row.is-running .dm-mg-arrow {
+    color: #ff5500;
+}
+
+.dm-mg-row.is-done .dm-mg-arrow {
+    color: #3a9d3a;
+}
+
+.dm-mg-cell.is-right {
+    gap: 14px;
+
+    border-style: dashed;
+}
+
+.dm-mg-row.is-running .dm-mg-cell.is-right,
+.dm-mg-row.is-done .dm-mg-cell.is-right {
+    border-style: solid;
+}
+
+.dm-mg-rlabel {
+    flex: none;
+
+    min-width: 120px;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.dm-mg-state {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+
+    min-width: 0;
+}
+
+.dm-mg-wait {
+    font-size: 13px;
+    color: #a0a0a0;
+}
+
+.dm-mg-done {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #2b7a2b;
+}
+
+.dm-mg-count {
+    flex: none;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    color: #777777;
+}
+
+.dm-mg-bar {
+    flex: 1;
+
+    height: 8px;
+    min-width: 40px;
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #ececec;
+}
+
+.dm-mg-bar.is-wide {
+    flex: 1;
+
+    height: 10px;
+}
+
+.dm-mg-bar-fill {
+    display: block;
+
+    height: 100%;
+
+    border-radius: 999px;
+
+    background: #ff5500;
+}
+
+.dm-mg-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+
+    padding-top: 6px;
+}
+
+.dm-mg-overall {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+
+    min-width: 200px;
+}
+
+.dm-mg-overall-text {
+    font-size: 14px;
+    color: #666666;
+}
+
+.dm-mg-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    height: 50px;
+    padding: 0 8px 0 24px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: #2e251f;
+    color: #fcfaf7;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.dm-mg-go:hover:not(:disabled) {
+    background: #ff5500;
+}
+
+.dm-mg-go-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.dm-mg-go.is-busy {
+    padding-right: 24px;
+
+    background: #8a8580;
+
+    cursor: progress;
+}
+
+.dm-mg-go.is-ghost {
+    padding: 0 24px;
+
+    border: 1px solid #cfcfcf;
+    background: transparent;
+    color: #1a1a1a;
+}
+
+.dm-mg-go.is-ghost:hover {
+    background: #ffffff !important;
+}
+
+.dm-mg-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    background: #e8f5e8;
+    color: #1d5a1d;
+
+    font-size: 14.5px;
+    line-height: 1.45;
+}
+
+.dm-mg-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 16px 18px;
+
+    border: 1px solid #e3e3e3;
+    border-radius: 14px;
+
+    background: #ffffff;
+}
+
+.dm-mg-extra ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.dm-mg-extra li {
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    background: #f1f1f1;
+
+    font-size: 13.5px;
+    color: #555555;
+}
+
+/* ---------- Kontrollera efter flytten ---------- */
+
+.dm-mc-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 24px;
+}
+
+.dm-mc-board {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
+    align-items: start;
+}
+
+.dm-mc-mid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    min-height: 60px;
+
+    color: #c4c4c4;
+}
+
+.dm-mc-col {
+    display: flex;
+    flex-direction: column;
+
+    padding: 6px 18px 10px;
+
+    border: 1px solid #e3e3e3;
+    border-radius: 14px;
+
+    background: #ffffff;
+}
+
+.dm-mc-col.is-right {
+    border-color: #ffc9ad;
+    background: #fff7f2;
+}
+
+.dm-mc-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.dm-mc-head strong {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.dm-mc-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+
+    min-height: 46px;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    font-size: 15px;
+}
+
+.dm-mc-line:last-child {
+    border-bottom: 0;
+}
+
+.dm-mc-line.is-sub {
+    min-height: 40px;
+
+    font-size: 13.5px;
+    color: #777777;
+}
+
+.dm-mc-line > strong,
+.dm-mc-line > span:last-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dm-mc-line.is-match {
+    color: #1a1a1a;
+}
+
+.dm-mc-line.is-sub.is-match {
+    color: #555555;
+}
+
+.dm-mc-ok {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #3a9d3a;
+    color: #ffffff;
+}
+
+.dm-mc-dash {
+    color: #b5b5b5;
+}
+
+.dm-mc-todo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dm-mc-task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid #e3e3e3;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    font: inherit;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dm-mc-task:hover {
+    border-color: #bdbdbd;
+}
+
+.dm-mc-task.is-done {
+    border-color: #b9dfb9;
+    background: #f6fbf6;
+}
+
+.dm-mc-task .dm-mg-hint {
+    white-space: normal;
+}
+
+/* Smalare fönster: delen och Oqto-sidan delar rad, men texterna kortas. */
+@container dm (max-width: 760px) {
+
+    .dm-mg-page {
+        padding: 18px 16px 32px;
+    }
+
+    .dm-mg-heads,
+    .dm-mg-row,
+    .dm-mc-board {
+        grid-template-columns: minmax(0, 1fr) 24px minmax(0, 0.8fr);
+    }
+
+    .dm-mc-board {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .dm-mc-mid {
+        display: none;
+    }
+
+    .dm-mg-hint,
+    .dm-mg-rlabel {
+        display: none;
+    }
+
+    .dm-mg-cell {
+        padding: 8px 10px;
+        gap: 8px;
+    }
+
+    .dm-mg-chip {
+        display: none;
+    }
+
+    .dm-mg-head {
+        padding: 10px;
+    }
+
+    .dm-mg-head strong {
+        font-size: 15px;
+    }
+
+    .dm-mg-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .dm-mg-count {
+        display: none;
+    }
+}
+
+
+/* Bekräftelsen efter flytten är också knappen till nästa steg. */
+.dm-mg-next {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    width: 100%;
+    padding: 14px 14px 14px 18px;
+
+    border: 0;
+    border-radius: 14px;
+
+    background: #e8f5e8;
+    color: #1d5a1d;
+
+    font: inherit;
+    font-size: 14.5px;
+    line-height: 1.45;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.dm-mg-next:hover {
+    background: #d9eed9;
+}
+
+.dm-mg-next-check {
+    display: inline-flex;
+    flex: none;
+}
+
+.dm-mg-next-text {
+    flex: 1;
+}
+
+.dm-mg-next-arrow {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: #1d5a1d;
+    color: #ffffff;
+
+    transition: transform 0.2s ease;
+}
+
+.dm-mg-next:hover .dm-mg-next-arrow {
+    transform: translateX(3px);
+}
+
+
+/* Överblicken (en rad) och den utfällbara listan med alla delar. */
+.dm-mg-board.is-list {
+    margin-top: -6px;
+}
+
+.dm-mg-row.is-summary {
+    min-height: 74px;
+}
+
+.dm-mg-sum .dm-mg-hint {
+    white-space: normal;
+}
+
+.dm-mg-cell.dm-mg-sumr {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+}
+
+.dm-mg-sumline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+}
+
+.dm-mg-sub {
+    font-size: 13px;
+    color: #777777;
+}
+
+.dm-mg-fold {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 12px 16px;
+
+    border: 1px dashed #c9c9c9;
+    border-radius: 12px;
+
+    background: transparent;
+
+    font: inherit;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dm-mg-fold:hover {
+    border-color: #1a1a1a;
+    background: #ffffff;
+}
+
+.dm-mg-fold > span:first-child {
+    flex: 1;
+}
+
+.dm-mg-fold-count {
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: #888888;
+}
+
+.dm-mg-fold-chev {
+    display: inline-flex;
+
+    transition: transform 0.2s ease;
+}
+
+.dm-mg-fold-chev.is-open {
+    transform: rotate(180deg);
+}
+
+
+/* Demon med lite innehåll tar bara den höjd de behöver, och rullar först när listan fälls ut. */
+.dm-window.is-fit {
+    height: auto;
+    max-height: var(--dm-height, 740px);
+}
+
+
+/* Pilen mellan det tidigare systemet och Oqto: en tydlig rund markering som blir orange när det flyttas och grön när det är klart. */
+.dm-mg-head-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dm-mg-flow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ff5500;
+
+    transition: color 0.25s ease;
+}
+
+.dm-mg-flow svg {
+    width: 26px;
+    height: 26px;
+}
+
+.dm-mg-heads.is-running .dm-mg-flow,
+.dm-mg-row.is-running .dm-mg-flow {
+    animation: dm-mg-nudge 0.9s ease-in-out infinite;
+}
+
+.dm-mg-heads.is-done .dm-mg-flow,
+.dm-mg-row.is-done .dm-mg-flow {
+    color: #3a9d3a;
+}
+
+.dm-mg-row.is-summary .dm-mg-arrow {
+    color: inherit;
+}
+
+.dm-mg-to {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ff5500;
+}
+
+@keyframes dm-mg-nudge {
+    0%, 100% { transform: translateX(-2px); }
+    50% { transform: translateX(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dm-mg-heads.is-running .dm-mg-flow,
+    .dm-mg-row.is-running .dm-mg-flow { animation: none; }
+}
+
+
+/* Kortet "Allt som kan flyttas" är också valet: längst ned fäller du ut listan med delarna. */
+.dm-mg-cell.dm-mg-sum {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+
+    padding: 14px 16px 12px;
+}
+
+.dm-mg-sum .dm-mg-text {
+    flex: none;
+}
+
+.dm-mg-pick {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding-top: 10px;
+
+    border-top: 1px dashed #d4d4d4;
+
+    font-size: 14.5px;
+    font-weight: 600;
+}
+
+.dm-mg-pick-label {
+    flex: 1;
+}
+
+.dm-mg-row.is-summary {
+    align-items: stretch;
+}
+
+.dm-mg-board.is-list {
+    margin-top: 0;
+}
+
+.dm-mg-fold-count {
+    font-family: "Geist Mono", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: #888888;
+}
+
+.dm-mg-fold-chev {
+    display: inline-flex;
+
+    transition: transform 0.2s ease;
+}
+
+.dm-mg-fold-chev.is-open {
+    transform: rotate(180deg);
+}
+
+
+@container dm (max-width: 760px) {
+
+    .dm-mg-fold-count {
+        display: none;
+    }
+
+    .dm-mg-pick {
+        gap: 8px;
+
+        font-size: 13px;
+        line-height: 1.3;
+    }
+}

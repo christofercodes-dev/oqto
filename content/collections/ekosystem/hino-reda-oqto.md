@@ -28,6 +28,7 @@ systems:
     name: Oqto
     role: Ekonomisystem
     tone: peach
+    icon: oqto
     pos_x: 54
     pos_y: 58
   -
@@ -35,6 +36,7 @@ systems:
     name: Leverantör
     role: 'Peppol · PDF · papper'
     tone: gray
+    icon: supplier
     pos_x: 20
     pos_y: 84
   -
@@ -42,6 +44,7 @@ systems:
     name: Banken
     role: 'Open Banking'
     tone: gray
+    icon: bank
     pos_x: 82
     pos_y: 84
 flows:

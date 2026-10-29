@@ -159,6 +159,34 @@
   
     });
   
+    /* Stäng menyn vid tryck utanför den (på den mörka bakgrunden) eller med Esc */
+    function closeMenu() {
+
+      menu.classList.remove("is-open");
+      toggle.classList.remove("is-open");
+      document.body.classList.remove("menu-open");
+
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Öppna meny");
+
+    }
+
+    document.addEventListener("click", function (event) {
+
+      if (!menu.classList.contains("is-open")) return;
+
+      if (event.target.closest(".mobile-menu, .menu-toggle")) return;
+
+      closeMenu();
+
+    });
+
+    document.addEventListener("keydown", function (event) {
+
+      if (event.key === "Escape" && menu.classList.contains("is-open")) closeMenu();
+
+    });
+
     /* Stäng menyn när man klickar på en länk */
     menu.querySelectorAll("a").forEach(function (link) {
 

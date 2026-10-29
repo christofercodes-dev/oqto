@@ -75,6 +75,8 @@ tabs:
                       invoice-desktop: 'Skapa faktura (dator)'
                       invoice-mobile: 'Skapa faktura (mobil)'
                       reminders: 'Skicka påminnelser'
+                      migration: 'Flytta till Oqto (två kolumner)'
+                      migration-check: 'Kontrollera efter flytten'
                     validate:
                       - required
                 -

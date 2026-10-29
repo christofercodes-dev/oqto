@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Intercom\HelpCenter;
+use App\Services\Support\MoveGuides;
 use App\Services\Status\AppStatusChecker;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -79,10 +80,14 @@ class SupportController extends Controller
 
         abort_if($found === null || $found['article_count'] === 0, 404);
 
+        // Flytt-guiderna väljs i tre steg (system, sätt, guide) i stället för att listas.
+        $move = preg_match('/flytt|byt/iu', $found['title']) === 1 ? MoveGuides::build($found) : null;
+
         return $this->view('support/category', [
             'title' => $found['title'],
             'seo_description' => $found['description'] ?? "Hjälpartiklar om {$found['title']} i Oqto.",
             'category' => $found,
+            'move' => $move,
         ]);
     }
 

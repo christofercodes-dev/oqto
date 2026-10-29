@@ -91,6 +91,20 @@ tabs:
                     instructions: 'Länkar systemet till dess integrationssida. Lämna tomt för t.ex. banken eller leverantören.'
                     width: 66
                 -
+                  handle: icon
+                  field:
+                    type: select
+                    display: Ikon
+                    instructions: 'Lämna tomt för att använda integrationens logga (eller bokstaven om det inte finns någon).'
+                    clearable: true
+                    width: 33
+                    options:
+                      oqto: 'Oqto (bläckfisken)'
+                      bank: Bank
+                      supplier: Leverantör
+                      document: Dokument
+                      person: Person
+                -
                   handle: pos_x
                   field:
                     type: integer

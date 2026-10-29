@@ -1051,4 +1051,13 @@ document.addEventListener('DOMContentLoaded', () => {
         import('./ekosystem.js').then((module) => module.default(root));
     });
 
+
+    /* ==================================================
+       FLYTTA TILL OQTO (supportens val av system och sätt)
+       ================================================== */
+
+    document.querySelectorAll('[data-move]').forEach((root) => {
+        import('./support-move.js').then((module) => module.default(root));
+    });
+
 });

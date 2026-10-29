@@ -59,7 +59,7 @@
                 {{ ekosystem:systems as="systems" }}
                     {{ systems }}
                         <div class="eco-system">
-                            <span class="eco-badge eco-tone-{{ tone }}">{{ letter }}</span>
+                            {{ if logo }}<span class="eco-badge has-logo fit-{{ logo_fit }}"><img src="{{ logo | sanitize }}" alt="" loading="lazy"></span>{{ elseif icon_svg }}<span class="eco-badge has-icon eco-tone-{{ tone }}">{{ icon_svg }}</span>{{ else }}<span class="eco-badge eco-tone-{{ tone }}">{{ letter }}</span>{{ /if }}
                             <span class="eco-system-body">
                                 <span class="eco-system-name">{{ name }}</span>
                                 {{ if role }}<span class="eco-system-role">{{ role }}</span>{{ /if }}

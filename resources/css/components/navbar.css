@@ -743,16 +743,7 @@
      ================================================== */
   
   @media (max-width: 380px) {
-  
-    .navbar-wrapper {
-      top: 12px;
-      padding: 0 12px;
-    }
-  
-    .navbar-container {
-      padding-left: 16px;
-    }
-  
+
     .navbar-logo img {
       width: 43px;
     }
@@ -764,4 +755,84 @@
   
   }
 
-  
+
+/* ==================================================
+   MOBILMENY: HELBREDDSLIST + UTFALLANDE PANEL
+   Listan ligger kant i kant överst, utan marginal eller rundning, och menyn
+   faller ut direkt under den i stället för att täcka hela skärmen.
+   ================================================== */
+
+@media (max-width: 900px) {
+
+  .navbar-wrapper {
+    top: 0;
+    padding: 0;
+  }
+
+  .navbar-container,
+  .navbar-container:hover {
+    width: 100%;
+
+    padding: 8px 12px 8px 20px;
+
+    border: 0;
+    border-bottom: 1px solid rgba(26, 23, 21, 0.08);
+    border-radius: 0;
+
+    background: rgba(250, 248, 245, 0.94);
+
+    box-shadow: none;
+    transform: none;
+  }
+
+  .mobile-menu {
+    inset: 0 0 auto 0;
+
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+
+    border-bottom: 1px solid rgba(26, 23, 21, 0.08);
+
+    background: #faf8f5;
+
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+
+    box-shadow: 0 28px 48px rgba(26, 23, 21, 0.14);
+
+    opacity: 1;
+
+    transform: translateY(-100%);
+  }
+
+  .mobile-menu.is-open {
+    transform: translateY(0);
+  }
+
+  .mobile-menu-inner {
+    height: auto;
+
+    /* Översta raden hamnar precis under listan (som är ca 61 px hög). */
+    padding: 68px 20px 24px;
+
+    gap: 20px;
+    justify-content: flex-start;
+  }
+
+  .mobile-nav-link {
+    padding: 14px 0;
+  }
+
+  /* Mörkare bakgrund bakom panelen; ett tryck utanför stänger den (se navbar.antlers.html). */
+  body.menu-open::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+    z-index: 800;
+
+    background: rgba(26, 23, 21, 0.3);
+  }
+
+}

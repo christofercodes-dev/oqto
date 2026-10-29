@@ -32,7 +32,7 @@
                                 <span class="eco-card-chips">
                                     {{ systems }}
                                         <span class="eco-chip eco-tone-{{ tone }}">
-                                            <span class="eco-chip-badge">{{ letter }}</span>
+                                            {{ if logo }}<span class="eco-badge has-logo fit-{{ logo_fit }}"><img src="{{ logo | sanitize }}" alt="" loading="lazy"></span>{{ elseif icon_svg }}<span class="eco-badge has-icon">{{ icon_svg }}</span>{{ else }}<span class="eco-chip-badge">{{ letter }}</span>{{ /if }}
                                             <span>{{ name }}</span>
                                         </span>
                                     {{ /systems }}

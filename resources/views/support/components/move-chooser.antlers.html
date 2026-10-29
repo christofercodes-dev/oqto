@@ -1,0 +1,144 @@
+{{# Flytta till Oqto: välj ekonomisystem, sedan sätt, sedan guiderna. Utan JavaScript visas allt under varandra. #}}
+<div class="move" data-move data-move-initial="{{ move:initial }}">
+
+    {{ move }}
+
+        {{# Steg 1: ekonomisystemet #}}
+        <div class="move-view" data-move-view="system"{{ unless initial == "system" }} hidden{{ /unless }}>
+
+            <h2 class="support-section-title move-heading" tabindex="-1">Vilket ekonomisystem flyttar du från?</h2>
+            <p class="move-lede">Välj ditt nuvarande system så visar vi rätt guider.</p>
+
+            <div class="move-choices">
+                {{ systems }}
+                    <button type="button" class="move-choice" data-move-go="{{ go }}">
+                        <span class="move-choice-text">
+                            <span class="move-choice-title">{{ name }}</span>
+                            <span class="move-choice-meta">{{ guides }} {{ if guides == 1 }}guide{{ else }}guider{{ /if }}</span>
+                        </span>
+                        <span class="move-choice-arrow" aria-hidden="true">→</span>
+                    </button>
+                {{ /systems }}
+            </div>
+
+        </div>
+
+        {{ systems }}
+
+            {{# Steg 2: hur man vill flytta (hoppas över när det bara finns ett sätt) #}}
+            {{ unless single }}
+                <div class="move-view" data-move-view="{{ key }}" hidden>
+
+                    {{ if move:initial == "system" }}
+                        <button type="button" class="move-back" data-move-go="system"><span aria-hidden="true">←</span> Byt ekonomisystem</button>
+                    {{ /if }}
+
+                    <h2 class="support-section-title move-heading" tabindex="-1">Hur vill du flytta från {{ name }}?</h2>
+                    <p class="move-lede">Välj sätt, så visar vi guiderna i rätt ordning.</p>
+
+                    <div class="move-choices">
+                        {{ methods }}
+                            <button type="button" class="move-choice" data-move-go="{{ id }}">
+                                <span class="move-choice-badge" aria-hidden="true">
+                                    <svg viewBox="0 0 20 20" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                        {{ if kind == "plug" }}
+                                            <path d="M7 3v4M13 3v4M5 7h10v3a5 5 0 01-10 0V7zM10 15v2.5"/>
+                                        {{ else }}
+                                            <path d="M10 13V3.5M6.5 7L10 3.5 13.5 7M3.5 12.5v3a1 1 0 001 1h11a1 1 0 001-1v-3"/>
+                                        {{ /if }}
+                                    </svg>
+                                </span>
+                                <span class="move-choice-text">
+                                    <span class="move-choice-title">{{ title }}</span>
+                                    {{ if text }}<span class="move-choice-desc">{{ text }}</span>{{ /if }}
+                                    <span class="move-choice-meta">{{ guides }} {{ if guides == 1 }}guide{{ else }}guider{{ /if }}</span>
+                                </span>
+                                <span class="move-choice-arrow" aria-hidden="true">→</span>
+                            </button>
+                        {{ /methods }}
+                    </div>
+
+                </div>
+            {{ /unless }}
+
+            {{# Steg 3: guiderna #}}
+            {{ methods }}
+                <div class="move-view" data-move-view="{{ id }}" hidden>
+
+                    {{ if back != "system" || move:initial == "system" }}
+                        <button type="button" class="move-back" data-move-go="{{ back }}"><span aria-hidden="true">←</span> {{ if back == "system" }}Byt ekonomisystem{{ else }}Byt sätt{{ /if }}</button>
+                    {{ /if }}
+
+                    <h2 class="support-section-title move-heading" tabindex="-1">{{ name }}{{ unless key == "guides" }} · {{ title | lower }}{{ /unless }}</h2>
+
+                    <div class="move-guides">
+
+                        {{# Vad som följer med: ordagrant ur guiden (se App\Services\Support\MoveGuides). Fälls ut vid behov. #}}
+                        {{ if scope }}
+                            <details class="move-scope">
+                                <summary class="move-scope-summary">
+                                    <span class="move-scope-summary-text">
+                                        <span class="move-scope-summary-title">Vad följer med och inte?</span>
+                                        <span class="move-scope-summary-hint">Se vilka delar som flyttas över och vilka du sätter upp på nytt</span>
+                                    </span>
+                                    <span class="move-scope-chevron" aria-hidden="true">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                    </span>
+                                </summary>
+
+                                <div class="move-scope-body">
+                                    {{ scope }}
+
+                                        {{ if title }}<h3 class="move-scope-title is-wide">{{ title }}</h3>{{ /if }}
+
+                                        <div class="move-scope-cols">
+
+                                            {{ if follows }}
+                                                <div class="move-scope-col">
+                                                    {{ if follows_title }}<h3 class="move-scope-title">{{ follows_title }}</h3>{{ /if }}
+                                                    <ul class="move-scope-list is-yes">
+                                                        {{ follows }}<li>{{ value }}</li>{{ /follows }}
+                                                    </ul>
+                                                </div>
+                                            {{ /if }}
+
+                                            {{ if skips }}
+                                                <div class="move-scope-col">
+                                                    {{ if skips_title }}<h3 class="move-scope-title">{{ skips_title }}</h3>{{ /if }}
+                                                    <ul class="move-scope-list is-no">
+                                                        {{ skips }}<li>{{ value }}</li>{{ /skips }}
+                                                    </ul>
+                                                </div>
+                                            {{ /if }}
+
+                                        </div>
+
+                                        {{ if notes }}
+                                            <div class="move-scope-notes">
+                                                {{ notes }}<p>{{ value }}</p>{{ /notes }}
+                                            </div>
+                                        {{ /if }}
+
+                                        <a href="{{ url }}" class="move-scope-link">Läs mer i guiden <span aria-hidden="true">→</span></a>
+
+                                    {{ /scope }}
+                                </div>
+                            </details>
+                        {{ /if }}
+
+                        {{ partial:support/components/article-grid :sections="sections" }}
+
+                    </div>
+
+                </div>
+            {{ /methods }}
+
+        {{ /systems }}
+
+    {{ /move }}
+
+</div>
+
+<noscript>
+    <style>.move [data-move-view][hidden] { display: block !important; margin-top: 48px; }</style>
+</noscript>

@@ -202,4 +202,51 @@ class EcosystemTest extends TestCase
             $this->assertStringContainsString("['{$view}',", $source);
         }
     }
+
+    public function test_systems_get_their_own_icon_or_fall_back_to_the_letter(): void
+    {
+        $entry = $this->ecosystem('ikoner', [
+            'systems' => [
+                ['key' => 'reda', 'name' => 'Reda', 'tone' => 'blue', 'icon' => 'oqto'],
+                ['key' => 'hino', 'name' => 'Hino', 'tone' => 'yellow', 'icon' => 'bank'],
+                ['key' => 'extra', 'name' => 'Extra', 'tone' => 'gray'],
+            ],
+            'flows' => [
+                ['id' => 'a', 'type' => 'flow', 'enabled' => true, 'title' => 'Flöde', 'steps' => [
+                    ['system' => 'reda', 'title' => 'Ett'],
+                    ['system' => 'hino', 'title' => 'Två'],
+                    ['system' => 'extra', 'title' => 'Tre'],
+                ]],
+            ],
+        ]);
+
+        [$oqto, $bank, $letter] = app(EcosystemCatalog::class)->payload($entry)['systems'];
+
+        $this->assertSame(EcosystemCatalog::OQTO_MARK, $oqto['logo']);
+        $this->assertSame('contain', $oqto['logo_fit']);
+
+        $this->assertNull($bank['logo']);
+        $this->assertStringStartsWith('<svg', $bank['icon_svg']);
+
+        $this->assertNull($letter['logo']);
+        $this->assertNull($letter['icon_svg']);
+        $this->assertSame('E', $letter['letter']);
+
+        $this->get($entry->url())->assertOk()->assertSee('has-icon', false)->assertSee('/favicon.svg', false);
+    }
+
+    public function test_a_missing_integration_logo_falls_back_to_the_letter(): void
+    {
+        $integration = $this->integration('utan-logga');
+
+        $entry = $this->ecosystem('utan-logga', [
+            'systems' => [['key' => 'reda', 'name' => 'Reda', 'tone' => 'blue', 'integration' => [$integration->id()]]],
+            'flows' => [['id' => 'a', 'type' => 'flow', 'enabled' => true, 'title' => 'F', 'steps' => [['system' => 'reda', 'title' => 'Ett']]]],
+        ]);
+
+        $system = app(EcosystemCatalog::class)->payload($entry)['systems'][0];
+
+        $this->assertNull($system['logo']);
+        $this->assertSame('R', $system['letter']);
+    }
 }

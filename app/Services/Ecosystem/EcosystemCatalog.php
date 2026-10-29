@@ -2,7 +2,9 @@
 
 namespace App\Services\Ecosystem;
 
+use App\Modifiers\SignedUrl;
 use Illuminate\Support\Collection;
+use Throwable;
 use Statamic\Contracts\Entries\Entry as EntryContract;
 use Statamic\Facades\Entry;
 
@@ -19,6 +21,24 @@ class EcosystemCatalog
     public const COLLECTION = 'ekosystem';
 
     public const TONES = ['blue', 'yellow', 'peach', 'green', 'purple', 'gray'];
+
+    /**
+     * Inbyggda ikoner för system som inte är en integration (banken,
+     * leverantören ...). Egna streckade SVG:er som ärver textfärgen. "oqto"
+     * är bläckfiskmärket och hanteras som en bild (se systems()).
+     */
+    public const ICONS = [
+        'bank' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6"/><path d="M5.5 10v8M9.8 10v8M14.2 10v8M18.5 10v8"/><path d="M3 20.5h18"/></svg>',
+        'supplier' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>',
+        'document' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>',
+        'person' => '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/></svg>',
+    ];
+
+    /** Inloggningsfri bild på Oqtos märke, finns i public/. */
+    public const OQTO_MARK = '/favicon.svg';
+
+    /** Hur länge en förhandssignerad bild-URL gäller (minuter). */
+    private const LOGO_MINUTES = 240;
 
     /**
      * Publicerade ekosystem i sorteringsordning.
@@ -165,7 +185,23 @@ class EcosystemCatalog
             }
 
             $integration = ($id = $this->integrationId($system)) ? Entry::find($id) : null;
+            $integration = $integration && $integration->published() ? $integration : null;
             $tone = in_array($system['tone'] ?? null, self::TONES, true) ? $system['tone'] : 'gray';
+
+            // Ikonen: valt val först, annars integrationens logga, annars bokstaven.
+            $icon = (string) ($system['icon'] ?? '');
+            $logo = null;
+            $fit = 'cover';
+            $svg = null;
+
+            if ($icon === 'oqto') {
+                $logo = self::OQTO_MARK;
+                $fit = 'contain';
+            } elseif (isset(self::ICONS[$icon])) {
+                $svg = self::ICONS[$icon];
+            } elseif ($integration) {
+                $logo = $this->logoUrl($integration);
+            }
 
             $systems[$key] = [
                 'key' => $key,
@@ -175,12 +211,37 @@ class EcosystemCatalog
                 'tone' => $tone,
                 'x' => $this->percent($system['pos_x'] ?? null),
                 'y' => $this->percent($system['pos_y'] ?? null),
-                'href' => $integration && $integration->published() ? $integration->url() : null,
+                'logo' => $logo,
+                'logo_fit' => $fit,
+                'icon_svg' => $svg,
+                'href' => $integration ? $integration->url() : null,
                 'used' => isset($used[$key]),
             ];
         }
 
         return array_values($systems);
+    }
+
+    /**
+     * Integrationens logga som en tillfälligt signerad URL (bucketen är privat,
+     * se App\Modifiers\SignedUrl). Saknas bilden eller går det inte att signera
+     * visas bokstaven i stället, sidan påverkas aldrig.
+     */
+    private function logoUrl(EntryContract $integration): ?string
+    {
+        $path = collect((array) $integration->get('avatar'))->filter()->first();
+
+        if (! $path) {
+            return null;
+        }
+
+        try {
+            $url = (new SignedUrl)->index('integrations::'.$path, [self::LOGO_MINUTES], []);
+        } catch (Throwable) {
+            return null;
+        }
+
+        return is_string($url) && $url !== '' ? $url : null;
     }
 
     private function integrationId(mixed $system): ?string

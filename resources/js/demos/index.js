@@ -8,6 +8,8 @@ const modules = {
     'invoice-desktop': () => import('./invoice-desktop.js'),
     'invoice-mobile': () => import('./invoice-mobile.js'),
     reminders: () => import('./reminders.js'),
+    migration: () => import('./migration.js'),
+    'migration-check': () => import('./migration-check.js'),
 };
 
 document.querySelectorAll('[data-demo]').forEach((root) => {

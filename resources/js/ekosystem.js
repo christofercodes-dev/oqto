@@ -79,8 +79,20 @@ export default function ecosystem(root) {
 
     /* ---------- Vyer ---------- */
 
+    // Märket för ett system: logga, ikon eller (som sista utväg) bokstaven.
     function badge(system) {
-        return `<span class="eco-badge eco-tone-${system.tone}">${esc(system.letter)}</span>`;
+        const tone = `eco-tone-${system.tone}`;
+
+        if (system.logo) {
+            return `<span class="eco-badge has-logo fit-${system.logo_fit === 'contain' ? 'contain' : 'cover'}" data-letter="${esc(system.letter)}" data-tone="${esc(system.tone)}"><img src="${esc(system.logo)}" alt="" loading="lazy"></span>`;
+        }
+
+        if (system.icon_svg) {
+            // SVG:erna kommer från en fast lista på servern (EcosystemCatalog::ICONS).
+            return `<span class="eco-badge has-icon ${tone}">${system.icon_svg}</span>`;
+        }
+
+        return `<span class="eco-badge ${tone}">${esc(system.letter)}</span>`;
     }
 
     // Systemen som flödet använder, i den ordning de är definierade.
@@ -428,6 +440,19 @@ export default function ecosystem(root) {
             setPlaying(!state.timer);
         }
     });
+
+    // En logga som inte går att hämta ersätts av bokstaven.
+    root.addEventListener('error', (e) => {
+        const img = e.target;
+
+        if (!(img instanceof HTMLImageElement) || !img.closest('.eco-badge')) return;
+
+        const holder = img.parentElement;
+
+        holder.classList.remove('has-logo', 'fit-contain', 'fit-cover');
+        holder.classList.add(`eco-tone-${holder.dataset.tone || 'gray'}`);
+        holder.textContent = holder.dataset.letter || '';
+    }, true);
 
     root.addEventListener('keydown', (e) => {
         if (e.target.closest('[role="tablist"]') || e.altKey || e.ctrlKey || e.metaKey) return;

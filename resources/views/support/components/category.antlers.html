@@ -30,7 +30,11 @@
 
     <div class="container">
 
-        {{ partial:support/components/article-grid :sections="category:sections" }}
+        {{ if move }}
+            {{ partial:support/components/move-chooser }}
+        {{ else }}
+            {{ partial:support/components/article-grid :sections="category:sections" }}
+        {{ /if }}
 
     </div>
 
