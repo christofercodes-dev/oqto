@@ -20,4 +20,6 @@ partner_phone: '+46(0)771 584 886'
 partner_website: 'https://www.findity.com/sv'
 partner_about: 'Findity är ett ledande svenskt företag inom hantering av utlägg och reseräkningar. Produkten Findity Expense används av företag i Sverige, och vår teknikplattform driver även utläggstjänster hos stora programvaruleverantörer och partners i flera länder – med totalt över 35 000 kunder.'
 price: 'Pris på förfrågan, kontakta oss'
+rating_average: 5.0
+rating_count: 1
 ---
