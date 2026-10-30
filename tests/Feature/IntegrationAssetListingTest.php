@@ -68,4 +68,26 @@ class IntegrationAssetListingTest extends TestCase
 
         $this->assertFalse(Cache::has('asset-list-contents-integrations'));
     }
+
+    public function test_the_listing_is_rebuilt_at_six_every_morning_and_on_demand(): void
+    {
+        // Listan cachas första gången någon frågar efter den.
+        $this->assertContains('images/gammal.png', AssetContainer::find('integrations')->contents()->all()->keys()->all());
+
+        File::put($this->root.'/images/ny-morgon.png', 'z');
+
+        $this->assertNotContains('images/ny-morgon.png', (new \Statamic\Assets\AssetContainerContents)->container(AssetContainer::find('integrations'))->all()->keys()->all());
+
+        // Ligger i schemat som en morgonjobb efter nattens import ...
+        $event = collect(app(\Illuminate\Console\Scheduling\Schedule::class)->events())
+            ->first(fn ($e) => str_contains((string) $e->command, 'integrations:refresh-assets'));
+
+        $this->assertNotNull($event, 'Jobbet integrations:refresh-assets saknas i schemat.');
+        $this->assertSame('0 6 * * *', $event->expression);
+
+        // ... och kan köras för hand.
+        $this->artisan('integrations:refresh-assets')->assertSuccessful();
+
+        $this->assertContains('images/ny-morgon.png', (new \Statamic\Assets\AssetContainerContents)->container(AssetContainer::find('integrations'))->all()->keys()->all());
+    }
 }

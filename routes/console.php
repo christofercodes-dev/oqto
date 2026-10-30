@@ -14,6 +14,12 @@ Artisan::command('inspire', function () {
 // (på Forge: sitans "Scheduler"-inställning måste vara påslagen).
 Schedule::command('integrations:import')->dailyAt('03:00');
 
+// Statamic cachar listan över filer i bucketen för alltid. Importen bygger om
+// den, men bilder kan komma till i bucketen efter importen (eller före en
+// release som har den ombyggnaden), och då skulle loggan saknas tills nästa
+// deploy. Därför byggs listan om en gång till kl 06:00, efter nattens inläsning.
+Schedule::command('integrations:refresh-assets')->dailyAt('06:00')->withoutOverlapping();
+
 // Håller hjälpcentret (/support) färskt även om en webhook skulle missas.
 Schedule::command('intercom:sync-help-center')
     ->everyThirtyMinutes()

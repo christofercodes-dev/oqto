@@ -72,8 +72,9 @@ class ForetagareAgencyTest extends TestCase
         $response->assertSeeInOrder(['Fakturering', 'Bokföring']);
         $response->assertSee('href="/for-foretagare/'.self::PREFIX.'aaa"', false);
         $response->assertDontSee('is-branded', false);
-        $this->assertFalse($response->headers->has('X-Robots-Tag'));
-        $response->assertDontSee('name="robots"', false);
+        // För företagare är tillfälligt dolt för sökmotorer (config/seo.php). Byt till
+        // assertFalse(...has('X-Robots-Tag')) när sidorna ska lanseras.
+        $this->assertStringContainsString('noindex', (string) $response->headers->get('X-Robots-Tag'));
     }
 
     public function test_a_feature_page_shows_its_content_and_unpublished_ones_are_gone(): void

@@ -561,6 +561,8 @@
     align-items: center;
 
     margin-top: 24px;
+    /* Kortet är borta på mobil, så knappen får egen luft mot sektionens nederkant. */
+    padding-bottom: 48px;
     order: 2;
   }
 
