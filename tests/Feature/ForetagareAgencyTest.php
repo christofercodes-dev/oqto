@@ -307,7 +307,7 @@ class ForetagareAgencyTest extends TestCase
             // ...bara byråns profil och innehållet.
             $response->assertSee('is-headless', false)
                 ->assertSee('foretagare-agency-strip', false)
-                ->assertSee('Din byrå')
+                ->assertDontSee('Din byrå')
                 ->assertSee('Win Win')
                 // Liten sidfot med länk till oqto.se i stället för Oqtos egen.
                 ->assertSee('foretagare-powered', false)
@@ -442,5 +442,29 @@ class ForetagareAgencyTest extends TestCase
         // Blueprinten erbjuder exakt de fem.
         $options = array_keys(\Statamic\Facades\Blueprint::find('collections/agencies/agency')->fields()->get('heading_font')->get('options'));
         $this->assertSame(array_keys(FeatureCatalog::FONTS), $options);
+    }
+
+    public function test_the_top_bar_can_be_turned_off_per_agency(): void
+    {
+        $feature = $this->feature('a');
+
+        // Utan val (äldre byråer saknar fältet) visas listan.
+        $this->agency('med', ['title' => 'Med lista', 'features' => [$feature->id()]]);
+        $this->agency('utan', ['title' => 'Utan lista', 'features' => [$feature->id()], 'show_topbar' => false]);
+
+        foreach (['', '/'.self::PREFIX.'a'] as $suffix) {
+            $this->get('/byra/'.self::PREFIX.'med'.$suffix)
+                ->assertOk()
+                ->assertSee('foretagare-agency-strip', false)
+                ->assertDontSee('no-topbar', false);
+
+            $this->get('/byra/'.self::PREFIX.'utan'.$suffix)
+                ->assertOk()
+                ->assertDontSee('foretagare-agency-strip', false)
+                ->assertDontSee('Kontakta oss')
+                ->assertSee('no-topbar', false);
+        }
+
+        $this->assertSame('toggle', \Statamic\Facades\Blueprint::find('collections/agencies/agency')->fields()->get('show_topbar')->type());
     }
 }

@@ -3,7 +3,7 @@
     {{ partial:components/navbar }}
 {{ /unless }}
 
-<div class="foretagare-scope{{ if agency }} is-branded is-headless{{ if agency:heading_font }} has-heading-font{{ /if }}{{ /if }}"{{ if agency }} style="{{ agency:brand_style }}"{{ /if }}>
+<div class="foretagare-scope{{ if agency }} is-branded is-headless{{ unless agency:show_topbar }} no-topbar{{ /unless }}{{ if agency:heading_font }} has-heading-font{{ /if }}{{ /if }}"{{ if agency }} style="{{ agency:brand_style }}"{{ /if }}>
     {{ partial:foretagare/components/feature }}
 </div>
 

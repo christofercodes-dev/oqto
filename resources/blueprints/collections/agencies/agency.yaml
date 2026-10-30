@@ -31,6 +31,16 @@ tabs:
               default: '#ff6319'
               theme: classic
       -
+        display: Topplist
+        fields:
+          -
+            handle: show_topbar
+            field:
+              type: toggle
+              display: 'Visa topplist'
+              instructions: 'En list överst på sidorna med byråns logga och kontaktknapp. Stäng av om sidorna ska visas utan den, t.ex. när de bäddas in på byråns egen sajt.'
+              default: true
+      -
         display: Funktioner
         fields:
           -

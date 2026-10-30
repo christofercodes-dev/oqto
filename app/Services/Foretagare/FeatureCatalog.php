@@ -138,6 +138,8 @@ class FeatureCatalog
             'slug' => $agency->slug(),
             'base' => $this->agencyUrl($agency),
             'logo_url' => $this->assetUrl($agency, 'logo'),
+            // Topplisten visas om inget annat valts (äldre byråer saknar fältet).
+            'show_topbar' => $agency->get('show_topbar') !== false,
             'brand_style' => $this->brandStyle($agency->get('brand_color'), $agency->get('heading_font'), $agency->get('body_font')),
             'heading_font' => $this->fontKey($agency->get('heading_font')),
             'body_font' => $this->fontKey($agency->get('body_font')),
