@@ -15,3 +15,5 @@ preferences:
       view: list
     reviews:
       view: list
+    agencies:
+      view: list
