@@ -381,4 +381,66 @@ class ForetagareAgencyTest extends TestCase
         $this->assertStringContainsString("setGate('done')", $demo);
         $this->assertStringContainsString('data-act="next"', $demo);
     }
+
+    public function test_an_agency_can_choose_heading_and_body_fonts(): void
+    {
+        $feature = $this->feature('a');
+        $this->agency('typ', [
+            'title' => 'Typ',
+            'features' => [$feature->id()],
+            'heading_font' => 'source-serif-4',
+            'body_font' => 'inter',
+        ]);
+
+        $catalog = app(FeatureCatalog::class);
+
+        $style = $catalog->brandStyle('#123456', 'source-serif-4', 'inter');
+
+        $this->assertStringContainsString("--brand-font-heading: 'Source Serif 4', serif;", $style);
+        $this->assertStringContainsString("--brand-font-body: 'Inter', sans-serif;", $style);
+        // Serifer får en mindre tät bokstavsföljd i rubrikerna än sans serif.
+        $this->assertStringContainsString('--brand-heading-tracking: -0.015em;', $style);
+        $this->assertStringContainsString('--brand-heading-tracking: -0.03em;', $catalog->brandStyle('#123456', 'manrope'));
+
+        // Bara de valda typsnitten laddas, i en enda stilmall.
+        $this->assertSame(
+            'https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap',
+            $catalog->fontStylesheet('source-serif-4', 'inter')
+        );
+        $this->assertSame('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap', $catalog->fontStylesheet('roboto', 'roboto'));
+
+        foreach (['/byra/'.self::PREFIX.'typ', '/byra/'.self::PREFIX.'typ/'.self::PREFIX.'a'] as $url) {
+            $this->get($url)
+                ->assertOk()
+                ->assertSee('family=Source+Serif+4', false)
+                ->assertSee("--brand-font-body: 'Inter', sans-serif;", false)
+                ->assertSee('has-heading-font', false);
+        }
+    }
+
+    public function test_unknown_fonts_are_ignored_and_no_choice_loads_nothing(): void
+    {
+        $catalog = app(FeatureCatalog::class);
+
+        // Allt utom de fem typsnitten ersätts av Oqtos eget, så att inget annat kan hamna i CSS eller adressen.
+        $style = $catalog->brandStyle('#123456', "x'; } body { display:none", '<script>');
+
+        $this->assertStringNotContainsString('--brand-font', $style);
+        $this->assertNull($catalog->fontStylesheet('nope', null, ''));
+
+        $feature = $this->feature('a');
+        $this->agency('utanval', ['title' => 'Utan val', 'features' => [$feature->id()]]);
+
+        $this->get('/byra/'.self::PREFIX.'utanval')
+            ->assertOk()
+            ->assertDontSee('fonts.googleapis.com/css2?family', false)
+            ->assertDontSee('has-heading-font', false);
+
+        // Oqtos egna sidor laddar inga extra typsnitt.
+        $this->get('/for-foretagare/'.self::PREFIX.'a')->assertDontSee('fonts.googleapis.com/css2?family', false);
+
+        // Blueprinten erbjuder exakt de fem.
+        $options = array_keys(\Statamic\Facades\Blueprint::find('collections/agencies/agency')->fields()->get('heading_font')->get('options'));
+        $this->assertSame(array_keys(FeatureCatalog::FONTS), $options);
+    }
 }

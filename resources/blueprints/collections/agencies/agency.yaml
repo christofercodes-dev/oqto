@@ -43,6 +43,37 @@ tabs:
               instructions: 'Välj de funktioner byrån vill lista, i den ordning de ska visas. Lämnas tomt visas alla funktioner. Innehållet hämtas alltid från "För företagare", här väljer du bara vilka som visas.'
               create: false
       -
+        display: Typsnitt
+        fields:
+          -
+            handle: heading_font
+            field:
+              type: select
+              display: 'Typsnitt för rubriker'
+              instructions: 'Lämnas tomt används Oqtos eget typsnitt.'
+              clearable: true
+              width: 50
+              options:
+                inter: 'Inter (sans serif)'
+                manrope: 'Manrope (sans serif)'
+                roboto: 'Roboto (sans serif)'
+                noto-serif: 'Noto Serif (serif)'
+                source-serif-4: 'Source Serif 4 (serif)'
+          -
+            handle: body_font
+            field:
+              type: select
+              display: 'Typsnitt för brödtext'
+              instructions: 'Lämnas tomt används Oqtos eget typsnitt.'
+              clearable: true
+              width: 50
+              options:
+                inter: 'Inter (sans serif)'
+                manrope: 'Manrope (sans serif)'
+                roboto: 'Roboto (sans serif)'
+                noto-serif: 'Noto Serif (serif)'
+                source-serif-4: 'Source Serif 4 (serif)'
+      -
         display: Texter
         fields:
           -

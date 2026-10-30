@@ -15,6 +15,19 @@
     color: var(--color-text);
 }
 
+/* Byråns valda typsnitt (--brand-font-*); utan val gäller Oqtos eget. Demona har alltid gränssnittets eget. */
+.foretagare-scope {
+    font-family: var(--brand-font-body, var(--font-sans));
+}
+
+.foretagare-scope :is(h1, h2, h3, h4, .foretagare-card-title):not(.dm-demo *) {
+    font-family: var(--brand-font-heading, var(--font-sans));
+}
+
+.foretagare-scope.has-heading-font :is(.foretagare-hero-title, .foretagare-heading, .foretagare-stage-title, .foretagare-wiz-title, .foretagare-card-title) {
+    letter-spacing: var(--brand-heading-tracking);
+}
+
 .foretagare-container {
     width: 100%;
     max-width: 1100px;
