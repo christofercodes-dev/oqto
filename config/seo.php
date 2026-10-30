@@ -13,6 +13,9 @@ return [
         // Byråernas sidor är kopior av För företagare med egen profil och ska aldrig indexeras.
         'byra',
         'byra/*',
+        // Tillfälligt dolt tills För företagare är klart att lanseras.
+        'for-foretagare',
+        'for-foretagare/*',
     ],
 
 ];
