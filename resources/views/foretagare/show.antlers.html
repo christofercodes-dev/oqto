@@ -1,7 +1,14 @@
-{{ partial:components/navbar }}
+{{# Oqtos egna sidor har meny och sidfot. Byråernas sidor (/byra/...) är "headless" utan båda. #}}
+{{ unless agency }}
+    {{ partial:components/navbar }}
+{{ /unless }}
 
-<div class="foretagare-scope{{ if agency }} is-branded{{ /if }}"{{ if agency }} style="{{ agency:brand_style }}"{{ /if }}>
+<div class="foretagare-scope{{ if agency }} is-branded is-headless{{ /if }}"{{ if agency }} style="{{ agency:brand_style }}"{{ /if }}>
     {{ partial:foretagare/components/feature }}
 </div>
 
-{{ partial:components/footer }}
+{{ if agency }}
+    {{ partial:foretagare/components/powered-by }}
+{{ else }}
+    {{ partial:components/footer }}
+{{ /if }}

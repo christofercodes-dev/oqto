@@ -290,7 +290,7 @@ class ForetagareAgencyTest extends TestCase
         $this->get('/byra/'.self::PREFIX.'utan')->assertDontSee('Kontakta oss');
     }
 
-    public function test_agency_pages_keep_the_regular_oqto_navigation_and_footer(): void
+    public function test_agency_pages_are_headless_without_the_oqto_menu_and_footer(): void
     {
         $feature = $this->feature('a');
         $this->agency('winwin', ['title' => 'Win Win', 'features' => [$feature->id()]]);
@@ -298,25 +298,33 @@ class ForetagareAgencyTest extends TestCase
         foreach (['/byra/'.self::PREFIX.'winwin', '/byra/'.self::PREFIX.'winwin/'.self::PREFIX.'a'] as $url) {
             $response = $this->get($url)->assertOk();
 
-            // Oqtos meny, logga och sidfot är orörda...
-            $response->assertSee('navbar-wrapper', false)
-                ->assertSee('/images/logos/logga02.svg', false)
-                ->assertSee('site-footer', false)
-                ->assertSee('app.oqto.se', false);
+            // Ingen Oqto-meny, logga eller sidfot...
+            $response->assertDontSee('navbar-wrapper', false)
+                ->assertDontSee('/images/logos/logga02.svg', false)
+                ->assertDontSee('site-footer', false)
+                ->assertDontSee('menu-toggle', false);
 
-            // ...och byråns profil ligger bara i sidans innehåll.
-            $response->assertSee('foretagare-agency-strip', false)
+            // ...bara byråns profil och innehållet.
+            $response->assertSee('is-headless', false)
+                ->assertSee('foretagare-agency-strip', false)
                 ->assertSee('Din byrå')
                 ->assertSee('Win Win')
-                ->assertDontSee('foretagare-agency-bar', false)
-                ->assertDontSee('Drivs av');
+                // Liten sidfot med länk till oqto.se i stället för Oqtos egen.
+                ->assertSee('foretagare-powered', false)
+                ->assertSee('Drivs av')
+                ->assertSee('href="https://oqto.se"', false);
         }
 
         // Fliktiteln nämner byrån men också Oqto.
         $this->get('/byra/'.self::PREFIX.'winwin')->assertSee('– Win Win · Oqto', false);
 
-        // Oqtos egna sidor har inget byråfält.
-        $this->get('/for-foretagare/'.self::PREFIX.'a')->assertDontSee('foretagare-agency-strip', false);
+        // Oqtos egna sidor har fortfarande meny och sidfot, och inget byråfält.
+        $this->get('/for-foretagare/'.self::PREFIX.'a')
+            ->assertSee('navbar-wrapper', false)
+            ->assertSee('site-footer', false)
+            ->assertDontSee('foretagare-powered', false)
+            ->assertDontSee('foretagare-agency-strip', false)
+            ->assertDontSee('is-headless', false);
     }
 
     public function test_brand_colors_get_a_readable_text_color_and_bad_values_are_replaced(): void

@@ -1,9 +1,8 @@
-{{ partial:components/navbar }}
-
-<div class="foretagare-scope is-branded" style="{{ agency:brand_style }}">
+{{# Byråsidorna är "headless": ingen Oqto-meny eller sidfot, bara byråns profil och funktionerna. #}}
+<div class="foretagare-scope is-branded is-headless" style="{{ agency:brand_style }}">
     {{ partial:foretagare/components/hero }}
 
     {{ partial:foretagare/components/grid }}
 </div>
 
-{{ partial:components/footer }}
+{{ partial:foretagare/components/powered-by }}

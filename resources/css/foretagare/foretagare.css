@@ -39,6 +39,15 @@
     background: linear-gradient(180deg, var(--brand-soft) 0%, #ffffff 100%);
 }
 
+/* Byråsidorna har ingen fast meny överst, så hero behöver inte lämna plats för den. */
+.foretagare-scope.is-headless .foretagare-hero {
+    padding-top: 40px;
+}
+
+.foretagare-scope.is-headless {
+    min-height: 100vh;
+}
+
 .foretagare-eyebrow {
     display: block;
 
@@ -759,6 +768,10 @@
         padding: 130px 0 52px;
     }
 
+    .foretagare-scope.is-headless .foretagare-hero {
+        padding-top: 24px;
+    }
+
     .foretagare-section {
         padding: 52px 0;
     }
@@ -812,4 +825,32 @@
         max-height: 34px;
     }
 
+}
+
+
+/* ---------- "Drivs av Oqto" (sidfot på byråsidorna) ---------- */
+
+.foretagare-powered {
+    padding: 28px 24px 36px;
+
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.foretagare-powered-text {
+    margin: 0;
+
+    font-size: 0.85rem;
+    color: #7a746f;
+}
+
+/* Ingen hover-effekt: länken ser likadan ut hela tiden. */
+.foretagare-powered-link,
+.foretagare-powered-link:hover,
+.foretagare-powered-link:focus-visible {
+    color: #1a1715;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: none;
 }
