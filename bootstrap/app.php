@@ -23,4 +23,17 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        // abort(404) i våra egna routes (t.ex. /byra/..., /support/...) renderar
+        // felsidan som en vanlig vy, utan layout, och sidan blir utan stilmall
+        // och skript. Statamics egen 404 lägger den i layouten som sidorna i övrigt.
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, Request $request) {
+            if ($e instanceof \Statamic\Exceptions\NotFoundHttpException
+                || $request->is('cp/*', 'api/*')
+                || $request->expectsJson()) {
+                return null;
+            }
+
+            return (new \Statamic\Exceptions\NotFoundHttpException($e->getMessage(), $e))->render($request);
+        });
     })->create();

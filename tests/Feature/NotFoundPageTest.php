@@ -22,4 +22,20 @@ class NotFoundPageTest extends TestCase
         $this->assertFileExists($path);
         $this->assertIsArray(json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR));
     }
+
+    public function test_404_from_our_own_routes_uses_the_layout_with_styles(): void
+    {
+        foreach (['/byra/finns-inte', '/byra/finns-inte/funktion', '/support/finns-inte'] as $url) {
+            $response = $this->get($url)->assertNotFound();
+
+            // Layouten ger stilmall och skript, och felsidan ligger i den.
+            $response->assertSee('<html', false)
+                ->assertSee('/build/assets/', false)
+                ->assertSee('rel="stylesheet"', false)
+                ->assertSee('Sidan hittades inte', false);
+        }
+
+        // Byrasidorna indexeras aldrig, inte heller felsidan.
+        $this->get('/byra/finns-inte')->assertHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
+    }
 }
