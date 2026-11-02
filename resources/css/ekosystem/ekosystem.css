@@ -594,17 +594,11 @@
 
 .eco-timeline {
     padding: 22px 24px 26px;
-
-    overflow-x: auto;
-}
-
-.eco-tl {
-    min-width: calc(150px + var(--cols) * 132px);
 }
 
 .eco-tl-row {
     display: grid;
-    grid-template-columns: 150px repeat(var(--cols), minmax(0, 1fr));
+    grid-template-columns: minmax(96px, 150px) repeat(var(--cols), minmax(0, 1fr));
     align-items: center;
 
     border-top: 1px solid var(--eco-line);
@@ -615,19 +609,12 @@
 }
 
 .eco-tl-label {
-    /* Banans namn ligger kvar i bild när tidslinjen rullas i sidled. */
-    position: sticky;
-    left: 0;
-    z-index: 2;
-
     display: flex;
     align-items: center;
     gap: 12px;
 
     align-self: stretch;
     padding: 14px 8px 14px 0;
-
-    background-color: #ffffff;
 }
 
 .eco-tl-label .eco-badge {
@@ -717,6 +704,9 @@
     width: 100%;
     padding: 12px 14px;
 
+    overflow-wrap: anywhere;
+    hyphens: auto;
+
     border: 1px solid #d7d2cb;
     border-radius: 12px;
 
@@ -733,6 +723,8 @@
 
 .eco-tl-card-title {
     font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.25;
 }
 
 .eco-tl-card-text {
@@ -952,16 +944,16 @@
         line-height: 1.2;
     }
 
-    .eco-tl {
-        min-width: calc(112px + var(--cols) * 124px);
+    .eco-tl-row {
+        grid-template-columns: 44px repeat(var(--cols), minmax(0, 1fr));
     }
 
-    .eco-tl-row {
-        grid-template-columns: 112px repeat(var(--cols), minmax(0, 1fr));
+    .eco-tl-label-text {
+        display: none;
     }
 
     .eco-tl-label {
-        gap: 8px;
+        padding-right: 0;
     }
 
     .eco-tl-label .eco-badge {
@@ -969,12 +961,30 @@
         height: 30px;
     }
 
-    .eco-tl-label-role {
-        display: none;
-    }
-
     .eco-timeline {
         padding: 16px 12px 20px;
+    }
+
+    .eco-tl-cell {
+        padding: 10px 3px;
+    }
+
+    .eco-tl-num {
+        width: 26px;
+        height: 26px;
+
+        font-size: 0.75rem;
+    }
+
+    /* Texten finns i stegen ovanför: på smala ytor blir kortet en markering i banan. */
+    .eco-tl-card {
+        height: 30px;
+        padding: 0;
+    }
+
+    .eco-tl-card-title,
+    .eco-tl-card-text {
+        display: none;
     }
 
 }
