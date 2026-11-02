@@ -191,16 +191,15 @@ class EcosystemTest extends TestCase
         $this->get('/integrationer')->assertOk()->assertSee('Se hur integrationerna jobbar ihop', false);
     }
 
-    public function test_script_is_loaded_for_the_ecosystem_page_and_handles_every_view(): void
+    public function test_script_is_loaded_for_the_ecosystem_page_and_draws_the_timeline(): void
     {
         $source = file_get_contents(base_path('resources/js/ekosystem.js'));
         $site = file_get_contents(base_path('resources/js/site.js'));
 
         $this->assertStringContainsString("import('./ekosystem.js')", $site);
 
-        foreach (['diagram', 'timeline', 'invoice'] as $view) {
-            $this->assertStringContainsString("['{$view}',", $source);
-        }
+        $this->assertStringContainsString('function timelineView()', $source);
+        $this->assertStringNotContainsString('data-view', $source);
     }
 
     public function test_systems_get_their_own_icon_or_fall_back_to_the_letter(): void
