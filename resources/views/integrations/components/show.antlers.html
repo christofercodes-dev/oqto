@@ -80,6 +80,8 @@
 
                     {{ if avatar }}
                         <img src="{{ avatar | signed_url }}" alt="{{ title }}">
+                    {{ elseif custom_avatar }}
+                        <img src="{{ custom_avatar | signed_url }}" alt="{{ title }}">
                     {{ else }}
                         <span class="integration-show-hero-image-placeholder">
                             {{ title | first }}
@@ -217,7 +219,7 @@
              GALLERI
              ================================================== -->
 
-        {{ if media }}
+        {{ if media || custom_media }}
 
             <div class="integration-show-gallery-section">
 
@@ -229,6 +231,13 @@
                             <img src="{{ id | signed_url }}" alt="{{ title }}">
                         </button>
                     {{ /media }}
+                    {{ if !media }}
+                        {{ custom_media }}
+                            <button type="button" class="integration-show-gallery-item" data-lightbox-trigger data-lightbox-src="{{ id | signed_url }}">
+                                <img src="{{ id | signed_url }}" alt="{{ title }}">
+                            </button>
+                        {{ /custom_media }}
+                    {{ /if }}
                 </div>
 
             </div>

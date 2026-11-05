@@ -230,13 +230,20 @@ class EcosystemCatalog
     private function logoUrl(EntryContract $integration): ?string
     {
         $path = collect((array) $integration->get('avatar'))->filter()->first();
+        $container = 'integrations';
+
+        // Manuellt inlagda integrationer har sin logga i det vanliga asset-flödet.
+        if (! $path) {
+            $path = collect((array) $integration->get('custom_avatar'))->filter()->first();
+            $container = 'assets';
+        }
 
         if (! $path) {
             return null;
         }
 
         try {
-            $url = (new SignedUrl)->index('integrations::'.$path, [self::LOGO_MINUTES], []);
+            $url = (new SignedUrl)->index($container.'::'.$path, [self::LOGO_MINUTES], []);
         } catch (Throwable) {
             return null;
         }

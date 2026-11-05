@@ -113,6 +113,23 @@ tabs:
               type: assets
               container: integrations
               display: Galleribilder
+          -
+            handle: custom_avatar
+            field:
+              type: assets
+              container: assets
+              folder: integrationer
+              max_files: 1
+              display: 'Egen logotyp'
+              instructions: 'För integrationer du lagt in manuellt. Importerade integrationer får sin logga från källan (fältet Avatar ovan) och rörs inte av importen. Visas bara om Avatar saknas.'
+          -
+            handle: custom_media
+            field:
+              type: assets
+              container: assets
+              folder: integrationer
+              display: 'Egna galleribilder'
+              instructions: 'För integrationer du lagt in manuellt. Visas bara om Galleribilder ovan saknas.'
       -
         display: Kategorisering
         fields:

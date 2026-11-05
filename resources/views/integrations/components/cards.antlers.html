@@ -220,6 +220,13 @@
                                     alt="{{ title }}"
                                 >
 
+                            {{ elseif custom_avatar }}
+
+                                <img
+                                    src="{{ custom_avatar | signed_url }}"
+                                    alt="{{ title }}"
+                                >
+
                             {{ else }}
 
                                 <span class="integration-logo-placeholder">
