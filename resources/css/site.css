@@ -238,6 +238,8 @@
 
 @import "./ekosystem/ekosystem.css";
 
+@import "./artiklar/artiklar.css";
+
 @import "./demos/demo.css";
 
 @import "./villkor/components/hero.css";

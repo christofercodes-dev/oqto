@@ -1,0 +1,29 @@
+{{ partial:components/navbar }}
+
+<div class="articles-scope">
+
+    <header class="articles-hero">
+        <div class="container">
+
+            <span class="articles-eyebrow">Artiklar</span>
+            <h1 class="articles-hero-title">Tips och guider för dig som driver redovisningsbyrå</h1>
+            <p class="articles-hero-text">Om ekonomi, bokföring och hur du får mer tid över till det du egentligen vill göra.</p>
+
+        </div>
+    </header>
+
+    <section class="articles-section">
+        <div class="container">
+
+            <div class="articles-grid">
+                {{ collection:artiklar sort="date:desc" }}
+                    {{ partial:artiklar/components/card }}
+                {{ /collection:artiklar }}
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+{{ partial:components/footer }}

@@ -10,7 +10,7 @@ tabs:
             field:
               type: text
               display: 'Byråns namn'
-              instructions: 'T.ex. "Win Win". Adressen blir /byra/win-win.'
+              instructions: 'T.ex. "Enora". Adressen blir /byra/enora.'
               required: true
               validate:
                 - required

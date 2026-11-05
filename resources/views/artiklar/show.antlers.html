@@ -1,0 +1,80 @@
+{{ partial:components/navbar }}
+
+<div class="articles-scope">
+
+    <article class="article">
+
+        <header class="article-header">
+            <div class="container article-narrow">
+
+                <a href="/artiklar" class="article-back">
+                    <span aria-hidden="true">←</span>
+                    <span>Alla artiklar</span>
+                </a>
+
+                <span class="article-meta">
+                    {{ if category }}<span class="article-tag">{{ category }}</span>{{ /if }}
+                    <time datetime="{{ date format='Y-m-d' }}">{{ date format="j F Y" }}</time>
+                    {{ if author:name }}<span>{{ author:name }}</span>{{ /if }}
+                    {{ if content }}<span>{{ content | strip_tags | word_count | divide:200 | ceil }} min läsning</span>{{ /if }}
+                </span>
+
+                <h1 class="article-title">{{ title }}</h1>
+
+                {{ if excerpt }}
+                    <p class="article-lead">{{ excerpt }}</p>
+                {{ /if }}
+
+            </div>
+        </header>
+
+        {{ if hero_image }}
+            <div class="container article-wide">
+                <figure class="article-hero">
+                    <img src="{{ hero_image:url | sanitize }}" alt="{{ hero_image:alt ?? title | sanitize }}">
+                </figure>
+            </div>
+        {{ /if }}
+
+        <div class="container article-narrow">
+            <div class="article-body">
+                {{ content }}
+            </div>
+        </div>
+
+    </article>
+
+    <section class="article-cta-section">
+        <div class="container article-narrow">
+            <div class="article-cta">
+                <h2 class="article-cta-title">Vill du se hur Oqto fungerar i praktiken?</h2>
+                <p class="article-cta-text">Boka en demo så går vi igenom hur det skulle fungera på din byrå.</p>
+                <a href="/boka-demo" class="integration-activate-button article-cta-button">
+                    <span>Boka demo</span>
+                    <span class="integration-activate-arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    {{ collection:artiklar :id:not="id" limit="3" sort="date:desc" as="more" }}
+        {{ if more }}
+            <section class="articles-section article-more">
+                <div class="container">
+
+                    <h2 class="article-more-title">Fler artiklar</h2>
+
+                    <div class="articles-grid">
+                        {{ more }}
+                            {{ partial:artiklar/components/card }}
+                        {{ /more }}
+                    </div>
+
+                </div>
+            </section>
+        {{ /if }}
+    {{ /collection:artiklar }}
+
+</div>
+
+{{ partial:components/footer }}

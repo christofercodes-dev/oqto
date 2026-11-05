@@ -1,0 +1,96 @@
+title: Artikel
+tabs:
+  main:
+    display: Artikel
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Rubrik
+              required: true
+              validate:
+                - required
+          -
+            handle: excerpt
+            field:
+              type: textarea
+              display: Ingress
+              instructions: 'Visas under rubriken och på artikelkorten i listan. Två–tre meningar. Används även som SEO-beskrivning om den inte fylls i separat.'
+              character_limit: 300
+          -
+            handle: hero_image
+            field:
+              type: assets
+              container: assets
+              folder: artiklar
+              restrict: false
+              max_files: 1
+              display: Bild
+              instructions: 'Visas överst i artikeln och på kortet i listan. Helst liggande, minst 1600 px bred.'
+          -
+            handle: content
+            field:
+              type: bard
+              display: Innehåll
+              buttons:
+                - h2
+                - h3
+                - bold
+                - italic
+                - unorderedlist
+                - orderedlist
+                - quote
+                - anchor
+                - image
+                - table
+              container: assets
+              sets: false
+              remove_empty_nodes: trim
+              save_html: false
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: date
+            field:
+              type: date
+              display: Publiceringsdatum
+              instructions: 'Artikeln visas utåt först när den är publicerad och datumet har passerat. Ett framtida datum schemalägger den.'
+              time_enabled: true
+              time_required: false
+              default: now
+          -
+            handle: category
+            field:
+              type: select
+              display: Kategori
+              instructions: 'Visas som en etikett på kortet och i artikeln.'
+              options:
+                - Bokföring
+                - Fakturering
+                - Företagande
+                - Integrationer
+                - Nyheter
+          -
+            handle: author
+            field:
+              type: users
+              display: Författare
+              default: current
+              max_items: 1
+      -
+        display: SEO
+        fields:
+          -
+            import: seo

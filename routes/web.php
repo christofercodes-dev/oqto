@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgencyController;
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BokaDemoLogController;
 use App\Http\Controllers\BokaDemoLookupController;
 use App\Http\Controllers\EcosystemController;
@@ -39,9 +40,17 @@ Route::get('/support/{category}/{article}', [SupportController::class, 'article'
 
 // Byråernas sidor med egen logga och färger. Innehållet hämtas från funktionerna
 // under /for-foretagare (se App\Services\Foretagare\FeatureCatalog).
+// Win-Win blev Enora: den gamla adressen flyttas permanent.
+Route::redirect('/byra/win-win', '/byra/enora', 301);
+Route::get('/byra/win-win/{feature}', fn (string $feature) => redirect('/byra/enora/'.$feature, 301));
+
 Route::get('/byra/{agency}', [AgencyController::class, 'index'])->name('agency.index');
 Route::get('/byra/{agency}/{feature}', [AgencyController::class, 'feature'])->name('agency.feature');
 
 // Ekosystemen visar hur flera integrationer fungerar tillsammans. Posterna
 // själva ligger i samlingen "ekosystem" (/integrationer/ekosystem/{slug}).
 Route::get('/integrationer/ekosystem', [EcosystemController::class, 'index'])->name('ecosystem.index');
+
+// Artiklarna (inbound marketing). Själva artiklarna ligger i samlingen "artiklar"
+// (/artiklar/{slug}). Listan finns först när den första artikeln är publicerad.
+Route::get('/artiklar', [ArticlesController::class, 'index'])->name('articles.index');

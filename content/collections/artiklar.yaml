@@ -1,0 +1,15 @@
+title: Artiklar
+icon: collections
+# Listan på /artiklar hanteras av App\Http\Controllers\ArticlesController.
+# Utkast (ej publicerade) och artiklar med framtida datum syns bara i CP:n,
+# aldrig utåt, så att vi kan skriva i förväg och släppa när vi är redo.
+route: '/artiklar/{slug}'
+template: artiklar/show
+layout: layout
+date: true
+date_behavior:
+  past: public
+  future: private
+revisions: false
+sort_dir: desc
+sort_by: date
