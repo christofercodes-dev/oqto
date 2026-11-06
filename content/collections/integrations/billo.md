@@ -7,11 +7,11 @@ short_description: 'Billo är en statligt godkänd digital brevlåda för'
 description: |-
   Billo är en statligt godkänd digital brevlåda för Företag och Privatpersoner. Allt samlas på ett ställe – post från företag och myndigheter, kvitton och även papperspost som vi digitaliserar åt dig.
 
-  Med integrationen till Bokio skickas dina dokument och fakturor automatiskt vidare till bokföringen. Enkelt, säkert och helt automatiserat.
+  Med integrationen till Oqto skickas dina dokument och fakturor automatiskt vidare till bokföringen. Enkelt, säkert och helt automatiserat.
 
   Fördelar med Billo
   Även papperspost - Vi tar emot och digitaliserar din fysiska post, så att du får allt i samma digitala flöde.
-  Automatisk överföring till Bokio - Fakturor och dokument skickas direkt till bokföringssystemet.
+  Automatisk överföring till Oqto - Fakturor och dokument skickas direkt till bokföringssystemet.
   All post på ett ställe - Post från myndigheter, leverantörer och kunder samlas digitalt och blir enkelt sökbar.
   Säkert och statligt godkänt - Trygg hantering enligt svenska säkerhetskrav och GDPR.
 developer_name: 'Billo AB'
