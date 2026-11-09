@@ -23,10 +23,13 @@ partner_about: |-
   Med integrationen till Oqto skickas dina dokument och fakturor automatiskt vidare till bokföringen. Enkelt, säkert och helt automatiserat.
 price: '0'
 source_created_at: '2026-10-22 15:55'
-avatar:
-  - images/f4255948-1dbc-4716-821d-1ffc12d98c7f.png
+avatar: images/f4255948-1dbc-4716-821d-1ffc12d98c7f.png
 media:
   - images/addcbbd1-f1b3-4050-af3a-c93987173a12.png
   - images/4b7f2dc2-5c1e-46f1-9a76-11a123190329.png
   - images/e1d38362-8d39-48b8-a549-50c7607bb791.png
+featured: true
+unpublished_by_import: false
+updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
+updated_at: 1794209098
 ---
