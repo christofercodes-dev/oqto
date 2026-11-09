@@ -7,11 +7,10 @@ short_description: 'Kunder, fakturor, artiklar, projekt, kostn.ställen'
 description: 'Integrationen hämtar automatiskt in kunder, kundfakturor, artiklar, bokföringsprojekt och kostnadsställen från Blikk till Oqto. Överföringen sker löpande i bakgrunden, utan manuell export och utan filhantering.'
 developer_name: Oqto
 source_created_at: '2026-05-25 06:56'
-avatar:
-  - images/5686b16c-b34b-4a3b-838e-7577b1617179.png
-featured: true
-updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1789495154
+avatar: images/5686b16c-b34b-4a3b-838e-7577b1617179.png
+featured: false
+updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
+updated_at: 1794209034
 reasons:
   - 'Blikk är ett flexibelt system som passar både små och medelstora företag i en mängd olika branscher som konsult, bygg och hantverk, service, redovisning och revision.'
   - 'Blikks användarvänliga mobilapp gör det enkelt att hantera checklistor och projekt, rapportera tid, fota kvitton och registrera utlägg även på språng.'
@@ -22,4 +21,5 @@ partner_email: info@blikk.se
 partner_phone: '0911 - 25 73 00'
 partner_website: 'https://www.blikk.se/'
 partner_about: 'Blikk är ett molnbaserat affärssystem som minimerar administrationen för små och medelstora svenska företag. Genom att samla tidrapportering, projektplanering och fakturering i ett sömlöst flöde skapar vi mer tid för kärnverksamheten. Blikk skapar förutsättningar till full kontroll på projektekonomin. Mindre admin, mer tid med hjärta.'
+unpublished_by_import: false
 ---
