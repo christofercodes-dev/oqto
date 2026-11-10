@@ -1,5 +1,6 @@
 ---
 id: c743d988-7f64-4da6-92d1-7e9e8fb02651
+published: false
 blueprint: integration
 title: 'Stayflow Hub'
 external_id: 39fb2def-c752-4a0b-ae55-4253560bf797
