@@ -15,4 +15,9 @@ company_revenue_ranges:
   - 10-50
   - 50-250
 source_created_at: '2026-09-18 15:06'
+featured: false
+unpublished_by_import: false
+custom_avatar: integrationer/baemingo.png
+updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
+updated_at: 1794294869
 ---
