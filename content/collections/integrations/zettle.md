@@ -12,7 +12,8 @@ description: |-
   Zettle används framför allt inom handel, restaurang, café och andra verksamheter där kunderna möts på plats.
 developer_name: Oqto
 source_created_at: '2026-06-25 12:42'
-avatar: images/06310b40-c860-4498-b50f-a8a20990a4cf.png
+avatar:
+  - images/06310b40-c860-4498-b50f-a8a20990a4cf.png
 featured: false
 updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
 updated_at: 1794209080
@@ -24,5 +25,4 @@ reasons:
 media:
   - images/38920511-fe05-4e45-8649-1f2078420259.png
   - images/acbe3e17-3276-4193-96ed-37e72873ddf3.png
-unpublished_by_import: false
 ---
