@@ -20,7 +20,7 @@ reasons:
   - 'Gratis kom igång hjälp och support'
 company_employee_ranges:
   - 1-9
-  - '0'
+  - 0
   - 10-49
 company_revenue_ranges:
   - 3-10
@@ -38,4 +38,9 @@ partner_about: |-
 
   Programvaran JobOffice föddes och lanserades 2009. Tack vare moderna utvecklingsverktyg och vårt modultänk kunde vi redan från början enkelt bygga in små och stora moduler och anpassningar till våra kunder.
 price: '0'
+featured: false
+unpublished_by_import: false
+custom_avatar: integrationer/joboffice.png
+updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
+updated_at: 1794294929
 ---
