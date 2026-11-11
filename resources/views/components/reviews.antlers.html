@@ -40,6 +40,18 @@
                                     </span>
                                 {{ /if }}
                             </div>
+
+                            {{ if logo }}
+                                <div class="reviews-logo">
+                                    {{ if website }}
+                                        <a href="{{ website }}" target="_blank" rel="noopener noreferrer" aria-label="{{ company ?? title }} (öppnas i ny flik)">
+                                            <img src="{{ logo }}" alt="{{ company ?? title }}" loading="lazy">
+                                        </a>
+                                    {{ else }}
+                                        <img src="{{ logo }}" alt="{{ company ?? title }}" loading="lazy">
+                                    {{ /if }}
+                                </div>
+                            {{ /if }}
         
                         </div>
         

@@ -24,6 +24,22 @@ tabs:
               type: text
               display: Roll
           -
+            handle: logo
+            field:
+              type: assets
+              container: assets
+              folder: kunder
+              max_files: 1
+              display: 'Kundens logotyp'
+              instructions: 'Visas under citatet. Helst en SVG eller PNG med transparent bakgrund.'
+          -
+            handle: website
+            field:
+              type: text
+              input_type: url
+              display: 'Kundens webbplats'
+              instructions: 'Loggan länkar hit i en ny flik. Börja med https://. Utan adress visas loggan utan länk.'
+          -
             handle: industry
             field:
               type: terms

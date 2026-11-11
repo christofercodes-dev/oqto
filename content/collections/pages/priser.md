@@ -142,14 +142,14 @@ comparison_categories:
         enabled: true
       - id: cmp_row_periodisering
         label: Periodisering
-        forvaltning_value: cross
+        forvaltning_value: check
         traditionell_value: check
         modern_value: check
         type: row
         enabled: true
       - id: cmp_row_avtalsfakturering
         label: Avtalsfakturering
-        forvaltning_value: cross
+        forvaltning_value: check
         traditionell_value: check
         modern_value: check
         type: row
@@ -220,7 +220,7 @@ comparison_categories:
       - id: cmp_row_transaktioner
         label: Transaktioner
         detail: '10 transaktioner/bolag/månad ingår: skicka e-faktura, ta emot e-faktura, dokumenttolkning. Därefter **3 kr/st** per typ.'
-        forvaltning_value: —
+        forvaltning_value: '10 st/mån'
         traditionell_value: '10 st/mån'
         modern_value: '10 st/mån'
         type: row
@@ -241,10 +241,10 @@ pricing_faq:
       - Försäljning
       - Inköp
       - Integrationer
-    highlight_excluded:
-      - Anläggningsregister
       - Periodisering
       - Avtalsfakturering
+    highlight_excluded:
+      - Anläggningsregister
       - 'Bank & Skatt'
       - Lön
       - Månadsavslut
