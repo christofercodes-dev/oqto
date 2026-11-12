@@ -3,3 +3,7 @@ roles:
   - byraredaktor
 id: 5a678e18-3cd4-4d1a-9c7a-2937b6885a34
 password_hash: $2y$12$bOcKJ7oFtMsxY4tuVHape.ZikoFQ78YxLMuWSxPC9PUiq3RMLuVeO
+preferences:
+  collections:
+    agencies:
+      view: list
