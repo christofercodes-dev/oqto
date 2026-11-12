@@ -1,0 +1,56 @@
+{{# Meddelande till den egna byrån: man fyller i några uppgifter och får ett färdigt meddelande att kopiera eller skicka som mejl. #}}
+<section class="foretagare-scope fi-cta" id="kontakta-byran">
+
+    <div class="container fi-cta-container">
+
+        <div class="fi-cta-text">
+            <span class="funktioner-hero-eyebrow">Kom igång</span>
+            <h2 class="fi-cta-title">Vill du börja använda Oqto?</h2>
+            <p class="fi-cta-body">Oqto används av redovisningsbyråer, så första steget är att prata med din byrå. Vi har skrivit ett meddelande åt dig. Ändra det som du vill och kopiera det, så kan du skicka det till din byrå som du brukar.</p>
+        </div>
+
+        <div class="fi-cta-card" data-agency-message>
+
+            <div class="fi-seg" role="tablist" aria-label="Har du en byrå?">
+                <button type="button" role="tab" class="fi-seg-btn is-on" data-message-mode="yes" aria-selected="true">Jag har en byrå</button>
+                <button type="button" role="tab" class="fi-seg-btn" data-message-mode="no" aria-selected="false">Jag har ingen byrå</button>
+            </div>
+
+            <div data-message-panel="yes">
+
+                <label class="fi-cta-field is-message">
+                    <span>Ditt meddelande</span>
+                    <textarea rows="11" data-message-text aria-describedby="fi-cta-status"></textarea>
+                </label>
+
+                <div class="fi-cta-actions">
+                    <button type="button" class="foretagare-button" data-message-copy>
+                        <span data-message-copy-label>Kopiera meddelandet</span>
+                    </button>
+                </div>
+
+                <p class="fi-cta-status" id="fi-cta-status" role="status" aria-live="polite" data-message-status></p>
+
+            </div>
+
+            <div data-message-panel="no" hidden>
+
+                <div class="fi-cta-nobyra">
+                    <h3>Ingen byrå än?</h3>
+                    <p>Vi håller på att göra det enkelt att hitta en byrå som jobbar i Oqto. Den delen är inte klar ännu.</p>
+
+                    <span class="foretagare-button foretagare-button-ghost is-disabled" aria-disabled="true">
+                        <span>Hitta en byrå</span>
+                        <span>Kommer snart</span>
+                    </span>
+
+                    <p class="fi-cta-small">Under tiden kan du <a href="/kontakt">kontakta oss</a>.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

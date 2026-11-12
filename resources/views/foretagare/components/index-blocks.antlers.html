@@ -1,0 +1,63 @@
+{{# Listan över funktioner på /for-foretagare, i samma blockform som /funktioner: text på ena sidan, en bild av funktionen på den andra. #}}
+<section class="foretagare-scope fi-blocks" id="funktioner">
+
+    <div class="container fi-blocks-container">
+
+        {{ foretagare:features as="features" }}
+
+            {{ if features }}
+
+                {{ features }}
+
+                    <article class="fi-block{{ if index | mod:2 == 0 }} is-reverse{{ /if }}">
+
+                        <a href="{{ href }}" class="fi-media{{ if hero_visual }} has-visual is-{{ hero_visual }}{{ /if }}" tabindex="-1" aria-hidden="true">
+
+                            {{ if hero_visual == 'payments' }}
+                                {{ partial:foretagare/components/visual-payments }}
+                            {{ elseif hero_visual == 'tax-account' }}
+                                {{ partial:foretagare/components/visual-tax-account }}
+                            {{ elseif hero_visual == 'invoice' }}
+                                {{ partial:foretagare/components/visual-invoice }}
+                            {{ elseif hero_visual == 'mobile-balance' }}
+                                {{ partial:foretagare/components/visual-mobile-balance }}
+                            {{ elseif hero_visual == 'migration' }}
+                                {{ partial:foretagare/components/visual-migration }}
+                            {{ elseif image_url }}
+                                <img src="{{ image_url }}" alt="" loading="lazy">
+                            {{ /if }}
+
+                        </a>
+
+                        <div class="fi-text">
+
+                            <span class="fi-number">{{ if count < 10 }}0{{ /if }}{{ count }}</span>
+
+                            <h2 class="fi-title">{{ title }}</h2>
+
+                            {{ if short_description }}
+                                <p class="fi-description">{{ short_description }}</p>
+                            {{ /if }}
+
+                            <a href="{{ href }}" class="foretagare-button fi-more">
+                                <span>Läs mer och prova</span>
+                                <span aria-hidden="true">→</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                {{ /features }}
+
+            {{ else }}
+
+                <p class="foretagare-empty">{{ empty_text ?? 'Funktionerna publiceras här inom kort.' }}</p>
+
+            {{ /if }}
+
+        {{ /foretagare:features }}
+
+    </div>
+
+</section>

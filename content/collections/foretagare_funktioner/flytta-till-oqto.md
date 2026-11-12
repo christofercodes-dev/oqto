@@ -3,6 +3,7 @@ id: 6507da58-56a4-4df5-a5b2-3497d66fe6d7
 blueprint: funktion
 title: 'Flytta till Oqto'
 order: 2
+hero_visual: migration
 short_description: 'Byt från ditt befintliga ekonomisystem utan att börja om. Bokföringen, kunderna, leverantörerna, fakturorna och underlagen följer med, och flytten kostar inget.'
 demos:
   -

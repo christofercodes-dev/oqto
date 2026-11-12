@@ -44,6 +44,10 @@ Route::get('/support/{category}/{article}', [SupportController::class, 'article'
 Route::redirect('/byra/win-win', '/byra/enora', 301);
 Route::get('/byra/win-win/{feature}', fn (string $feature) => redirect('/byra/enora/'.$feature, 301));
 
+// Funktionen Fakturering ersattes av Enklare fakturering: de gamla adresserna flyttas dit.
+Route::redirect('/for-foretagare/fakturering', '/for-foretagare/enklare-fakturering', 301);
+Route::get('/byra/{agency}/fakturering', fn (string $agency) => redirect('/byra/'.$agency.'/enklare-fakturering', 301));
+
 Route::get('/byra/{agency}', [AgencyController::class, 'index'])->name('agency.index');
 Route::get('/byra/{agency}/{feature}', [AgencyController::class, 'feature'])->name('agency.feature');
 

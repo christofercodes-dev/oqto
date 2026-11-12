@@ -20,6 +20,20 @@
                 </p>
             {{ /if }}
 
+            {{# Används av /for-foretagare: knapparna leder till meddelandet till byrån och listan med funktioner. #}}
+            {{ if foretagare_cta }}
+                <div class="fi-hero-actions">
+                    <a href="#kontakta-byran" class="foretagare-button">
+                        <span>Berätta för din byrå</span>
+                        <span aria-hidden="true">→</span>
+                    </a>
+                    <a href="#funktioner" class="foretagare-button foretagare-button-ghost">
+                        <span>Se funktionerna</span>
+                        <span aria-hidden="true">↓</span>
+                    </a>
+                </div>
+            {{ /if }}
+
         </div>
 
         <div class="funktioner-hero-image">

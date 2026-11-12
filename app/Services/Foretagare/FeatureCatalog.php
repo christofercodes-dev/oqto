@@ -97,6 +97,7 @@ class FeatureCatalog
             'slug' => $feature->slug(),
             'short_description' => $feature->get('short_description'),
             'image_url' => $this->assetUrl($feature, 'image'),
+            'hero_visual' => (string) ($feature->get('hero_visual') ?? ''),
             'href' => $this->featureUrl($feature, $agency),
         ];
     }

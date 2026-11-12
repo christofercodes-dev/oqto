@@ -174,7 +174,7 @@ class ForetagareAgencyTest extends TestCase
             ->get('type')
             ->get('options'));
 
-        $this->assertEqualsCanonicalizing(['invoice-desktop', 'invoice-mobile', 'reminders', 'migration', 'migration-check'], $options);
+        $this->assertEqualsCanonicalizing(['invoice-desktop', 'invoice-mobile', 'reminders', 'migration', 'migration-check', 'payments', 'tax-account', 'invoice-live'], $options);
 
         $loader = file_get_contents(resource_path('js/demos/index.js'));
 
@@ -244,7 +244,13 @@ class ForetagareAgencyTest extends TestCase
         $this->get('/byra/'.self::PREFIX.'dold')->assertNotFound();
         $this->get('/byra/'.self::PREFIX.'dold/'.self::PREFIX.'a')->assertNotFound();
         $this->get('/byra/finns-inte')->assertNotFound();
-        $this->get('/byra/finns-inte/fakturering')->assertNotFound();
+        $this->get('/byra/finns-inte/skattekonto')->assertNotFound();
+    }
+
+    public function test_the_old_fakturering_addresses_redirect_to_enklare_fakturering(): void
+    {
+        $this->get('/for-foretagare/fakturering')->assertRedirect('/for-foretagare/enklare-fakturering');
+        $this->get('/byra/enora/fakturering')->assertRedirect('/byra/enora/enklare-fakturering');
     }
 
     public function test_everything_under_byra_is_hidden_from_search_engines(): void

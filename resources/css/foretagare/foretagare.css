@@ -133,11 +133,38 @@
 
 .foretagare-feature-intro.has-image {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(40px, 4vw, 72px);
 }
 
-.foretagare-feature-intro .foretagare-button {
+.foretagare-feature-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
     margin-top: 32px;
 }
+
+/* Hoppar till demot ("Prova själv") utan att hamna under menyn. */
+:root:has(.foretagare-scope) {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root:has(.foretagare-scope) { scroll-behavior: auto; }
+}
+
+.foretagare-stage { scroll-margin-top: 80px; }
+
+/* Ett enda demo: rubrik och text ligger till vänster, helskärmsknappen till höger. */
+.foretagare-stage-full { margin-left: auto; }
+
+.foretagare-stage-heading { max-width: 720px; }
+
+.foretagare-stage-heading .foretagare-wiz-text { margin-top: 12px; }
+
+.foretagare-stage-head:has(.foretagare-stage-heading) { align-items: flex-start; }
+
+.foretagare-stage.is-fullscreen .foretagare-stage-heading { display: none; }
 
 .foretagare-feature-intro-media img {
     display: block;
@@ -178,6 +205,13 @@
     white-space: nowrap;
 
     transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.foretagare-button-ghost {
+    border: 1.5px solid currentColor;
+
+    background-color: transparent;
+    color: #1a1715;
 }
 
 .foretagare-button:hover {
@@ -362,11 +396,12 @@
 
     padding: 104px 0 112px;
 
+    /* Samma varma ton som blocken på /funktioner. */
     background:
-        radial-gradient(ellipse 70% 55% at 50% 0%, color-mix(in srgb, var(--brand) 26%, transparent) 0%, transparent 72%),
-        #14110f;
+        radial-gradient(ellipse 70% 55% at 50% 0%, color-mix(in srgb, var(--brand) 12%, transparent) 0%, transparent 72%),
+        #f5f1eb;
 
-    color: #ffffff;
+    color: #1a1715;
 }
 
 .foretagare-stage-inner { position: relative; max-width: 1320px; }
@@ -383,7 +418,7 @@
 .foretagare-stage-title {
     margin: 0;
 
-    color: #ffffff;
+    color: #1a1715;
 
     font-size: clamp(1.8rem, 3.4vw, 2.6rem);
     font-weight: 500;
@@ -397,11 +432,11 @@
 
     padding: 11px 18px;
 
-    border: 1px solid rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(26, 23, 21, 0.22);
     border-radius: 999px;
 
-    background: rgba(255, 255, 255, 0.06);
-    color: #ffffff;
+    background: #ffffff;
+    color: #1a1715;
 
     font-family: "Geist Mono", monospace;
     font-size: 0.78rem;
@@ -413,7 +448,7 @@
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.foretagare-stage-full:hover { border-color: var(--brand); background: rgba(255, 255, 255, 0.12); }
+.foretagare-stage-full:hover { border-color: var(--brand); }
 .foretagare-stage-full-close { display: none; }
 .foretagare-stage.is-fullscreen .foretagare-stage-full-open { display: none; }
 .foretagare-stage.is-fullscreen .foretagare-stage-full-close { display: block; }
@@ -426,7 +461,7 @@
 
     list-style: none;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    border-bottom: 1px solid rgba(26, 23, 21, 0.12);
 }
 
 .foretagare-wiz-item {
@@ -449,7 +484,7 @@
 
     border-radius: 1px;
 
-    background-color: rgba(255, 255, 255, 0.16);
+    background-color: rgba(26, 23, 21, 0.14);
 }
 
 .foretagare-wiz-item:last-child { flex: 0 1 auto; }
@@ -478,11 +513,11 @@
     width: 38px;
     height: 38px;
 
-    border: 2px solid rgba(255, 255, 255, 0.28);
+    border: 2px solid rgba(26, 23, 21, 0.25);
     border-radius: 50%;
 
     background-color: transparent;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(26, 23, 21, 0.65);
 
     font-family: "Geist Mono", monospace;
     font-size: 0.9rem;
@@ -498,7 +533,7 @@
     font-weight: 500;
     line-height: 1.25;
 
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(26, 23, 21, 0.6);
     text-overflow: ellipsis;
 }
 
@@ -516,7 +551,7 @@
 .foretagare-wiz-step.is-done .foretagare-wiz-num::before { content: "✓"; font-size: 1rem; }
 
 .foretagare-wiz-step.is-active .foretagare-wiz-label,
-.foretagare-wiz-step.is-done .foretagare-wiz-label { color: #ffffff; }
+.foretagare-wiz-step.is-done .foretagare-wiz-label { color: #1a1715; }
 
 .foretagare-wiz-step.is-active .foretagare-wiz-label { font-weight: 600; }
 
@@ -543,7 +578,7 @@
 .foretagare-wiz-title {
     margin: 12px 0 0;
 
-    color: #ffffff;
+    color: #1a1715;
 
     font-size: clamp(1.7rem, 3.6vw, 2.6rem);
     font-weight: 500;
@@ -557,7 +592,7 @@
     font-size: 1.1rem;
     line-height: 1.65;
 
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(26, 23, 21, 0.72);
 }
 
 .foretagare-wiz-foot {
@@ -570,7 +605,7 @@
     margin-top: 40px;
     padding-top: 28px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-top: 1px solid rgba(26, 23, 21, 0.12);
 }
 
 .foretagare-wiz-foot .foretagare-wiz-next { margin-left: auto; }
@@ -580,7 +615,7 @@
 .foretagare-wiz-foot[hidden] { display: none !important; }
 
 .foretagare-wiz-step.is-locked { opacity: 0.45; cursor: not-allowed; }
-.foretagare-wiz-step.is-locked:hover .foretagare-wiz-num { border-color: rgba(255, 255, 255, 0.28); }
+.foretagare-wiz-step.is-locked:hover .foretagare-wiz-num { border-color: rgba(26, 23, 21, 0.25); }
 
 .foretagare-wiz-prev,
 .foretagare-wiz-restart {
@@ -595,17 +630,16 @@
 
     font-size: 0.95rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(26, 23, 21, 0.7);
 
     cursor: pointer;
 }
 
 .foretagare-wiz-prev:hover,
-.foretagare-wiz-restart:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
+.foretagare-wiz-restart:hover { color: #1a1715; text-decoration: underline; text-underline-offset: 4px; }
 
-/* På mörk bakgrund */
-.foretagare-stage .dm-m-caption { color: rgba(255, 255, 255, 0.66); }
-.foretagare-stage .dm-window { border-color: transparent; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); }
+.foretagare-stage .dm-m-caption { color: rgba(26, 23, 21, 0.66); }
+.foretagare-stage .dm-window { box-shadow: 0 24px 60px rgba(46, 37, 31, 0.14); }
 
 /* Helskärm: scenen täcker hela skärmen, med en tätare rubrikdel så att demot får plats. */
 .foretagare-stage.is-fullscreen {
@@ -795,7 +829,9 @@
         gap: 32px;
     }
 
-    .foretagare-feature-intro .foretagare-button {
+    .foretagare-feature-actions { flex-direction: column; }
+
+    .foretagare-feature-actions .foretagare-button {
         width: 100%;
     }
 
@@ -861,4 +897,1021 @@
     text-decoration: none;
 
     transition: none;
+}
+
+
+/* Betalningsdemot är en animation på mobil, så helskärmsknappen behövs inte där. */
+@media (max-width: 767px) {
+    .foretagare-stage:has([data-demo="payments"]) .foretagare-stage-full,
+    .foretagare-stage:has([data-demo="tax-account"]) .foretagare-stage-full,
+    .foretagare-stage:has([data-demo="invoice-live"]) .foretagare-stage-full { display: none; }
+}
+
+
+/* ---------- Ritad bild i hero (förenklad produktvy) ---------- */
+
+.foretagare-feature-intro-media.is-visual {
+    padding: 0 12px 0 0;
+}
+
+.fv-pay {
+    position: relative;
+
+    font-size: 0.9rem;
+    color: #1a1715;
+}
+
+.fv-card {
+    border: 1px solid #e0e4ea;
+    border-radius: 18px;
+
+    background-color: #ffffff;
+    box-shadow: 0 24px 60px rgba(46, 37, 31, 0.14);
+}
+
+.fv-list { overflow: hidden; }
+
+.fv-list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 20px 24px;
+
+    border-bottom: 1px solid #eceef2;
+}
+
+.fv-stage {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 4px 10px;
+
+    border-radius: 8px;
+
+    background-color: #e4edfc;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #3a74d6;
+}
+
+.fv-stage b {
+    padding: 0 6px;
+
+    border-radius: 6px;
+
+    background-color: #ffffff;
+
+    font-weight: 700;
+}
+
+.fv-row {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr) auto 84px;
+    align-items: center;
+    gap: 16px;
+
+    padding: 20px 24px;
+
+    border-bottom: 1px solid #eceef2;
+
+    background-color: #f7f9fc;
+}
+
+.fv-row:last-child { border-bottom: 0; }
+
+.fv-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 6px;
+
+    background-color: #f06a35;
+    color: #ffffff;
+}
+
+.fv-name {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.fv-name span {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.fv-pill {
+    padding: 3px 10px;
+
+    border: 1px solid #cfe0fa;
+    border-radius: 999px;
+
+    background-color: #eef4fe;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #3a74d6;
+}
+
+.fv-sum {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.fv-sign {
+    position: absolute;
+    right: -56px;
+    bottom: -120px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: min(72%, 370px);
+    padding: 22px 24px 24px;
+}
+
+.fv-sign-title { font-size: 1.05rem; }
+
+.fv-sign-sub {
+    margin-top: -6px;
+
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.fv-bank {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #eceef2;
+    border-radius: 12px;
+}
+
+.fv-bank-logo {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background-color: #3fa34d;
+    color: #ffffff;
+}
+
+.fv-bank-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.fv-bank-text span {
+    font-size: 0.78rem;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.fv-total {
+    display: flex;
+    justify-content: space-between;
+
+    color: #6b7280;
+}
+
+.fv-total strong { color: #1a1715; }
+
+.fv-sign-btn {
+    align-self: flex-end;
+
+    padding: 9px 22px;
+
+    border-radius: 10px;
+
+    background-color: #4a86e8;
+
+    font-weight: 600;
+    color: #ffffff;
+}
+
+@media (max-width: 1200px) {
+    .fv-sign { right: -12px; }
+}
+
+@media (max-width: 900px) {
+    .foretagare-feature-intro-media.is-visual { display: none; }
+}
+
+
+/* Skattekonto-bilden i hero */
+.fv-tax-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+
+    padding: 16px 24px 20px;
+}
+
+.fv-tax-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.fv-tax-stat > span:first-child { font-size: 0.8rem; color: #6b7280; }
+
+.fv-tax-stat strong { font-size: 1.25rem; letter-spacing: -0.01em; }
+
+.fv-tax-stat strong small { margin-left: 4px; font-size: 0.75rem; }
+
+.fv-neg { color: #b42318; }
+
+.fv-pill-up {
+    border-color: #cfe0fa;
+
+    background-color: #eef4fe;
+    color: #3a74d6;
+}
+
+.fv-fill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    border: 1px solid #4a86e8;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    font-weight: 500;
+
+    animation: dm-tax-pulse 1.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fv-fill { animation: none; box-shadow: 0 0 0 4px rgba(74, 134, 232, 0.35); }
+}
+
+.fv-row-tax { grid-template-columns: minmax(0, 1fr) auto 100px; }
+
+
+.fv-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 12px;
+}
+
+.fv-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.fv-field > span:first-child { font-size: 0.78rem; font-weight: 600; }
+
+.fv-input {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 10px;
+
+    border: 1px solid #dfe2e8;
+    border-radius: 9px;
+
+    font-size: 0.82rem;
+    white-space: nowrap;
+}
+
+.fv-input em {
+    padding: 0 6px;
+
+    border: 1px solid #cfd4dc;
+    border-radius: 5px;
+
+    font-size: 0.7rem;
+    font-style: normal;
+    color: #6b7280;
+}
+
+.fv-input b {
+    margin: -7px 2px -7px -10px;
+    padding: 7px 9px;
+
+    border-right: 1px solid #dfe2e8;
+
+    background-color: #f1f2f5;
+
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.fv-muted { color: #9aa1ad; }
+
+.fv-save {
+    align-self: flex-end;
+
+    padding: 8px 20px;
+
+    border-radius: 10px;
+
+    background-color: #1a1a1a;
+
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.fv-pay.is-tax .fv-sign { bottom: -150px; }
+
+.fv-pill-done {
+    border-color: #bfe6cb;
+
+    background-color: #e9f7ee;
+    color: #1a7f3f;
+}
+
+
+/* Fakturabilden i hero */
+.fv-form-invoice { padding: 16px 24px 4px; }
+
+.fv-row-invoice { grid-template-columns: minmax(0, 1fr) auto; }
+
+.fv-row-invoice .fv-sum { min-width: 90px; }
+
+.fv-paper {
+    position: absolute;
+    right: -56px;
+    bottom: -120px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    width: min(58%, 290px);
+    padding: 20px 22px;
+}
+
+.fv-pay.is-invoice .fv-sign { display: none; }
+
+.fv-paper-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+
+.fv-paper-top strong { font-weight: 500; font-size: 0.95rem; }
+
+.fv-paper-lines { display: flex; flex-direction: column; gap: 8px; }
+
+.fv-paper-lines span { height: 7px; border-radius: 4px; background-color: #eceef2; }
+
+.fv-paper-lines .is-short { width: 55%; }
+
+.fv-paper-sum {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 8px;
+
+    font-size: 0.78rem;
+}
+
+.fv-paper-sum strong { align-self: flex-end; font-size: 1.1rem; }
+
+@media (max-width: 1200px) {
+    .fv-paper { right: -12px; }
+}
+
+
+/* Telefonbilden (mobilappen) i hero */
+.fv-phone-wrap { display: flex; justify-content: center; padding: 8px 0; }
+
+.fv-phone {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: min(100%, 280px);
+    aspect-ratio: 9 / 18.5;
+    overflow: hidden;
+
+    border: 7px solid #17161a;
+    border-radius: 38px;
+
+    background: linear-gradient(160deg, #4a4550 0%, #2b2830 60%, #1f1d23 100%);
+    box-shadow: 0 30px 70px rgba(46, 37, 31, 0.28);
+
+    color: #ffffff;
+    font-size: 0.7rem;
+}
+
+.fv-phone-status {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 14px 20px 0;
+
+    font-size: 0.68rem;
+}
+
+.fv-phone-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 16px 18px 0;
+}
+
+.fv-phone-co {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 0.78rem;
+}
+
+.fv-phone-co i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    background-color: #17161a;
+
+    font-size: 0.6rem;
+    font-style: normal;
+}
+
+.fv-phone-head strong { margin-top: 12px; font-size: 1.15rem; font-weight: 600; }
+
+.fv-phone-head strong em { font-weight: 400; }
+
+.fv-phone-head > span:last-child { color: rgba(255, 255, 255, 0.78); font-size: 0.78rem; }
+
+.fv-phone-sheet {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-top: 18px;
+    padding: 8px 14px 14px;
+
+    border-radius: 24px 24px 0 0;
+
+    background-color: #222226;
+}
+
+.fv-phone-grab {
+    align-self: center;
+
+    width: 34px;
+    height: 4px;
+
+    border-radius: 2px;
+
+    background-color: #55555c;
+}
+
+.fv-phone-done {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+
+    padding: 14px 0 10px;
+
+    text-align: center;
+}
+
+.fv-phone-emoji { font-size: 1.7rem; }
+
+.fv-phone-done strong { font-size: 1.05rem; }
+
+.fv-phone-done span:last-child { color: rgba(255, 255, 255, 0.62); font-size: 0.7rem; }
+
+.fv-phone-label { margin-top: 4px; font-size: 0.78rem; color: rgba(255, 255, 255, 0.85); }
+
+.fv-phone-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    border-radius: 14px;
+
+    background-color: #2c2c31;
+
+    animation: fv-phone-glow 2.4s ease-in-out infinite;
+}
+
+.fv-phone-bank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background-color: #3fa34d;
+}
+
+.fv-phone-account-text { display: flex; flex: 1; flex-direction: column; gap: 1px; }
+
+.fv-phone-account-text span { color: rgba(255, 255, 255, 0.6); font-size: 0.66rem; }
+
+.fv-phone-account-text strong { font-size: 0.85rem; }
+
+@keyframes fv-phone-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(63, 163, 77, 0); }
+    50% { box-shadow: 0 0 0 5px rgba(63, 163, 77, 0.28); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fv-phone-account { animation: none; }
+}
+
+.fv-phone-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: end;
+
+    padding: 10px 4px 14px;
+
+    background-color: #1c1c20;
+
+    font-size: 0.56rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.fv-phone-tabs > span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.fv-phone-tabs svg { display: block; }
+
+.fv-phone-tabs .is-on { color: #ffffff; }
+
+.fv-phone-upload { position: relative; }
+
+.fv-phone-plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    margin-top: -30px;
+
+    border-radius: 50%;
+
+    background-color: #3a3a40;
+    /* Ringen runt knappen ger "urtaget" i flikraden. */
+    box-shadow: 0 0 0 7px #1c1c20;
+
+    color: #ffffff;
+}
+
+/* Telefonbilden visas även på mobil, eftersom funktionen gäller mobilappen. */
+@media (max-width: 900px) {
+    .foretagare-feature-intro-media.is-visual:has(.fv-phone-wrap) { display: block; padding: 0; }
+}
+
+/* Sidor med bild eller ritad bild i hero: texten ligger överst, så att avståndet från "Alla funktioner"
+   till rubriken är detsamma som på sidor utan bild. */
+@media (min-width: 901px) {
+    .foretagare-feature-intro.has-image { align-items: start; }
+}
+
+/* Flytten till Oqto (hero och listan) */
+.fv-move { padding: 20px 24px 24px; }
+
+.fv-move-head {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid #eceef2;
+}
+
+.fv-move-sys { font-size: 0.85rem; font-weight: 600; color: #6b7280; }
+
+.fv-move-sys.is-oqto { text-align: right; color: var(--brand, #ff6319); }
+
+.fv-move-arrow { display: inline-flex; color: #9aa1ad; }
+
+.fv-move-row {
+    display: grid;
+    grid-template-columns: 1fr auto 24px;
+    align-items: center;
+    gap: 14px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eceef2;
+}
+
+.fv-move-row b { font-variant-numeric: tabular-nums; font-weight: 500; }
+
+.fv-move-row i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background-color: #e9f7ee;
+    color: #1a7f3f;
+}
+
+.fv-move-bar {
+    height: 8px;
+    margin-top: 18px;
+
+    border-radius: 4px;
+
+    background-color: #eceef2;
+}
+
+.fv-move-bar span {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 4px;
+
+    background-color: #3fa34d;
+}
+
+
+/* =========================================================
+   /FOR-FORETAGARE: HERO, FUNKTIONSBLOCK OCH MEDDELANDE TILL BYRÅN
+   Samma uttryck som /funktioner.
+   ========================================================= */
+
+.fi-hero-actions {
+    --brand: #ff6319;
+    --brand-ink: #ffffff;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 10px;
+}
+
+html { scroll-padding-top: 90px; }
+
+.foretagare-scope.fi-blocks {
+    padding: 100px 40px;
+
+    background-color: #f5f1eb;
+}
+
+.fi-blocks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 110px;
+}
+
+.fi-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 64px;
+    align-items: center;
+}
+
+.fi-block.is-reverse .fi-media { order: 2; }
+
+.fi-block.is-reverse .fi-text { order: 1; }
+
+.fi-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 420px;
+    padding: 48px;
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background: linear-gradient(135deg, #f3f1ef 0%, #e8e4df 100%);
+    color: inherit;
+    text-decoration: none;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fi-media:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 24px 50px rgba(26, 23, 21, 0.1);
+}
+
+.fi-media > img { display: block; width: 100%; height: auto; border-radius: 16px; }
+
+.fi-media .fv-pay { width: 100%; max-width: 460px; }
+
+/* Bilder med ett kort som sticker ut nedtill behöver extra plats under sig. */
+.fi-media.is-payments,
+.fi-media.is-tax-account,
+.fi-media.is-invoice {
+    align-items: flex-start;
+
+    padding: 56px 76px 200px 40px;
+}
+
+.fi-media.is-mobile-balance { padding: 40px; }
+
+.fi-media.is-mobile-balance .fv-phone { width: min(100%, 250px); }
+
+.fi-media.is-migration { padding: 56px 48px; }
+
+.fi-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.fi-number {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+
+    color: var(--brand);
+}
+
+.fi-title {
+    margin: 0;
+
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+}
+
+.fi-description {
+    max-width: 520px;
+    margin: 0;
+
+    font-size: 1.05rem;
+    line-height: 1.65;
+
+    color: #55504c;
+}
+
+.fi-more { margin-top: 12px; }
+
+/* Meddelande till byrån */
+
+.foretagare-scope.fi-cta {
+    padding: 110px 40px;
+
+    background: linear-gradient(180deg, #ffffff 0%, #e8f2ff 100%);
+}
+
+.fi-cta-container {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 64px;
+    align-items: start;
+}
+
+.fi-cta-text { display: flex; flex-direction: column; gap: 14px; }
+
+.fi-cta-title {
+    margin: 0;
+
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+}
+
+.fi-cta-body {
+    max-width: 480px;
+    margin: 0;
+
+    font-size: 1.05rem;
+    line-height: 1.65;
+
+    color: #55504c;
+}
+
+.fi-cta-card {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    padding: 28px;
+
+    border: 1px solid #e5e0db;
+    border-radius: 24px;
+
+    background-color: #ffffff;
+    box-shadow: 0 24px 60px rgba(26, 23, 21, 0.08);
+}
+
+.fi-seg {
+    display: inline-flex;
+    align-self: flex-start;
+    gap: 2px;
+
+    padding: 4px;
+
+    border-radius: 12px;
+
+    background-color: #f3f1ef;
+}
+
+.fi-seg-btn {
+    padding: 9px 16px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: transparent;
+
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #6b645f;
+
+    cursor: pointer;
+}
+
+.fi-seg-btn.is-on {
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+
+    color: #1a1715;
+}
+
+[data-message-panel] { display: flex; flex-direction: column; gap: 18px; }
+
+[data-message-panel][hidden] { display: none; }
+
+.fi-cta-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.fi-cta-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    min-width: 0;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.fi-cta-field em { font-style: normal; font-weight: 400; color: #8a847e; }
+
+.fi-cta-field input,
+.fi-cta-field textarea {
+    width: 100%;
+
+    border: 1px solid #dfe2e8;
+    border-radius: 12px;
+
+    background-color: #ffffff;
+
+    font-family: inherit;
+    font-size: 0.97rem;
+    font-weight: 400;
+    color: #1a1715;
+}
+
+.fi-cta-field input { height: 46px; padding: 0 14px; }
+
+.fi-cta-field textarea {
+    min-height: 260px;
+    padding: 14px;
+
+    line-height: 1.55;
+    resize: vertical;
+}
+
+.fi-cta-field input:focus,
+.fi-cta-field textarea:focus {
+    outline: none;
+
+    border-color: #1a1715;
+    box-shadow: 0 0 0 2px #1a1715;
+}
+
+.fi-cta-field.is-message > span { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+.fi-cta-reset {
+    padding: 0;
+
+    border: 0;
+
+    background: none;
+
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--brand);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    cursor: pointer;
+}
+
+.fi-cta-reset[hidden] { display: none; }
+
+.fi-cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.fi-cta-status { min-height: 1.3em; margin: -6px 0 0; font-size: 0.9rem; color: #1a7f3f; }
+
+.fi-cta-nobyra { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+
+.fi-cta-nobyra h3 { margin: 0; font-size: 1.4rem; font-weight: 500; letter-spacing: -0.02em; }
+
+.fi-cta-nobyra p { margin: 0; line-height: 1.6; color: #55504c; }
+
+.fi-cta-small { font-size: 0.92rem; }
+
+.fi-cta-small a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+
+.foretagare-button.is-disabled {
+    cursor: not-allowed;
+
+    opacity: 0.6;
+}
+
+.foretagare-button.is-disabled span:last-child {
+    padding: 3px 9px;
+
+    border-radius: 999px;
+
+    background-color: #f3f1ef;
+
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+    .foretagare-scope.fi-blocks,
+    .foretagare-scope.fi-cta { padding: 64px 20px; }
+
+    .fi-blocks-container { gap: 64px; }
+
+    .fi-block,
+    .fi-cta-container { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+
+    .fi-block.is-reverse .fi-media { order: 0; }
+
+    .fi-media { min-height: 0; padding: 32px 20px; }
+
+    .fi-media.is-payments,
+    .fi-media.is-tax-account,
+    .fi-media.is-invoice { padding: 36px 24px 170px 20px; }
+
+    .fi-cta-card { padding: 20px; }
+
+    .fi-cta-fields { grid-template-columns: 1fr; }
+
+    .fi-hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
 }

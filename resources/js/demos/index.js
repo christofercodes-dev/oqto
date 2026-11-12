@@ -10,6 +10,9 @@ const modules = {
     reminders: () => import('./reminders.js'),
     migration: () => import('./migration.js'),
     'migration-check': () => import('./migration-check.js'),
+    payments: () => import('./payments.js'),
+    'tax-account': () => import('./tax-account.js'),
+    'invoice-live': () => import('./invoice-live.js'),
 };
 
 document.querySelectorAll('[data-demo]').forEach((root) => {

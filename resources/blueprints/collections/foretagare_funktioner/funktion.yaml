@@ -31,6 +31,19 @@ tabs:
               max_files: 1
               display: Bild
               instructions: 'Visas i listan och överst på funktionens sida.'
+          -
+            handle: hero_visual
+            field:
+              type: select
+              display: 'Bild överst (ritad)'
+              instructions: 'En förenklad bild av funktionen till höger om rubriken. Används bara om ingen vanlig bild är vald.'
+              options:
+                payments: 'Betalningar (valda fakturor och signering)'
+                tax-account: 'Skattekonto (saldo och påfyllning)'
+                invoice: 'Enklare fakturering (formulär och förhandsvisning)'
+                mobile-balance: 'Banksaldo i mobilappen (telefon)'
+                migration: 'Flytta till Oqto (före och efter)'
+              clearable: true
       -
         display: 'Vad den gör'
         fields:
@@ -77,6 +90,9 @@ tabs:
                       reminders: 'Skicka påminnelser'
                       migration: 'Flytta till Oqto (två kolumner)'
                       migration-check: 'Kontrollera efter flytten'
+                      payments: 'Betala fakturor (skapa och signera betaluppdrag)'
+                      tax-account: 'Skattekonto (fyll på kontot och slå på autopiloten)'
+                      invoice-live: 'Skapa kundfaktura med förhandsvisning i realtid (dator)'
                     validate:
                       - required
                 -

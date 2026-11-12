@@ -13,7 +13,7 @@
                 <span>Alla funktioner</span>
             </a>
 
-            <div class="foretagare-feature-intro{{ if image }} has-image{{ /if }}">
+            <div class="foretagare-feature-intro{{ if image || hero_visual }} has-image{{ /if }}">
 
                 <div class="foretagare-feature-intro-text">
 
@@ -24,18 +24,49 @@
                     {{ /if }}
 
                     {{# På byråernas sidor finns kontaktknappen redan i byrafältet ovanför. #}}
-                    {{ unless agency }}
-                        <a href="/boka-demo" class="foretagare-button">
-                            <span>Boka demo</span>
-                            <span aria-hidden="true">→</span>
-                        </a>
-                    {{ /unless }}
+                    {{ if demos || !agency }}
+                        <div class="foretagare-feature-actions">
+                            {{ unless agency }}
+                                <a href="/boka-demo" class="foretagare-button">
+                                    <span>Boka demo</span>
+                                    <span aria-hidden="true">→</span>
+                                </a>
+                            {{ /unless }}
+
+                            {{ if demos }}
+                                <a href="#prova" class="foretagare-button foretagare-button-ghost">
+                                    <span>Prova själv</span>
+                                    <span aria-hidden="true">↓</span>
+                                </a>
+                            {{ /if }}
+                        </div>
+                    {{ /if }}
 
                 </div>
 
                 {{ if image }}
                     <div class="foretagare-feature-intro-media">
                         <img src="{{ image:url }}" alt="{{ title }}">
+                    </div>
+                {{ elseif hero_visual:value == 'payments' }}
+                    <div class="foretagare-feature-intro-media is-visual">
+                        {{ partial:foretagare/components/visual-payments }}
+                    </div>
+                {{ elseif hero_visual:value == 'invoice' }}
+                    <div class="foretagare-feature-intro-media is-visual">
+                        {{ partial:foretagare/components/visual-invoice }}
+                    </div>
+                {{ elseif hero_visual:value == 'migration' }}
+                    <div class="foretagare-feature-intro-media is-visual">
+                        {{ partial:foretagare/components/visual-migration }}
+                    </div>
+                {{ elseif hero_visual:value == 'mobile-balance' }}
+                    <div class="foretagare-feature-intro-media is-visual">
+                        {{ partial:foretagare/components/visual-mobile-balance }}
+                    </div>
+                {{ elseif hero_visual:value == 'tax-account' }}
+                    <div class="foretagare-feature-intro-media is-visual">
+                        {{ partial:foretagare/components/visual-tax-account }}
                     </div>
                 {{ /if }}
 
@@ -78,7 +109,17 @@
             <div class="foretagare-container foretagare-stage-inner">
 
                 <div class="foretagare-stage-head">
-                    <h2 class="foretagare-stage-title">Prova själv</h2>
+                    {{ if (demos | count) > 1 }}
+                        <h2 class="foretagare-stage-title">Prova själv</h2>
+                    {{ else }}
+                        {{# Ett enda demo: dess rubrik och text tar rubrikens plats. #}}
+                        {{ demos }}
+                            <div class="foretagare-stage-heading">
+                                {{ if title }}<h2 class="foretagare-stage-title">{{ title }}</h2>{{ /if }}
+                                {{ if text }}<p class="foretagare-wiz-text">{{ text }}</p>{{ /if }}
+                            </div>
+                        {{ /demos }}
+                    {{ /if }}
                     <button type="button" class="foretagare-stage-full" data-wiz-full aria-pressed="false">
                         <svg class="foretagare-stage-full-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
                         <svg class="foretagare-stage-full-close" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -88,6 +129,7 @@
 
                 <div class="foretagare-wiz">
 
+                    {{ if (demos | count) > 1 }}
                     <ol class="foretagare-wiz-steps" role="tablist" aria-label="Steg">
                         {{ demos }}
                             <li class="foretagare-wiz-item">
@@ -98,15 +140,18 @@
                             </li>
                         {{ /demos }}
                     </ol>
+                    {{ /if }}
 
                     {{ demos }}
                         <div class="foretagare-wiz-panel" role="tabpanel" data-wiz-panel="{{ count }}" data-next="{{ next_text | sanitize }}"{{ unless first }} hidden{{ /unless }}>
 
+                            {{ if total_results > 1 }}
                             <div class="foretagare-wiz-intro">
-                                <span class="foretagare-wiz-eyebrow">Steg {{ count }} av {{ total_results }}</span>
+                                {{ if total_results > 1 }}<span class="foretagare-wiz-eyebrow">Steg {{ count }} av {{ total_results }}</span>{{ /if }}
                                 {{ if title }}<h3 class="foretagare-wiz-title">{{ title }}</h3>{{ /if }}
                                 {{ if text }}<p class="foretagare-wiz-text">{{ text }}</p>{{ /if }}
                             </div>
+                            {{ /if }}
 
                             <div class="dm-demo" data-demo="{{ type:value }}"></div>
 

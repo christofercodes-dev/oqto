@@ -1053,6 +1053,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==================================================
+       MEDDELANDE TILL BYRÅN (/for-foretagare)
+       ================================================== */
+
+    document.querySelectorAll('[data-agency-message]').forEach((root) => {
+        import('./foretagare-message.js').then((module) => module.default(root));
+    });
+
+
+    /* ==================================================
        FLYTTA TILL OQTO (supportens val av system och sätt)
        ================================================== */
 
