@@ -21,4 +21,6 @@ partner_about: 'Squidler utvecklar AI-kollegor.'
 source_created_at: '2026-09-24 14:34'
 avatar:
   - images/c6ff65b4-34da-4018-8245-edfafc1ebf3b.png
+rating_average: 5.0
+rating_count: 1
 ---
