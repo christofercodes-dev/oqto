@@ -22,4 +22,6 @@ partner_email: info@blikk.se
 partner_phone: '0911 - 25 73 00'
 partner_website: 'https://www.blikk.se/'
 partner_about: 'Blikk är ett molnbaserat affärssystem som minimerar administrationen för små och medelstora svenska företag. Genom att samla tidrapportering, projektplanering och fakturering i ett sömlöst flöde skapar vi mer tid för kärnverksamheten. Blikk skapar förutsättningar till full kontroll på projektekonomin. Mindre admin, mer tid med hjärta.'
+rating_average: 5.0
+rating_count: 2
 ---
