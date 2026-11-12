@@ -51,7 +51,7 @@
     font-weight: 700;
 
     line-height: 1.2;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.03em;
 
     text-transform: uppercase;
 
@@ -264,7 +264,7 @@
 
     .why-oqto-subtitle {
         font-size: 0.85rem;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.03em;
     }
 
     .why-oqto-title {
@@ -376,7 +376,7 @@
 
         line-height: 1.25;
 
-        letter-spacing: 0.11em;
+        letter-spacing: 0.03em;
     }
 
     .why-oqto-title {
