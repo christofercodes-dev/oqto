@@ -25,3 +25,18 @@ redaktoer:
     - 'upload assets assets'
     - 'edit assets folders'
     - 'edit assets assets'
+byraredaktor:
+  title: Byråredaktör
+  permissions:
+    - 'access cp'
+    - 'view agencies entries'
+    - 'edit agencies entries'
+    - 'create agencies entries'
+    - 'delete agencies entries'
+    - 'publish agencies entries'
+    # Behövs för att kunna välja funktioner på byrån (fältet "features").
+    - 'view foretagare_funktioner entries'
+    # Behövs för att ladda upp och byta byråns logga.
+    - 'view assets assets'
+    - 'upload assets assets'
+    - 'edit assets assets'
