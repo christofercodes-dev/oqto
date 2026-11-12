@@ -21,13 +21,11 @@ const MODULES = [
 ];
 
 const NOT_INCLUDED = [
-    'Räkenskapsår före startåret (bara som ingående balans)',
     'Logga och fakturalayout',
     'Offerter och order',
     'Periodiseringar',
     'Anställda och löner',
     'Bankkonton',
-    'Automatisk fakturering av avtal',
 ];
 
 const DURATION = 5600;

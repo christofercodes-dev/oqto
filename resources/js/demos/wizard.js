@@ -18,7 +18,8 @@ export default function initWizard(root) {
     const steps = [...root.querySelectorAll('[data-wiz-step]')];
     const panels = [...root.querySelectorAll('[data-wiz-panel]')];
 
-    if (!steps.length || steps.length !== panels.length) return;
+    // Med ett enda demo finns ingen stegrad, men helskärmsknappen ska ändå fungera.
+    if (!panels.length || (steps.length && steps.length !== panels.length)) return;
 
     const titleOf = (n) => steps[n - 1]?.querySelector('.foretagare-wiz-label')?.textContent.trim() ?? '';
 
@@ -65,7 +66,7 @@ export default function initWizard(root) {
 
     const show = (n, { scroll = false, hash = true } = {}) => {
 
-        n = Math.min(Math.max(n, 1), steps.length);
+        n = Math.min(Math.max(n, 1), panels.length);
 
         const blocked = firstBlocked();
 

@@ -88,7 +88,7 @@ class ForetagareAgencyTest extends TestCase
             ->assertSee('Skicka fakturor')
             ->assertSee('Vad den gör')
             ->assertSee('Fördel för a')
-            ->assertSee('Boka demo');
+            ->assertDontSee('Boka demo');
 
         $this->get('/for-foretagare/'.self::PREFIX.'b')->assertNotFound();
     }

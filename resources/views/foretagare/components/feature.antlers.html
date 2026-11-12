@@ -23,22 +23,13 @@
                         <p class="foretagare-hero-text">{{ short_description }}</p>
                     {{ /if }}
 
-                    {{# På byråernas sidor finns kontaktknappen redan i byrafältet ovanför. #}}
-                    {{ if demos || !agency }}
+                    {{# Bara "Prova själv" under rubriken. Boka demo hör inte hemma här: sidorna vänder sig till företagare, inte till byråer. #}}
+                    {{ if demos }}
                         <div class="foretagare-feature-actions">
-                            {{ unless agency }}
-                                <a href="/boka-demo" class="foretagare-button">
-                                    <span>Boka demo</span>
-                                    <span aria-hidden="true">→</span>
-                                </a>
-                            {{ /unless }}
-
-                            {{ if demos }}
-                                <a href="#prova" class="foretagare-button foretagare-button-ghost">
-                                    <span>Prova själv</span>
-                                    <span aria-hidden="true">↓</span>
-                                </a>
-                            {{ /if }}
+                            <a href="#prova" class="foretagare-button">
+                                <span>Prova själv</span>
+                                <span aria-hidden="true">↓</span>
+                            </a>
                         </div>
                     {{ /if }}
 
