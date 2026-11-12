@@ -1664,6 +1664,15 @@ html { scroll-padding-top: 90px; }
 
 .fi-media.is-migration { padding: 56px 48px; }
 
+.fi-placeholder {
+    font-family: "Geist Mono", monospace;
+    font-size: clamp(5rem, 12vw, 9rem);
+    font-weight: 700;
+    line-height: 1;
+
+    color: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
 .fi-text {
     display: flex;
     flex-direction: column;

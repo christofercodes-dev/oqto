@@ -25,6 +25,9 @@
                                 {{ partial:foretagare/components/visual-migration }}
                             {{ elseif image_url }}
                                 <img src="{{ image_url }}" alt="" loading="lazy">
+                            {{ else }}
+                                {{# Utan bild eller ritad bild visas numret stort i stället för en tom ruta. #}}
+                                <span class="fi-placeholder">{{ if count < 10 }}0{{ /if }}{{ count }}</span>
                             {{ /if }}
 
                         </a>
