@@ -7,3 +7,5 @@ preferences:
   collections:
     foretagare_funktioner:
       view: list
+    agencies:
+      view: list
