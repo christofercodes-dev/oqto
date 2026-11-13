@@ -49,6 +49,27 @@
             <meta name="description" content="{{ seo_description | sanitize }}">
         {{ /if }}
 
+        {{# Delning (Facebook, LinkedIn, Slack, Teams m.fl.): varje sida får titel, beskrivning och en bild.
+            Sidor kan välja egen bild med fältet "Delningsbild", annars används Oqtos standardbild. #}}
+        <meta property="og:site_name" content="Oqto">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="sv_SE">
+        <meta property="og:url" content="{{ seo:url }}">
+        <meta property="og:title" content="{{ if seo_title ?? title }}{{ (seo_title ?? title) | sanitize }}{{ else }}{{ site:name | sanitize }}{{ /if }}">
+        <meta property="og:description" content="{{ if seo_description }}{{ seo_description | sanitize }}{{ else }}Oqto är ett modernt ekonomisystem för redovisningsbyråer: bokföring, fakturering och rapporter i ett och samma system.{{ /if }}">
+        {{ if og_image }}
+            <meta property="og:image" content="{{ og_image:permalink }}">
+            <meta name="twitter:image" content="{{ og_image:permalink }}">
+        {{ else }}
+            <meta property="og:image" content="{{ seo:default_image }}">
+            <meta property="og:image:type" content="image/png">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
+            <meta property="og:image:alt" content="Oqto: modernt ekonomisystem för redovisningsbyråer">
+            <meta name="twitter:image" content="{{ seo:default_image }}">
+        {{ /if }}
+        <meta name="twitter:card" content="summary_large_image">
+
         {{# Sidor med "Dölj för sökmotorer" påslaget (t.ex. investerarträffen) listas inte av Google m.fl. #}}
         {{ if noindex }}
             <meta name="robots" content="noindex, nofollow, noarchive">

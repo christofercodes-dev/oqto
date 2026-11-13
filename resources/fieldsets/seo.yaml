@@ -13,3 +13,11 @@ fields:
       display: 'SEO-beskrivning'
       instructions: 'Kort beskrivning (ca 150–160 tecken) som Google visar under titeln i sökresultat.'
       character_limit: 160
+  -
+    handle: og_image
+    field:
+      type: assets
+      container: assets
+      max_files: 1
+      display: Delningsbild
+      instructions: 'Bilden som visas när sidan delas, t.ex. på LinkedIn, Facebook och i Slack. Helst 1200 × 630 pixlar. Lämna tomt för Oqtos standardbild.'

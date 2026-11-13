@@ -1,0 +1,58 @@
+<!doctype html>
+<!--
+  Delningsbilden (og:image) som används på alla sidor utan egen bild.
+  Skapa om den med:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+    --force-device-scale-factor=1 --window-size=1200,630 \
+    --screenshot=public/images/og/oqto-default.png resources/og/default.html
+-->
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<style>
+    @font-face { font-family: "Sandor"; src: url("../../public/fonts/sandor/Sandor-Medium.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Sandor"; src: url("../../public/fonts/sandor/Sandor-Regular.woff2") format("woff2"); font-weight: 400; }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+
+    body {
+        position: relative;
+
+        font-family: "Sandor", system-ui, sans-serif;
+        color: #2a2420;
+
+        background:
+            radial-gradient(ellipse 60% 70% at 85% 30%, rgba(255, 99, 25, 0.10), transparent 70%),
+            linear-gradient(180deg, #e8f2ff 0%, #ffffff 100%);
+    }
+
+    .logo { position: absolute; top: 64px; left: 80px; width: 150px; }
+
+    .text { position: absolute; top: 200px; left: 80px; width: 640px; }
+
+    h1 { font-size: 66px; font-weight: 500; line-height: 1.06; letter-spacing: -0.03em; }
+
+    p { margin-top: 28px; font-size: 28px; line-height: 1.45; color: #5b5550; }
+
+    .phone { position: absolute; top: 60px; right: 70px; width: 330px; transform: rotate(7deg); filter: drop-shadow(0 30px 50px rgba(46, 37, 31, 0.25)); }
+
+    .octopus { position: absolute; top: 28px; right: 252px; width: 92px; transform: rotate(-8deg); }
+
+    .fish { position: absolute; bottom: 96px; right: 380px; width: 64px; }
+</style>
+</head>
+<body>
+    <img class="logo" src="../../public/images/logos/logga02.svg" alt="">
+
+    <div class="text">
+        <h1>Modernt ekonomisystem för redovisningsbyråer</h1>
+        <p>Bokföring, fakturering och rapporter i ett och samma system.</p>
+    </div>
+
+    <img class="phone" src="../../public/images/funktioner/hero-phone-mockup.webp" alt="">
+    <img class="octopus" src="../../public/images/funktioner/octopus-sticker.svg" alt="">
+    <img class="fish" src="../../public/images/funktioner/fish-sticker.svg" alt="">
+</body>
+</html>
