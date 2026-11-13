@@ -174,7 +174,7 @@ class ForetagareAgencyTest extends TestCase
             ->get('type')
             ->get('options'));
 
-        $this->assertEqualsCanonicalizing(['invoice-desktop', 'invoice-mobile', 'reminders', 'migration', 'migration-check', 'payments', 'tax-account', 'invoice-live'], $options);
+        $this->assertEqualsCanonicalizing(['invoice-desktop', 'invoice-mobile', 'reminders', 'migration', 'migration-check', 'payments', 'tax-account', 'invoice-live', 'app-balance', 'app-sign', 'app-attest'], $options);
 
         $loader = file_get_contents(resource_path('js/demos/index.js'));
 
@@ -251,6 +251,11 @@ class ForetagareAgencyTest extends TestCase
     {
         $this->get('/for-foretagare/fakturering')->assertRedirect('/for-foretagare/enklare-fakturering');
         $this->get('/byra/enora/fakturering')->assertRedirect('/byra/enora/enklare-fakturering');
+        $this->get('/for-foretagare/banksaldo-i-mobilappen')->assertRedirect('/for-foretagare/oqtoappen');
+        $this->get('/byra/enora/banksaldo-i-mobilappen')->assertRedirect('/byra/enora/oqtoappen');
+        $this->get('/for-foretagare/attestera-faktura-i-appen')->assertRedirect('/for-foretagare/oqtoappen#demo-2');
+        $this->get('/for-foretagare/signera-betalning-i-appen')->assertRedirect('/for-foretagare/oqtoappen#demo-3');
+        $this->get('/byra/enora/signera-betalning-i-appen')->assertRedirect('/byra/enora/oqtoappen#demo-3');
     }
 
     public function test_everything_under_byra_is_hidden_from_search_engines(): void

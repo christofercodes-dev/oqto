@@ -51,6 +51,14 @@
                     <div class="foretagare-feature-intro-media is-visual">
                         {{ partial:foretagare/components/visual-migration }}
                     </div>
+                {{ elseif hero_visual:value == 'app-sign' }}
+                    <div class="foretagare-feature-intro-media is-visual">
+                        {{ partial:foretagare/components/visual-app-sign }}
+                    </div>
+                {{ elseif hero_visual:value == 'app-attest' }}
+                    <div class="foretagare-feature-intro-media is-visual">
+                        {{ partial:foretagare/components/visual-app-attest }}
+                    </div>
                 {{ elseif hero_visual:value == 'mobile-balance' }}
                     <div class="foretagare-feature-intro-media is-visual">
                         {{ partial:foretagare/components/visual-mobile-balance }}
@@ -93,7 +101,43 @@
     {{ /if }}
 
 
-    {{ if demos }}
+    {{ if demos && demos_layout && demos_layout:value == 'stacked' }}
+
+        {{# Demona efter varandra, varje med egen rubrik och text, i stället för steg-för-steg. #}}
+        <section class="foretagare-stage is-stacked" id="prova">
+
+            <div class="foretagare-container foretagare-stage-inner">
+
+                <div class="foretagare-stage-head">
+                    <h2 class="foretagare-stage-title">Prova själv</h2>
+                </div>
+
+                <div class="fo-stack">
+
+                    {{ demos }}
+
+                        <div class="fo-stack-item{{ if index | mod:2 == 1 }} is-reverse{{ /if }}" id="demo-{{ count }}">
+
+                            <div class="fo-stack-text">
+                                <span class="fi-number">{{ if count < 10 }}0{{ /if }}{{ count }}</span>
+                                {{ if title }}<h3 class="fo-stack-title">{{ title }}</h3>{{ /if }}
+                                {{ if text }}<p class="fo-stack-body">{{ text }}</p>{{ /if }}
+                            </div>
+
+                            {{# data-next pekar på nästa demo på sidan, så att ett demo kan leda vidare dit när det är klart. #}}
+                            <div class="dm-demo" data-demo="{{ type:value }}"{{ unless last }} data-next="#demo-{{ count + 1 }}"{{ /unless }}></div>
+
+                        </div>
+
+                    {{ /demos }}
+
+                </div>
+
+            </div>
+
+        </section>
+
+    {{ elseif demos }}
 
         <section class="foretagare-stage" id="prova" data-demo-wizard>
 
@@ -231,6 +275,10 @@
                     <div class="foretagare-grid">
                         {{ more }}
                             <a href="{{ href }}" class="foretagare-card">
+                                {{ if hero_visual && !image_url }}
+                                    {{ partial:foretagare/components/card-preview }}
+                                {{ /if }}
+
                                 <span class="foretagare-card-body">
                                     <span class="foretagare-card-title">{{ title }}</span>
                                     {{ if short_description }}

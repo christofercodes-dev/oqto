@@ -13,6 +13,9 @@ const modules = {
     payments: () => import('./payments.js'),
     'tax-account': () => import('./tax-account.js'),
     'invoice-live': () => import('./invoice-live.js'),
+    'app-balance': () => import('./app-balance.js'),
+    'app-sign': () => import('./app-sign.js'),
+    'app-attest': () => import('./app-attest.js'),
 };
 
 document.querySelectorAll('[data-demo]').forEach((root) => {

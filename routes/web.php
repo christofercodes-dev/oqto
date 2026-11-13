@@ -44,6 +44,16 @@ Route::get('/support/{category}/{article}', [SupportController::class, 'article'
 Route::redirect('/byra/win-win', '/byra/enora', 301);
 Route::get('/byra/win-win/{feature}', fn (string $feature) => redirect('/byra/enora/'.$feature, 301));
 
+// Signera och attestera i appen visas nu på Oqtoappen, som tre demon efter varandra.
+Route::redirect('/for-foretagare/attestera-faktura-i-appen', '/for-foretagare/oqtoappen#demo-2', 301);
+Route::redirect('/for-foretagare/signera-betalning-i-appen', '/for-foretagare/oqtoappen#demo-3', 301);
+Route::get('/byra/{agency}/attestera-faktura-i-appen', fn (string $agency) => redirect('/byra/'.$agency.'/oqtoappen#demo-2', 301));
+Route::get('/byra/{agency}/signera-betalning-i-appen', fn (string $agency) => redirect('/byra/'.$agency.'/oqtoappen#demo-3', 301));
+
+// Banksaldo i mobilappen heter nu Oqtoappen.
+Route::redirect('/for-foretagare/banksaldo-i-mobilappen', '/for-foretagare/oqtoappen', 301);
+Route::get('/byra/{agency}/banksaldo-i-mobilappen', fn (string $agency) => redirect('/byra/'.$agency.'/oqtoappen', 301));
+
 // Funktionen Fakturering ersattes av Enklare fakturering: de gamla adresserna flyttas dit.
 Route::redirect('/for-foretagare/fakturering', '/for-foretagare/enklare-fakturering', 301);
 Route::get('/byra/{agency}/fakturering', fn (string $agency) => redirect('/byra/'.$agency.'/enklare-fakturering', 301));

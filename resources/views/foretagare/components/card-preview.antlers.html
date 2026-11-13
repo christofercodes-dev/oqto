@@ -1,0 +1,20 @@
+{{# Liten förhandsbild överst på ett funktionskort: den ritade bilden, nedskalad och beskuren. #}}
+<span class="foretagare-card-preview" aria-hidden="true">
+    <span class="foretagare-card-preview-inner">
+        {{ if hero_visual == 'payments' }}
+            {{ partial:foretagare/components/visual-payments }}
+        {{ elseif hero_visual == 'tax-account' }}
+            {{ partial:foretagare/components/visual-tax-account }}
+        {{ elseif hero_visual == 'invoice' }}
+            {{ partial:foretagare/components/visual-invoice }}
+        {{ elseif hero_visual == 'mobile-balance' }}
+            {{ partial:foretagare/components/visual-mobile-balance }}
+        {{ elseif hero_visual == 'migration' }}
+            {{ partial:foretagare/components/visual-migration }}
+        {{ elseif hero_visual == 'app-sign' }}
+            {{ partial:foretagare/components/visual-app-sign }}
+        {{ elseif hero_visual == 'app-attest' }}
+            {{ partial:foretagare/components/visual-app-attest }}
+        {{ /if }}
+    </span>
+</span>

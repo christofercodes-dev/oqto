@@ -11,6 +11,10 @@
                     {{ features }}
 
                         <a href="{{ href }}" class="foretagare-card">
+                            {{ if hero_visual && !image_url }}
+                                {{ partial:foretagare/components/card-preview }}
+                            {{ /if }}
+
 
                             {{ if image_url }}
                                 <span class="foretagare-card-media">

@@ -4681,3 +4681,582 @@ th.dm-inv-c-sum { color: #555b66; }
 
     .dm-inv-side { border-left: 0; border-top: 1px solid #eceef2; min-height: 460px; }
 }
+
+
+/* =========================================================
+   OQTOAPPEN (signera betalning, attestera faktura)
+   ========================================================= */
+
+.dm-app-stage {
+    display: flex;
+    justify-content: center;
+
+    padding: 4px 0 28px;
+}
+
+.dm-app-phone {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: min(100%, 360px);
+    height: 740px;
+    overflow: hidden;
+
+    border: 8px solid #17161a;
+    border-radius: 48px;
+
+    background-color: #0b0b0e;
+    box-shadow: 0 40px 90px rgba(46, 37, 31, 0.3);
+
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.dm-app-phone button { font-family: inherit; color: inherit; }
+
+.dm-app-scroll {
+    flex: 1;
+
+    min-height: 0;
+    overflow: auto;
+
+    background: linear-gradient(160deg, #4a4550 0%, #2b2830 38%, #121216 100%);
+
+    scrollbar-width: none;
+}
+
+.dm-app-scroll::-webkit-scrollbar { display: none; }
+
+.dm-app-top {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 22px 20px 0;
+}
+
+.dm-app-co {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 16px;
+}
+
+.dm-app-co i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background-color: #17161a;
+
+    font-size: 12px;
+    font-style: normal;
+}
+
+.dm-app-hello { margin-top: 22px; font-size: 26px; font-weight: 600; }
+
+.dm-app-hello em { font-weight: 400; }
+
+.dm-app-sub { font-size: 16px; color: rgba(255, 255, 255, 0.78); }
+
+.dm-app-sub b { color: #b7a4ff; font-weight: 500; }
+
+.dm-app-sheet {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    min-height: 560px;
+    margin-top: 28px;
+    padding: 10px 14px 28px;
+
+    border-radius: 30px 30px 0 0;
+
+    background-color: #0e0e12;
+}
+
+.dm-app-sheet.is-list { margin-top: 24px; }
+
+.dm-app-grab {
+    align-self: center;
+
+    width: 38px;
+    height: 4px;
+
+    border-radius: 2px;
+
+    background-color: #4a4a52;
+}
+
+.dm-app-tasks { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+
+.dm-app-task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 14px;
+
+    border: 1px solid #2a2a33;
+    border-radius: 16px;
+
+    background-color: #09090c;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.dm-app-task-icon { display: inline-flex; color: #d6d6dd; }
+
+.dm-app-task-text { display: flex; flex: 1; flex-direction: column; gap: 2px; }
+
+.dm-app-task-text strong { font-size: 16px; font-weight: 500; }
+
+.dm-app-task-text span { font-size: 13px; color: rgba(255, 255, 255, 0.6); }
+
+.dm-app-task b { font-size: 16px; font-weight: 600; }
+
+.dm-app-task svg:last-child { color: #8a8a94; }
+
+.dm-app-done {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    padding: 26px 0 8px;
+
+    text-align: center;
+}
+
+.dm-app-emoji { font-size: 40px; }
+
+.dm-app-done strong { font-size: 22px; font-weight: 600; }
+
+.dm-app-done span:not(.dm-app-emoji) { font-size: 14px; color: rgba(255, 255, 255, 0.6); }
+
+.dm-app-label { margin-top: 8px; font-size: 16px; }
+
+.dm-app-label-row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+
+.dm-app-label-row .dm-app-label { margin-top: 0; }
+
+.dm-app-pillbtn {
+    padding: 7px 16px;
+
+    border: 1px solid #55555e;
+    border-radius: 999px;
+
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+.dm-app-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    border-radius: 16px;
+
+    background-color: #1a1a1f;
+}
+
+.dm-app-row > svg:last-child { color: #8a8a94; }
+
+.dm-app-row-text { display: flex; flex: 1; flex-direction: column; gap: 1px; }
+
+.dm-app-row-text span { font-size: 13px; color: rgba(255, 255, 255, 0.6); }
+
+.dm-app-row-text strong { font-size: 17px; font-weight: 600; }
+
+.dm-app-bank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(145deg, #f1c14a, #d79a1c);
+    color: #3a2a05;
+}
+
+.dm-app-bank.is-lg { width: 44px; height: 44px; }
+
+.dm-app-pay-cards { display: flex; gap: 10px; }
+
+.dm-app-pay-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+
+    border-radius: 16px;
+
+    background-color: #1a1a1f;
+}
+
+.dm-app-pay-card i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background-color: #09090c;
+
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.dm-app-pay-card span { display: flex; flex-direction: column; min-width: 0; }
+
+.dm-app-pay-card small { overflow: hidden; font-size: 12px; color: rgba(255, 255, 255, 0.6); text-overflow: ellipsis; white-space: nowrap; }
+
+.dm-app-pay-card strong { font-size: 16px; font-weight: 600; }
+
+/* Betalningar och Attest */
+
+.dm-app-summary {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 6px 10px;
+
+    padding: 16px;
+
+    border: 1px solid #2a2a33;
+    border-radius: 18px;
+
+    background-color: #06060a;
+}
+
+.dm-app-summary > span:first-child { font-size: 15px; }
+
+.dm-app-ok { display: inline-flex; color: #8fc16f; }
+
+.dm-app-summary strong { font-size: 25px; font-weight: 600; }
+
+.dm-app-summary small { align-self: end; font-size: 12.5px; color: rgba(255, 255, 255, 0.6); text-align: right; }
+
+.dm-app-action {
+    width: 100%;
+    height: 54px;
+    padding: 0 16px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background-color: #0f2147;
+
+    font-size: 15.5px;
+    font-weight: 500;
+    color: #d3dcf0 !important;
+
+    cursor: default;
+}
+
+.dm-app-action.is-ready { background-color: #14378a; color: #ffffff !important; cursor: pointer; }
+
+.dm-app-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 14px;
+
+    border: 0;
+    border-radius: 16px;
+
+    background-color: #17171c;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.dm-app-item-name { display: flex; flex: 1; flex-direction: column; gap: 1px; font-size: 16.5px; }
+
+.dm-app-item-name strong { font-weight: 500; }
+
+.dm-app-item-name small { font-size: 13px; color: rgba(255, 255, 255, 0.55); }
+
+.dm-app-item-sum { font-size: 15px; white-space: nowrap; }
+
+.dm-app-info { display: inline-flex; color: #8a8a94; }
+
+.dm-app-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+
+    border: 2px solid #6b6b76;
+    border-radius: 50%;
+
+    color: #ffffff;
+}
+
+.dm-app-check.is-on { border-color: #a78bfa; background-color: #a78bfa; }
+
+.dm-app-empty { margin: 26px 0 0; text-align: center; font-size: 15px; color: rgba(255, 255, 255, 0.6); }
+
+.dm-app-link {
+    align-self: center;
+
+    padding: 8px 14px;
+
+    border: 0;
+
+    background: none;
+
+    font-size: 14px;
+    color: #b7a4ff !important;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    cursor: pointer;
+}
+
+/* Flikraden */
+
+.dm-app-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: end;
+
+    padding: 10px 6px 20px;
+
+    background-color: #09090c;
+}
+
+.dm-app-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    padding: 4px 0;
+
+    border: 0;
+    border-radius: 14px;
+
+    background: none;
+
+    font-size: 11.5px;
+    color: #8a8a94 !important;
+
+    cursor: pointer;
+}
+
+.dm-app-tab.is-on { color: #ffffff !important; font-weight: 600; }
+
+.dm-app-tab[aria-disabled="true"] { cursor: default; }
+
+.dm-app-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 11.5px;
+    color: #8a8a94;
+}
+
+.dm-app-plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+    margin-top: -38px;
+
+    border-radius: 50%;
+
+    background-color: #3a3a42;
+    box-shadow: 0 0 0 9px #09090c;
+
+    color: #ffffff;
+}
+
+/* Det som är nästa att trycka på pulserar. */
+
+.dm-app-pulse,
+.dm-app-pulse-tab {
+    animation: dm-app-pulse 1.8s ease-out infinite;
+}
+
+@keyframes dm-app-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.65); }
+    70% { box-shadow: 0 0 0 12px rgba(167, 139, 250, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dm-app-pulse,
+    .dm-app-pulse-tab { animation: none; box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.55); }
+}
+
+/* BankID */
+
+.dm-app-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    padding: 26px 16px;
+
+    background-color: #09090d;
+}
+
+.dm-app-overlay-head { display: flex; align-items: center; gap: 12px; }
+
+.dm-app-overlay-title { display: flex; flex: 1; flex-direction: column; gap: 2px; }
+
+.dm-app-overlay-title strong { font-size: 19px; font-weight: 600; }
+
+.dm-app-overlay-title small { font-size: 14px; color: rgba(255, 255, 255, 0.6); }
+
+.dm-app-close {
+    display: inline-flex;
+
+    padding: 6px;
+
+    border: 0;
+
+    background: none;
+
+    cursor: pointer;
+}
+
+.dm-app-overlay-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+
+    padding: 54px 16px 50px;
+
+    border-radius: 20px;
+
+    background-color: #15151b;
+
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dm-app-spin {
+    width: 34px;
+    height: 34px;
+
+    border: 3px solid rgba(255, 255, 255, 0.18);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+
+    animation: dm-pay-spin 0.9s linear infinite;
+}
+
+.dm-app-toast {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    z-index: 7;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
+    background-color: #8cbd69;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+    font-size: 15px;
+    color: #10230a;
+}
+
+.dm-app-toast button {
+    padding: 4px 6px;
+
+    border: 0;
+
+    background: none;
+
+    font-size: 15.5px;
+    font-weight: 500;
+    color: #10230a !important;
+
+    cursor: pointer;
+}
+
+
+.dm-app-row.is-button {
+    width: 100%;
+    border: 0;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+/* Leder vidare till nästa demo längre ner på sidan. */
+.dm-app-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 100%;
+    margin-top: 6px;
+    padding: 13px 16px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background-color: #a78bfa;
+
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #1a1030 !important;
+
+    cursor: pointer;
+}
+
+.dm-app-done .dm-app-next { margin-top: 14px; }

@@ -41,7 +41,9 @@ tabs:
                 payments: 'Betalningar (valda fakturor och signering)'
                 tax-account: 'Skattekonto (saldo och påfyllning)'
                 invoice: 'Enklare fakturering (formulär och förhandsvisning)'
-                mobile-balance: 'Banksaldo i mobilappen (telefon)'
+                mobile-balance: 'Oqtoappen (startsidan)'
+                app-sign: 'Appen: signera betalning (telefon)'
+                app-attest: 'Appen: attestera faktura (telefon)'
                 migration: 'Flytta till Oqto (före och efter)'
               clearable: true
       -
@@ -71,6 +73,15 @@ tabs:
         display: 'Interaktiva demon'
         fields:
           -
+            handle: demos_layout
+            field:
+              type: select
+              display: 'Så visas demona'
+              instructions: 'Steg för steg (standard) visar ett demo i taget. Efter varandra visar alla demon under varandra, varje med egen rubrik, utan stegrad.'
+              clearable: true
+              options:
+                stacked: 'Efter varandra'
+          -
             handle: demos
             field:
               type: grid
@@ -93,6 +104,9 @@ tabs:
                       payments: 'Betala fakturor (skapa och signera betaluppdrag)'
                       tax-account: 'Skattekonto (fyll på kontot och slå på autopiloten)'
                       invoice-live: 'Skapa kundfaktura med förhandsvisning i realtid (dator)'
+                      app-balance: 'Appen: se saldot på bankkontot'
+                      app-sign: 'Appen: signera betalning med BankID'
+                      app-attest: 'Appen: attestera faktura'
                     validate:
                       - required
                 -

@@ -1424,8 +1424,6 @@
     border-radius: 14px;
 
     background-color: #2c2c31;
-
-    animation: fv-phone-glow 2.4s ease-in-out infinite;
 }
 
 .fv-phone-bank {
@@ -1447,14 +1445,7 @@
 
 .fv-phone-account-text strong { font-size: 0.85rem; }
 
-@keyframes fv-phone-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(63, 163, 77, 0); }
-    50% { box-shadow: 0 0 0 5px rgba(63, 163, 77, 0.28); }
-}
 
-@media (prefers-reduced-motion: reduce) {
-    .fv-phone-account { animation: none; }
-}
 
 .fv-phone-tabs {
     display: grid;
@@ -1915,4 +1906,225 @@ html { scroll-padding-top: 90px; }
     .fi-cta-fields { grid-template-columns: 1fr; }
 
     .fi-hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
+}
+
+/* Oqtoappen: fler delar i den ritade telefonen */
+.fv-phone-sheet.is-list { gap: 10px; }
+
+.fv-phone-task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 12px;
+
+    border: 1px solid #2d2d35;
+    border-radius: 12px;
+
+    background-color: #0b0b0e;
+}
+
+.fv-phone-task-text { display: flex; flex: 1; flex-direction: column; gap: 2px; }
+
+.fv-phone-task-text strong { font-size: 0.8rem; }
+
+.fv-phone-task-text span { color: rgba(255, 255, 255, 0.6); font-size: 0.64rem; }
+
+.fv-phone-task b { font-size: 0.85rem; }
+
+.fv-phone-cards { display: flex; gap: 8px; }
+
+.fv-phone-cards > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 10px;
+
+    border-radius: 12px;
+
+    background-color: #2c2c31;
+}
+
+.fv-phone-cards i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 26px;
+    height: 26px;
+
+    border-radius: 50%;
+
+    background-color: #121216;
+
+    font-size: 0.5rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.fv-phone-cards span { display: flex; flex-direction: column; }
+
+.fv-phone-cards small { color: rgba(255, 255, 255, 0.6); font-size: 0.58rem; }
+
+.fv-phone-cards strong { font-size: 0.76rem; }
+
+.fv-phone-summary {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 8px;
+
+    padding: 12px;
+
+    border: 1px solid #2d2d35;
+    border-radius: 12px;
+
+    background-color: #0b0b0e;
+
+    font-size: 0.7rem;
+}
+
+.fv-phone-summary i { display: inline-flex; color: #8fc16f; }
+
+.fv-phone-summary strong { font-size: 1.05rem; }
+
+.fv-phone-summary small { align-self: end; color: rgba(255, 255, 255, 0.55); font-size: 0.58rem; text-align: right; }
+
+.fv-phone-action {
+    padding: 11px;
+
+    border-radius: 999px;
+
+    background-color: #12306a;
+
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.fv-phone-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 11px;
+
+    border-radius: 12px;
+
+    background-color: #1a1a1f;
+
+    font-size: 0.72rem;
+}
+
+.fv-phone-item b { font-weight: 500; }
+
+.fv-phone-item-name { display: flex; flex: 1; flex-direction: column; gap: 1px; }
+
+.fv-phone-item-name small { color: rgba(255, 255, 255, 0.5); font-size: 0.58rem; }
+
+.fv-phone-item em { font-style: normal; font-size: 0.68rem; }
+
+.fv-phone-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+
+    border: 1.5px solid #6b6b76;
+    border-radius: 50%;
+}
+
+.fv-phone-check.is-on { border-color: #a78bfa; background-color: #a78bfa; color: #ffffff; }
+
+.fi-media.is-app-sign,
+.fi-media.is-app-attest { padding: 40px; }
+
+.fi-media.is-app-sign .fv-phone,
+.fi-media.is-app-attest .fv-phone { width: min(100%, 250px); }
+
+/* Appens demon är en telefon: helskärm behövs inte. */
+.foretagare-stage:has([data-demo="app-sign"]) .foretagare-stage-full,
+.foretagare-stage:has([data-demo="app-attest"]) .foretagare-stage-full { display: none; }
+
+
+/* Demon efter varandra (t.ex. Oqtoappen): text på ena sidan, demot på den andra, växlande. */
+.foretagare-stage.is-stacked { padding-bottom: 80px; }
+
+.fo-stack { display: flex; flex-direction: column; gap: 90px; }
+
+.fo-stack-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 64px;
+    align-items: start;
+}
+
+.fo-stack-item.is-reverse .fo-stack-text { order: 2; }
+
+.fo-stack-item.is-reverse .dm-demo { order: 1; }
+
+.fo-stack-text { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 24px; }
+
+.fo-stack-title {
+    margin: 0;
+
+    font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+}
+
+.fo-stack-body {
+    max-width: 480px;
+    margin: 0;
+
+    font-size: 1.05rem;
+    line-height: 1.65;
+
+    color: #55504c;
+}
+
+@media (max-width: 900px) {
+    .fo-stack { gap: 56px; }
+
+    .fo-stack-item { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+
+    .fo-stack-item.is-reverse .fo-stack-text,
+    .fo-stack-item.is-reverse .dm-demo { order: 0; }
+}
+
+
+/* Liten förhandsbild överst på funktionskorten (ritad bild, nedskalad och beskuren) */
+.foretagare-card-preview {
+    position: relative;
+
+    display: block;
+
+    height: 150px;
+    overflow: hidden;
+
+    background: linear-gradient(135deg, #f3f1ef 0%, #e8e4df 100%);
+}
+
+.foretagare-card-preview-inner {
+    position: absolute;
+    top: 26px;
+    left: 50%;
+
+    display: block;
+
+    width: 460px;
+    margin-left: -230px;
+
+    transform: scale(0.46);
+    transform-origin: top center;
+
+    pointer-events: none;
+}
+
+.foretagare-scope.is-branded .foretagare-card-preview {
+    background: linear-gradient(135deg, var(--brand-soft) 0%, #f3f1ef 100%);
 }
