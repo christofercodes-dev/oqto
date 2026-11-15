@@ -25,7 +25,7 @@ company_revenue_ranges:
   - 50-250
 partner_email: support@standout.se
 partner_phone: '+46470348700'
-partner_website: 'https://standout.se/'
+partner_website: 'https://standout.se/koppla-mcp-med-oqto'
 partner_about: 'Standout är en svensk integrationsleverantör med 20+ års erfarenhet och ISO-certifiering inom ISO-27001.'
 price: 'från 99 kr/mån'
 source_created_at: '2026-10-26 15:38'
