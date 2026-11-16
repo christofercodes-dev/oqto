@@ -226,12 +226,13 @@
                 <span class="integration-show-info-label">Skärmdumpar</span>
 
                 <div class="integration-show-gallery">
-                    {{ media }}
-                        <button type="button" class="integration-show-gallery-item" data-lightbox-trigger data-lightbox-src="{{ id | signed_url }}">
-                            <img src="{{ id | signed_url }}" alt="{{ title }}">
-                        </button>
-                    {{ /media }}
-                    {{ if !media }}
+                    {{ if media }}
+                        {{ media }}
+                            <button type="button" class="integration-show-gallery-item" data-lightbox-trigger data-lightbox-src="{{ id | signed_url }}">
+                                <img src="{{ id | signed_url }}" alt="{{ title }}">
+                            </button>
+                        {{ /media }}
+                    {{ else }}
                         {{ custom_media }}
                             <button type="button" class="integration-show-gallery-item" data-lightbox-trigger data-lightbox-src="{{ id | signed_url }}">
                                 <img src="{{ id | signed_url }}" alt="{{ title }}">

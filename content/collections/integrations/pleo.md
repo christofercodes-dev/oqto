@@ -22,7 +22,7 @@ custom_media:
   - integrationer/partner-marketplaces-automation-1794770614.png
 partner_email: info@pleo.io
 partner_phone: '+45 7876 8435'
-partner_website: www.pleo.io)
+partner_website: 'https://www.pleo.io'
 partner_about: 'Pleo är en europeisk plattform för företagsutgifter som används av över 40 000 företag på 16 europeiska marknader. Momshantering, lokal regelefterlevnad, flera valutor och GDPR är inbyggt i plattformen. Medarbetarna får företagskort, fysiska eller virtuella, och kan handla det de behöver utan egna utlägg eller manuella ersättningar. Ekonomiteamet får full överblick över utgifterna i realtid, med kortgränser, attestflöden och allt samlat på ett ställe.'
 price: Kostnadsfri
 updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
