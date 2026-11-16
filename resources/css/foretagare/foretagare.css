@@ -76,6 +76,14 @@
     min-height: 0;
 }
 
+/* Ingen cookiebanner i ramen: den hamnar långt ned i en hög ram och täcker innehållet,
+   och samtycket sparas ändå inte säkert på en annan sajt. Utan val förblir analys och
+   marknadsföring nekade (se {{ cookie_consent:defaults }} i layouten), alltså mäts ingenting. */
+.is-embedded cookie-consent-banner,
+.is-embedded cookie-consent-button {
+    display: none !important;
+}
+
 .is-embedded .foretagare-scope.is-headless .foretagare-hero {
     padding-top: 48px;
 }

@@ -544,5 +544,9 @@ class ForetagareAgencyTest extends TestCase
 
         $css = file_get_contents(resource_path('css/foretagare/foretagare.css'));
         $this->assertStringContainsString('.is-embedded .foretagare-agency-strip', $css);
+
+        // Cookiebannern (och knappen för att ändra val) döljs i ramen.
+        $this->assertStringContainsString('.is-embedded cookie-consent-banner', $css);
+        $this->assertStringContainsString('.is-embedded cookie-consent-button', $css);
     }
 }
