@@ -12,6 +12,7 @@ features:
   - 5c2e8f17-3b64-4d09-a7e1-6f9d02b8c431
   - 6507da58-56a4-4df5-a5b2-3497d66fe6d7
   - 3f7a9c52-81d4-4e6b-b0a3-5d2c19e8f764
-updated_by: d917a34d-32a2-4fd2-9bdc-a14f7d7c2114
-updated_at: 1794815793
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1794817816
+allow_embed: true
 ---
