@@ -478,4 +478,71 @@ class ForetagareAgencyTest extends TestCase
 
         $this->assertSame('toggle', \Statamic\Facades\Blueprint::find('collections/agencies/agency')->fields()->get('show_topbar')->type());
     }
+
+    public function test_only_agencies_with_embedding_turned_on_can_be_shown_in_an_iframe(): void
+    {
+        $feature = $this->feature('a');
+
+        $this->agency('tillat', ['features' => [$feature->id()], 'allow_embed' => true]);
+        $this->agency('stangd', ['features' => [$feature->id()], 'allow_embed' => false]);
+        $this->agency('utanval', ['features' => [$feature->id()]]);
+
+        // Påslagen: startsidan och funktionssidorna får visas var som helst.
+        foreach (['', '/'.self::PREFIX.'a'] as $suffix) {
+            $response = $this->get('/byra/'.self::PREFIX.'tillat'.$suffix)->assertOk();
+
+            $this->assertNull($response->headers->get('X-Frame-Options'));
+            $this->assertSame('frame-ancestors *', $response->headers->get('Content-Security-Policy'));
+        }
+
+        // Avstängd, eller utan val (äldre byråer): bara oqto.se självt.
+        foreach (['stangd', 'utanval'] as $slug) {
+            foreach (['', '/'.self::PREFIX.'a'] as $suffix) {
+                $response = $this->get('/byra/'.self::PREFIX.$slug.$suffix)->assertOk();
+
+                $this->assertSame('SAMEORIGIN', $response->headers->get('X-Frame-Options'));
+                $this->assertSame("frame-ancestors 'self'", $response->headers->get('Content-Security-Policy'));
+            }
+        }
+
+        // Övriga sidor påverkas inte av att en byrå tillåter inbäddning.
+        foreach (['/', '/for-foretagare', '/for-foretagare/'.self::PREFIX.'a', '/byra/finns-inte'] as $path) {
+            $response = $this->get($path);
+
+            $this->assertSame('SAMEORIGIN', $response->headers->get('X-Frame-Options'), $path);
+            $this->assertSame("frame-ancestors 'self'", $response->headers->get('Content-Security-Policy'), $path);
+        }
+
+        // Ett publicerat val räcker inte: en opublicerad byrå är inte inbäddningsbar.
+        $this->agency('utkast', ['allow_embed' => true], published: false);
+        $this->assertSame('SAMEORIGIN', $this->get('/byra/'.self::PREFIX.'utkast')->headers->get('X-Frame-Options'));
+
+        $field = \Statamic\Facades\Blueprint::find('collections/agencies/agency')->fields()->get('allow_embed');
+        $this->assertSame('toggle', $field->type());
+        $this->assertFalse($field->get('default'));
+    }
+
+    public function test_agency_pages_hide_the_top_bar_when_embedded_but_keep_powered_by(): void
+    {
+        $feature = $this->feature('a');
+
+        $this->agency('tillat', ['features' => [$feature->id()], 'allow_embed' => true]);
+
+        foreach (['', '/'.self::PREFIX.'a'] as $suffix) {
+            $this->get('/byra/'.self::PREFIX.'tillat'.$suffix)
+                ->assertOk()
+                // Skriptet som markerar att sidan ligger i en ram och skickar höjden.
+                ->assertSee("classList.add('is-embedded')", false)
+                ->assertSee('oqto:embed-height', false)
+                // Topplisten finns i sidan men döljs av CSS när den är inbäddad; "Drivs av Oqto" är kvar.
+                ->assertSee('Drivs av')
+                ->assertSee('foretagare-powered-link', false);
+        }
+
+        // Oqtos egna sidor har inget inbäddningsskript.
+        $this->get('/for-foretagare/'.self::PREFIX.'a')->assertDontSee('oqto:embed-height', false);
+
+        $css = file_get_contents(resource_path('css/foretagare/foretagare.css'));
+        $this->assertStringContainsString('.is-embedded .foretagare-agency-strip', $css);
+    }
 }

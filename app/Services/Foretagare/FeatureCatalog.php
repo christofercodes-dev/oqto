@@ -141,6 +141,8 @@ class FeatureCatalog
             'logo_url' => $this->assetUrl($agency, 'logo'),
             // Topplisten visas om inget annat valts (äldre byråer saknar fältet).
             'show_topbar' => $agency->get('show_topbar') !== false,
+            // Inbäddning på andra sajter är av om inget annat valts.
+            'allow_embed' => $agency->get('allow_embed') === true,
             'brand_style' => $this->brandStyle($agency->get('brand_color'), $agency->get('heading_font'), $agency->get('body_font')),
             'heading_font' => $this->fontKey($agency->get('heading_font')),
             'body_font' => $this->fontKey($agency->get('body_font')),

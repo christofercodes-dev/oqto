@@ -39,6 +39,36 @@
         <!-- End Google Tag Manager -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{# Byråsidor som visas i en iframe på byråns egen sajt (kräver "Tillåt inbäddning", se FrameOptions):
+            klassen döljer topplisten, och sidans höjd skickas till värdsidan så att ramen kan anpassas.
+            Sidor utanför en ram påverkas inte. #}}
+        {{ if agency }}
+            <script>
+                (function () {
+                    if (window.top === window.self) return;
+
+                    document.documentElement.classList.add('is-embedded');
+
+                    var send = function () {
+                        parent.postMessage({ type: 'oqto:embed-height', height: Math.ceil(document.documentElement.getBoundingClientRect().height) }, '*');
+                    };
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // "Drivs av Oqto" öppnas i en egen flik i stället för inne i ramen.
+                        document.querySelectorAll('.foretagare-powered-link').forEach(function (a) {
+                            a.target = '_blank';
+                            a.rel = 'noopener';
+                        });
+
+                        send();
+
+                        if (window.ResizeObserver) new ResizeObserver(send).observe(document.documentElement);
+                    });
+
+                    window.addEventListener('load', send);
+                })();
+            </script>
+        {{ /if }}
         {{ if seo_title ?? title }}
             <title>{{ (seo_title ?? title) | sanitize }} – {{ title_suffix ?? site:name | sanitize }}</title>
         {{ else }}

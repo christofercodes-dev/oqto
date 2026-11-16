@@ -41,6 +41,16 @@ tabs:
               instructions: 'En list överst på sidorna med byråns logga och kontaktknapp. Stäng av om sidorna ska visas utan den, t.ex. när de bäddas in på byråns egen sajt.'
               default: true
       -
+        display: Inbäddning
+        fields:
+          -
+            handle: allow_embed
+            field:
+              type: toggle
+              display: 'Tillåt inbäddning på andra sajter'
+              instructions: 'Låter byrån visa sina sidor i en iframe på sin egen webbplats, t.ex. <iframe src="https://oqto.se/byra/{adress}" allow="fullscreen">. Inbäddade sidor visas utan topplist, med "Drivs av Oqto" kvar i botten. Av som standard; då går sidorna bara att visa på oqto.se.'
+              default: false
+      -
         display: Funktioner
         fields:
           -

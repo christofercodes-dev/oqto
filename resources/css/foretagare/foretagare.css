@@ -66,6 +66,20 @@
     padding-top: 80px;
 }
 
+/* Inbäddat på byråns egen sajt (se layout.antlers.html): ingen topplist, och sidan
+   får inte tvinga fram full ramhöjd, annars kan ramen aldrig bli lägre. */
+.is-embedded .foretagare-agency-strip {
+    display: none;
+}
+
+.is-embedded .foretagare-scope.is-headless {
+    min-height: 0;
+}
+
+.is-embedded .foretagare-scope.is-headless .foretagare-hero {
+    padding-top: 48px;
+}
+
 .foretagare-eyebrow {
     display: block;
 

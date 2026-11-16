@@ -17,6 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // kommer från Intercom och verifieras med HMAC-signatur i stället.
         $middleware->web(append: [\App\Http\Middleware\NoIndexPaths::class]);
 
+        // Vem som får bädda in sidor i en iframe (globalt, så att även kontrollpanelen skyddas).
+        $middleware->append(\App\Http\Middleware\FrameOptions::class);
+
         $middleware->preventRequestForgery(except: ['boka-demo/log', 'boka-demo/lookup', 'webhooks/intercom']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
