@@ -15,4 +15,6 @@ features:
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
 updated_at: 1794817816
 allow_embed: true
+embed_domains:
+  - digim.se
 ---

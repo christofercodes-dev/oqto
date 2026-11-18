@@ -522,6 +522,74 @@ class ForetagareAgencyTest extends TestCase
         $this->assertFalse($field->get('default'));
     }
 
+    public function test_an_agency_can_limit_embedding_to_its_own_sites(): void
+    {
+        $feature = $this->feature('a');
+
+        $this->agency('begransad', [
+            'features' => [$feature->id()],
+            'allow_embed' => true,
+            'embed_domains' => ['digim.se', 'https://www.Exempel.se/kontakt?x=1', '*.firma.se', 'localhost:8010'],
+        ]);
+
+        foreach (['', '/'.self::PREFIX.'a'] as $suffix) {
+            $response = $this->get('/byra/'.self::PREFIX.'begransad'.$suffix)->assertOk();
+
+            $this->assertNull($response->headers->get('X-Frame-Options'));
+            $this->assertSame(
+                "frame-ancestors 'self' https://digim.se https://www.digim.se https://exempel.se https://www.exempel.se"
+                .' https://*.firma.se https://firma.se http://localhost:8010',
+                $response->headers->get('Content-Security-Policy')
+            );
+        }
+
+        // Fältet följer med byråns data och finns i blueprinten.
+        $field = \Statamic\Facades\Blueprint::find('collections/agencies/agency')->fields()->get('embed_domains');
+        $this->assertSame('list', $field->type());
+    }
+
+    public function test_embed_domains_can_never_add_anything_but_addresses_to_the_header(): void
+    {
+        $catalog = app(FeatureCatalog::class);
+
+        $agency = $this->agency('rensas', ['allow_embed' => true, 'embed_domains' => [
+            "evil.com 'unsafe-inline'",
+            'a.se; script-src *',
+            '*',
+            'https://',
+            '',
+            '   ',
+            'ex ample.se',
+            'ok.se, annan.se',
+            '-bad-.se',
+            'ftp://nej.se',
+            'javascript:alert(1)',
+            123,
+            null,
+            'Bra.SE',
+            'bra.se',
+            'https://bra.se/sida',
+        ]]);
+
+        $this->assertSame(['https://bra.se', 'https://www.bra.se'], $catalog->embedSources($agency));
+
+        $response = $this->get('/byra/'.self::PREFIX.'rensas')->assertOk();
+        $this->assertSame("frame-ancestors 'self' https://bra.se https://www.bra.se", $response->headers->get('Content-Security-Policy'));
+
+        // Tom lista (eller bara ogiltiga värden) betyder ingen begränsning.
+        $this->agency('tom', ['allow_embed' => true, 'embed_domains' => []]);
+        $this->assertSame('frame-ancestors *', $this->get('/byra/'.self::PREFIX.'tom')->headers->get('Content-Security-Policy'));
+
+        $this->agency('bara-fel', ['allow_embed' => true, 'embed_domains' => ['*', 'x y']]);
+        $this->assertSame('frame-ancestors *', $this->get('/byra/'.self::PREFIX.'bara-fel')->headers->get('Content-Security-Policy'));
+
+        // Utan "Tillåt inbäddning" hjälper inga domäner: bara oqto.se.
+        $this->agency('av', ['allow_embed' => false, 'embed_domains' => ['bra.se']]);
+        $response = $this->get('/byra/'.self::PREFIX.'av')->assertOk();
+        $this->assertSame('SAMEORIGIN', $response->headers->get('X-Frame-Options'));
+        $this->assertSame("frame-ancestors 'self'", $response->headers->get('Content-Security-Policy'));
+    }
+
     public function test_agency_pages_hide_the_top_bar_when_embedded_but_keep_powered_by(): void
     {
         $feature = $this->feature('a');

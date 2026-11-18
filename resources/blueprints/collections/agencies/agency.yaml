@@ -50,6 +50,14 @@ tabs:
               display: 'Tillåt inbäddning på andra sajter'
               instructions: 'Låter byrån visa sina sidor i en iframe på sin egen webbplats, t.ex. <iframe src="https://oqto.se/byra/{adress}" allow="fullscreen">. Inbäddade sidor visas utan topplist, med "Drivs av Oqto" kvar i botten. Av som standard; då går sidorna bara att visa på oqto.se.'
               default: false
+          -
+            handle: embed_domains
+            field:
+              type: list
+              display: 'Sajter som får bädda in'
+              instructions: 'En adress per rad, t.ex. "digim.se". Då får bara de sajterna visa byråns sidor i en ram (både med och utan www). Med "*.digim.se" släpps även underdomäner in. Lämnas listan tom får vilken sajt som helst bädda in, så fyll helst i byråns egen sajt.'
+              if:
+                allow_embed: 'equals true'
       -
         display: Funktioner
         fields:

@@ -143,6 +143,7 @@ class FeatureCatalog
             'show_topbar' => $agency->get('show_topbar') !== false,
             // Inbäddning på andra sajter är av om inget annat valts.
             'allow_embed' => $agency->get('allow_embed') === true,
+            'embed_sources' => $this->embedSources($agency),
             'brand_style' => $this->brandStyle($agency->get('brand_color'), $agency->get('heading_font'), $agency->get('body_font')),
             'heading_font' => $this->fontKey($agency->get('heading_font')),
             'body_font' => $this->fontKey($agency->get('body_font')),
@@ -152,6 +153,56 @@ class FeatureCatalog
             'intro_title' => trim((string) $agency->get('intro_title')) ?: 'Funktioner för dig som är kund hos '.$agency->get('title'),
             'intro_text' => $agency->get('intro_text'),
         ];
+    }
+
+    /**
+     * Adresserna (CSP-källor) som får visa byråns sidor i en ram, t.ex.
+     * ["https://digim.se", "https://www.digim.se"]. Tom lista = ingen begränsning.
+     *
+     * Värdena skrivs av redaktörer och hamnar i en säkerhetsrubrik, så allt som
+     * inte är en ren adress (domän, "*.domän", gärna med http(s):// och port,
+     * annars rensas bort) hoppas över - inget annat än adresser kan nå rubriken.
+     * "digim.se" släpper in både digim.se och www.digim.se; "*.digim.se" även
+     * underdomäner. localhost kräver http, alla andra https.
+     *
+     * @return array<int, string>
+     */
+    public function embedSources(EntryContract $agency): array
+    {
+        $sources = [];
+
+        foreach ((array) $agency->get('embed_domains') as $value) {
+            if (! is_string($value)) {
+                continue;
+            }
+
+            $host = strtolower(trim($value));
+            $host = preg_replace('#^https?://#', '', $host);
+            $host = explode('/', $host, 2)[0];
+
+            if (! preg_match('/^(\*\.)?(www\.)?((?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}|localhost)(:\d{1,5})?$/', $host, $m)) {
+                continue;
+            }
+
+            $wildcard = $m[1] !== '';
+            $base = $m[3].($m[4] ?? '');
+            $scheme = $m[3] === 'localhost' ? 'http' : 'https';
+
+            if ($wildcard) {
+                $sources[] = "{$scheme}://*.{$base}";
+                $sources[] = "{$scheme}://{$base}";
+
+                continue;
+            }
+
+            $sources[] = "{$scheme}://{$base}";
+
+            if ($m[3] !== 'localhost') {
+                $sources[] = "{$scheme}://www.{$base}";
+            }
+        }
+
+        return array_slice(array_values(array_unique($sources)), 0, 40);
     }
 
     /**
