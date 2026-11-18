@@ -121,7 +121,7 @@ tabs:
               folder: integrationer
               max_files: 1
               display: 'Egen logotyp'
-              instructions: 'För integrationer du lagt in manuellt. Importerade integrationer får sin logga från källan (fältet Avatar ovan) och rörs inte av importen. Visas bara om Avatar saknas.'
+              instructions: 'Används när integrationen saknar logotyp från källan (fältet Avatar ovan), och för integrationer du lagt in manuellt. Importen rör aldrig det här fältet, så logotypen ligger kvar efter nattens körningar. Hitta de som saknar logotyp med filtret "Logotyp: saknas" i listan. Visas bara om Avatar saknas.'
           -
             handle: custom_media
             field:

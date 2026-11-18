@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Filesystem\ResilientListingAdapter;
 use App\Modifiers\SignedUrl;
+use App\Services\Integrations\IntegrationLogos;
 use App\Tags\Ekosystem;
 use App\Tags\Foretagare;
 use App\Tags\Integrations;
@@ -15,6 +16,7 @@ use Illuminate\Support\ServiceProvider;
 use League\Flysystem\AwsS3V3\AwsS3V3Adapter;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
+use Statamic\Facades\Collection;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
         Integrations::register();
         Foretagare::register();
         Ekosystem::register();
+
+        // {{ logo_url }} på varje integration: logotypens adress, tagen direkt från
+        // sökvägen på posten och oberoende av Statamics (cachade) bildlista.
+        Collection::computed('integrations', 'logo_url', fn ($entry, $value) => IntegrationLogos::url($entry));
 
         // Egen disk-driver som slår in adaptern i ResilientListingAdapter,
         // så att en otillgänglig/skrivskyddad/ofullständigt konfigurerad

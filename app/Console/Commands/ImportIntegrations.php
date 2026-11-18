@@ -49,6 +49,13 @@ class ImportIntegrations extends Command
             Log::info('Integrations-import: '.$created);
         }
 
+        if (($result['missing_logos'] ?? []) !== []) {
+            $missing = 'Saknar logotyp (ladda upp under "Egen logotyp", filtret "Logotyp: saknas" i listan): '.implode(', ', $result['missing_logos']);
+
+            $this->warn($missing);
+            Log::warning('Integrations-import: '.$missing);
+        }
+
         foreach ($result['errors'] as $error) {
             $this->warn($error);
             Log::warning('Integrations-import: '.$error);

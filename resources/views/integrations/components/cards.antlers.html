@@ -213,17 +213,11 @@
                             aria-label="Läs mer om {{ title }}"
                         >
 
-                            {{ if avatar }}
+                            {{# logo_url byggs av sökvägen på posten (se IntegrationLogos), inte av Statamics bildlista. #}}
+                            {{ if logo_url }}
 
                                 <img
-                                    src="{{ avatar | signed_url }}"
-                                    alt="{{ title }}"
-                                >
-
-                            {{ elseif custom_avatar }}
-
-                                <img
-                                    src="{{ custom_avatar | signed_url }}"
+                                    src="{{ logo_url }}"
                                     alt="{{ title }}"
                                 >
 

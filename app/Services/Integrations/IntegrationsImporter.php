@@ -77,6 +77,7 @@ class IntegrationsImporter
                 'summary' => $this->summary,
                 'errors' => ['Ingen ny export sedan senaste körningen (generatedAt oförändrat) - hoppar över.'],
                 'created_titles' => [],
+                'missing_logos' => $this->missingLogos(),
             ];
         }
 
@@ -119,7 +120,22 @@ class IntegrationsImporter
             'summary' => $this->summary,
             'errors' => $this->errors,
             'created_titles' => $this->createdTitles,
+            'missing_logos' => $this->missingLogos(),
         ];
+    }
+
+    /**
+     * Publicerade integrationer som saknar logotyp. Källan skickar ingen
+     * avatarKey för alla poster, och en saknad logotyp laddas inte upp av sig
+     * själv - den behöver läggas in som "Egen logotyp" (som importen aldrig rör).
+     *
+     * @return array<int, string>
+     */
+    protected function missingLogos(): array
+    {
+        return IntegrationLogos::missing(onlyPublished: true)
+            ->map(fn (EntryContract $entry) => (string) $entry->get('title'))
+            ->all();
     }
 
     /**

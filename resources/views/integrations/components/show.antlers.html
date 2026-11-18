@@ -78,10 +78,9 @@
 
                 <div class="integration-show-hero-image">
 
-                    {{ if avatar }}
-                        <img src="{{ avatar | signed_url }}" alt="{{ title }}">
-                    {{ elseif custom_avatar }}
-                        <img src="{{ custom_avatar | signed_url }}" alt="{{ title }}">
+                    {{# logo_url byggs av sökvägen på posten (se IntegrationLogos), inte av Statamics bildlista. #}}
+                    {{ if logo_url }}
+                        <img src="{{ logo_url }}" alt="{{ title }}">
                     {{ else }}
                         <span class="integration-show-hero-image-placeholder">
                             {{ title | first }}

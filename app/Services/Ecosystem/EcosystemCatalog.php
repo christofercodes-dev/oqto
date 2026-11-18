@@ -2,9 +2,8 @@
 
 namespace App\Services\Ecosystem;
 
-use App\Modifiers\SignedUrl;
+use App\Services\Integrations\IntegrationLogos;
 use Illuminate\Support\Collection;
-use Throwable;
 use Statamic\Contracts\Entries\Entry as EntryContract;
 use Statamic\Facades\Entry;
 
@@ -224,31 +223,12 @@ class EcosystemCatalog
 
     /**
      * Integrationens logga som en tillfälligt signerad URL (bucketen är privat,
-     * se App\Modifiers\SignedUrl). Saknas bilden eller går det inte att signera
-     * visas bokstaven i stället, sidan påverkas aldrig.
+     * se App\Services\Integrations\IntegrationLogos). Saknas bilden eller går det
+     * inte att signera visas bokstaven i stället, sidan påverkas aldrig.
      */
     private function logoUrl(EntryContract $integration): ?string
     {
-        $path = collect((array) $integration->get('avatar'))->filter()->first();
-        $container = 'integrations';
-
-        // Manuellt inlagda integrationer har sin logga i det vanliga asset-flödet.
-        if (! $path) {
-            $path = collect((array) $integration->get('custom_avatar'))->filter()->first();
-            $container = 'assets';
-        }
-
-        if (! $path) {
-            return null;
-        }
-
-        try {
-            $url = (new SignedUrl)->index($container.'::'.$path, [self::LOGO_MINUTES], []);
-        } catch (Throwable) {
-            return null;
-        }
-
-        return is_string($url) && $url !== '' ? $url : null;
+        return IntegrationLogos::url($integration, self::LOGO_MINUTES);
     }
 
     private function integrationId(mixed $system): ?string
