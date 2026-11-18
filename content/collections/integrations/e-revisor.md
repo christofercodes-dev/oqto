@@ -26,7 +26,7 @@ reasons:
   - 'Stöd för K2, K3 och K3 Koncern och samtliga organisationsformer (utom enskild firma)'
   - 'Digital inlämning till Bolagsverket och Skatteverket. Den färdiga årsredovisningen och inkomstdeklarationen kan hanteras helt digitalt.'
   - 'Redo för dig att koppla din AI-agent till programmet och låta den arbeta åt dig.'
-developer_name: E-revisor
+developer_name: 'E-revisor Licens 1 AB'
 partner_email: info@e-revisor.se
 partner_website: 'https://app.e-revisor.se'
 partner_about: 'E-revisor är en svensk webbtjänst för bokslut och årsredovisning som tillhandahålls av E-revisor Licens 1 AB. Vi hjälper redovisningsbyråer och företagare att göra ett färdigt bokföringsår till bokslut, årsredovisning, inkomstdeklaration och bolagshandlingar. Tjänsten har använts av svenska företag och byråer i flera år och utvecklas för att göra bokslutsarbetet enklare, snabbare och säkrare.'
