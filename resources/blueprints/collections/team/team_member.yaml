@@ -41,6 +41,25 @@ tabs:
             field:
               type: text
               display: Telefon
+      -
+        display: Press
+        fields:
+          -
+            handle: press_contact
+            field:
+              type: toggle
+              display: 'Tillgänglig som presskontakt'
+              instructions: 'Personen kan väljas som kontakt på pressmeddelanden. Namn, titel, e-post, telefon och bild hämtas härifrån, så fyll i dem ovan.'
+              default: false
+          -
+            handle: press_default_contact
+            field:
+              type: toggle
+              display: 'Förvald presskontakt'
+              instructions: 'Väljs automatiskt när du skapar ett nytt pressmeddelande (kan tas bort där). Här styr du förvalet, på ett enda ställe.'
+              default: false
+              if:
+                press_contact: 'equals true'
   sidebar:
     display: Sidebar
     sections:

@@ -1,0 +1,184 @@
+title: Pressmeddelande
+tabs:
+  main:
+    display: Pressmeddelande
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Rubrik
+              required: true
+              validate:
+                - required
+          -
+            handle: summary
+            field:
+              type: textarea
+              display: Sammanfattning
+              instructions: 'En eller två meningar i klartext (max 200 tecken). Visas i listan på /press, som delningsbeskrivning och i RSS-flödet.'
+              character_limit: 200
+              rows: 3
+              required: true
+              validate:
+                - required
+                - 'max:200'
+          -
+            handle: cover_image
+            field:
+              type: assets
+              container: press
+              restrict: false
+              max_files: 1
+              display: Omslagsbild
+              instructions: 'Helst 1200 × 630 pixlar (liggande, 1,91:1), så blir delningskortet på LinkedIn utan beskärning. Utan bild används en standardbild för kategorin. Bilder förminskas och komprimeras automatiskt vid uppladdning.'
+          -
+            handle: person_photo
+            field:
+              type: assets
+              container: press
+              restrict: false
+              max_files: 1
+              display: Porträtt
+              instructions: 'Valfritt. T.ex. porträtt på den som börjar. Visas i artikeln.'
+              if:
+                category: 'equals team_news'
+          -
+            handle: body
+            field:
+              type: bard
+              display: Text
+              instructions: 'Verktygsfältet är medvetet litet. Texten sparas som strukturerad data (inte som fri HTML), så bara de här formaten kan förekomma.'
+              buttons:
+                - h2
+                - h3
+                - bold
+                - italic
+                - underline
+                - unorderedlist
+                - orderedlist
+                - quote
+                - anchor
+                - image
+              container: press
+              sets: false
+              smart_typography: true
+              remove_empty_nodes: trim
+              save_html: false
+              link_collections: false
+      -
+        display: LinkedIn
+        fields:
+          -
+            handle: linkedin_caption
+            field:
+              type: textarea
+              display: 'Text till LinkedIn'
+              instructions: 'Texten som visas ovanför länkkortet när inlägget publiceras på LinkedIn (via Zapier). Skriv den för hand för varje pressmeddelande, max ca 600 tecken. Lämnas den tom används sammanfattningen.'
+              character_limit: 600
+              rows: 6
+          -
+            handle: social_title
+            field:
+              type: text
+              display: 'Delningstitel'
+              instructions: 'Valfritt. Titeln på delningskortet. Lämnas tom används rubriken.'
+          -
+            handle: social_description
+            field:
+              type: textarea
+              display: 'Delningsbeskrivning'
+              instructions: 'Valfritt. Beskrivningen på delningskortet. Lämnas tom används sammanfattningen.'
+              rows: 3
+              character_limit: 300
+      -
+        display: Presskontakter
+        fields:
+          -
+            handle: press_contacts
+            field:
+              type: entries
+              collections:
+                - team
+              query_scopes:
+                - press_contacts
+              display: Presskontakter
+              instructions: 'Personer ur teamet som har "Tillgänglig som presskontakt" påslaget. Uppgifterna hämtas från teampostens aktuella data varje gång, så ett ändrat telefonnummer slår igenom i alla pressmeddelanden. Förvalet styrs av "Förvald presskontakt" på teamposten.'
+              create: false
+              mode: select
+          -
+            handle: custom_contacts
+            field:
+              type: grid
+              display: 'Egna kontakter'
+              instructions: 'För t.ex. en extern talesperson eller en partner. Gäller bara det här pressmeddelandet.'
+              add_row: 'Lägg till kontakt'
+              reorderable: true
+              fields:
+                -
+                  handle: name
+                  field:
+                    type: text
+                    display: Namn
+                    width: 50
+                    validate:
+                      - required
+                -
+                  handle: role
+                  field:
+                    type: text
+                    display: 'Titel eller organisation'
+                    width: 50
+                -
+                  handle: email
+                  field:
+                    type: text
+                    display: E-post
+                    width: 50
+                    validate:
+                      - nullable
+                      - email
+                -
+                  handle: phone
+                  field:
+                    type: text
+                    display: Telefon
+                    width: 50
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: date
+            field:
+              type: date
+              display: Publiceringsdatum
+              instructions: 'Visas utåt (och i RSS-flödet) först när posten är publicerad och datumet har passerat. Ett framtida datum schemalägger den.'
+              time_enabled: true
+              time_required: false
+              default: now
+              required: true
+              validate:
+                - required
+          -
+            handle: category
+            field:
+              type: select
+              display: Kategori
+              default: integration
+              required: true
+              validate:
+                - required
+              options:
+                integration: Integration
+                team_news: Teamnyheter
+                product_update: Produktuppdatering

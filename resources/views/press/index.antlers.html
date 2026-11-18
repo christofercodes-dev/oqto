@@ -1,0 +1,42 @@
+{{ partial:components/navbar }}
+
+<div class="articles-scope">
+
+    <header class="articles-hero">
+        <div class="container">
+
+            <span class="articles-eyebrow">Press</span>
+            <h1 class="articles-hero-title">Press och nyheter från Oqto</h1>
+            <p class="articles-hero-text">Nya integrationer, produktnyheter och människorna bakom Oqto.</p>
+
+            <nav class="press-filters" aria-label="Filtrera på kategori">
+                {{ filters }}
+                    <a href="{{ url }}" class="press-filter{{ if active }} is-active{{ /if }}"{{ if active }} aria-current="true"{{ /if }}>{{ label }}</a>
+                {{ /filters }}
+                <a href="/press/feed.xml" class="press-filter press-filter-rss">RSS</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <section class="articles-section">
+        <div class="container">
+
+            {{ if has_items }}
+                <div class="articles-grid">
+                    {{ items }}
+                        {{ partial:press/components/card }}
+                    {{ /items }}
+                </div>
+            {{ else }}
+                <p class="press-empty">
+                    {{ if filtered }}Inga pressmeddelanden i den här kategorin ännu.{{ else }}Inga pressmeddelanden ännu.{{ /if }}
+                </p>
+            {{ /if }}
+
+        </div>
+    </section>
+
+</div>
+
+{{ partial:components/footer }}

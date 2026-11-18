@@ -1,0 +1,24 @@
+<a href="{{ url }}" class="article-card press-card">
+
+    <span class="article-card-media">
+        <img src="{{ cover_url | sanitize }}" alt="" loading="lazy">
+    </span>
+
+    <span class="article-card-body">
+
+        <span class="article-meta">
+            <span class="article-tag">{{ category_label }}</span>
+            <time datetime="{{ date format='Y-m-d' }}">{{ date format="j M Y" }}</time>
+        </span>
+
+        <span class="article-card-title">{{ title }}</span>
+
+        {{ if summary }}
+            <span class="article-card-text">{{ summary }}</span>
+        {{ /if }}
+
+        <span class="article-card-link">Läs mer <span aria-hidden="true">→</span></span>
+
+    </span>
+
+</a>

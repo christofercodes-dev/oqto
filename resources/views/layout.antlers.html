@@ -82,7 +82,7 @@
         {{# Delning (Facebook, LinkedIn, Slack, Teams m.fl.): varje sida får titel, beskrivning och en bild.
             Sidor kan välja egen bild med fältet "Delningsbild", annars används Oqtos standardbild. #}}
         <meta property="og:site_name" content="Oqto">
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="{{ og_type ?? 'website' }}">
         <meta property="og:locale" content="sv_SE">
         <meta property="og:url" content="{{ seo:url }}">
         <meta property="og:title" content="{{ if seo_title ?? title }}{{ (seo_title ?? title) | sanitize }}{{ else }}{{ site:name | sanitize }}{{ /if }}">
@@ -90,6 +90,10 @@
         {{ if og_image }}
             <meta property="og:image" content="{{ og_image:permalink }}">
             <meta name="twitter:image" content="{{ og_image:permalink }}">
+        {{ elseif share_image }}
+            {{# Pressmeddelanden: omslagsbilden (eller kategorins standardbild) som absolut adress. #}}
+            <meta property="og:image" content="{{ share_image | sanitize }}">
+            <meta name="twitter:image" content="{{ share_image | sanitize }}">
         {{ else }}
             <meta property="og:image" content="{{ seo:default_image }}">
             <meta property="og:image:type" content="image/png">
@@ -103,6 +107,11 @@
         {{# Sidor med "Dölj för sökmotorer" påslaget (t.ex. investerarträffen) listas inte av Google m.fl. #}}
         {{ if noindex }}
             <meta name="robots" content="noindex, nofollow, noarchive">
+        {{ /if }}
+
+        {{# Pressrummets RSS-flöde (listan och varje pressmeddelande). #}}
+        {{ if feed_url }}
+            <link rel="alternate" type="application/rss+xml" title="Oqto – Press" href="{{ feed_url | sanitize }}">
         {{ /if }}
 
         <link rel="icon" href="/favicon.ico" sizes="any">

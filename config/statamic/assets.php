@@ -97,6 +97,11 @@ return [
 
         'presets' => [
             // 'small' => ['w' => 200, 'h' => 200, 'q' => 75, 'fit' => 'crop'],
+
+            // Pressrummets bilder: aldrig större än 1600 px på längsta sidan och JPEG/WebP
+            // med 82 i kvalitet. Används som "källförinställning" på containern "press", så
+            // att originalet ersätts vid uppladdning och sidan inte serverar en 8 MB-bild.
+            'press_source' => ['w' => 1600, 'h' => 1600, 'fit' => 'max', 'q' => 82],
         ],
 
         /*

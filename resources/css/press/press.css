@@ -1,0 +1,166 @@
+/* =========================================================
+   PRESS (/press och /press/{slug})
+
+   Bygger på artikelns utseende (artiklar.css, .articles-scope).
+   Här finns bara det som är specifikt för pressrummet: kategorifilter,
+   porträtt och presskontakter.
+   ========================================================= */
+
+.press-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 34px;
+}
+
+.press-filter {
+    padding: 8px 16px;
+
+    border: 1px solid var(--art-line);
+    border-radius: 999px;
+
+    background-color: #ffffff;
+    color: var(--art-ink);
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.press-filter:hover {
+    border-color: var(--art-accent);
+}
+
+.press-filter.is-active {
+    border-color: var(--art-ink);
+
+    background-color: var(--art-ink);
+    color: #ffffff;
+}
+
+.press-filter-rss {
+    margin-left: auto;
+
+    color: var(--art-muted);
+}
+
+/* Omslagsbilderna är 1200 × 630 (och standardbilderna har text i kanten), så kortet visar hela bilden. */
+.press-card .article-card-media {
+    aspect-ratio: 1200 / 630;
+}
+
+.press-empty {
+    margin: 0;
+
+    font-size: 1.1rem;
+
+    color: var(--art-muted);
+}
+
+.press-person-photo {
+    display: block;
+
+    width: 96px;
+    height: 96px;
+    margin-top: 28px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.press-bottom {
+    padding-bottom: 32px;
+}
+
+
+/* ---------- Presskontakt ---------- */
+
+.press-contacts {
+    margin: 0 0 72px;
+    padding: 32px 36px;
+
+    border-radius: 28px;
+
+    background-color: var(--art-surface);
+}
+
+.press-contacts-title {
+    margin: 0 0 22px;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.press-contacts-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+    gap: 24px 32px;
+}
+
+.press-contact {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.press-contact-photo {
+    flex: none;
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.press-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.press-contact-name {
+    font-weight: 600;
+}
+
+.press-contact-role {
+    color: var(--art-muted);
+}
+
+.press-contact-link {
+    overflow-wrap: anywhere;
+
+    color: var(--art-accent);
+    text-decoration: none;
+}
+
+.press-contact-link:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+
+    .press-contacts {
+        padding: 26px 22px;
+    }
+
+    .press-filter-rss {
+        margin-left: 0;
+    }
+
+}

@@ -6,6 +6,7 @@ use App\Http\Controllers\BokaDemoLogController;
 use App\Http\Controllers\BokaDemoLookupController;
 use App\Http\Controllers\EcosystemController;
 use App\Http\Controllers\IntercomWebhookController;
+use App\Http\Controllers\PressController;
 use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,3 +69,8 @@ Route::get('/integrationer/ekosystem', [EcosystemController::class, 'index'])->n
 // Artiklarna (inbound marketing). Själva artiklarna ligger i samlingen "artiklar"
 // (/artiklar/{slug}). Listan finns först när den första artikeln är publicerad.
 Route::get('/artiklar', [ArticlesController::class, 'index'])->name('articles.index');
+
+// Pressrummet: lista och RSS-flöde (till Zapier/LinkedIn). Pressmeddelandena själva ligger i
+// samlingen "press" (/press/{slug}). Flödet måste ligga före Statamics {slug}-väg.
+Route::get('/press', [PressController::class, 'index'])->name('press.index');
+Route::get('/press/feed.xml', [PressController::class, 'feed'])->name('press.feed');

@@ -1,0 +1,55 @@
+{{ partial:components/navbar }}
+
+<div class="articles-scope">
+
+    <article class="article">
+
+        <header class="article-header">
+            <div class="container article-narrow">
+
+                <a href="/press" class="article-back">
+                    <span aria-hidden="true">←</span>
+                    <span>Press</span>
+                </a>
+
+                <span class="article-meta">
+                    <span class="article-tag">{{ category_label }}</span>
+                    <time datetime="{{ date format='Y-m-d' }}">{{ date format="j F Y" }}</time>
+                </span>
+
+                <h1 class="article-title">{{ title }}</h1>
+
+                {{ if summary_text }}
+                    <p class="article-lead">{{ summary_text }}</p>
+                {{ /if }}
+
+                {{ if photo_url }}
+                    <img src="{{ photo_url | sanitize }}" alt="" class="press-person-photo">
+                {{ /if }}
+
+            </div>
+        </header>
+
+        <div class="container article-wide">
+            <figure class="article-hero">
+                <img src="{{ cover_url | sanitize }}" alt="">
+            </figure>
+        </div>
+
+        <div class="container article-narrow">
+            {{ if body }}
+                <div class="article-body">
+                    {{ body }}
+                </div>
+            {{ /if }}
+
+            {{ partial:press/components/contacts }}
+        </div>
+
+    </article>
+
+    <div class="press-bottom"></div>
+
+</div>
+
+{{ partial:components/footer }}

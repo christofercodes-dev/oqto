@@ -27,6 +27,10 @@
               <li><a href="{{ url }}">{{ title }}</a></li>
             {{ /if }}
           {{ /nav:main }}
+          {{# Pressrummet länkas först när det finns något publicerat. #}}
+          {{ if {collection:count in="press"} > 0 }}
+            <li><a href="/press">Press</a></li>
+          {{ /if }}
         </ul>
       </div>
 

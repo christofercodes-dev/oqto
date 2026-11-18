@@ -106,6 +106,18 @@ return [
             'report' => false,
         ],
 
+        // Pressrummets bilder (omslag, porträtt och bilder i texten). Egen disk så att
+        // containern "press" kan ha en källförinställning som förminskar och komprimerar
+        // varje uppladdad bild (se image_manipulation.presets i config/statamic/assets.php).
+        'press' => [
+            'driver' => 'local',
+            'root' => public_path('press-media'),
+            'url' => '/press-media',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
 
     /*

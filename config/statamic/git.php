@@ -120,6 +120,7 @@ return [
         resource_path('sites.yaml'),
         storage_path('forms'),
         public_path('assets'),
+        public_path('press-media'),
     ],
 
     /*

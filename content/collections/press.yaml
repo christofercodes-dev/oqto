@@ -1,0 +1,19 @@
+title: Press
+icon: collections
+# Listan på /press och flödet på /press/feed.xml hanteras av App\Http\Controllers\PressController.
+# Utkast och poster med framtida datum syns bara i CP:n, aldrig utåt (inte heller i flödet),
+# så att man kan skriva i förväg och schemalägga.
+route: '/press/{slug}'
+template: press/show
+layout: layout
+date: true
+date_behavior:
+  past: public
+  future: private
+revisions: false
+sort_dir: desc
+sort_by: date
+preview_targets:
+  - label: Sidan
+    url: '{permalink}'
+    refresh: true

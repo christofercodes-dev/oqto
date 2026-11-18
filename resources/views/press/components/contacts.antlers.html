@@ -1,0 +1,22 @@
+{{# Presskontakter: teammedlemmarnas uppgifter hämtas ur teamposten varje gång (se PressCatalog::contacts). #}}
+{{ if contact_list }}
+    <section class="press-contacts" aria-labelledby="press-contacts-title">
+        <h2 class="press-contacts-title" id="press-contacts-title">Presskontakt</h2>
+
+        <div class="press-contacts-list">
+            {{ contact_list }}
+                <div class="press-contact">
+                    {{ if photo }}
+                        <img src="{{ photo | sanitize }}" alt="" class="press-contact-photo" loading="lazy">
+                    {{ /if }}
+                    <div class="press-contact-info">
+                        <span class="press-contact-name">{{ name }}</span>
+                        {{ if role }}<span class="press-contact-role">{{ role }}</span>{{ /if }}
+                        {{ if email }}<a href="mailto:{{ email | sanitize }}" class="press-contact-link">{{ email }}</a>{{ /if }}
+                        {{ if phone_href }}<a href="tel:{{ phone_href | sanitize }}" class="press-contact-link">{{ phone }}</a>{{ /if }}
+                    </div>
+                </div>
+            {{ /contact_list }}
+        </div>
+    </section>
+{{ /if }}

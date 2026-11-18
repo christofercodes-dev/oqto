@@ -1,0 +1,52 @@
+<!doctype html>
+<!--
+  Standardbilder för pressrummets kategorier (används när ett pressmeddelande saknar omslagsbild).
+  Kategorin väljs i adressen (?c=integration | team-news | product-update). Skapa om bilderna med:
+  for c in integration team-news product-update; do
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+      --force-device-scale-factor=1 --window-size=1200,630 \
+      --screenshot=public/images/press/$c.png "file://$PWD/resources/og/press.html?c=$c"
+  done
+-->
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<style>
+    @font-face { font-family: "Sandor"; src: url("../../public/fonts/sandor/Sandor-Medium.woff2") format("woff2"); font-weight: 500; }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+
+    body {
+        position: relative;
+
+        font-family: "Sandor", system-ui, sans-serif;
+        color: #2a2420;
+
+        background:
+            radial-gradient(ellipse 60% 70% at 85% 30%, rgba(255, 99, 25, 0.14), transparent 70%),
+            linear-gradient(180deg, #e8f2ff 0%, #ffffff 100%);
+    }
+
+    .logo { position: absolute; top: 64px; left: 80px; width: 150px; }
+
+    .label { position: absolute; left: 80px; bottom: 90px; font-size: 84px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; }
+
+    .kicker { position: absolute; left: 80px; bottom: 210px; font-size: 26px; letter-spacing: 0.12em; text-transform: uppercase; color: #ff5500; }
+
+    .octopus { position: absolute; top: 120px; right: 110px; width: 330px; transform: rotate(-8deg); filter: drop-shadow(0 30px 40px rgba(46, 37, 31, 0.2)); }
+</style>
+</head>
+<body>
+    <img class="logo" src="../../public/images/logos/logga02.svg" alt="">
+    <span class="kicker">Oqto Press</span>
+    <div class="label" id="label"></div>
+    <img class="octopus" src="../../public/images/funktioner/octopus-sticker.svg" alt="">
+    <script>
+        var labels = { 'integration': 'Ny integration', 'team-news': 'Teamnyheter', 'product-update': 'Produktuppdatering' };
+        var c = new URLSearchParams(location.search).get('c') || 'integration';
+        document.getElementById('label').textContent = labels[c] || labels.integration;
+    </script>
+</body>
+</html>

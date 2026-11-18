@@ -7,6 +7,8 @@ image:
   - oqto_kortaben-5543@0.33x.jpg
 email: eric@oqto.se
 phone: '0734 - 39 99 93'
+press_contact: true
+press_default_contact: true
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
 updated_at: 1790126372
 ---
