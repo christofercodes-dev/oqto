@@ -14,5 +14,5 @@ signup_url: 'https://www.mynt.com/foretagskort/bli-kund?utm_source=oqto&utm_medi
 updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
 updated_at: 1794209018
 rating_average: 5.0
-rating_count: 4
+rating_count: 5
 ---
