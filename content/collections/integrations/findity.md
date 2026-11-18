@@ -7,8 +7,7 @@ short_description: 'Smidiga utlägg, kvitton och reseräkningar'
 description: 'Slipp jaga kvitton. Med Findity Expense blir utlägg och reseräkningar en av de enklaste delarna av byråns löpande arbete. Medarbetaren fotograferar kvittot i appen, informationen läses av automatiskt och traktamente, milersättning och representation räknas ut enligt gällande regler. Chefen attesterar med några klick, och underlaget går vidare till bokföring och lön. Resultatet: komplett och korrekt underlag i tid, nöjdare kunder och mer av byråns tid till rådgivning i stället för manuell administration. Perfekt för kunder som växer ur kvittolådan och Excel-arken.'
 developer_name: Oqto
 source_created_at: '2026-04-02 14:09'
-avatar:
-  - images/00478caa-f794-4348-bbaa-d0f001567631.png
+avatar: images/00478caa-f794-4348-bbaa-d0f001567631.png
 reasons:
   - 'Färdigt underlag till byrån: kvitton, utlägg, milersättningar, och traktamente kommer in digitalt och komplett.'
   - 'Mindre manuellt arbete: automatisk kvittoläsning, ersätter pappershögar och Excel.'
@@ -22,4 +21,8 @@ partner_about: 'Findity är ett ledande svenskt företag inom hantering av utlä
 price: 'Pris på förfrågan, kontakta oss'
 rating_average: 5.0
 rating_count: 2
+featured: true
+unpublished_by_import: false
+updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
+updated_at: 1795006364
 ---
