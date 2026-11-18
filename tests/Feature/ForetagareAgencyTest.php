@@ -590,6 +590,36 @@ class ForetagareAgencyTest extends TestCase
         $this->assertSame("frame-ancestors 'self'", $response->headers->get('Content-Security-Policy'));
     }
 
+    public function test_each_agency_gets_a_ready_made_embed_code_with_its_own_address(): void
+    {
+        $agency = $this->agency('kodad', ['allow_embed' => true]);
+
+        // Beräknade värden ligger i values() (det kontrollpanelens formulär läser), inte i get().
+        $code = (string) $agency->values()->get('embed_code');
+
+        $this->assertStringContainsString('src="https://oqto.se/byra/'.self::PREFIX.'kodad"', $code);
+        $this->assertStringContainsString('allow="fullscreen"', $code);
+        $this->assertStringContainsString("e.origin !== 'https://oqto.se'", $code);
+        $this->assertStringContainsString('oqto:embed-height', $code);
+        $this->assertStringNotContainsString('{$', $code);
+
+        // Koden räknas fram och sparas aldrig i byråns fil.
+        $this->assertFalse($agency->data()->has('embed_code'));
+        $this->assertStringNotContainsString('embed_code', file_get_contents($agency->path()));
+
+        // Nya byråer utan adress än, och ovanliga tecken, ger aldrig en trasig kod.
+        $catalog = app(FeatureCatalog::class);
+        $this->assertStringContainsString('/byra/byraens-adress"', $catalog->embedCode(null));
+        $this->assertStringContainsString('/byra/byraens-adress"', $catalog->embedCode('  '));
+        $this->assertStringContainsString('/byra/a%22%20b"', $catalog->embedCode('a" b'));
+
+        // I formuläret är den skrivskyddad och bara synlig när inbäddning är på.
+        $field = \Statamic\Facades\Blueprint::find('collections/agencies/agency')->fields()->get('embed_code');
+        $this->assertSame('code', $field->type());
+        $this->assertSame('computed', $field->visibility());
+        $this->assertSame(['allow_embed' => 'equals true'], $field->get('if'));
+    }
+
     public function test_agency_pages_hide_the_top_bar_when_embedded_but_keep_powered_by(): void
     {
         $feature = $this->feature('a');

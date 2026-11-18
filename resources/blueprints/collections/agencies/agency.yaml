@@ -48,7 +48,7 @@ tabs:
             field:
               type: toggle
               display: 'Tillåt inbäddning på andra sajter'
-              instructions: 'Låter byrån visa sina sidor i en iframe på sin egen webbplats, t.ex. <iframe src="https://oqto.se/byra/{adress}" allow="fullscreen">. Inbäddade sidor visas utan topplist, med "Drivs av Oqto" kvar i botten. Av som standard; då går sidorna bara att visa på oqto.se.'
+              instructions: 'Låter byrån visa sina sidor i en iframe på sin egen webbplats. Inbäddade sidor visas utan topplist, med "Drivs av Oqto" kvar i botten. Av som standard; då går sidorna bara att visa på oqto.se. Koden att skicka till byrån finns längre ned (Inbäddningskod).'
               default: false
           -
             handle: embed_domains
@@ -56,6 +56,18 @@ tabs:
               type: list
               display: 'Sajter som får bädda in'
               instructions: 'En adress per rad, t.ex. "digim.se". Då får bara de sajterna visa byråns sidor i en ram (både med och utan www). Med "*.digim.se" släpps även underdomäner in. Lämnas listan tom får vilken sajt som helst bädda in, så fyll helst i byråns egen sajt.'
+              if:
+                allow_embed: 'equals true'
+          -
+            handle: embed_code
+            field:
+              type: code
+              display: Inbäddningskod
+              instructions: 'Skicka den här koden till byrån, som lägger in den där sidan ska visas på sin webbplats. Adressen är byråns egen och fylls i automatiskt. Glöm inte att lägga byråns sajt under "Sajter som får bädda in", annars blir ramen tom (eller öppen för alla om listan är tom).'
+              mode: htmlmixed
+              mode_selectable: false
+              line_numbers: false
+              visibility: computed
               if:
                 allow_embed: 'equals true'
       -

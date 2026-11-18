@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Filesystem\ResilientListingAdapter;
 use App\Modifiers\SignedUrl;
+use App\Services\Foretagare\FeatureCatalog;
 use App\Services\Integrations\IntegrationLogos;
 use App\Tags\Ekosystem;
 use App\Tags\Foretagare;
@@ -41,6 +42,9 @@ class AppServiceProvider extends ServiceProvider
         // {{ logo_url }} på varje integration: logotypens adress, tagen direkt från
         // sökvägen på posten och oberoende av Statamics (cachade) bildlista.
         Collection::computed('integrations', 'logo_url', fn ($entry, $value) => IntegrationLogos::url($entry));
+
+        // Byråns färdiga inbäddningskod, visas (skrivskyddad, sparas aldrig) i byråns formulär.
+        Collection::computed('agencies', 'embed_code', fn ($entry, $value) => app(FeatureCatalog::class)->embedCode($entry->slug()));
 
         // Egen disk-driver som slår in adaptern i ResilientListingAdapter,
         // så att en otillgänglig/skrivskyddad/ofullständigt konfigurerad

@@ -23,6 +23,12 @@ class FeatureCatalog
     public const DARK_INK = '#1a1715';
 
     /**
+     * Adressen byråerna bäddar in från. Fast värde (inte APP_URL), eftersom koden
+     * skickas vidare till byråerna och ska peka på den riktiga sajten.
+     */
+    public const EMBED_ORIGIN = 'https://oqto.se';
+
+    /**
      * Typsnitten en byrå kan välja för rubriker och brödtext (Google Fonts).
      * Nyckeln sparas på byrån, resten är fasta värden som hamnar i CSS och
      * i adressen till typsnittets stilmall, så att inget annat än dessa går att välja.
@@ -153,6 +159,43 @@ class FeatureCatalog
             'intro_title' => trim((string) $agency->get('intro_title')) ?: 'Funktioner för dig som är kund hos '.$agency->get('title'),
             'intro_text' => $agency->get('intro_text'),
         ];
+    }
+
+    /**
+     * Färdig inbäddningskod för en byrå (iframe + skript som anpassar höjden),
+     * redo att skickas till byrån. Visas i byråns formulär i kontrollpanelen.
+     */
+    public function embedCode(?string $slug): string
+    {
+        $slug = trim((string) $slug) !== '' ? rawurlencode(trim((string) $slug)) : 'byraens-adress';
+        $origin = self::EMBED_ORIGIN;
+
+        return <<<HTML
+            <!-- Oqto: lägg in den här koden där sidan ska visas -->
+            <iframe
+              id="oqto-byra"
+              src="{$origin}/byra/{$slug}"
+              title="Funktioner för våra kunder"
+              allow="fullscreen"
+              style="width: 100%; height: 800px; border: 0; display: block;"
+            ></iframe>
+
+            <!-- Anpassar ramens höjd efter innehållet, så att den inte får en egen scrollruta -->
+            <script>
+              (function () {
+                var frame = document.getElementById('oqto-byra');
+
+                window.addEventListener('message', function (e) {
+                  // Lyssna bara på meddelanden från Oqto och från just den här ramen.
+                  if (e.origin !== '{$origin}' || e.source !== frame.contentWindow) return;
+
+                  if (e.data && e.data.type === 'oqto:embed-height') {
+                    frame.style.height = e.data.height + 'px';
+                  }
+                });
+              })();
+            </script>
+            HTML;
     }
 
     /**
