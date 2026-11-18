@@ -3,7 +3,7 @@ id: 667c8e86-cba1-4d9b-bcd4-531cce38443a
 blueprint: integration
 title: Reco
 external_id: 6bb56564-2945-4953-90ac-b9ad4c401903
-short_description: 'Bygg förtroende med kundomdömen som går att lita p'
+short_description: 'Bygg förtroende med kundomdömen som går att lita på'
 description: |-
   93 % av kunderna läser omdömen när de ska välja ett lokalt företag – bli det självklara valet när de jämför. Med Reco samlar du in verifierade kundomdömen automatiskt och visar dem där dina kunder letar.
 
@@ -30,6 +30,9 @@ partner_website: 'https://reco.se'
 partner_about: 'Reco är Sveriges största oberoende omdömesplattform. Genom verifierade omdömen från riktiga kunder hjälper vi redovisningsbyråer och företagare att stärka sitt rykte och vinna fler affärer. Sedan starten 2007 har över 3 000 svenska företag anslutit sig till Reco, och varje månad besöker cirka 300 000 personer reco.se för att hitta företag de kan lita på.'
 price: 'Testa Reco kostnadsfritt i 2 månader – utan förpliktelser. Därefter enligt offert.'
 source_created_at: '2026-11-11 14:03'
-avatar:
-  - images/1ab8c99b-160b-4448-bdbf-41e47bc1578a.png
+avatar: images/1ab8c99b-160b-4448-bdbf-41e47bc1578a.png
+featured: false
+unpublished_by_import: false
+updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
+updated_at: 1795008019
 ---
