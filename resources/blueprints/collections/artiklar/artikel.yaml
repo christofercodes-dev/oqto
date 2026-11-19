@@ -47,7 +47,6 @@ tabs:
                 - image
                 - table
               container: assets
-              sets: false
               remove_empty_nodes: trim
               save_html: false
   sidebar:

@@ -63,7 +63,6 @@ tabs:
                 - anchor
                 - image
               container: press
-              sets: false
               smart_typography: true
               remove_empty_nodes: trim
               save_html: false

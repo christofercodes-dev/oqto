@@ -12,6 +12,7 @@ use Statamic\Events\EntryBlueprintFound;
 use Statamic\Facades\Antlers;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry;
+use Statamic\Facades\User;
 use Statamic\Stache\Repositories\CollectionRepository;
 use Statamic\Stache\Stache;
 use Tests\TestCase;
@@ -399,6 +400,40 @@ class PressTest extends TestCase
         $this->item('i-sidfoten');
 
         $this->get('/')->assertOk()->assertSee('<li><a href="/press">Press</a></li>', false);
+    }
+
+    /**
+     * Skapa-formuläret gav 500 i kontrollpanelen ("sets: false" på Bard-fältet),
+     * vilket inga anrop utan inloggning kunde upptäcka.
+     */
+    public function test_an_editor_can_open_the_forms_and_save_a_press_release(): void
+    {
+        $this->actingAs(User::make()->id('zz-test-user')->email('zz@example.test')->makeSuper());
+
+        $create = $this->get('/cp/collections/press/entries/create/default?blueprint=pressmeddelande')->assertOk();
+        $this->assertStringContainsString('press_contacts', $create->getContent());
+        $this->get('/cp/collections/team/entries/create/default')->assertOk();
+
+        $this->postJson('/cp/collections/press/entries/default', [
+            'blueprint' => 'pressmeddelande',
+            'published' => true,
+            '_localized' => [],
+            'title' => 'Skapad i kontrollpanelen',
+            'slug' => self::PREFIX.'cp',
+            'summary' => 'Kort sammanfattning.',
+            'category' => 'integration',
+            'date' => '2026-11-18T09:00:00.000Z',
+            'body' => [['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => 'Hej']]]],
+            'press_contacts' => [],
+            'custom_contacts' => [],
+        ])->assertOk();
+
+        $entry = Entry::query()->where('collection', 'press')->where('slug', self::PREFIX.'cp')->first();
+        $this->assertNotNull($entry);
+        $this->created[] = $entry;
+
+        $this->get($entry->editUrl())->assertOk();
+        $this->get('/press/'.self::PREFIX.'cp')->assertOk()->assertSee('Skapad i kontrollpanelen');
     }
 
     public function test_the_admin_requires_login(): void
