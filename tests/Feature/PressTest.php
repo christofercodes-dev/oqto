@@ -6,10 +6,14 @@ use App\Scopes\PressContacts;
 use App\Services\Press\PressCatalog;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
+use Statamic\Contracts\Entries\Collection as CollectionContract;
 use Statamic\Contracts\Entries\Entry as EntryContract;
 use Statamic\Events\EntryBlueprintFound;
+use Statamic\Facades\Antlers;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry;
+use Statamic\Stache\Repositories\CollectionRepository;
+use Statamic\Stache\Stache;
 use Tests\TestCase;
 
 class PressTest extends TestCase
@@ -362,6 +366,39 @@ class PressTest extends TestCase
         $this->assertStringNotContainsString('javascript:', $html);
         $this->assertStringNotContainsString('<script>alert', $html);
         $this->assertStringContainsString('&lt;script&gt;alert(2)', $html);
+    }
+
+    /**
+     * Efter en deploy som lägger till collectionen kan Statamics gamla cache sakna den.
+     * Då gav sidfotens räkning "Collection [press] not found" och 500 på varje sida.
+     */
+    public function test_the_site_survives_a_stale_cache_without_the_press_collection(): void
+    {
+        $hidden = new class(app(Stache::class)) extends CollectionRepository
+        {
+            public function findByHandle($handle): ?CollectionContract
+            {
+                return $handle === PressCatalog::COLLECTION ? null : parent::findByHandle($handle);
+            }
+        };
+
+        Collection::swap($hidden);
+
+        $catalog = app(PressCatalog::class);
+
+        $this->assertFalse($catalog->exists());
+        $this->assertFalse($catalog->hasPublished());
+        $this->assertCount(0, $catalog->published());
+
+        // Sidfotens tagg får inte kasta fel (det gjorde collection:count).
+        $this->assertSame('nej', trim((string) Antlers::parse('{{ if {press:has_items} }}ja{{ else }}nej{{ /if }}')));
+    }
+
+    public function test_the_footer_links_to_the_press_room_when_there_is_something_published(): void
+    {
+        $this->item('i-sidfoten');
+
+        $this->get('/')->assertOk()->assertSee('<li><a href="/press">Press</a></li>', false);
     }
 
     public function test_the_admin_requires_login(): void

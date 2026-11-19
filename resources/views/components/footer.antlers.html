@@ -28,7 +28,7 @@
             {{ /if }}
           {{ /nav:main }}
           {{# Pressrummet länkas först när det finns något publicerat. #}}
-          {{ if {collection:count in="press"} > 0 }}
+          {{ if {press:has_items} }}
             <li><a href="/press">Press</a></li>
           {{ /if }}
         </ul>

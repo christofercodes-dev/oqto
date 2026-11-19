@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Statamic\Contracts\Entries\Entry as EntryContract;
 use Statamic\Facades\AssetContainer;
+use Statamic\Facades\Collection as Collections;
 use Statamic\Facades\Entry;
 use Throwable;
 
@@ -48,6 +49,10 @@ class PressCatalog
      */
     public function published(?string $category = null, ?int $limit = null): Collection
     {
+        if (! $this->exists()) {
+            return collect();
+        }
+
         $query = Entry::query()
             ->where('collection', self::COLLECTION)
             ->whereStatus('published')
@@ -62,6 +67,30 @@ class PressCatalog
         }
 
         return $query->get();
+    }
+
+    /**
+     * Finns pressrummet i Statamics cache? Direkt efter en deploy som lägger till collectionen
+     * kan den gamla cachen sakna den. Då ska sajten visa ett tomt pressrum, inte krascha
+     * (Collection::count och entry-frågor kastar annars fel på varje sida via sidfoten).
+     */
+    public function exists(): bool
+    {
+        try {
+            return Collections::findByHandle(self::COLLECTION) !== null;
+        } catch (Throwable) {
+            return false;
+        }
+    }
+
+    /** Finns minst en publicerad post? Används för länken i sidfoten. */
+    public function hasPublished(): bool
+    {
+        try {
+            return $this->exists() && $this->published(null, 1)->isNotEmpty();
+        } catch (Throwable) {
+            return false;
+        }
     }
 
     public function categoryKey(EntryContract $entry): string
