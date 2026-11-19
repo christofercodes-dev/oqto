@@ -17,3 +17,5 @@ preferences:
       view: list
     agencies:
       view: list
+    press:
+      view: list
