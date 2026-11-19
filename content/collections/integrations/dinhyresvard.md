@@ -32,4 +32,6 @@ media:
   - images/c70f696f-0c3e-40fa-94bd-1786b7cc7407.png
 sni_codes:
   - '68'
+rating_average: 5.0
+rating_count: 1
 ---
