@@ -37,7 +37,7 @@ media:
   - images/a2a5ccf4-4e29-434e-9cb6-f156d6b2536c.png
 featured: false
 unpublished_by_import: false
-custom_avatar: integrationer/logo-(4).png
+custom_avatar: integrationer/e-revisor.png
 updated_by: 5cd91a7e-9398-4f5a-a175-60c6191660a0
-updated_at: 1795078294
+updated_at: 1795078451
 ---
