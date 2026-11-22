@@ -632,13 +632,17 @@ class ForetagareAgencyTest extends TestCase
                 // Skriptet som markerar att sidan ligger i en ram och skickar höjden.
                 ->assertSee("classList.add('is-embedded')", false)
                 ->assertSee('oqto:embed-height', false)
+                // Ankarlänkar och sidbyten ber värdsidan scrolla (ramen är lika hög som innehållet).
+                ->assertSee('oqto:scroll-to', false)
                 // Topplisten finns i sidan men döljs av CSS när den är inbäddad; "Drivs av Oqto" är kvar.
                 ->assertSee('Drivs av')
                 ->assertSee('foretagare-powered-link', false);
         }
 
         // Oqtos egna sidor har inget inbäddningsskript.
-        $this->get('/for-foretagare/'.self::PREFIX.'a')->assertDontSee('oqto:embed-height', false);
+        $this->get('/for-foretagare/'.self::PREFIX.'a')
+            ->assertDontSee('oqto:embed-height', false)
+            ->assertDontSee('oqto:scroll-to', false);
 
         $css = file_get_contents(resource_path('css/foretagare/foretagare.css'));
         $this->assertStringContainsString('.is-embedded .foretagare-agency-strip', $css);

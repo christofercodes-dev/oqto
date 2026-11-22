@@ -66,6 +66,29 @@
                     });
 
                     window.addEventListener('load', send);
+
+                    {{# Ramen är lika hög som sitt innehåll, så det finns inget att scrolla inne i den. Ankarlänkar
+                        (t.ex. "Prova själv", #prova) och sidbyten ber därför den omgivande sidan scrolla;
+                        värdsidan lyssnar på { type: 'oqto:scroll-to', y: <pixlar från ramens topp> }. #}}
+                    document.addEventListener('click', function (ev) {
+                        var a = ev.target.closest && ev.target.closest('a[href^="#"]');
+                        if (!a || a.getAttribute('href').length < 2) return;
+
+                        var target;
+                        try { target = document.querySelector(a.getAttribute('href')); } catch (e) { return; }
+                        if (!target) return;
+
+                        ev.preventDefault();
+                        parent.postMessage({ type: 'oqto:scroll-to', y: Math.round(target.getBoundingClientRect().top + window.pageYOffset) }, '*');
+                    });
+
+                    {{# Efter ett sidbyte inne i ramen: scrolla till ramens topp. Bara när sidan kom från en annan
+                        Oqto-sida, så att värdsidan inte hoppar till ramen första gången den laddas. #}}
+                    window.addEventListener('load', function () {
+                        if (document.referrer && document.referrer.indexOf(location.origin + '/') === 0) {
+                            parent.postMessage({ type: 'oqto:scroll-to', y: 0 }, '*');
+                        }
+                    });
                 })();
             </script>
         {{ /if }}
