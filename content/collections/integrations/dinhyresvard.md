@@ -22,8 +22,7 @@ partner_website: 'https://www.techworx.se/'
 partner_about: 'Techworx hjälper dagens digitala företag och redovisningsbyråer med integrationer och automatisering mot Oqto och andra ekonomisystem. Med våra lösningar kan återkommande uppgifter automatiseras och skapa tid för annat. Vi älskar automatisering & redovisning helt enkelt!'
 price: 'från 89 kr i månaden'
 source_created_at: '2026-04-28 19:01'
-avatar:
-  - images/6c748d43-cec2-4e4c-863d-16ab3005c87f.png
+avatar: images/6c748d43-cec2-4e4c-863d-16ab3005c87f.png
 media:
   - images/12011698-df95-45d2-880d-1ef0eed49691.png
   - images/c7db9a6d-09c6-4ea6-9c38-56cdfcadbc01.png
@@ -34,4 +33,8 @@ sni_codes:
   - '68'
 rating_average: 5.0
 rating_count: 1
+featured: true
+unpublished_by_import: false
+updated_by: 6ead66f0-701a-4c3b-a932-a20131ce2ae8
+updated_at: 1795419417
 ---
