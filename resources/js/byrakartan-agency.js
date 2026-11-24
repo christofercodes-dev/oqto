@@ -11,6 +11,59 @@
  * renderas inte alls. Allt som visas sätts med textContent, så inget i svaren tolkas som HTML.
  */
 
+/*
+ * Svenska telefonnummer skrivs läsbart ("073-683 49 64", "08-123 45 67", "0480-123 45") i stället för som
+ * en lång rad siffror. Numret kan komma som +46736834964, 0736 83 49 64 eller 0046 73 ...; det visas på
+ * svenskt vis och ringlänken får det internationella formatet (+46...). Utländska och oväntade nummer
+ * visas som de är.
+ *
+ * @returns {{ text: string, dial: string }}
+ */
+export function formatPhone(raw) {
+
+    const clean = String(raw).trim();
+    let digits = clean.replace(/[^\d+]/g, '');
+
+    // +46 (0)73... / 0046 73... / +46 73... -> 073...
+    digits = digits.replace(/^(\+|00)46(0)?/, '0');
+
+    const dial = digits.startsWith('0') && digits !== clean.replace(/[^\d+]/g, '')
+        ? `+46${digits.slice(1)}`
+        : clean.replace(/[^\d+]/g, '');
+
+    if (!/^0\d{6,10}$/.test(digits)) return { text: clean, dial };
+
+    // Områdeskoder med två siffror efter nollan (0xx); övriga landsändar-koder har tre (0xxx). 08 är Stockholm.
+    const THREE = ['011', '013', '016', '018', '019', '021', '023', '026', '031', '033', '035', '036', '040', '042', '044', '046', '054', '060', '063', '090'];
+
+    const group = (rest) => {
+        switch (rest.length) {
+            case 4: return `${rest.slice(0, 2)} ${rest.slice(2)}`;
+            case 5: return `${rest.slice(0, 3)} ${rest.slice(3)}`;
+            case 6: return `${rest.slice(0, 2)} ${rest.slice(2, 4)} ${rest.slice(4)}`;
+            case 7: return `${rest.slice(0, 3)} ${rest.slice(3, 5)} ${rest.slice(5)}`;
+            case 8: return `${rest.slice(0, 3)} ${rest.slice(3, 6)} ${rest.slice(6)}`;
+            default: return rest;
+        }
+    };
+
+    let text;
+
+    if (/^07\d{8}$/.test(digits)) {
+        text = `${digits.slice(0, 3)}-${digits.slice(3, 6)} ${digits.slice(6, 8)} ${digits.slice(8)}`;
+    } else if (digits.startsWith('08')) {
+        text = `08-${group(digits.slice(2))}`;
+    } else if (THREE.includes(digits.slice(0, 3))) {
+        text = `${digits.slice(0, 3)}-${group(digits.slice(3))}`;
+    } else if (/^0[1-9]\d{2}/.test(digits) && digits.length >= 8) {
+        text = `${digits.slice(0, 4)}-${group(digits.slice(4))}`;
+    } else {
+        return { text: clean, dial };
+    }
+
+    return { text, dial: `+46${digits.slice(1)}` };
+}
+
 export default function initAgencyPage(root) {
 
     const api = (root.dataset.api || '').replace(/\/$/, '');
@@ -62,12 +115,13 @@ export default function initAgencyPage(root) {
 
                 // Värdet tar knappens plats (med samma ikon), som en länk man kan klicka på för att ringa/skriva.
                 const shown = document.createElement(valid ? 'a' : 'span');
+                const formatted = phone ? formatPhone(value) : { text: value, dial: value.replace(/\s/g, '') };
 
                 shown.className = 'byra-contact-btn is-revealed';
                 shown.append(...[...button.querySelectorAll('svg')].map((icon) => icon.cloneNode(true)));
-                shown.append(Object.assign(document.createElement('span'), { textContent: value }));
+                shown.append(Object.assign(document.createElement('span'), { textContent: formatted.text }));
 
-                if (valid) shown.href = `${phone ? 'tel:' : 'mailto:'}${value.replace(phone ? /[\s().-]/g : /\s/g, '')}`;
+                if (valid) shown.href = `${phone ? 'tel:' : 'mailto:'}${formatted.dial}`;
 
                 button.replaceWith(shown);
             } catch (e) {
