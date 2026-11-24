@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgencyController;
+use App\Http\Controllers\AgencyDirectoryController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BokaDemoLogController;
 use App\Http\Controllers\BokaDemoLookupController;
@@ -61,6 +62,13 @@ Route::get('/byra/{agency}/fakturering', fn (string $agency) => redirect('/byra/
 
 Route::get('/byra/{agency}', [AgencyController::class, 'index'])->name('agency.index');
 Route::get('/byra/{agency}/{feature}', [AgencyController::class, 'feature'])->name('agency.feature');
+
+// Redovisningsbyråerna som använder Oqto (lightversion av Byråkartan). Listan hämtas
+// från Byråkartans API och cachas, se App\Services\Byrakartan\AgencyDirectory.
+Route::get('/byrakartan', [AgencyDirectoryController::class, 'index'])->name('agency-directory.index');
+Route::get('/byrakartan/{slug}', [AgencyDirectoryController::class, 'show'])
+    ->where('slug', '[A-Za-z0-9][A-Za-z0-9._-]*')
+    ->name('agency-directory.show');
 
 // Ekosystemen visar hur flera integrationer fungerar tillsammans. Posterna
 // själva ligger i samlingen "ekosystem" (/integrationer/ekosystem/{slug}).

@@ -1,0 +1,42 @@
+<article class="byra-card">
+
+    <header class="byra-card-head">
+        {{ if logo }}<img src="{{ logo | sanitize }}" alt="" class="byra-card-logo" loading="lazy" onerror="this.remove()">{{ /if }}
+        <h2 class="byra-card-name">
+            {{# Hela kortet är en länk till byråns egen sida: länken sträcks över kortet (se .byra-card-open::after). #}}
+            <a href="{{ agency_url | sanitize }}" class="byra-card-open">{{ name | sanitize }}</a>
+        </h2>
+
+        <p class="byra-card-meta">
+            {{ if city }}<span class="byra-card-city">{{ city | sanitize }}</span>{{ /if }}
+            {{ if distance }}<span class="byra-card-distance">{{ distance }}</span>{{ /if }}
+            {{ if has_rating }}
+                <span class="byra-card-rating" title="Betyg {{ rating }} av 5 ({{ rating_count }} omdömen)">
+                    <span aria-hidden="true">★</span> {{ rating }}
+                    <span class="byra-card-rating-count">({{ rating_count }})</span>
+                </span>
+            {{ /if }}
+        </p>
+    </header>
+
+    {{ if authorized || digital }}
+        <p class="byra-card-badges">
+            {{ if authorized }}<span class="byra-card-badge">Auktoriserad</span>{{ /if }}
+            {{ if digital }}<span class="byra-card-badge">100 % digital</span>{{ /if }}
+        </p>
+    {{ /if }}
+
+    {{ if services }}
+        <ul class="byra-card-services" aria-label="Tjänster">
+            {{ services }}
+                <li>{{ name | sanitize }}</li>
+            {{ /services }}
+            {{ if services_more }}
+                <li class="byra-card-services-more">+ {{ services_more }}</li>
+            {{ /if }}
+        </ul>
+    {{ /if }}
+
+    <span class="article-card-link byra-card-link" aria-hidden="true">Visa mer <span>→</span></span>
+
+</article>

@@ -82,6 +82,37 @@ return [
         'cache_ttl' => (int) env('INTERCOM_CACHE_TTL', 3600),
     ],
 
+    'mapbox' => [
+        // Postnummer i byrasökningen på /byrakartan slås upp med denna token (se
+        // App\Services\Byrakartan\PostcodeLocator), och kartan i sidans hero ritas med
+        // Mapbox-rutor. Till webbläsaren skickas bara en PUBLIK token (pk.…); allt annat
+        // ger OpenStreetMap-rutor. Utan token fungerar sökningen ändå, men utan
+        // postnummer. Token läggs bara i .env.
+        'token' => env('MAPBOX_TOKEN'),
+        // Kartornas utseende (Mapbox-stilhandtag, t.ex. mapbox/streets-v12, mapbox/outdoors-v12 eller en egen
+        // stil från Mapbox Studio: användarnamn/stil-id). Listan på /byrakartan har en färgstark karta ...
+        'style' => env('MAPBOX_STYLE', 'mapbox/streets-v12'),
+        // ... och byråernas egna sidor en ljus.
+        'style_agency' => env('MAPBOX_STYLE_AGENCY', 'mapbox/light-v11'),
+    ],
+
+    'byrakartan' => [
+        // Byråerna på /byrakartan hämtas från Byråkartans publika, skrivskyddade API
+        // (inga nycklar, 60 anrop/min per IP) och cachas, se
+        // App\Services\Byrakartan\AgencyDirectory.
+        'base_url' => env('BYRAKARTAN_API_URL', 'https://byrakartan.se/api/v1'),
+        // Ekosystemet (handtag) vars byråer listas.
+        'system' => env('BYRAKARTAN_SYSTEM', 'oqto'),
+        // Hur länge listan cachas (sekunder). API:et cachar själv i 5 minuter.
+        'cache_ttl' => (int) env('BYRAKARTAN_CACHE_TTL', 1800),
+        // Byråkartans publika sajt är avstängd tills vidare: länka bara till
+        // byråkartan.se (profilsidor och startsida) när detta sätts till true.
+        'link_profiles' => (bool) env('BYRAKARTAN_LINK_PROFILES', false),
+        // Klick på byråns webbplats, telefonnummer och e-post räknas hos Byråkartan (webbläsaren anropar deras API
+        // direkt, se resources/js/byrakartan-agencies.js). Sätt till false för att stänga av räkningen.
+        'track_clicks' => (bool) env('BYRAKARTAN_TRACK_CLICKS', true),
+    ],
+
     'integrations_s3' => [
         // Nyckeln till JSON-filen som .NET-tjänsten dumpar nattligen.
         // Anslutningsuppgifterna för själva bucketen finns i

@@ -1,0 +1,1151 @@
+/* =========================================================
+   BYRÅER (/byrakartan)
+
+   Lightversion av Byråkartan: byråer som använder Oqto. Bygger på artikelns
+   utseende (artiklar.css, .articles-scope) och pressrummets filterknappar
+   (press.css). Här finns bara kortet och det som är specifikt för listan.
+   ========================================================= */
+
+.byraer-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-top: 34px;
+}
+
+.byraer-filters .press-filters {
+    margin-top: 0;
+}
+
+.byraer-filter-label {
+    margin-top: 6px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+
+    color: var(--art-muted);
+}
+
+.byraer-count,
+.byraer-source {
+    margin: 0 0 24px;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+
+    color: var(--art-muted);
+}
+
+.byraer-source {
+    margin: 40px 0 0;
+}
+
+.byraer-count a,
+.byraer-source a,
+.byraer-link {
+    color: var(--art-accent);
+    text-decoration: none;
+}
+
+.byraer-count a:hover,
+.byraer-source a:hover,
+.byraer-link:hover {
+    text-decoration: underline;
+}
+
+.byraer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.byra-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    padding: 26px;
+
+    border: 1px solid var(--art-line);
+    border-radius: 24px;
+
+    background-color: #ffffff;
+}
+
+.byra-card-name {
+    margin: 0;
+
+    font-size: 1.45rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+}
+
+.byra-card-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.byra-card-name a:hover {
+    color: var(--art-accent);
+}
+
+.byra-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+
+    margin: 10px 0 0;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    line-height: 1.3;
+
+    color: var(--art-muted);
+}
+
+.byra-card-city {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.byra-card-rating {
+    color: var(--art-ink);
+    font-weight: 600;
+}
+
+.byra-card-rating [aria-hidden] {
+    color: var(--art-accent);
+}
+
+.byra-card-rating-count {
+    font-weight: 400;
+
+    color: var(--art-muted);
+}
+
+.byra-card-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.byra-card-services li {
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    background-color: var(--art-surface);
+    color: var(--art-ink);
+
+    font-size: 0.85rem;
+    line-height: 1.3;
+}
+
+.byra-card-services .byra-card-services-more {
+    background-color: transparent;
+    color: var(--art-muted);
+}
+
+.byra-card-link {
+    margin-top: auto;
+
+    overflow-wrap: anywhere;
+    text-decoration: none;
+}
+
+.byra-card-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1023px) {
+
+    .byraer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .byraer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .byra-card {
+        padding: 22px;
+    }
+
+}
+
+
+/* ---------- Hero med karta ----------
+   Som på Byråkartans startsida: kartan fyller hero-blocket bakom texten och tonas ut åt
+   vänster. På mobil ligger den som ett eget kort under sökformuläret. */
+
+.byraer-hero-copy {
+    position: relative;
+    z-index: 2;
+}
+
+.byraer-hero-map {
+    z-index: 0;
+
+    height: 340px;
+    margin-top: 32px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background-color: var(--art-surface);
+}
+
+.byraer-hero-wash {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+
+    .byraer-hero {
+        position: relative;
+
+        min-height: 680px;
+        padding-bottom: 72px;
+
+        overflow: hidden;
+    }
+
+    .byraer-hero-copy {
+        max-width: 600px;
+    }
+
+    .byraer-hero-map {
+        position: absolute;
+        inset: 0;
+
+        height: auto;
+        margin-top: 0;
+
+        border-radius: 0;
+    }
+
+    .byraer-hero-wash {
+        display: block;
+
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+
+        pointer-events: none;
+
+        background: linear-gradient(to right, #fcfaf7 0%, #fcfaf7 30%, rgba(252, 250, 247, 0.85) 45%, rgba(252, 250, 247, 0) 65%);
+    }
+
+}
+
+.byraer-pin {
+    display: block;
+
+    color: var(--art-accent);
+
+    filter: drop-shadow(0 2px 3px rgba(46, 37, 31, 0.35));
+}
+
+.byraer-cluster {
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+
+    background-color: var(--art-ink);
+    color: #ffffff;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.byraer-popup {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.35;
+}
+
+.byraer-popup span {
+    color: var(--art-muted);
+}
+
+.byraer-popup a {
+    color: var(--art-accent);
+    overflow-wrap: anywhere;
+}
+
+.byraer-hero-map .leaflet-container,
+.byraer-hero-map.leaflet-container {
+    font-family: var(--font-sans);
+}
+
+/* Zoomknapparna som runda knappar, som övriga knappar på sidan. Leaflets egna regler (laddas senare och
+   har fler väljare, bl.a. :first-child/:last-child) måste överträffas för att kanter och hörn ska bli rätt. */
+.articles-scope :is(.byraer-hero-map, .byra-detail-map) .leaflet-bar {
+    border: 0;
+    box-shadow: none;
+    background: none;
+}
+
+.articles-scope :is(.byraer-hero-map, .byra-detail-map) .leaflet-bar a,
+.articles-scope :is(.byraer-hero-map, .byra-detail-map) .leaflet-bar a:first-child,
+.articles-scope :is(.byraer-hero-map, .byra-detail-map) .leaflet-bar a:last-child {
+    display: grid;
+    place-items: center;
+
+    width: 40px;
+    height: 40px;
+    margin: 0 0 8px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background-color: var(--art-ink);
+    box-shadow: 0 2px 8px rgba(46, 37, 31, 0.25);
+    color: #ffffff;
+
+    font-size: 22px;
+    line-height: 1;
+    text-indent: 0;
+
+    transition: background-color 0.2s ease;
+}
+
+.articles-scope :is(.byraer-hero-map, .byra-detail-map) .leaflet-bar a:hover {
+    background-color: var(--art-accent);
+}
+
+.articles-scope :is(.byraer-hero-map, .byra-detail-map) .leaflet-bar a.leaflet-disabled {
+    background-color: #8a847f;
+
+    cursor: default;
+}
+
+/* Sajtens fasta meny ligger över kartans övre kant och skulle fånga klicken, så knapparna sitter längre ned. */
+.articles-scope .byraer-hero-map .leaflet-top.leaflet-right {
+    top: 96px;
+}
+
+.articles-scope .byra-detail-map .leaflet-right .leaflet-control {
+    margin-top: 12px;
+}
+
+.articles-scope .byraer-hero-map .leaflet-right .leaflet-control {
+    margin-right: 24px;
+}
+
+.articles-scope .byra-detail-map .leaflet-right .leaflet-control {
+    margin-right: 12px;
+}
+
+@media (max-width: 1023px) {
+
+    .articles-scope .byraer-hero-map .leaflet-top.leaflet-right {
+        top: 0;
+    }
+
+    .articles-scope .byraer-hero-map .leaflet-right .leaflet-control {
+        margin-right: 12px;
+        margin-top: 12px;
+    }
+
+}
+
+.byraer-hero-map .leaflet-control-attribution {
+    background: rgba(252, 250, 247, 0.8);
+
+    color: var(--art-muted);
+    font-size: 10px;
+}
+
+/* ---------- Sökformuläret ---------- */
+
+.byraer-search {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    margin-top: 34px;
+    padding: 26px 28px;
+
+    border: 1px solid var(--art-line);
+    border-radius: 28px;
+
+    background-color: #ffffff;
+    box-shadow: 0 4px 30px 2px rgba(46, 37, 31, 0.08);
+}
+
+.byraer-search-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.byraer-search-field {
+    flex: 1 1 220px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.byraer-label {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+
+    color: var(--art-muted);
+}
+
+.byraer-search input[type="search"] {
+    height: 44px;
+    padding: 0 18px;
+
+    border: 1px solid var(--art-line);
+    border-radius: 999px;
+
+    background-color: #ffffff;
+    color: var(--art-ink);
+
+    font: inherit;
+    font-size: 0.95rem;
+}
+
+/* Sorteringen: en vanlig <select> som ser ut som filterknapparna. Med JavaScript ersätts den av
+   en egen dropdown (se byrakartan-search.js); <select> ligger då kvar dold och är det som skickas. */
+.byraer-select {
+    position: relative;
+}
+
+.byraer-search select,
+.byraer-select-button {
+    appearance: none;
+
+    height: 40px;
+    padding: 0 42px 0 18px;
+
+    border: 1px solid var(--art-line);
+    border-radius: 999px;
+
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%232e251f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position: right 18px center;
+    background-repeat: no-repeat;
+    color: var(--art-ink);
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: border-color 0.2s ease;
+}
+
+.byraer-select-button {
+    min-width: 190px;
+
+    text-align: left;
+}
+
+.byraer-select-button[aria-expanded="true"] {
+    border-color: var(--art-ink);
+}
+
+.byraer-search select:hover,
+.byraer-select-button:hover {
+    border-color: var(--art-accent);
+}
+
+.byraer-search select:focus-visible,
+.byraer-select-button:focus-visible {
+    border-color: var(--art-ink);
+    outline: 2px solid var(--art-accent);
+    outline-offset: 2px;
+}
+
+.byraer-select.is-enhanced select {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Listan öppnas uppåt: sökformuläret ligger längst ned i hero-blocket, som klipper allt som sticker ut. */
+.byraer-select-list {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    z-index: 20;
+
+    min-width: 100%;
+    margin: 0;
+    padding: 8px;
+
+    border: 1px solid var(--art-line);
+    border-radius: 20px;
+
+    background-color: #ffffff;
+    box-shadow: 0 16px 36px rgba(46, 37, 31, 0.14), 0 4px 12px rgba(46, 37, 31, 0.06);
+
+    list-style: none;
+}
+
+.byraer-select-list[hidden] {
+    display: none;
+}
+
+.byraer-select-list li {
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    color: var(--art-ink);
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+
+.byraer-select-list li:hover,
+.byraer-select-list li:focus {
+    background-color: var(--art-surface);
+
+    outline: none;
+}
+
+.byraer-select-list li[aria-selected="true"] {
+    color: var(--art-accent);
+}
+
+.byraer-select-list li[aria-selected="true"]::after {
+    content: "✓";
+
+    margin-left: 14px;
+}
+
+.byraer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    height: 44px;
+    padding: 0 22px;
+
+    border: 1px solid var(--art-ink);
+    border-radius: 999px;
+
+    background-color: transparent;
+    color: var(--art-ink);
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.byraer-btn-icon {
+    flex: none;
+
+    width: 14px;
+    height: 19px;
+}
+
+.byraer-btn[hidden] {
+    display: none;
+}
+
+.byraer-btn:hover {
+    background-color: rgba(46, 37, 31, 0.06);
+}
+
+.byraer-btn:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
+.byraer-btn-primary,
+.byraer-btn[aria-pressed="true"] {
+    background-color: var(--art-ink);
+    color: #ffffff;
+}
+
+.byraer-btn-primary:hover,
+.byraer-btn[aria-pressed="true"]:hover {
+    background-color: #1f1914;
+}
+
+.byraer-search-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.byraer-search-group .press-filters {
+    margin-top: 0;
+}
+
+.byraer-services summary {
+    cursor: pointer;
+}
+
+.byraer-summary-hint {
+    margin-left: 8px;
+
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.byraer-services[open] summary {
+    margin-bottom: 10px;
+}
+
+/* Filterknapparna är riktiga kryssrutor (fungerar utan JavaScript) som ser ut som pressrummets knappar. */
+.byraer-toggle {
+    cursor: pointer;
+}
+
+.byraer-toggle input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+}
+
+.byraer-toggle:has(input:checked) {
+    border-color: var(--art-ink);
+
+    background-color: var(--art-ink);
+    color: #ffffff;
+}
+
+.byraer-toggle:has(input:focus-visible) {
+    outline: 2px solid var(--art-accent);
+    outline-offset: 2px;
+}
+
+.byraer-toggle-count {
+    margin-left: 4px;
+
+    opacity: 0.6;
+}
+
+.byraer-search-foot {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.byraer-sort {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+
+    max-width: 100%;
+}
+
+.byraer-sort select {
+    max-width: 100%;
+}
+
+.byraer-reset {
+    color: var(--art-accent);
+    font-family: "Geist Mono", monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.byraer-reset:hover {
+    text-decoration: underline;
+}
+
+.byraer-notice {
+    margin: 0 0 24px;
+    padding: 14px 18px;
+
+    border-radius: 16px;
+
+    background-color: var(--art-surface);
+    color: var(--art-ink);
+}
+
+.byra-card-distance {
+    color: var(--art-accent);
+    font-weight: 700;
+}
+
+.byra-card-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    margin: 0;
+}
+
+.byra-card-badge {
+    padding: 3px 10px;
+
+    border-radius: 999px;
+
+    background-color: #ffd6c2;
+    color: var(--art-ink);
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+
+    .byraer-search {
+        padding: 22px 20px;
+    }
+
+    .byraer-hero-map {
+        height: 300px;
+    }
+
+}
+
+
+/* ---------- Klickbara kort och detaljvy ---------- */
+
+.byra-card {
+    position: relative;
+
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.byra-card:hover {
+    border-color: var(--art-accent);
+    transform: translateY(-3px);
+}
+
+/* Knappen med byrans namn sträcks över hela kortet, så att hela kortet går att klicka på (och nå med tangentbordet). */
+.byra-card-open {
+    padding: 0;
+
+    text-decoration: none;
+
+    border: 0;
+
+    background: none;
+    color: inherit;
+
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.byra-card-open::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 24px;
+}
+
+.byra-card:has(.byra-card-open:focus-visible) {
+    outline: 2px solid var(--art-accent);
+    outline-offset: 2px;
+}
+
+.byra-card-open:focus-visible {
+    outline: none;
+}
+
+.byra-card:hover .byra-card-name {
+    color: var(--art-accent);
+}
+
+.byra-card-link {
+    padding-top: 0;
+}
+
+/* ---------- Kort: logotyp ---------- */
+
+.byra-card-head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.byra-card-logo {
+    display: block;
+
+    max-width: 140px;
+    max-height: 44px;
+
+    object-fit: contain;
+    object-position: left center;
+}
+
+
+
+/* ---------- Byråns egen sida (/byrakartan/{slug}) ---------- */
+
+.byraer-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.byraer-chips li {
+    padding: 5px 12px;
+
+    border-radius: 999px;
+
+    background-color: var(--art-surface);
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.byra-detail-hero {
+    padding-bottom: 8px;
+}
+
+.byra-detail-back {
+    margin-bottom: 28px;
+}
+
+.byra-detail-logo {
+    display: block;
+
+    max-width: 240px;
+    max-height: 80px;
+    margin-bottom: 28px;
+
+    object-fit: contain;
+    object-position: left center;
+}
+
+.byra-detail-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin: 22px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.byra-detail-facts li {
+    padding: 6px 14px;
+
+    border-radius: 999px;
+
+    background-color: #ffd6c2;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.byra-detail-section {
+    padding-top: 36px;
+}
+
+.byra-detail-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+}
+
+.byra-detail-main {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+
+    min-width: 0;
+}
+
+/* Utan text, tjänster och bilder är kontaktkortet och kartan ett par; annars ligger de i en smal kolumn bredvid. */
+.byra-detail-aside {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+
+    min-width: 0;
+}
+
+.byra-detail-block {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.byra-detail-block .byraer-label {
+    margin: 0;
+}
+
+.byra-detail-about {
+    max-width: 680px;
+}
+
+.byra-detail-about p {
+    margin: 0 0 14px;
+
+    font-size: 1.05rem;
+    line-height: 1.7;
+
+    color: #55504c;
+}
+
+.byra-detail-about p:last-child {
+    margin-bottom: 0;
+}
+
+.byra-detail-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+    gap: 14px;
+}
+
+.byra-detail-gallery img {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    border-radius: 18px;
+
+    background-color: var(--art-surface);
+    object-fit: cover;
+}
+
+/* ---------- Kontaktkortet ---------- */
+
+.byra-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 28px;
+
+    border: 1px solid var(--art-line);
+    border-radius: 24px;
+
+    background-color: #ffffff;
+    box-shadow: 0 4px 24px rgba(46, 37, 31, 0.06);
+}
+
+.byra-contact .byraer-label {
+    margin: 0;
+}
+
+.byra-contact-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    font-size: 1.08rem;
+    font-style: normal;
+    line-height: 1.45;
+}
+
+.byra-contact-address > span {
+    display: flex;
+    flex-direction: column;
+}
+
+.byra-contact-icon {
+    flex: none;
+
+    margin-top: 2px;
+
+    color: var(--art-accent);
+}
+
+.byra-contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.byra-contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 20px;
+
+    border: 1px solid var(--art-line);
+    border-radius: 999px;
+
+    background-color: #ffffff;
+    color: var(--art-ink);
+
+    font: inherit;
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+
+    cursor: pointer;
+
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.byra-contact-btn .byra-contact-icon {
+    margin-top: 0;
+}
+
+.byra-contact-btn > span:not(.byra-contact-arrow) {
+    flex: 1;
+}
+
+.byra-contact-arrow {
+    flex: none;
+
+    font-family: "Geist Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    color: var(--art-muted);
+}
+
+.byra-contact-btn:hover {
+    border-color: var(--art-accent);
+}
+
+.byra-contact-btn:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
+.byra-contact-btn.is-primary {
+    border-color: var(--art-ink);
+
+    background-color: var(--art-ink);
+    color: #ffffff;
+}
+
+.byra-contact-btn.is-primary .byra-contact-icon,
+.byra-contact-btn.is-primary .byra-contact-arrow {
+    color: #ffffff;
+}
+
+.byra-contact-btn.is-primary:hover {
+    border-color: var(--art-accent);
+
+    background-color: var(--art-accent);
+}
+
+.byra-contact-btn.is-revealed {
+    border-color: var(--art-accent);
+
+    background-color: #fff1e9;
+}
+
+.byra-contact-btn:focus-visible {
+    outline: 2px solid var(--art-accent);
+    outline-offset: 2px;
+}
+
+.byra-detail-map {
+    min-height: 340px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--art-line);
+    border-radius: 24px;
+
+    background-color: var(--art-surface);
+}
+
+.byraer-popup-name {
+    color: var(--art-ink);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.byraer-popup-name:hover {
+    color: var(--art-accent);
+}
+
+@media (min-width: 1024px) {
+
+    /* Kontaktkortet och kartan som ett par, lika höga. */
+    .byra-detail-grid:not(.has-main) .byra-detail-aside {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+        gap: 28px;
+    }
+
+    .byra-detail-grid:not(.has-main) .byra-detail-map {
+        min-height: 420px;
+    }
+
+    .byra-detail-grid.has-main {
+        grid-template-columns: minmax(0, 1fr) 380px;
+        gap: 64px;
+    }
+
+}

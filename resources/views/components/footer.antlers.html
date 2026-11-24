@@ -31,6 +31,10 @@
           {{ if {press:has_items} }}
             <li><a href="/press">Press</a></li>
           {{ /if }}
+          {{# Byrålistan länkas när det finns byråer i cachen (hämtas aldrig här, så sidfoten väntar inte på Byråkartan). #}}
+          {{ if {byraer:has_items} }}
+            <li><a href="/byrakartan">Byråer som använder Oqto</a></li>
+          {{ /if }}
         </ul>
       </div>
 

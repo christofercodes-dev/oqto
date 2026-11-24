@@ -1,0 +1,123 @@
+{{ partial:components/navbar }}
+
+<div class="articles-scope" data-agency-page data-api="{{ api_base | sanitize }}" data-slug="{{ slug | sanitize }}">
+
+    <header class="articles-hero byra-detail-hero">
+        <div class="container">
+
+            <a href="{{ list_url }}" class="article-back byra-detail-back"><span aria-hidden="true">←</span> Alla byråer</a>
+
+            {{ if logo }}
+                <img src="{{ logo | sanitize }}" alt="Logotyp för {{ name | sanitize }}" class="byra-detail-logo" onerror="this.remove()">
+            {{ /if }}
+
+            {{ if city }}<span class="articles-eyebrow">{{ city | sanitize }}</span>{{ /if }}
+            <h1 class="articles-hero-title">{{ name | sanitize }}</h1>
+
+            {{ if facts }}
+                <ul class="byra-detail-facts">
+                    {{ facts }}<li>{{ text | sanitize }}</li>{{ /facts }}
+                </ul>
+            {{ /if }}
+
+            {{ if lead }}<p class="articles-hero-text">{{ lead | sanitize }}</p>{{ /if }}
+
+        </div>
+    </header>
+
+    {{ if has_contact || has_main || has_map }}
+        <section class="articles-section byra-detail-section">
+            <div class="container">
+                <div class="byra-detail-grid{{ if has_main }} has-main{{ /if }}">
+
+                    {{ if has_main }}
+                        <div class="byra-detail-main">
+
+                            {{ if about_paragraphs }}
+                                <div class="byra-detail-block">
+                                    <h2 class="byraer-label">Om byrån</h2>
+                                    <div class="byra-detail-about">
+                                        {{ about_paragraphs }}<p>{{ text | sanitize }}</p>{{ /about_paragraphs }}
+                                    </div>
+                                </div>
+                            {{ /if }}
+
+                            {{ if services }}
+                                <div class="byra-detail-block">
+                                    <h2 class="byraer-label">Tjänster</h2>
+                                    <ul class="byraer-chips">
+                                        {{ services }}<li>{{ name | sanitize }}</li>{{ /services }}
+                                    </ul>
+                                </div>
+                            {{ /if }}
+
+                            {{ if images }}
+                                <div class="byra-detail-gallery">
+                                    {{ images }}<img src="{{ url | sanitize }}" alt="" loading="lazy" onerror="this.remove()">{{ /images }}
+                                </div>
+                            {{ /if }}
+
+                        </div>
+                    {{ /if }}
+
+                    <div class="byra-detail-aside">
+
+                        {{ if has_contact }}
+                            <section class="byra-contact" aria-labelledby="byra-contact-title">
+                                <h2 class="byraer-label" id="byra-contact-title">Kontakt</h2>
+
+                                {{ if has_address }}
+                                    <address class="byra-contact-address">
+                                        <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                                        <span>{{ address }}<span class="byra-contact-line">{{ line | sanitize }}</span>{{ /address }}</span>
+                                    </address>
+                                {{ /if }}
+
+                                <div class="byra-contact-actions">
+                                    {{ if website }}
+                                        <a href="{{ website | sanitize }}" class="byra-contact-btn is-primary" target="_blank" rel="noopener nofollow" data-track="webbplats">
+                                            <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
+                                            <span>Besök webbplats</span>
+                                            <span class="byra-contact-arrow" aria-hidden="true">↗</span>
+                                        </a>
+                                    {{ /if }}
+                                    {{ if show_phone }}
+                                        <button type="button" class="byra-contact-btn" data-reveal="telefon">
+                                            <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+                                            <span data-label>Visa telefonnummer</span>
+                                            <span class="byra-contact-arrow" aria-hidden="true">Klicka</span>
+                                        </button>
+                                    {{ /if }}
+                                    {{ if show_email }}
+                                        <button type="button" class="byra-contact-btn" data-reveal="epost">
+                                            <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+                                            <span data-label>Visa e-post</span>
+                                            <span class="byra-contact-arrow" aria-hidden="true">Klicka</span>
+                                        </button>
+                                    {{ /if }}
+                                    {{ if profile_url }}
+                                        <a href="{{ profile_url | sanitize }}" class="byra-contact-btn" target="_blank" rel="noopener">
+                                            <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>
+                                            <span>Se profilen på Byråkartan</span>
+                                            <span class="byra-contact-arrow" aria-hidden="true">↗</span>
+                                        </a>
+                                    {{ /if }}
+                                </div>
+                            </section>
+                        {{ /if }}
+
+                        {{ if has_map }}
+                            <div class="byra-detail-map" id="byraer-map" data-agency-map data-zoom="13" data-mapbox-token="{{ map_token | sanitize }}" data-mapbox-style="{{ map_style | sanitize }}" role="region" aria-label="Karta över {{ name | sanitize }}"></div>
+                            <script type="application/json" id="byraer-data">{{ agencies_json | raw }}</script>
+                        {{ /if }}
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    {{ /if }}
+
+</div>
+
+{{ partial:components/footer }}

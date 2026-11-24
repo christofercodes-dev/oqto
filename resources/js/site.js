@@ -1062,6 +1062,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==================================================
+       BYRÅSÖKNINGEN (/byrakartan)
+       ================================================== */
+
+    document.querySelectorAll('[data-agency-search]').forEach((form) => {
+        import('./byrakartan-search.js').then((module) => module.default(form));
+    });
+
+
+    document.querySelectorAll('[data-agency-page]').forEach((el) => {
+        import('./byrakartan-agency.js').then((module) => module.default(el));
+    });
+
+    document.querySelectorAll('[data-agency-map]').forEach((el) => {
+        import('./byrakartan-map.js').then((module) => module.default(el));
+    });
+
+
+    /* ==================================================
        FLYTTA TILL OQTO (supportens val av system och sätt)
        ================================================== */
 

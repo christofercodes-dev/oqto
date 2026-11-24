@@ -20,6 +20,10 @@ Schedule::command('integrations:import')->dailyAt('03:00');
 // deploy. Därför byggs listan om en gång till kl 06:00, efter nattens inläsning.
 Schedule::command('integrations:refresh-assets')->dailyAt('06:00')->withoutOverlapping();
 
+// Håller byrålistan på /byrakartan färsk, så att besökare sällan väntar på Byråkartans API.
+// Misslyckas hämtningen ligger senast kända lista kvar.
+Schedule::command('byrakartan:sync')->everyThirtyMinutes()->withoutOverlapping();
+
 // Håller hjälpcentret (/support) färskt även om en webhook skulle missas.
 Schedule::command('intercom:sync-help-center')
     ->everyThirtyMinutes()
