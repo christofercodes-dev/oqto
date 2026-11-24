@@ -418,6 +418,16 @@ class AgencyDirectoryTest extends TestCase
         $this->get('/byrakartan?q=finnsinte')->assertOk()->assertSee('Ingen byrå matchar sökningen');
     }
 
+    public function test_a_search_lands_on_the_results_and_not_at_the_top_of_the_page(): void
+    {
+        $this->fakeThreeAgencies();
+
+        $this->get('/byrakartan?q=Lund')
+            ->assertOk()
+            ->assertSee('action="/byrakartan#resultat"', false)
+            ->assertSee('id="resultat"', false);
+    }
+
     public function test_the_search_form_keeps_what_was_chosen(): void
     {
         $this->fakeThreeAgencies();

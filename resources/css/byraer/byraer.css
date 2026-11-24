@@ -30,6 +30,11 @@
     color: var(--art-muted);
 }
 
+.byraer-results {
+    /* Hoppar man hit efter en sökning ska resultaten inte hamna under sajtens fasta meny. */
+    scroll-margin-top: 56px;
+}
+
 .byraer-count,
 .byraer-source {
     margin: 0 0 24px;

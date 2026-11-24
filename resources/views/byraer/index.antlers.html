@@ -12,7 +12,8 @@
             <p class="articles-hero-text">Här hittar du byråer som arbetar i Oqto. </br>Hitta en byrå nära dig och sök på vilken typ av byrå du vill ha.</p>
 
             {{ if has_agencies }}
-                <form method="get" action="/byrakartan" class="byraer-search" data-agency-search>
+                {{# #resultat i action: efter en sökning (och när ett filter eller sorteringen ändras) hamnar man vid resultaten, inte högst upp. #}}
+                <form method="get" action="/byrakartan#resultat" class="byraer-search" data-agency-search>
 
                     <div class="byraer-search-row">
                         <div class="byraer-search-field">
@@ -77,7 +78,7 @@
         </div>
     </header>
 
-    <section class="articles-section">
+    <section class="articles-section byraer-results" id="resultat">
         <div class="container">
 
             {{ if postcode_missed }}
