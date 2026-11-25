@@ -187,6 +187,9 @@ class AgencyDirectoryTest extends TestCase
             // Telefon och e-post bakom knappar: räknas först när besökaren klickar.
             ->assertSee('Visa telefonnummer')
             ->assertSee('Visa e-post')
+            // Ett öga visar att uppgiften är dold, i stället för texten "Klicka".
+            ->assertSee('byra-contact-eye', false)
+            ->assertDontSee('>Klicka<', false)
             ->assertSee('data-reveal="telefon"', false)
             ->assertSee('data-reveal="epost"', false)
             ->assertSee('data-api="https://byrakartan.se/api/v1"', false)

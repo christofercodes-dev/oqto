@@ -1077,8 +1077,20 @@
     color: var(--art-muted);
 }
 
+.byra-contact-eye {
+    flex: none;
+
+    color: var(--art-muted);
+
+    transition: color 0.2s ease;
+}
+
 .byra-contact-btn:hover {
     border-color: var(--art-accent);
+}
+
+.byra-contact-btn:hover .byra-contact-eye {
+    color: var(--art-accent);
 }
 
 .byra-contact-btn:disabled {

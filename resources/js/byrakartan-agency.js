@@ -118,7 +118,8 @@ export default function initAgencyPage(root) {
                 const formatted = phone ? formatPhone(value) : { text: value, dial: value.replace(/\s/g, '') };
 
                 shown.className = 'byra-contact-btn is-revealed';
-                shown.append(...[...button.querySelectorAll('svg')].map((icon) => icon.cloneNode(true)));
+                // Bara den inledande ikonen följer med (inte ögat som visar att uppgiften är dold).
+                shown.append(button.querySelector('svg').cloneNode(true));
                 shown.append(Object.assign(document.createElement('span'), { textContent: formatted.text }));
 
                 if (valid) shown.href = `${phone ? 'tel:' : 'mailto:'}${formatted.dial}`;
