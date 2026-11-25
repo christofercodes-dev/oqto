@@ -23,4 +23,13 @@ avatar:
   - images/c6ff65b4-34da-4018-8245-edfafc1ebf3b.png
 rating_average: 4.5
 rating_count: 2
+company_employee_ranges:
+  - '0'
+  - 10-49
+  - 1-9
+company_revenue_ranges:
+  - 1-3
+  - 3-10
+  - 10-50
+price: '500'
 ---
