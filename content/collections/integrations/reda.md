@@ -36,5 +36,5 @@ company_employee_ranges:
 sni_codes:
   - branschoberoende
 rating_average: 4.8
-rating_count: 9
+rating_count: 10
 ---
