@@ -77,12 +77,14 @@ class AgencyDirectoryController extends Controller
             }
         }
 
+        // Sorteringen följer platsen: med en plats (postnummer eller Nära mig) sorteras listan alltid på avstånd, utan en
+        // plats på Byråkartans egen ordning ("Bäst match"). Ett gammalt val i adressen (sort=relevans från en flik, ett
+        // bokmärke eller en delad länk) får därför aldrig åsidosätta en ny plats.
         $sort = $request->query('sort');
-        $sort = is_string($sort) && in_array($sort, self::SORTS, true) ? $sort : ($origin ? 'narmast' : 'relevans');
-
-        if ($sort === 'narmast' && $origin === null) {
-            $sort = 'relevans';
-        }
+        $sort = is_string($sort) && in_array($sort, self::SORTS, true) ? $sort : null;
+        $sort = $origin !== null
+            ? ($sort === null || $sort === 'relevans' ? 'narmast' : $sort)
+            : ($sort === null || $sort === 'narmast' ? 'relevans' : $sort);
 
         $needle = mb_strtolower($q);
 
@@ -159,11 +161,11 @@ class AgencyDirectoryController extends Controller
                 'narmast' => 'Närmast',
                 'betyg' => 'Högst betyg',
                 'namn' => 'Namn A–Ö',
-            ])->reject(fn ($label, $key) => $key === 'narmast' && $origin === null)
-                // Utan plats är "Bäst match" standardvalet och skickas som tomt värde, så att en ny plats (ett postnummer
-                // eller Nära mig) får sorteringen "Närmast" som standard. Med en plats är "Bäst match" ett uttryckligt val.
+            ])->reject(fn ($label, $key) => $origin === null ? $key === 'narmast' : $key === 'relevans')
+                // Utan plats är "Bäst match" standardvalet och skickas som tomt värde. Med en plats finns den inte som val,
+                // eftersom en plats alltid sorterar på avstånd.
                 ->map(fn ($label, $key) => [
-                    'value' => $key === 'relevans' && $origin === null ? '' : $key,
+                    'value' => $key === 'relevans' ? '' : $key,
                     'label' => $label,
                     'selected' => $key === $sort,
                 ])

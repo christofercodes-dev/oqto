@@ -243,6 +243,23 @@ class AgencyDirectoryTest extends TestCase
         $this->assertStringNotContainsString('articles-eyebrow', substr($html, strpos($html, 'byra-detail-hero'), strpos($html, '</header>', strpos($html, 'byra-detail-hero')) - strpos($html, 'byra-detail-hero')));
     }
 
+    public function test_a_card_with_a_logo_shows_the_logo_instead_of_the_name(): void
+    {
+        $this->fakeApi([
+            $this->row('med', 'Med Logga AB', 'Lund', ['logotyp' => 'https://cdn.example.se/logo.png']),
+            $this->row('utan', 'Utan Logga AB', 'Malmö'),
+        ]);
+
+        $html = $this->get('/byrakartan')->assertOk()->getContent();
+
+        // Med logotyp: loggan i länken, namnet kvar bara för skärmläsare.
+        $this->assertMatchesRegularExpression('~byra-card-name has-logo">\s*<a [^>]*class="byra-card-open">\s*<img src="https://cdn.example.se/logo.png" alt="" class="byra-card-logo"[^>]*>\s*<span class="byra-card-name-text">Med Logga AB</span>~', $html);
+
+        // Utan logotyp: bara namnet, utan has-logo.
+        $this->assertMatchesRegularExpression('~<h2 class="byra-card-name">\s*<a [^>]*class="byra-card-open">\s*<span class="byra-card-name-text">Utan Logga AB</span>~', $html);
+        $this->assertSame(1, substr_count($html, 'src="https://cdn.example.se/logo.png"'));
+    }
+
     public function test_an_agency_with_only_a_logo_still_gets_the_card(): void
     {
         $this->fakeApi([$this->row('l', 'Logo Byrå', 'Lund', ['logotyp' => 'https://cdn.example.se/l.png', 'webbplats' => null])]);
@@ -569,16 +586,28 @@ class AgencyDirectoryTest extends TestCase
             ->assertSee('value="narmast" selected', false);
     }
 
-    public function test_best_match_stays_an_explicit_choice_once_there_is_a_place(): void
+    public function test_a_place_always_sorts_by_distance_even_with_an_old_best_match_in_the_address(): void
     {
         $this->fakeThreeAgencies();
 
+        // Strax utanför Umeå, men adressen har ett gammalt sort=relevans (från en öppen flik, ett bokmärke eller en länk).
         $response = $this->get('/byrakartan?nara=63.83,20.26&sort=relevans')->assertOk();
 
-        // Den vanliga ordningen (Örebro först), trots att en plats finns.
-        $response->assertSeeInOrder(['Kvarter Byrå Örebro', 'Fokus Revision', 'Vass Byrå Umeå'])
-            ->assertSee('value="relevans" selected', false)
-            ->assertSee('value="narmast"', false);
+        $response->assertSeeInOrder(['Vass Byrå Umeå', 'Fokus Revision', 'Kvarter Byrå Örebro'])
+            ->assertSee('value="narmast" selected', false)
+            // "Bäst match" finns inte som val när en plats är vald.
+            ->assertDontSee('Bäst match')
+            ->assertDontSee('value="relevans"', false);
+    }
+
+    public function test_a_stale_nearest_sort_without_a_place_falls_back_to_best_match(): void
+    {
+        $this->fakeThreeAgencies();
+
+        $this->get('/byrakartan?sort=narmast')
+            ->assertOk()
+            ->assertSeeInOrder(['Kvarter Byrå Örebro', 'Fokus Revision', 'Vass Byrå Umeå'])
+            ->assertSee('<option value="" selected>Bäst match</option>', false);
     }
 
     public function test_best_match_is_sent_as_an_empty_value_while_there_is_no_place(): void

@@ -1,10 +1,13 @@
 <article class="byra-card">
 
     <header class="byra-card-head">
-        {{ if logo }}<img src="{{ logo | sanitize }}" alt="" class="byra-card-logo" loading="lazy" onerror="this.remove()">{{ /if }}
-        <h2 class="byra-card-name">
-            {{# Hela kortet är en länk till byråns egen sida: länken sträcks över kortet (se .byra-card-open::after). #}}
-            <a href="{{ agency_url | sanitize }}" class="byra-card-open">{{ name | sanitize }}</a>
+        {{# Har byrån en logotyp visas den i stället för namnet (namnet ligger kvar för skärmläsare, och visas igen om bilden inte går att ladda).
+            Hela kortet är en länk till byråns egen sida: länken sträcks över kortet (se .byra-card-open::after). #}}
+        <h2 class="byra-card-name{{ if logo }} has-logo{{ /if }}">
+            <a href="{{ agency_url | sanitize }}" class="byra-card-open">
+                {{ if logo }}<img src="{{ logo | sanitize }}" alt="" class="byra-card-logo" loading="lazy" onerror="this.closest('.byra-card-name').classList.remove('has-logo'); this.remove()">{{ /if }}
+                <span class="byra-card-name-text">{{ name | sanitize }}</span>
+            </a>
         </h2>
 
         <p class="byra-card-meta">
