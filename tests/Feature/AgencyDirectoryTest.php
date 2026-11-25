@@ -199,15 +199,18 @@ class AgencyDirectoryTest extends TestCase
             ->assertDontSee('hemlig@byra.se');
     }
 
-    public function test_the_postcode_is_written_the_swedish_way_and_a_city_alone_is_not_an_address(): void
+    public function test_the_postcode_is_written_the_swedish_way_and_the_city_always_shows(): void
     {
         $this->fakeApi([
             $this->row('a', 'Byrå A', 'Norrköping', ['gatuadress' => 'Ståthögavägen 48', 'postnummer' => '60223']),
             $this->row('b', 'Byrå B', 'Lund', ['gatuadress' => null, 'postnummer' => null]),
         ]);
 
-        $this->get('/byrakartan/a')->assertOk()->assertSee('602 23 Norrköping');
-        $this->get('/byrakartan/b')->assertOk()->assertDontSee('byra-contact-address', false);
+        $this->get('/byrakartan/a')->assertOk()->assertSee('Ståthögavägen 48')->assertSee('602 23 Norrköping');
+
+        // Utan gatuadress och postnummer står bara orten på adressraden.
+        $response = $this->get('/byrakartan/b')->assertOk()->assertSee('byra-contact-address', false);
+        $this->assertMatchesRegularExpression('~byra-contact-line">Lund</span>~', $response->getContent());
     }
 
     public function test_contact_card_and_map_pair_up_when_there_is_no_longer_text(): void
@@ -221,14 +224,40 @@ class AgencyDirectoryTest extends TestCase
         $this->get('/byrakartan/lang')->assertOk()->assertSee('has-main', false)->assertSee('En längre text om byrån.');
     }
 
+    public function test_the_logo_sits_inside_the_contact_card_above_the_heading_and_the_city_is_not_a_headline(): void
+    {
+        $this->fakeApi([$this->row('full', 'Full Byrå', 'Johanneshov', ['logotyp' => 'https://cdn.example.se/logo.png'])]);
+
+        $html = $this->get('/byrakartan/full')->assertOk()->getContent();
+
+        // Logotypen ligger i kontaktkortet, före rubriken "Kontakt", och inte i sidans topp.
+        $card = strpos($html, 'class="byra-contact"');
+        $logo = strpos($html, 'class="byra-contact-logo"');
+        $title = strpos($html, 'id="byra-contact-title"');
+
+        $this->assertNotFalse($card);
+        $this->assertTrue($card < $logo && $logo < $title);
+        $this->assertSame(1, substr_count($html, 'src="https://cdn.example.se/logo.png"'));
+
+        // Ingen orange ortsrubrik ovanför namnet.
+        $this->assertStringNotContainsString('articles-eyebrow', substr($html, strpos($html, 'byra-detail-hero'), strpos($html, '</header>', strpos($html, 'byra-detail-hero')) - strpos($html, 'byra-detail-hero')));
+    }
+
+    public function test_an_agency_with_only_a_logo_still_gets_the_card(): void
+    {
+        $this->fakeApi([$this->row('l', 'Logo Byrå', 'Lund', ['logotyp' => 'https://cdn.example.se/l.png', 'webbplats' => null])]);
+
+        $this->get('/byrakartan/l')->assertOk()->assertSee('class="byra-contact-logo"', false);
+    }
+
     public function test_what_an_agency_does_not_have_is_left_out_of_its_page(): void
     {
-        $this->fakeApi([$this->row('tom', 'Tom Byrå', 'Lund', ['webbplats' => null, 'tjanster' => [], 'betyg' => null, 'lat' => null, 'lng' => null, 'auktoriserad' => false, 'digital' => false])]);
+        $this->fakeApi([$this->row('tom', 'Tom Byrå', '', ['webbplats' => null, 'tjanster' => [], 'betyg' => null, 'lat' => null, 'lng' => null, 'auktoriserad' => false, 'digital' => false])]);
 
         $this->get('/byrakartan/tom')
             ->assertOk()
             ->assertSee('Tom Byrå')
-            ->assertDontSee('byra-detail-logo', false)
+            ->assertDontSee('byra-contact-logo', false)
             ->assertDontSee('Om byrån')
             ->assertDontSee('Tjänster')
             ->assertDontSee('byra-contact', false)
@@ -518,6 +547,48 @@ class AgencyDirectoryTest extends TestCase
         $this->get('/byrakartan?q='.urlencode('70222'))->assertOk()->assertSee('närmast 702 22 Örebro');
 
         Http::assertSentCount(2); // byråerna + postnumret (cachat andra gången)
+    }
+
+    public function test_a_postcode_search_sorts_by_distance_even_though_the_form_sends_the_default_sort(): void
+    {
+        config(['services.mapbox.token' => 'pk.test_token']);
+        $this->fakeThreeAgencies();
+
+        Http::fake([
+            'api.mapbox.com/*' => Http::response(['features' => [[
+                'geometry' => ['coordinates' => [20.26, 63.83]], // Umeå
+                'properties' => ['context' => ['place' => ['name' => 'Umeå']]],
+            ]]]),
+        ]);
+
+        // Formuläret skickar sort= (tomt) när "Bäst match" är valt och ingen plats finns ännu.
+        $this->get('/byrakartan?q='.urlencode('903 26').'&sort=')
+            ->assertOk()
+            ->assertSeeInOrder(['Vass Byrå Umeå', 'Fokus Revision', 'Kvarter Byrå Örebro'])
+            ->assertSee('närmast 903 26 Umeå')
+            ->assertSee('value="narmast" selected', false);
+    }
+
+    public function test_best_match_stays_an_explicit_choice_once_there_is_a_place(): void
+    {
+        $this->fakeThreeAgencies();
+
+        $response = $this->get('/byrakartan?nara=63.83,20.26&sort=relevans')->assertOk();
+
+        // Den vanliga ordningen (Örebro först), trots att en plats finns.
+        $response->assertSeeInOrder(['Kvarter Byrå Örebro', 'Fokus Revision', 'Vass Byrå Umeå'])
+            ->assertSee('value="relevans" selected', false)
+            ->assertSee('value="narmast"', false);
+    }
+
+    public function test_best_match_is_sent_as_an_empty_value_while_there_is_no_place(): void
+    {
+        $this->fakeThreeAgencies();
+
+        $this->get('/byrakartan')
+            ->assertOk()
+            ->assertSee('<option value="" selected>Bäst match</option>', false)
+            ->assertDontSee('value="narmast"', false);
     }
 
     public function test_a_postcode_without_a_token_or_match_gives_a_friendly_notice(): void

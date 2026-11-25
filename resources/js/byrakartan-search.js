@@ -149,9 +149,10 @@ export default function initAgencySearch(form) {
 
                     if (!current) form.append(input);
 
-                    // Den skrivna orten/postnumret ersätts av positionen, och listan sorteras på avstånd.
+                    // Den skrivna orten/postnumret ersätts av positionen, och listan sorteras på avstånd
+                    // (standard när en plats finns, så sorteringen lämnas åt servern).
                     form.elements.q.value = '';
-                    if (form.elements.sort) form.elements.sort.value = 'narmast';
+                    form.querySelector('select[name="sort"]')?.setAttribute('disabled', '');
 
                     form.requestSubmit();
                 },

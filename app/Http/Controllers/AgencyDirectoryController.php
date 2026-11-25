@@ -159,8 +159,14 @@ class AgencyDirectoryController extends Controller
                 'narmast' => 'Närmast',
                 'betyg' => 'Högst betyg',
                 'namn' => 'Namn A–Ö',
-            ])->reject(fn ($label, $value) => $value === 'narmast' && $origin === null)
-                ->map(fn ($label, $value) => ['value' => $value, 'label' => $label, 'selected' => $value === $sort])
+            ])->reject(fn ($label, $key) => $key === 'narmast' && $origin === null)
+                // Utan plats är "Bäst match" standardvalet och skickas som tomt värde, så att en ny plats (ett postnummer
+                // eller Nära mig) får sorteringen "Närmast" som standard. Med en plats är "Bäst match" ett uttryckligt val.
+                ->map(fn ($label, $key) => [
+                    'value' => $key === 'relevans' && $origin === null ? '' : $key,
+                    'label' => $label,
+                    'selected' => $key === $sort,
+                ])
                 ->values()->all(),
             'has_map' => $all->contains(fn (array $a) => ($a['lat'] ?? null) !== null),
             'agencies_json' => json_encode($agencies, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT),
@@ -189,12 +195,10 @@ class AgencyDirectoryController extends Controller
         $linkProfiles = (bool) config('services.byrakartan.link_profiles');
         $track = (bool) config('services.byrakartan.track_clicks') && $agency['slug'] !== '';
         $hasPosition = ($agency['lat'] ?? null) !== null && ($agency['lng'] ?? null) !== null;
-        // Bara orten räcker inte för en adress: den visas först när gatuadress eller postnummer finns.
-        // Postnumret skrivs på svenskt vis ("602 23").
+        // Adressraden i kontaktkortet: gatuadress och "postnummer ort" (postnumret skrivs på svenskt vis, "602 23"), eller bara
+        // orten om byrån saknar de två första. Orten ska alltid synas någonstans på sidan.
         $postcode = preg_replace('/^(\d{3})\s?(\d{2})$/', '$1 $2', $agency['postcode']);
-        $address = $agency['street'] !== '' || $agency['postcode'] !== ''
-            ? array_values(array_filter([$agency['street'], trim($postcode.' '.$agency['city'])]))
-            : [];
+        $address = array_values(array_filter([$agency['street'], trim($postcode.' '.$agency['city'])]));
 
         $facts = array_values(array_filter([
             $agency['rating'] !== null ? '★ '.number_format($agency['rating'], 1, ',', '').' ('.$agency['rating_count'].' omdömen)' : null,
@@ -219,7 +223,8 @@ class AgencyDirectoryController extends Controller
             'has_address' => $address !== [],
             // Text, tjänster och bilder ligger i en egen kolumn; saknas de bildar kontaktkortet och kartan ett par.
             'has_main' => $agency['about'] !== '' || $agency['services'] !== [] || $agency['images'] !== [],
-            'has_contact' => $address !== [] || $agency['website'] !== null || $track && ($agency['has_phone'] || $agency['has_email']) || $linkProfiles,
+            // Logotypen ligger överst i kontaktkortet, så kortet finns även om byrån bara har en logotyp.
+            'has_contact' => $agency['logo'] !== null || $address !== [] || $agency['website'] !== null || $track && ($agency['has_phone'] || $agency['has_email']) || $linkProfiles,
             'website' => $agency['website'],
             'show_phone' => $track && $agency['has_phone'],
             'show_email' => $track && $agency['has_email'],

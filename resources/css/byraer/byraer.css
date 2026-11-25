@@ -872,17 +872,6 @@
     margin-bottom: 28px;
 }
 
-.byra-detail-logo {
-    display: block;
-
-    max-width: 240px;
-    max-height: 80px;
-    margin-bottom: 28px;
-
-    object-fit: contain;
-    object-position: left center;
-}
-
 .byra-detail-facts {
     display: flex;
     flex-wrap: wrap;
@@ -994,6 +983,17 @@
 
     background-color: #ffffff;
     box-shadow: 0 4px 24px rgba(46, 37, 31, 0.06);
+}
+
+.byra-contact-logo {
+    display: block;
+
+    max-width: 100%;
+    max-height: 72px;
+    margin-bottom: 4px;
+
+    object-fit: contain;
+    object-position: left center;
 }
 
 .byra-contact .byraer-label {

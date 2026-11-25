@@ -7,11 +7,6 @@
 
             <a href="{{ list_url }}" class="article-back byra-detail-back"><span aria-hidden="true">←</span> Alla byråer</a>
 
-            {{ if logo }}
-                <img src="{{ logo | sanitize }}" alt="Logotyp för {{ name | sanitize }}" class="byra-detail-logo" onerror="this.remove()">
-            {{ /if }}
-
-            {{ if city }}<span class="articles-eyebrow">{{ city | sanitize }}</span>{{ /if }}
             <h1 class="articles-hero-title">{{ name | sanitize }}</h1>
 
             {{ if facts }}
@@ -64,6 +59,10 @@
 
                         {{ if has_contact }}
                             <section class="byra-contact" aria-labelledby="byra-contact-title">
+                                {{ if logo }}
+                                    <img src="{{ logo | sanitize }}" alt="Logotyp för {{ name | sanitize }}" class="byra-contact-logo" onerror="this.remove()">
+                                {{ /if }}
+
                                 <h2 class="byraer-label" id="byra-contact-title">Kontakt</h2>
 
                                 {{ if has_address }}
