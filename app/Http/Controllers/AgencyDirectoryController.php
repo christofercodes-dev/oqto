@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Byrakartan\AgencyDirectory;
+use App\Services\Byrakartan\AgencySearch;
 use App\Services\Byrakartan\PostcodeLocator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class AgencyDirectoryController extends Controller
 
     protected const SORTS = ['relevans', 'narmast', 'betyg', 'namn'];
 
-    public function __construct(protected AgencyDirectory $directory, protected PostcodeLocator $locator) {}
+    public function __construct(protected AgencyDirectory $directory, protected PostcodeLocator $locator, protected AgencySearch $search) {}
 
     /** Listan med sökning och karta (/byrakartan). */
     public function index(Request $request): View
@@ -86,15 +87,22 @@ class AgencyDirectoryController extends Controller
             ? ($sort === null || $sort === 'relevans' ? 'narmast' : $sort)
             : ($sort === null || $sort === 'narmast' ? 'relevans' : $sort);
 
-        $needle = mb_strtolower($q);
+        // Förlåtande textsökning (se AgencySearch): träffarna får poäng efter hur nära de är frågan.
+        $searching = $this->search->normalize($q) !== '';
 
         $results = $all
-            ->filter(fn (array $a) => $needle === '' || str_contains(mb_strtolower($a['name'].' '.$a['city']), $needle))
+            ->map(fn (array $a) => $a + ['match' => $this->search->score($a['name'].' '.$a['city'], $q) ?? 4])
+            ->filter(fn (array $a) => ! $searching || $a['match'] > 0)
             ->filter(fn (array $a) => ! $digital || $a['digital'])
             ->filter(fn (array $a) => ! $authorized || $a['authorized'])
             ->filter(fn (array $a) => array_diff($wantedServices, array_column($a['services'], 'slug')) === [])
             ->map(fn (array $a) => $a + ['distance' => $origin ? $this->distanceKm($origin, $a) : null])
             ->values();
+
+        // Med en text och Byråkartans egen ordning kommer de bästa träffarna först (stabilt: lika träffar behåller ordningen).
+        if ($searching && $sort === 'relevans') {
+            $results = $results->sortByDesc('match')->values();
+        }
 
         $results = $this->sorted($results, $sort);
 

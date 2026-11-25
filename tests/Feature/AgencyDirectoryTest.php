@@ -477,6 +477,42 @@ class AgencyDirectoryTest extends TestCase
             ->assertSee('id="resultat"', false);
     }
 
+    public function test_the_text_search_is_forgiving(): void
+    {
+        $this->fakeApi([
+            $this->row('a-count', 'A-Count Sweden AB', 'Stockholm'),
+            $this->row('vass', 'Vass Byrå Umeå', 'Umeå'),
+            $this->row('rak', 'Rak Ekonomi Malmö', 'Malmö'),
+        ]);
+
+        // Mellanrum i stället för bindestreck, sammanskrivet, och andra versaler.
+        foreach (['a count', 'acount', 'A-COUNT', 'count a'] as $query) {
+            $this->get('/byrakartan?q='.urlencode($query))->assertOk()->assertSee('A-Count Sweden AB')->assertDontSee('Rak Ekonomi');
+        }
+
+        // Utan prickar, i annan ordning och med ett stavfel.
+        $this->get('/byrakartan?q=malmo')->assertOk()->assertSee('Rak Ekonomi Malmö');
+        $this->get('/byrakartan?q=umea+vass')->assertOk()->assertSee('Vass Byrå Umeå')->assertDontSee('Rak Ekonomi');
+        $this->get('/byrakartan?q=ekonmi')->assertOk()->assertSee('Rak Ekonomi Malmö');
+
+        // Utan träff, och en fråga som bara är skiljetecken filtrerar ingenting.
+        $this->get('/byrakartan?q=xyzzy')->assertOk()->assertSee('Ingen byrå matchar sökningen');
+        $this->get('/byrakartan?q='.urlencode('&-'))->assertOk()->assertSee('A-Count Sweden AB')->assertSee('Rak Ekonomi Malmö');
+    }
+
+    public function test_the_closest_text_matches_come_first(): void
+    {
+        $this->fakeApi([
+            $this->row('a', 'Kvartet Ekonomi', 'Lund'),   // nästan: ett stavfel
+            $this->row('b', 'Kvarter Byrå', 'Malmö'),     // exakt
+            $this->row('c', 'Byrå Kvarter Syd', 'Umeå'),  // alla ord, men inte som en följd
+        ]);
+
+        $this->get('/byrakartan?q=kvarter')
+            ->assertOk()
+            ->assertSeeInOrder(['Kvarter Byrå', 'Byrå Kvarter Syd', 'Kvartet Ekonomi']);
+    }
+
     public function test_the_search_form_keeps_what_was_chosen(): void
     {
         $this->fakeThreeAgencies();
