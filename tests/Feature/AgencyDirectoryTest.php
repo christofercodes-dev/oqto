@@ -224,6 +224,22 @@ class AgencyDirectoryTest extends TestCase
         $this->get('/byrakartan/lang')->assertOk()->assertSee('has-main', false)->assertSee('En längre text om byrån.');
     }
 
+    public function test_the_contact_card_comes_before_the_text_and_the_map_so_it_is_first_on_mobile(): void
+    {
+        $this->fakeApi([$this->row('full', 'Full Byrå', 'Lund', ['om' => 'En längre text om byrån.', 'tjanster' => [['slug' => 't', 'namn' => 'Revision']]])]);
+
+        $html = $this->get('/byrakartan/full')->assertOk()->getContent();
+
+        $contact = strpos($html, 'class="byra-contact"');
+        $main = strpos($html, 'class="byra-detail-main"');
+        $map = strpos($html, 'class="byra-detail-map"');
+
+        $this->assertNotFalse($contact);
+        $this->assertNotFalse($main);
+        $this->assertNotFalse($map);
+        $this->assertTrue($contact < $main && $main < $map, 'Kontaktkortet ska ligga först, sedan texten, sist kartan.');
+    }
+
     public function test_the_logo_sits_inside_the_contact_card_above_the_heading_and_the_city_is_not_a_headline(): void
     {
         $this->fakeApi([$this->row('full', 'Full Byrå', 'Johanneshov', ['logotyp' => 'https://cdn.example.se/logo.png'])]);

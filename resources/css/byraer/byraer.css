@@ -916,22 +916,13 @@
 .byra-detail-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
+    gap: 28px;
 }
 
 .byra-detail-main {
     display: flex;
     flex-direction: column;
     gap: 36px;
-
-    min-width: 0;
-}
-
-/* Utan text, tjänster och bilder är kontaktkortet och kartan ett par; annars ligger de i en smal kolumn bredvid. */
-.byra-detail-aside {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
 
     min-width: 0;
 }
@@ -1160,10 +1151,11 @@
     color: var(--art-accent);
 }
 
+/* På mobil ligger allt under varandra i kodens ordning: kontaktkortet först (direkt under namnet), sedan texten, sist kartan. */
 @media (min-width: 1024px) {
 
-    /* Kontaktkortet och kartan som ett par, lika höga. */
-    .byra-detail-grid:not(.has-main) .byra-detail-aside {
+    /* Utan text, tjänster och bilder: kontaktkortet och kartan som ett par, lika höga. */
+    .byra-detail-grid {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
         gap: 28px;
     }
@@ -1172,9 +1164,27 @@
         min-height: 420px;
     }
 
+    /* Med text: texten till vänster över båda raderna, kontaktkortet och kartan i en smal kolumn till höger. */
     .byra-detail-grid.has-main {
         grid-template-columns: minmax(0, 1fr) 380px;
-        gap: 64px;
+        grid-template-rows: auto 1fr;
+        gap: 24px 64px;
+        align-items: start;
+    }
+
+    .byra-detail-grid.has-main .byra-detail-main {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+    }
+
+    .byra-detail-grid.has-main .byra-contact {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .byra-detail-grid.has-main .byra-detail-map {
+        grid-column: 2;
+        grid-row: 2;
     }
 
 }

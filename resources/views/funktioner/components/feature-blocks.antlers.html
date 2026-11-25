@@ -79,7 +79,7 @@
                         <div class="feature-block-media"{{ if embed_controls }} style="aspect-ratio: 16 / 9;"{{ /if }}>
                             <div class="feature-block-embed">
                                 <iframe
-                                    src="https://player.vimeo.com/video/{{ embed_code | trim | explode('/') | last | explode('?') | first }}?title=0&byline=0&portrait=0&badge=0{{ if embed_controls }}&dnt=1{{ else }}&background=1{{ /if }}"
+                                    src="https://player.vimeo.com/video/{{ embed_code | vimeo_embed }}title=0&byline=0&portrait=0&badge=0{{ if embed_controls }}&dnt=1{{ else }}&background=1{{ /if }}"
                                     frameborder="0"
                                     allow="autoplay; fullscreen; picture-in-picture"
                                     allowfullscreen

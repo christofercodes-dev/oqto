@@ -25,6 +25,56 @@
             <div class="container">
                 <div class="byra-detail-grid{{ if has_main }} has-main{{ /if }}">
 
+                    {{# Kontaktkortet ligger först i koden: på mobil hamnar det direkt under namnet, på bred skärm placeras
+                        det i rutnätet (se byraer.css). Läsordningen för skärmläsare stämmer därmed med det man ser. #}}
+                    {{ if has_contact }}
+                        <section class="byra-contact" aria-labelledby="byra-contact-title">
+                            {{ if logo }}
+                                <img src="{{ logo | sanitize }}" alt="Logotyp för {{ name | sanitize }}" class="byra-contact-logo" onerror="this.remove()">
+                            {{ /if }}
+
+                            <h2 class="byraer-label" id="byra-contact-title">Kontakt</h2>
+
+                            {{ if has_address }}
+                                <address class="byra-contact-address">
+                                    <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                                    <span>{{ address }}<span class="byra-contact-line">{{ line | sanitize }}</span>{{ /address }}</span>
+                                </address>
+                            {{ /if }}
+
+                            <div class="byra-contact-actions">
+                                {{ if website }}
+                                    <a href="{{ website | sanitize }}" class="byra-contact-btn is-primary" target="_blank" rel="noopener nofollow" data-track="webbplats">
+                                        <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
+                                        <span>Besök webbplats</span>
+                                        <span class="byra-contact-arrow" aria-hidden="true">↗</span>
+                                    </a>
+                                {{ /if }}
+                                {{ if show_phone }}
+                                    <button type="button" class="byra-contact-btn" data-reveal="telefon">
+                                        <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+                                        <span data-label>Visa telefonnummer</span>
+                                        <svg class="byra-contact-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    </button>
+                                {{ /if }}
+                                {{ if show_email }}
+                                    <button type="button" class="byra-contact-btn" data-reveal="epost">
+                                        <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+                                        <span data-label>Visa e-post</span>
+                                        <svg class="byra-contact-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    </button>
+                                {{ /if }}
+                                {{ if profile_url }}
+                                    <a href="{{ profile_url | sanitize }}" class="byra-contact-btn" target="_blank" rel="noopener">
+                                        <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>
+                                        <span>Se profilen på Byråkartan</span>
+                                        <span class="byra-contact-arrow" aria-hidden="true">↗</span>
+                                    </a>
+                                {{ /if }}
+                            </div>
+                        </section>
+                    {{ /if }}
+
                     {{ if has_main }}
                         <div class="byra-detail-main">
 
@@ -55,62 +105,10 @@
                         </div>
                     {{ /if }}
 
-                    <div class="byra-detail-aside">
-
-                        {{ if has_contact }}
-                            <section class="byra-contact" aria-labelledby="byra-contact-title">
-                                {{ if logo }}
-                                    <img src="{{ logo | sanitize }}" alt="Logotyp för {{ name | sanitize }}" class="byra-contact-logo" onerror="this.remove()">
-                                {{ /if }}
-
-                                <h2 class="byraer-label" id="byra-contact-title">Kontakt</h2>
-
-                                {{ if has_address }}
-                                    <address class="byra-contact-address">
-                                        <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-                                        <span>{{ address }}<span class="byra-contact-line">{{ line | sanitize }}</span>{{ /address }}</span>
-                                    </address>
-                                {{ /if }}
-
-                                <div class="byra-contact-actions">
-                                    {{ if website }}
-                                        <a href="{{ website | sanitize }}" class="byra-contact-btn is-primary" target="_blank" rel="noopener nofollow" data-track="webbplats">
-                                            <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
-                                            <span>Besök webbplats</span>
-                                            <span class="byra-contact-arrow" aria-hidden="true">↗</span>
-                                        </a>
-                                    {{ /if }}
-                                    {{ if show_phone }}
-                                        <button type="button" class="byra-contact-btn" data-reveal="telefon">
-                                            <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
-                                            <span data-label>Visa telefonnummer</span>
-                                            <svg class="byra-contact-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
-                                        </button>
-                                    {{ /if }}
-                                    {{ if show_email }}
-                                        <button type="button" class="byra-contact-btn" data-reveal="epost">
-                                            <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
-                                            <span data-label>Visa e-post</span>
-                                            <svg class="byra-contact-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
-                                        </button>
-                                    {{ /if }}
-                                    {{ if profile_url }}
-                                        <a href="{{ profile_url | sanitize }}" class="byra-contact-btn" target="_blank" rel="noopener">
-                                            <svg class="byra-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>
-                                            <span>Se profilen på Byråkartan</span>
-                                            <span class="byra-contact-arrow" aria-hidden="true">↗</span>
-                                        </a>
-                                    {{ /if }}
-                                </div>
-                            </section>
-                        {{ /if }}
-
-                        {{ if has_map }}
-                            <div class="byra-detail-map" id="byraer-map" data-agency-map data-zoom="13" data-mapbox-token="{{ map_token | sanitize }}" data-mapbox-style="{{ map_style | sanitize }}" role="region" aria-label="Karta över {{ name | sanitize }}"></div>
-                            <script type="application/json" id="byraer-data">{{ agencies_json | raw }}</script>
-                        {{ /if }}
-
-                    </div>
+                    {{ if has_map }}
+                        <div class="byra-detail-map" id="byraer-map" data-agency-map data-zoom="13" data-mapbox-token="{{ map_token | sanitize }}" data-mapbox-style="{{ map_style | sanitize }}" role="region" aria-label="Karta över {{ name | sanitize }}"></div>
+                        <script type="application/json" id="byraer-data">{{ agencies_json | raw }}</script>
+                    {{ /if }}
 
                 </div>
             </div>
