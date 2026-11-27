@@ -21,8 +21,8 @@ partner_about: 'Squidler utvecklar AI-kollegor.'
 source_created_at: '2026-09-24 14:34'
 avatar:
   - images/c6ff65b4-34da-4018-8245-edfafc1ebf3b.png
-rating_average: 4.5
-rating_count: 2
+rating_average: 4.7
+rating_count: 3
 company_employee_ranges:
   - '0'
   - 10-49
