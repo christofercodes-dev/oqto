@@ -15,4 +15,6 @@ avatar:
   - images/57e42497-5b7b-4eb7-9b84-f9384699f385.png
 sni_codes:
   - '692'
+rating_average: 4.0
+rating_count: 1
 ---
