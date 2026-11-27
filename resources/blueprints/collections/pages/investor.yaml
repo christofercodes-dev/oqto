@@ -1,4 +1,4 @@
-title: Investerarträff
+title: 'Investerarträff, uppföljning'
 tabs:
   main:
     display: Main
@@ -25,7 +25,7 @@ tabs:
               instructions: 'På: sidan får en noindex-tagg så att Google m.fl. inte listar den. Sidan finns inte heller i menyn, men den som har länken kommer åt den.'
               default: true
       -
-        display: Inbjudan
+        display: Sidan
         fields:
           -
             handle: investor_eyebrow
@@ -38,76 +38,11 @@ tabs:
               type: text
               display: Rubrik
           -
-            handle: investor_date
-            field:
-              type: text
-              display: 'Datum och tid'
-              instructions: 'Visas stort under rubriken, t.ex. "25 november kl. 15.00".'
-          -
-            handle: investor_date_short
-            field:
-              type: text
-              display: 'Datum (kort)'
-              instructions: 'Används i frågorna, t.ex. "Kan ni delta den 25 november?".'
-          -
-            handle: investor_address
-            field:
-              type: text
-              display: Adress
-          -
-            handle: investor_map_url
-            field:
-              type: text
-              display: 'Länk till karta'
-          -
-            handle: investor_agenda
-            field:
-              type: grid
-              display: Agenda
-              add_row: 'Lägg till punkt'
-              mode: stacked
-              fields:
-                -
-                  handle: time
-                  field:
-                    type: text
-                    display: 'Tid / etikett'
-                -
-                  handle: title
-                  field:
-                    type: text
-                    display: Rubrik
-          -
-            handle: investor_stay_dates
-            field:
-              type: text
-              display: 'Boende, datum'
-              instructions: 'Visas i frågan om boende, t.ex. "25–26 november".'
-      -
-        display: Kalenderlänkar
-        fields:
-          -
-            handle: event_title
-            field:
-              type: text
-              display: 'Titel i kalendern'
-          -
-            handle: event_details
+            handle: investor_intro
             field:
               type: textarea
-              display: 'Beskrivning i kalendern'
-          -
-            handle: event_start
-            field:
-              type: text
-              display: 'Start (UTC)'
-              instructions: 'Format ÅÅÅÅMMDDTHHMMSSZ, t.ex. 20261125T140000Z (= 15.00 svensk tid).'
-          -
-            handle: event_end
-            field:
-              type: text
-              display: 'Slut (UTC)'
-              instructions: 'Format ÅÅÅÅMMDDTHHMMSSZ, t.ex. 20261125T200000Z.'
+              display: Ingress
+              instructions: 'Text under rubriken. En tom rad ger ett nytt stycke.'
   sidebar:
     display: Sidebar
     sections:

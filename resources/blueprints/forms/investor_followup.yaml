@@ -1,0 +1,96 @@
+title: 'Investerarträff, uppföljning'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: interested
+            field:
+              type: select
+              display: 'Fortsatt intresserad'
+              listable: true
+              options:
+                yes: Ja
+                no: Nej
+              validate:
+                - 'required'
+                - 'in:yes,no'
+
+          -
+            handle: level
+            field:
+              type: select
+              display: 'Intressant nivå'
+              listable: true
+              options:
+                0.5-1: '0,5–1 MSEK'
+                1-2: '1–2 MSEK'
+                other: Annat
+              validate:
+                - 'nullable'
+                - 'required_if:interested,yes'
+                - 'in:0.5-1,1-2,other'
+
+          -
+            handle: level_other
+            field:
+              type: text
+              display: 'Annan nivå'
+              listable: true
+              validate:
+                - 'nullable'
+                - 'required_if:level,other'
+                - 'max:200'
+
+          -
+            handle: company
+            field:
+              type: text
+              display: 'Företag'
+              listable: true
+              validate:
+                - 'required'
+                - 'max:150'
+
+          -
+            handle: name
+            field:
+              type: text
+              display: 'Kontaktperson'
+              listable: true
+              validate:
+                - 'required'
+                - 'max:100'
+
+          -
+            handle: email
+            field:
+              type: text
+              display: 'E-post'
+              listable: true
+              validate:
+                - 'required'
+                - 'email'
+                - 'max:255'
+
+          -
+            handle: phone
+            field:
+              type: text
+              display: 'Telefon'
+              listable: hidden
+              validate:
+                - 'nullable'
+                - 'max:30'
+
+          -
+            handle: message
+            field:
+              type: textarea
+              display: 'Övrigt meddelande'
+              listable: hidden
+              validate:
+                - 'nullable'
+                - 'max:1000'

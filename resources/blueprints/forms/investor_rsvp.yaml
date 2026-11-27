@@ -1,4 +1,4 @@
-title: 'Investerarträff, anmälan'
+title: 'Investerarträff, anmälan (stängd)'
 tabs:
   main:
     display: Main
@@ -17,6 +17,7 @@ tabs:
               validate:
                 - 'required'
                 - 'in:yes,no'
+                - 'new \App\Rules\InvestorRsvpClosed'
 
           -
             handle: info_preference
@@ -114,7 +115,6 @@ tabs:
                 - 'required'
                 - 'email'
                 - 'max:255'
-                - 'new \App\Rules\UniqueInvestorRsvpEmail'
 
           -
             handle: attendee1_phone
@@ -159,7 +159,6 @@ tabs:
                 - 'email'
                 - 'max:255'
                 - 'different:attendee1_email'
-                - 'new \App\Rules\UniqueInvestorRsvpEmail'
 
           -
             handle: attendee2_phone
